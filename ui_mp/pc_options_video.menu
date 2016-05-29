@@ -38,7 +38,7 @@
 					open "all_restart_popmenu";
 				}
 			}
-			execnow "profile_menuDvarsFinish; resetViewport";
+			execNow "profile_menuDvarsFinish; resetViewport";
 		}
 		itemDef
 		{
@@ -162,20 +162,10 @@
 		
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
 		
-		itemDef
-		{
-			rect 232 0 344 28 1 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 5
-			textscale 0.5
-			text "@MENU_VIDEO"
-		}
-		
-		CHOICE_DVARENUMLIST( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode" )
-		CHOICE_DVARSLIDER( 22, "@MENU_BRIGHTNESS", "profileMenuOption_gamma", 0.8, 0.5, 3, ; )
+
+		CHOICE_SECTION_TITLE(20, "@MENU_VIDEO")
+		CHOICE_DVARENUMLIST( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARSLIDER( 22, "@MENU_BRIGHTNESS", "profileMenuOption_gamma", 0.8, 0.5, 3, setlocalVarBool "ui_showApply" ( 1 ) )
 	
 		itemDef
 		{
