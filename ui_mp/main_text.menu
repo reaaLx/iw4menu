@@ -1,4 +1,5 @@
 #include "ui/menudef.h"
+#include "ui/widescreen.menu"
 #include "ui/choices_setup_common.menu"
 
 #define CHOICE_SEP_1			3
@@ -68,14 +69,6 @@
 		exec "xstartprivatematch"; \
 		open "menu_xboxlive_privatelobby";	
 		
-		// PC widescreen 4:3 fix
-		#undef  CHOICE_X_START
-		#define CHOICE_X_START	-16
-
-		// PC widescreen 16:10/16:9 fix
-//		#undef  CHOICE_X_START
-//		#define CHOICE_X_START	-70
-
 		// general menu buttons
 		CHOICE_BUTTON(1, "@MENU_JOIN_GAME_CAPS", open "pc_join_unranked"; )
 		CHOICE_BUTTON(2, "@MENU_CREATE_GAME_CAPS", DO_THE_SERVER_EXEC )
