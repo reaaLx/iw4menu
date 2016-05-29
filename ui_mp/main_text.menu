@@ -1,6 +1,7 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.menu"
+#include "ui/widescreen.inc"
 #include "ui/choices_setup_common.menu"
+#include "ui_mp/iw4_macros.inc"
 
 #define CHOICE_SEP_1			3
 #define CHOICE_SEP_2			5
@@ -37,39 +38,13 @@
 			textScale 0.55
 			visible 1
 		}
-		itemDef // default title
-		{
-			rect 0 20 272 28 1 1
-			foreColor 1 1 1 1
-			decoration 
-			textAlign 6
-			textAlignX -59
-			textScale 0.5
-			textFont 9
-			text "@MENU_MULTIPLAYER_CAPS"
-			visible 1
-			visible when( !dvarbool( "cl_updateavailable" ) )
-		}
-#define DO_THE_SERVER_EXEC \
-		exec "xrequirelivesignin"; \
-		setdvar "systemlink" 0; \
-		setdvar "splitscreen" 0; \
-		setdvar "onlinegame" 1; \
-		exec "exec default_xboxlive.cfg"; \
-		exec "party_maxplayers 18"; \
-		exec "xblive_privatematch 0"; \
-		exec "xblive_rankedmatch 0"; \
-		exec "xstartprivateparty"; \
-		setdvar ui_mptype 0; \
-		exec "xcheckezpatch"; \
-		exec "exec default_xboxlive.cfg" \
-		exec "exec xblive_rankedmatch 0"; \
-		exec "ui_enumeratesaved"; \
-		exec "xblive_privatematch 1"; \
-		exec "xstartprivatematch"; \
-		open "menu_xboxlive_privatelobby";	
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 60
+		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1 )
+		CHOICE_MENU_TITLE_VIS( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1, ( dvarbool( "cl_updateavailable" ) ) )
 		
 		// general menu buttons
+//		CHOICE_BUTTON_VIS(0, "@MENU_CHECK_FOR_UPDATES_CAPS", CHECK_FOR_UPDATE_ACTION, when( dvarBool( "cl_updateavailable" ) ) )
 		CHOICE_BUTTON(1, "@MENU_JOIN_GAME_CAPS", open "pc_join_unranked"; )
 		CHOICE_BUTTON(2, "@MENU_CREATE_GAME_CAPS", DO_THE_SERVER_EXEC )
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
@@ -80,7 +55,7 @@
 		CHOICE_BUTTON(6, "TEST MENU", open "createserver"; )
 		CHOICE_SEPARATOR( CHOICE_SEP_3 )
 		CHOICE_BUTTON(7, "@MENU_MODS_CAPS", open mods_menu; )
-		CHOICE_BUTTON(8, "@MENU_OPTIONS_CAPS", open "pc_options_video"; )
+		CHOICE_BUTTON(8, "@MENU_OPTIONS_CAPS", open "main_options"; )
 		CHOICE_BUTTON(9, "@MENU_QUIT_CAPS", open "quit_popmenu"; )
 
 		itemDef
