@@ -232,7 +232,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_COMPACT" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_SEPARATOR( CHOICE_SEP_1 )			
+		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 5, "Storm",
 						setDvar ui_mapname mp_storm;
@@ -287,6 +287,8 @@
 						setLocalVarString "ui_info_icon" ( "preview_mp_vacant" );
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_VACANT" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+
+		CHOICE_SEPARATOR( CHOICE_SEP_2 )			
 
 		itemDef
 		{	
