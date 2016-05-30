@@ -116,28 +116,46 @@
 #define CHOICE_BUTTON( itemIndex, textArg, actionArg ) \
 		CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, 1 )
 
-#define CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, visArg ) \
-		itemDef \
-		{ \
-			rect CHOICE_RECT( itemIndex ) \
-			forecolor 1 1 1 1  \
-			style 1 \
-			background "menu_button_selection_bar" \
-			group "mw2_button" \
-			type 1 \
-			textAlign 6 \
-			textAlignX -60 \
-			textScale 0.375 \
-			textFont 3 \
-			text textArg \
-			visible visArg \
-			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
-
 #define CHOICE_BUTTON_NOHI( itemIndex, textArg, actionArg ) \
 		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, 1 )
 
+#define CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, visArg ) \
+		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg )
+		
+#define CHOICE_BUTTON_VIS_ADV( itemIndex, textArg, actionArg, visArg, vis ) \
+		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg )
+
 #define CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, ;, ;, visArg )
+
+#define CHOICE_BUTTON_FOCUS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg ) \
+		CHOICE_BUTTON_FOCUS_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, 1 )
+
+#define CHOICE_BUTTON_FOCUS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, 1 )
+
+#define CHOICE_BUTTON_FOCUS_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
+		
+#define CHOICE_BUTTON_FOCUS_VIS_ADV( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, vis ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
+
+#define CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, ; )
+
+#define CHOICE_BUTTON_EX( itemIndex, textArg, actionArg, extraArgs ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, ;, ;, 1, extraArgs )
+
+#define CHOICE_BUTTON_EX_ADV( itemIndex, textArg, actionArg, extraArgs, visArg ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, ;, ;, visArg, extraArgs )
+		
+#define CHOICE_BUTTON_FOCUS_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
+		
+#define CHOICE_BUTTON_FOCUS_VIS_EX_ADV( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs, vis ) \
+		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
+
+#define CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
@@ -152,11 +170,9 @@
 			textFont 3 \
 			exp text( textArg ); \
 			visible visArg \
-			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
+			extraArgs \
+			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}
-
-#define CHOICE_DBUTTON( itemIndex, textArg ) \
-		CHOICE_DBUTTON_VIS( itemIndex, textArg, 1 )
 
 #define CHOICE_DBUTTON_VIS( itemIndex, textArg, visArg ) \
 		itemDef \
@@ -175,8 +191,6 @@
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
-#define CHOICE_DBUTTON_NOHI( itemIndex, textArg ) \
-		CHOICE_DBUTTON_NOHI_VIS( itemIndex, textArg, 1 )
 
 #define CHOICE_DBUTTON_NOHI_VIS( itemIndex, textArg, visArg ) \
 		itemDef \
@@ -194,7 +208,8 @@
 			exp text( textArg ); \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}				
+		}
+		
 #define CHOICE_BUTTON_ADV( itemIndex, textArg, bgArg, actionArg ) \
 		CHOICE_BUTTON_ADV_VIS( itemIndex, textArg, bgArg, actionArg, 1 )
 
