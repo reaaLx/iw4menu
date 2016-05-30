@@ -1,0 +1,26 @@
+{
+	menuDef
+	{
+		name "quit_popmenu"
+		rect 0 0 640 480 1 1
+		foreColor 1 1 1 1
+		focusColor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+		}
+		onEsc
+		{
+			close "self";
+		}
+		#define ITEMNUM 5	
+		#include "ui/choices_setup_popmenu.menu"
+
+		POPMENU( 1, "popmenu", "@MENU_NOTICE" )
+		POPMENU_MESSAGE( "@MENU_ARE_YOU_SURE_QUIT" )
+		POPMENU_BUTTON( 1, "button_01", "@MENU_YES", uiScript "quit"; )
+		POPMENU_BUTTON( 2, "button_02", "@MENU_NO", close "self"; )	
+
+		}
+	}
+}

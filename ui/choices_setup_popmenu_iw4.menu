@@ -1,7 +1,6 @@
 /*
 things to note
 created by reaaL not the finished product, still polishing this.
-rect x y width height 2 2
 85 + 3 * itemNum is the default size
 for the base popmenu, itemNum will increase the width.
 Buttons are dependent on its seperate itemNum Argument
