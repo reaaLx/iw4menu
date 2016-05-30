@@ -7,7 +7,7 @@
 {
 	menuDef
 	{
-		name "pc_options_video"
+		name "pc_options_audio"
 		rect 0 0 640 480 0 0
 		forecolor 1 1 1 1
 		focuscolor 1 1 1 1
@@ -38,7 +38,7 @@
 					open "all_restart_popmenu";
 				}
 			}
-			execNow "profile_menuDvarsFinish; resetViewport";
+			execnow "profile_menuDvarsFinish; resetViewport";
 		}
 		itemDef
 		{
@@ -159,63 +159,16 @@
 
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
-		
+
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
-		
-		CHOICE_SECTION_TITLE(20, "@MENU_VIDEO")
-		CHOICE_DVARENUMLIST_FOCUS( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARSLIDER_FOCUS( 22, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, setLocalVarBool "ui_brightness_hint_display" ( 1 ),setLocalVarBool "ui_brightness_hint_display" ( 0 ), ExecNow "profile_menuDvarsFinish"; )
 
-//		CHOICE_DVARENUMLIST( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ) )
-//		CHOICE_DVARSLIDER( 22, "@MENU_BRIGHTNESS", "profileMenuOption_gamma", 0.8, 0.5, 3, setlocalVarBool "ui_showApply" ( 1 ) )
-		
+		CHOICE_SECTION_TITLE(20, "@MENU_AUDIO")
 
-		itemDef
-		{
-			rect 260 88 225 20 1 1
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 1
-			textfont 3
-			textalign 6
-			textalignx -60
-			textscale 0.375
-			text "@MENU_ADVANCED_VIDEO"
-			visible when ( 1 )
-			disabled when ( 0 )
-			action
-			{
-				open "pc_options_advanced_video";
-			}
-		}
-		itemDef
-		{
-			name "graphic_warning"
-			rect 10 -160 206 240 1 3
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 1
-			textscale 0.375
-			text "@MENU_GRAPHICS_WARNING"
-			visible when ( localVarBool( "ui_graphics_hint_display" ) )
-		}
-		itemDef
-		{
-			name "brightness_hint"
-			rect 10 -160 206 240 1 3
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 0.8 0.4 1
-			type 1
-			textscale 0.375
-			text "@MENU_BRIGHTNESS_HINT_PC"
-			visible when ( localVarBool( "ui_brightness_hint_display" ) )
-		}
+		// will make this more advanced later
+//		CHOICE_DVARSLIDER_VIS( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish";, when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+//		CHOICE_DVARSTRINGLIST_VIS( 22, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+
+		CHOICE_DVARSLIDER( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
+		CHOICE_DVARSTRINGLIST( 22, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setLocalVarBool "ui_showAudioApply" ( 1 ) )		
 	}
 }
