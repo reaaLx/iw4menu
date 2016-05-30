@@ -322,6 +322,18 @@
 			setdvar xblive_privatematch 0; \
 			close self;
 
+#define MAY_CHOOSE_CLASS	(dvarInt( "scr_oldschool" ) != 1)
+			
+#define TEAM_IS_SPECTATOR ( localVarString( "ui_team" ) == "spectator" ) )
+
+#define TEAM_IS_AXIS ( ( localvarstring( "ui_team" ) == "opfor" ) )
+#define TEAM_IS_ALLIES ( ( localvarstring( "ui_team" ) == "marines" ) )
+#define TEAM_IS_AXIS_ALLIES ( !( localvarstring( "ui_team" ) == "marines" ) || ( localvarstring( "ui_team" ) == "opfor" ) ) || !( 1 ) ))
+
+#define TEAM_IS_NONE ( localVarString( "ui_team" ) == "" ) )
+
+#define ALLIES_DISABLED ( localVarString( "ui_team" ) == "marines" ) || ( localVarString( "ui_team" ) == "opfor" ) ) || !( 1 ) )
+
 // string list defined for buttons.
 // 12/14 languages listed
 

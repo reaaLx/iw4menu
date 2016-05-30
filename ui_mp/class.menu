@@ -1,0 +1,116 @@
+#include "ui/menudef.h"
+#include "ui/widescreen.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_SEP_1			3
+{
+	menuDef
+	{
+		name "class"
+		rect 0 0 640 480 0 0
+		foreColor 1 1 1 1
+		focusColor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+			focusFirst;
+		}
+		onEsc 
+		{
+			scriptMenuResponse "back";
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect -64 0 280 480 1 0
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.25
+			background "gradient_fadein_fadebottom"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 0 272 28 3 1
+			decoration
+			visible 1
+			foreColor 1 1 1 1
+			textFont 9
+			textAlign 4
+			textAlignX 4
+			textScale 0.35
+			exp text ( gametypename( ) )
+		}
+		itemDef
+		{
+			rect -272 28 272 60 3 1
+			decoration
+			autoWrapped
+			visible 1
+			foreColor 1 1 1 0.75
+			textAlign 4
+			textAlignX 4
+			textScale 0.375
+			textStyle 3
+			exp text ( gametypedescription( ) )
+		}
+		// IW4's stock position
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 40
+
+		#include "ui_mp/tactical_map.inc"
+		#include "ui_mp/teamicon.inc"
+		CHOICE_MENU_TITLE( "@MENU_OPTIONS_UPPER_CASE", 0 0 272 28 1 1 )
+		CHOICE_BUTTON_VIS_NOHI( 1, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_marines", when( TEAM_IS_ALLIES && MAY_CHOOSE_CLASS ) )
+		CHOICE_BUTTON_VIS_NOHI( 1, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_AXIS && MAY_CHOOSE_CLASS ) )
+		CHOICE_DBUTTON_VIS( 1, "@MPUI_CHOOSE_CLASS", when( dvarInt( "scr_oldschool" ) == 1 ); )
+		CHOICE_BUTTON( 2, "@MPUI_CHANGE_TEAM", scriptMenuResponse "changeteam"; )
+
+		CHOICE_SEPARATOR( CHOICE_SEP_1 )
+
+		CHOICE_BUTTON( 3, "@MENU_OPTIONS", close "self"; open "main_options"; execNow "set ui_allow_graphic_change 0"; )
+		CHOICE_BUTTON( 4, "@MPUI_MUTE_PLAYERS", open "muteplayer"; close "self"; )
+		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
+/*
+		// needs to be fixed
+		CHOICE_DBUTTON_VIS( 1, "@MPUI_CHOOSE_CLASS", when( TEAM_IS_AXIS_ALLIES ) )
+
+		// scrapped and stupid :)
+		CHOICE_BUTTON( 3, "@MENU_CONTROLS", close "self"; open "main_controls" )
+*/
+	}
+}
