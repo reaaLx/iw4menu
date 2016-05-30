@@ -16,7 +16,7 @@
 		#define ITEMNUM 5	
 		#include "ui/choices_setup_popmenu.menu"
 
-		POPMENU( 1, "popmenu", "@MENU_NOTICE" )
+		POPMENU( 8, "popmenu", "@MENU_NOTICE" )
 		POPMENU_MESSAGE( "@MENU_ARE_YOU_SURE_QUIT" )
 		POPMENU_BUTTON( 1, "button_01", "@MENU_YES", uiScript "quit"; )
 		POPMENU_BUTTON( 2, "button_02", "@MENU_NO", close "self"; )	
