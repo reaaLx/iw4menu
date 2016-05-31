@@ -11,7 +11,7 @@ execOnDvarIntValue
 execOnDvarStringValue
 fadein
 fadeout
-getAutoPpdate
+getAutoUpdate
 hide
 ingameClose
 ingameOpen
@@ -95,7 +95,7 @@ style
 text
 textAlign
 textAlignX
-textAlignT
+textAlignY
 textFile
 textFont
 textSaveGame

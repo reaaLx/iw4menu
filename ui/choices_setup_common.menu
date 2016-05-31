@@ -75,6 +75,8 @@
 #define CHOICE_ORIGIN( itemIndex )	CHOICE_X( itemIndex ) CHOICE_Y( itemIndex )
 #define CHOICE_RECT( itemIndex )	CHOICE_ORIGIN( itemIndex ) CHOICE_SIZE_X CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
 
+// used for custom highlights for itemDefs that are special and can not use itemIndex or complie with the strict alignment of this macro set
+// for instance, pc_join_unranked menu.
 #define CHOICE_HIGHLIGHT_CUSTOM_2( px, py, pw, ph, visArg ) \
 		itemDef \
 		{ \
@@ -112,7 +114,17 @@
 			visible visArg \
 			decoration \
 		}
-
+#define	CHOICE_NEWICON_VIS( itemIndex, visArg ) \
+		itemDef \
+		{ \
+			style 3 \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -40 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			exp material( "specialty_new" ) \
+			visible visArg; \
+			textscale 0.55 \
+			decoration \
+		}
+		
 #define CHOICE_BUTTON( itemIndex, textArg, actionArg ) \
 		CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, 1 )
 
@@ -223,14 +235,30 @@
 			group "mw2_button" \
 			type 1 \
 			textAlign 8 \
-			textAlignX 160 \
+			textAlignX 225 \
 			textScale 0.375 \
 			textFont 3 \
 			text textArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
-
+#define CHOICE_DBUTTON_ADV_VIS( itemIndex, textArg, bgArg, actionArg, visArg ) \
+		itemDef \
+		{ \
+			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			forecolor 0.6 0.55 0.55 1 \
+			style 1 \
+			background bgArg \
+			group "mw2_button" \
+			type 1 \
+			textAlign 8 \
+			textAlignX 225 \
+			textScale 0.375 \
+			textFont 3 \
+			text textArg \
+			visible visArg \
+			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
+		}
 #define CHOICE_DVARENUMLIST( itemIndex, textArg, dvarArg, dvarListArg, actionArg ) \
 		CHOICE_DVARENUMLIST_VIS( itemIndex, textArg, dvarArg, dvarListArg, actionArg, 1 )
 
@@ -281,6 +309,9 @@
 		CHOICE_DVARSLIDER_VIS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, 1 )
 		
 #define CHOICE_DVARSLIDER_VIS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, visArg ) \
+		CHOICE_DVARSLIDER_VIS_EX( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, ;, 1 )
+
+#define CHOICE_DVARSLIDER_VIS_EX( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, extraArg, visArg ) \
 		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
@@ -294,6 +325,7 @@
 			text textArg \
 			dvarFloat dvarArg defaultArg minArg maxArg \
 			visible when ( visArg ) \
+			extraArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
 #define CHOICE_DVARYESNO( itemIndex, textArg, dvarArg, actionArg ) \
@@ -388,6 +420,26 @@
 			maxPaintChars max_paintchars \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
+#define CHOICE_DVAREDIT_NUMERIC( itemIndex, textArg, dvarArg, max_chars, actionArg ) \
+		CHOICE_DVAREDIT_NUMERIC_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, 1 )
+
+#define CHOICE_DVAREDIT_NUMERIC_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, visArg ) \
+		CHOICE_CAPTION( itemIndex, textArg ) \
+		itemDef \
+		{ \
+			type 4 \
+			text " " \
+			dvar dvarArg \
+			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			textAlign 8 \
+			textAlignX 225  \
+			textScale 0.375 \
+			style 1 \
+			foreColor 1 1 1 1 \
+			visible visArg \
+			maxChars max_chars \
+			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
+		}		
 
 // focus stuff here ( will remove the focus and add the choice_script_all into the standard ones later. )
 #define CHOICE_DVARENUMLIST_FOCUS( itemIndex, textArg, dvarArg, dvarListArg, onFocusArg, leaveFocusArg, actionArg ) \
@@ -433,8 +485,8 @@
 			visible visArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}
+// end choice focus stuff
 
-// end choice focus stuff		
 #define CHOICE_MENU_TITLE( titleArg, rectArg ) \
 		CHOICE_MENU_TITLE_VIS( titleArg, rectArg, 1 )
 
@@ -498,7 +550,13 @@
 #define CHOICE_CAPTION( itemIndex, textArg ) \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, 1 )
 
+#define CHOICE_CAPTION_COLOR( itemIndex, textArg, colorArg ) \
+		CHOICE_CAPTION_COLOR_VIS( itemIndex, textArg, colorArg, 1 )
+
 #define CHOICE_CAPTION_VIS( itemIndex, textArg, visArg ) \
+		CHOICE_CAPTION_COLOR_VIS( itemIndex, textArg, CHOICE_TEXTCOLOR_CAPT, visArg )
+
+#define CHOICE_CAPTION_COLOR_VIS( itemIndex, textArg, colorArg, visArg ) \
 		itemDef \
 		{ \
 			type 1 \
@@ -512,6 +570,19 @@
 			visible visArg \
 			decoration \
 		}
+#define CHOICE_SUBTEXT_COLOR_VIS( itemIndex, textArg, colorArg, visArg ) \
+		itemDef \
+		{ \
+			type 1 \
+			rect CHOICE_RECT( itemIndex ) \
+			exp text( textArg ); \
+			textfont 3\
+			textscale 0.375 \
+			textAlign 6 \
+			forecolor colorArg \
+			visible visArg \
+			decoration \
+		}		
 #define CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		CHOICE_SCRIPTS_ALL( itemIndex, actionArg, ;, ; )
 	
@@ -580,4 +651,18 @@
 					} \
 				} \
 			} \
+		}
+#define CHOICE_KEYBINDHELP \
+		itemDef \
+		{ \
+			name "keyBindStatus" \
+			rect 10 20 500 240 2 3 \
+			decoration \
+			autowrapped \
+			style 1 \
+			ownerdraw 250 \
+			forecolor 0.65 0.65 0.65 1 \
+			type 8 \
+			textalign 1 \
+			textscale 0.375 \
 		}

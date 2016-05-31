@@ -46,18 +46,20 @@
 
 		#define DO_THE_CHICKEN_WING_2
 		#include "ui_mp/bg.inc"
-		
-		#include "ui_mp/iw4_macros.inc"
-		
+
 		CHOICE_MENU_TITLE( "@MENU_CREATE_GAME_CAPS", 0 0 272 28 1 1 )
 		CHOICE_BUTTON_VIS(0, "@MENU_START_GAME_CAPS", SETUP_ACTION_START, when( ( dvarBool( "developer_script" ) < "1" && dvarInt( "developer" ) < "2" ) && ( !dvarBool( "developer_script" ) > "0" && !dvarInt( "developer" ) > "0" ) ) )
 		CHOICE_BUTTON_VIS(0, "@MENU_START_DEVMAP_CAPS", SETUP_ACTION_STARTDEV, when( ( dvarBool( "developer_script" ) == "1" && dvarInt( "developer" ) == "2" ) && ( !dvarBool( "developer_script" ) == "0" && !dvarInt( "developer" ) == "0" ) ) )
+
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
+
 		CHOICE_BUTTON_VIS(1, "@MENU_CHANGE_MAP_CAPS", open "settings_map", 1 )
 		CHOICE_BUTTON_VIS(2, "@MENU_CHANGE_GAME_MODE_CAPS", open "settings_gametype", 1 )
 		CHOICE_BUTTON_VIS(3, "@MENU_CHANGE_GAME_RULES_CAPS", SETUP_ACTION_RULES, when( dvarString( "ui_gametype" ) != "arena" && dvarString( "ui_gametype" ) != "oneflag" && dvarString( "ui_gametype" ) != "ss" && dvarString( "ui_gametype" ) != "gg" && dvarString( "ui_gametype" ) != "oitc" && dvarString( "ui_gametype" ) != "conf" && dvarString( "ui_gametype" ) != "cranked" && dvarString( "ui_gametype" ) != "infected" && dvarString( "ui_gametype" ) != "tdef" ) )
 		CHOICE_DBUTTON_VIS(3, "@MENU_CHANGE_GAME_RULES_CAPS", when( dvarString( "ui_gametype" ) == "arena" || dvarString( "ui_gametype" ) == "oneflag" || dvarString( "ui_gametype" ) == "ss" || dvarString( "ui_gametype" ) == "gg" || dvarString( "ui_gametype" ) == "oitc" || dvarString( "ui_gametype" ) == "conf" || dvarString( "ui_gametype" ) == "cranked" || dvarString( "ui_gametype" ) == "infected" || dvarString( "ui_gametype" ) == "tdef" ) )
+
 		CHOICE_SEPARATOR( CHOICE_SEP_2 )
+
 		CHOICE_BUTTON_VIS(4, "@PLATFORM_BACK_CAPS", SETUP_ACTION_BACK, 1)
 
 		CHOICE_BUTTON_VIS(11, "@MENU_DEV_TOGGLE_ON", setDvar "developer" 2; setDvar "developer_script" 1;, when ( dvarBool( "developer_script" ) == 0 && dvarInt( "developer" ) == 0 ) )

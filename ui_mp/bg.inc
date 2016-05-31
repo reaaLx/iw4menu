@@ -64,7 +64,6 @@
 			visible 1
 			exp forecolor a ( ( ( sin ( milliseconds( ) / 480 ) + 1 ) * 0.250000 ) + 0.250000  )
 		}
-		
 #ifndef DONT_DO_THE_SIDEBAR_THINGY
 		itemDef
 		{

@@ -43,10 +43,6 @@
 
 		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 0 272 28 1 1  )
 
-//		CHOICE_MENU_TITLE_VIS( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1, ( dvarbool( "cl_updateavailable" ) ) )
-
-		// general menu buttons
-//		CHOICE_BUTTON_VIS(0, "@MENU_CHECK_FOR_UPDATES_CAPS", CHECK_FOR_UPDATE_ACTION, when( dvarBool( "cl_updateavailable" ) ) )
 		CHOICE_BUTTON(0, "@MENU_JOIN_GAME_CAPS", open "pc_join_unranked"; )
 		CHOICE_BUTTON(1, "@MENU_CREATE_GAME_CAPS", DO_THE_SERVER_EXEC )
 

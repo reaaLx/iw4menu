@@ -28,98 +28,10 @@
 		{
 			close self;
 		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "black"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 0 1708 480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 0 -1708 -480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -427 -240 854 480 2 2
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "mw2_main_sp_image"
-			textscale 0.55
-			visible when ( dvarstring( "gameMode" ) == "sp" )
-		}
-		itemDef
-		{
-			rect -427 -240 854 480 2 2
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "mw2_main_co_image"
-			textscale 0.55
-			visible when ( dvarstring( "gameMode" ) == "so" )
-		}
-		itemDef
-		{
-			rect -427 -240 854 480 2 2
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "mw2_main_mp_image"
-			textscale 0.55
-			visible when ( dvarstring( "gameMode" ) == "mp" )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
-			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
-			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
-		}
+
+		#define BG_2
+		#include "ui_mp/blurredbg.inc"
+
 		CHOICE_SECTION_TITLE(20, "@MENU_CHAT" )
 		
 		CHOICE_BIND( 20, "@MENU_TEXT_CHAT", "chatmodepublic", ; )
