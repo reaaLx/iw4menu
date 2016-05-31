@@ -1,17 +1,17 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
 #include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
 #define CHOICE_SEP_1			3
 #define CHOICE_SEP_2			5
 #define CHOICE_SEP_3			7
+
 {
 	menuDef
 	{
 		name "main_text"
 		fullscreen 1
-		rect 0 0 640 480
+		rect 0 0 640 480 0 0
 		focusColor 1 1 1 1
 		foreColor 1 1 1 1
 		soundLoop "music_mainmenu_mp"
@@ -38,8 +38,11 @@
 			textScale 0.55
 			visible 1
 		}
+		#undef CHOICE_X_START
+		#define CHOICE_X_START -64
+
 		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 60
+		#define CHOICE_Y_START 28
 		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1 )
 		CHOICE_MENU_TITLE_VIS( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1, ( dvarbool( "cl_updateavailable" ) ) )
 		
