@@ -1,10 +1,12 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1			4
-#define CHOICE_SEP_2			5
+#define CHOICE_GROUP			"team_marinesopfor"
+#define CHOICE_SEP_1			3
+#define CHOICE_SEP_2			4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -64,29 +66,29 @@
 			background "gradient_fadein_fadebottom"
 			textscale 0.55
 		}
-		// IW4's stock position
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
+		
 		#include "ui_mp/tactical_map.inc"
 		#include "ui_mp/teamicon.inc"
+		
+		CHOICE_MENU_TITLE( "@MPUI_CHOOSE_TEAM", 0 0 272 28 1 1 )
+		
 		// dbuttons work pretty well here. for now.
-		CHOICE_BUTTON_VIS_NOHI( 1, "@MPUI_SPECTATOR", scriptMenuResponse "spectator";, when ( team( "name" ) != "TEAM_SPECTATOR" ) )
-		CHOICE_DBUTTON_VIS( 1, "@MPUI_SPECTATOR", when ( team( "name" ) == "TEAM_SPECTATOR" || !dvarbool( "scr_game_spectatetype" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 0, "@MPUI_SPECTATOR", scriptMenuResponse "spectator";, when ( team( "name" ) != "TEAM_SPECTATOR" ) )
+		CHOICE_DBUTTON_VIS( 0, "@MPUI_SPECTATOR", when ( team( "name" ) == "TEAM_SPECTATOR" || !dvarbool( "scr_game_spectatetype" ) ) )
 		
-		CHOICE_BUTTON_VIS_NOHI( 2, "@" + dvarString( "g_TeamName_Axis" ), scriptMenuResponse "axis";, when( team( "name" ) == "TEAM_ALLIES" || team( "name" ) == "TEAM_SPECTATOR" || team(name) == "TEAM_FREE" ); )
-		CHOICE_DBUTTON_NOHI_VIS( 2, "@" + dvarString( "g_TeamName_Axis" ), when ( team( "name" ) == "TEAM_AXIS" ) )
+		CHOICE_BUTTON_VIS_NOHI( 1, "@" + dvarString( "g_TeamName_Axis" ), scriptMenuResponse "axis";, when( team( "name" ) == "TEAM_ALLIES" || team( "name" ) == "TEAM_SPECTATOR" || team(name) == "TEAM_FREE" ); )
+		CHOICE_DBUTTON_NOHI_VIS( 1, "@" + dvarString( "g_TeamName_Axis" ), when ( team( "name" ) == "TEAM_AXIS" ) )
 		
-		CHOICE_BUTTON_VIS_NOHI( 3, "@" + dvarString( "g_TeamName_Allies" ), scriptMenuResponse "allies";, when( team( "name" ) == "TEAM_AXIS" || team( "name" ) == "TEAM_SPECTATOR" || team(name) == "TEAM_FREE" ); )
-		CHOICE_DBUTTON_NOHI_VIS( 3, "@" + dvarString( "g_TeamName_Allies" ), when ( team( "name" ) == "TEAM_ALLIES" ) )
+		CHOICE_BUTTON_VIS_NOHI( 2, "@" + dvarString( "g_TeamName_Allies" ), scriptMenuResponse "allies";, when( team( "name" ) == "TEAM_AXIS" || team( "name" ) == "TEAM_SPECTATOR" || team(name) == "TEAM_FREE" ); )
+		CHOICE_DBUTTON_NOHI_VIS( 2, "@" + dvarString( "g_TeamName_Allies" ), when ( team( "name" ) == "TEAM_ALLIES" ) )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_BUTTON( 4, "@MPUI_AUTOASSIGN", scriptMenuResponse "autoassign"; )	
+		CHOICE_BUTTON( 3, "@MPUI_AUTOASSIGN", scriptMenuResponse "autoassign"; )	
 
 		CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, when ( team( "name" ) == "TEAM_SPECTATOR" ) )
 
-		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
-		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
 	}	
 }

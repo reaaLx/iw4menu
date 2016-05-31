@@ -68,7 +68,7 @@
 #endif
 
 #define CHOICE_ROW( itemIndex )		( ( itemIndex - 0 ) % CHOICE_Y_COUNT )
-#define CHOICE_COL( itemIndex )		( ( itemIndex - 1 - ( ( itemIndex - 1 ) % CHOICE_Y_COUNT ) ) / CHOICE_Y_COUNT )
+#define CHOICE_COL( itemIndex )		( ( itemIndex - 0 - ( ( itemIndex - 0 ) % CHOICE_Y_COUNT ) ) / CHOICE_Y_COUNT )
 
 #define CHOICE_X( itemIndex ) 		( CHOICE_X_START + CHOICE_X_SPACING * CHOICE_COL( itemIndex ) )
 #define CHOICE_Y( itemIndex ) 		( CHOICE_Y_START + CHOICE_Y_SPACING * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) )
@@ -458,7 +458,7 @@
 		itemDef \
 		{ \
 			type 0 \
-			rect ( 0 + 272 ) 0 240 28 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect ( 0 + 0 ) -28 242 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			origin CHOICE_ORIGIN( itemIndex ) \
 			forecolor 1 1 1 1 \
 			exp text( titleArg );\

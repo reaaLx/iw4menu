@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1		5
+#define CHOICE_GROUP	"pc_options"
+#define CHOICE_SEP_1	4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -168,27 +170,24 @@
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
 
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
 
 		CHOICE_SECTION_TITLE(20, "@MENU_VIDEO")
-		
+
 		// pointless as of now
-		CHOICE_DVARYESNO( 21, "@MENU_SHOW_BLOOD", "cg_blood", ; )
-		CHOICE_DVARFLOATLIST( 22, "@MENU_ENABLE_CONSOLE", monkeytoy, ENABLE_CONSOLE_STRLIST, ; )
-		CHOICE_DVARYESNO( 23, "@MENU_ENABLE_CROSSHAIR", "cg_drawCrosshair", ; )
-		CHOICE_DVARYESNO( 24, "@MENU_ALLOW_DOWNLOAD", "sv_allowdownload", ; )
-		
+		CHOICE_DVARYESNO( 20, "@MENU_SHOW_BLOOD", "cg_blood", ; )
+		CHOICE_DVARFLOATLIST( 21, "@MENU_ENABLE_CONSOLE", monkeytoy, ENABLE_CONSOLE_STRLIST, ; )
+		CHOICE_DVARYESNO( 22, "@MENU_ENABLE_CROSSHAIR", "cg_drawCrosshair", ; )
+		CHOICE_DVARYESNO( 23, "@MENU_ALLOW_DOWNLOAD", "sv_allowdownload", ; )
+
  //		pointless for so many iw4 clients, unless used on REACT.IW4 due to having name changing ingame support.
-		CHOICE_DVAREDIT_VIS( 25, "@MENU_PLAYER_NAME", "ui_name", 15, 15, ;, 1 )
+		CHOICE_DVAREDIT_VIS( 24, "@MENU_PLAYER_NAME", "ui_name", 15, 15, ;, 1 )
 
 // 		it appears this doesn't work due to only having 1 language I suppose?
-		CHOICE_DVARSTRINGLIST( 26, "@MENU_LANGUAGE", "ui_language", LANG_STRLIST, uiScript "verifyLanguage"; )
+		CHOICE_DVARSTRINGLIST( 25, "@MENU_LANGUAGE", "ui_language", LANG_STRLIST, uiScript "verifyLanguage"; )
 //		CHOICE_APPLY_VIS( "@MENU_APPLY_LANGUAGE_CHANGE", open "language_restart_popmenu", when ( dvarInt( "ui_languageChanged" ) ) )
 
 		itemDef

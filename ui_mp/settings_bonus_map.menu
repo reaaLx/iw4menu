@@ -1,10 +1,12 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1 		6
-#define CHOICE_SEP_2 		11
+#define CHOICE_GROUP			"settings"
+#define CHOICE_SEP_1			5
+#define CHOICE_SEP_2			10
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -193,10 +195,7 @@
 			text "@MENU_CHOOSE_MAP_CAP"
 		}
 
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 45
-
-		CHOICE_BUTTON_FOCUS_VIS( 1, "Bailout",
+		CHOICE_BUTTON_FOCUS_VIS( 0, "Bailout",
 						setDvar ui_mapname mp_complex;
 						close "settings_map";
 						close "self";,
@@ -205,7 +204,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_COMPLEX" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );,  1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 2, "Crash",
+		CHOICE_BUTTON_FOCUS_VIS( 1, "Crash",
 						setDvar ui_mapname mp_crash;
 						close "settings_map";
 						close "self";,
@@ -214,7 +213,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_CRASH" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );,  1 )
 				
-		CHOICE_BUTTON_FOCUS_VIS( 3, "Overgrown",
+		CHOICE_BUTTON_FOCUS_VIS( 2, "Overgrown",
 						setDvar ui_mapname mp_overgrown;
 						close "settings_map";
 						close "self";,
@@ -223,7 +222,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_OVERGROWN" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 4, "Salvage",
+		CHOICE_BUTTON_FOCUS_VIS( 3, "Salvage",
 						setDvar ui_mapname mp_Compact;
 						close "settings_map";
 						close "self";,
@@ -234,7 +233,7 @@
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 5, "Storm",
+		CHOICE_BUTTON_FOCUS_VIS( 4, "Storm",
 						setDvar ui_mapname mp_storm;
 						close "settings_map";
 						close "self";,
@@ -243,7 +242,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_STORM" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 6, "Carnival",
+		CHOICE_BUTTON_FOCUS_VIS( 5, "Carnival",
 						setDvar ui_mapname mp_abandon;
 						close "settings_map";
 						close "self";,
@@ -252,7 +251,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_ABANDON" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 7, "Fuel",
+		CHOICE_BUTTON_FOCUS_VIS( 6, "Fuel",
 						setDvar ui_mapname mp_fuel2;
 						close "settings_map";
 						close "self";,
@@ -261,7 +260,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_fuel2" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 8, "Strike",
+		CHOICE_BUTTON_FOCUS_VIS( 7, "Strike",
 						setDvar ui_mapname mp_checkpoint;
 						close "settings_map";
 						close "self";,
@@ -270,7 +269,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_STRIKE" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 9, "Trailer Park",
+		CHOICE_BUTTON_FOCUS_VIS( 8, "Trailer Park",
 						setDvar ui_mapname mp_trailerpark;
 						close "settings_map";
 						close "self";,
@@ -279,7 +278,7 @@
 						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_trailerpark" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 10, "Vacant",
+		CHOICE_BUTTON_FOCUS_VIS( 9, "Vacant",
 						setDvar ui_mapname mp_vacant;
 						close "settings_map";
 						close "self";,

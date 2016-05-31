@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1		5
+#define CHOICE_GROUP		"main"
+#define CHOICE_SEP_1		4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -154,9 +156,6 @@
 			textscale 0.55
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 		

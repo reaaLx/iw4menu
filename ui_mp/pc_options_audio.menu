@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1		5
+#define CHOICE_GROUP		"pc_options"
+#define CHOICE_SEP_1		4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -154,9 +156,6 @@
 			textscale 0.55
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 
@@ -164,11 +163,12 @@
 
 		CHOICE_SECTION_TITLE(20, "@MENU_AUDIO")
 
+		CHOICE_DVARSLIDER( 20, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
+		CHOICE_DVARSTRINGLIST( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setLocalVarBool "ui_showAudioApply" ( 1 ) )		
+
 		// will make this more advanced later
 //		CHOICE_DVARSLIDER_VIS( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish";, when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 //		CHOICE_DVARSTRINGLIST_VIS( 22, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 
-		CHOICE_DVARSLIDER( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
-		CHOICE_DVARSTRINGLIST( 22, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setLocalVarBool "ui_showAudioApply" ( 1 ) )		
 	}
 }

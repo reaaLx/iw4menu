@@ -8,7 +8,6 @@
 			textScale 0.55
 			visible 1
 		}
-		
 #ifdef DO_THE_CHICKEN_WING
 		itemDef
 		{
@@ -47,7 +46,7 @@
 		{
 			rect 0 0 640 480 4 4
 			style 3
-			foreColor 0 114 255 0
+			foreColor 1 1 1 0
 			background "mockup_bg_glow"
 			decoration 
 			textScale 0.55
@@ -58,7 +57,7 @@
 		{
 			rect 0 0 640 480 4 4
 			style 3
-			foreColor 0 114 255 0
+			foreColor 1 1 1 0
 			background "mockup_bg_glow"
 			decoration 
 			textScale 0.55

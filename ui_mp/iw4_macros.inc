@@ -38,7 +38,7 @@
 				exec "ui_enumeratesaved"; \
 				exec "xblive_privatematch 1"; \
 				exec "xstartprivatematch"; \
-				open "createserver";
+				open "menu_xboxlive_privatelobby";
 		
 		#define SETUP_ACTION_START \
 			exec selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow; \

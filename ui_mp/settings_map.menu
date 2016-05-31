@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1 		2
+#define CHOICE_GROUP			"settings"
+#define CHOICE_SEP_1			1
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -192,10 +194,7 @@
 			text "@MENU_CHOOSE_MAP_CAP"
 		}
 
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 45
-		
-		CHOICE_BUTTON_FOCUS_VIS( 1, "Bonus Maps",
+		CHOICE_BUTTON_FOCUS_VIS( 0, "Bonus Maps",
 						open "settings_bonus_map";,
 						setLocalVarString "ui_info_name" ( "Bonus Maps" );
 						setLocalVarString "ui_info_icon" ( "loadscreen_mp_bonusmaps" );
@@ -204,7 +203,7 @@
 						
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 		
-		CHOICE_BUTTON_FOCUS_VIS( 2, "Afghan",
+		CHOICE_BUTTON_FOCUS_VIS( 1, "Afghan",
 						setDvar ui_mapname mp_afghan;
 						close "settings_map";
 						close "self";,
@@ -213,7 +212,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_AFGHAN" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );,  1 )
 				
-		CHOICE_BUTTON_FOCUS_VIS( 3, "Derail",
+		CHOICE_BUTTON_FOCUS_VIS( 2, "Derail",
 						setDvar ui_mapname mp_derail;
 						close "settings_map";
 						close "self";,
@@ -222,7 +221,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_DERAIL" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 4, "Estate",
+		CHOICE_BUTTON_FOCUS_VIS( 3, "Estate",
 						setDvar ui_mapname mp_estate;
 						close "settings_map";
 						close "self";,
@@ -231,7 +230,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_ESTATE" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 5, "Favela",
+		CHOICE_BUTTON_FOCUS_VIS( 4, "Favela",
 						setDvar ui_mapname mp_favela;
 						close "settings_map";
 						close "self";,
@@ -240,7 +239,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_favela" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 6, "Highrise",
+		CHOICE_BUTTON_FOCUS_VIS( 5, "Highrise",
 						setDvar ui_mapname mp_highrise;
 						close "settings_map";
 						close "self";,
@@ -249,7 +248,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_highrise" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 7, "Invasion",
+		CHOICE_BUTTON_FOCUS_VIS( 6, "Invasion",
 						setDvar ui_mapname mp_invasion;
 						close "settings_map";
 						close "self";,
@@ -258,7 +257,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_invasion" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 8, "Karachi",
+		CHOICE_BUTTON_FOCUS_VIS( 7, "Karachi",
 						setDvar ui_mapname mp_checkpoint;
 						close "settings_map";
 						close "self";,
@@ -267,7 +266,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_checkpoint" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 9, "Quarry",
+		CHOICE_BUTTON_FOCUS_VIS( 8, "Quarry",
 						setDvar ui_mapname mp_quarry;
 						close "settings_map";
 						close "self";,
@@ -276,7 +275,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_quarry" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 10, "Rundown",
+		CHOICE_BUTTON_FOCUS_VIS( 9, "Rundown",
 						setDvar ui_mapname mp_rundown;
 						close "settings_map";
 						close "self";,
@@ -285,7 +284,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_rundown" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 						
-		CHOICE_BUTTON_FOCUS_VIS( 11, "Rust",
+		CHOICE_BUTTON_FOCUS_VIS( 10, "Rust",
 						setDvar ui_mapname mp_rust;
 						close "settings_map";
 						close "self";,
@@ -294,7 +293,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_rust" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 12, "Scrapyard",
+		CHOICE_BUTTON_FOCUS_VIS( 11, "Scrapyard",
 						setDvar ui_mapname mp_boneyard;
 						close "settings_map";
 						close "self";,
@@ -303,7 +302,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_boneyard" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 13, "Skidrow",
+		CHOICE_BUTTON_FOCUS_VIS( 12, "Skidrow",
 						setDvar ui_mapname mp_skidrow;
 						close "settings_map";
 						close "self";,
@@ -312,7 +311,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_nightshift" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 						
-		CHOICE_BUTTON_FOCUS_VIS( 14, "Subbase",
+		CHOICE_BUTTON_FOCUS_VIS( 13, "Subbase",
 						setDvar ui_mapname mp_subbase;
 						close "settings_map";
 						close "self";,
@@ -321,7 +320,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_subbase" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 15, "Terminal",
+		CHOICE_BUTTON_FOCUS_VIS( 14, "Terminal",
 						setDvar ui_mapname mp_terminal;
 						close "settings_map";
 						close "self";,
@@ -330,7 +329,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_TERMINAL" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 16, "Underpass",
+		CHOICE_BUTTON_FOCUS_VIS( 15, "Underpass",
 						setDvar ui_mapname mp_underpass;
 						close "settings_map";
 						close "self";,
@@ -339,7 +338,7 @@
 						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_UNDERPASS" );,
 						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
 
-		CHOICE_BUTTON_FOCUS_VIS( 17, "Wasteland",
+		CHOICE_BUTTON_FOCUS_VIS( 16, "Wasteland",
 						setDvar ui_mapname mp_brecourt;
 						close "settings_map";
 						close "self";,

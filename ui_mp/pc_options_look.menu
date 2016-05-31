@@ -1,7 +1,10 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"pc_options"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -116,24 +119,21 @@
 			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
 
 		CHOICE_SECTION_TITLE(20, "@MENU_ACTIONS")
 		
-		CHOICE_DVARSLIDER( 21, "@MENU_MOUSE_SENSITIVITY", "sensitivity", 5, 0.01, 100, ; )
-		CHOICE_DVARYESNO( 22, "@MENU_INVERT_MOUSE", "ui_mousePitch", ; )
+		CHOICE_DVARSLIDER( 20, "@MENU_MOUSE_SENSITIVITY", "sensitivity", 5, 0.01, 100, ; )
+		CHOICE_DVARYESNO( 21, "@MENU_INVERT_MOUSE", "ui_mousePitch", ; )
 		
-		CHOICE_SECTION_SEPARATOR( 23 )
+		CHOICE_SECTION_SEPARATOR( 22 )
 		
-		CHOICE_DVARYESNO( 23, "@MENU_SMOOTH_MOUSE", "m_filter", ; )
-		CHOICE_DVARYESNO( 24, "@MENU_FREE_LOOK", "cl_freelook", ; )
-		CHOICE_BIND( 25, "@MENU_LOOK_UP", "+lookup", ; )
-		CHOICE_BIND( 26, "@MENU_LOOK_DOWN", "+lookdown", ; )
-		CHOICE_BIND( 27, "@MENU_MOUSE_LOOK", "+mlook", ; )
-		CHOICE_BIND( 28, "@MENU_CENTER_VIEW", "centerview", ; )
+		CHOICE_DVARYESNO( 22, "@MENU_SMOOTH_MOUSE", "m_filter", ; )
+		CHOICE_DVARYESNO( 23, "@MENU_FREE_LOOK", "cl_freelook", ; )
+		CHOICE_BIND( 24, "@MENU_LOOK_UP", "+lookup", ; )
+		CHOICE_BIND( 25, "@MENU_LOOK_DOWN", "+lookdown", ; )
+		CHOICE_BIND( 26, "@MENU_MOUSE_LOOK", "+mlook", ; )
+		CHOICE_BIND( 27, "@MENU_CENTER_VIEW", "centerview", ; )
 		
 		itemDef
 		{

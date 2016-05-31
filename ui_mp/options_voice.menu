@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1		5
+#define CHOICE_GROUP	"main"
+#define CHOICE_SEP_1	4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -154,21 +156,18 @@
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
 
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
-
 		CHOICE_SECTION_TITLE(20, "@MENU_VOICE")
 		
-		CHOICE_DVARSTRINGLIST( 21, "@MENU_MUTE_ALL", "cl_voice", VOICE_STRLIST, ; )
-		CHOICE_DVARSLIDER( 22, "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ; )
-		
-		// needs fixing also people dont use mics on iw4 clients aside from steam client
-		// CHOICE_DVARLIST( 25, "@MENU_VOICECHAT_LEVEL_INDICATOR", "", 8, ownerDraw 265, ; )		
+		CHOICE_DVARSTRINGLIST( 20, "@MENU_MUTE_ALL", "cl_voice", VOICE_STRLIST, ; )
+		CHOICE_DVARSLIDER( 21, "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ; )
+
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+
+		// needs fixing, ownerdraw being a big meme to me.
+		// CHOICE_DVARLIST( 23, "@MENU_VOICECHAT_LEVEL_INDICATOR", "", 8, ownerDraw 265, ; )		
 
 	}
 }

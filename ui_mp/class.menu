@@ -1,9 +1,11 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
-#include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_SEP_1			3
+#define CHOICE_GROUP			"class"
+#define CHOICE_SEP_1			2
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -87,30 +89,25 @@
 			textStyle 3
 			exp text ( gametypedescription( ) )
 		}
-		// IW4's stock position
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 40
-
+		
 		#include "ui_mp/tactical_map.inc"
 		#include "ui_mp/teamicon.inc"
+
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_UPPER_CASE", 0 0 272 28 1 1 )
-		CHOICE_BUTTON_VIS_NOHI( 1, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_marines", when( TEAM_IS_ALLIES && MAY_CHOOSE_CLASS ) )
-		CHOICE_BUTTON_VIS_NOHI( 1, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_AXIS && MAY_CHOOSE_CLASS ) )
-		CHOICE_DBUTTON_VIS( 1, "@MPUI_CHOOSE_CLASS", when( dvarInt( "scr_oldschool" ) == 1 ); )
-		CHOICE_BUTTON( 2, "@MPUI_CHANGE_TEAM", scriptMenuResponse "changeteam"; )
+		CHOICE_BUTTON_VIS_NOHI( 0, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_marines", when( TEAM_IS_ALLIES && MAY_CHOOSE_CLASS ) )
+		CHOICE_BUTTON_VIS_NOHI( 0, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_AXIS && MAY_CHOOSE_CLASS ) )
+		CHOICE_DBUTTON_VIS( 0, "@MPUI_CHOOSE_CLASS", when( dvarInt( "scr_oldschool" ) == 1 ); )
+		CHOICE_BUTTON( 1, "@MPUI_CHANGE_TEAM", scriptMenuResponse "changeteam"; )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_BUTTON( 3, "@MENU_OPTIONS", close "self"; open "main_options"; execNow "set ui_allow_graphic_change 0"; )
-		CHOICE_BUTTON( 4, "@MPUI_MUTE_PLAYERS", open "muteplayer"; close "self"; )
-		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
-		CHOICE_BUTTON_VIS_NOHI( 5, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON( 2, "@MENU_OPTIONS", close "self"; open "main_options"; execNow "set ui_allow_graphic_change 0"; )
+		CHOICE_BUTTON( 3, "@MPUI_MUTE_PLAYERS", open "muteplayer"; close "self"; )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
 /*
 		// needs to be fixed
 		CHOICE_DBUTTON_VIS( 1, "@MPUI_CHOOSE_CLASS", when( TEAM_IS_AXIS_ALLIES ) )
 
-		// scrapped and stupid :)
-		CHOICE_BUTTON( 3, "@MENU_CONTROLS", close "self"; open "main_controls" )
-*/
 	}
 }
