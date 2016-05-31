@@ -4,7 +4,7 @@
 #define CHOICE_GROUP	"main"
 #define CHOICE_SEP_1	2
 #define CHOICE_SEP_2	4
-#define CHOICE_SEP_3	6
+#define CHOICE_SEP_3	5
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
@@ -41,8 +41,6 @@
 		#define DO_THE_CHICKEN_WING
 		#include "ui_mp/bg.inc"
 
-		// PC widescreen fix
-
 		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 0 272 28 1 1  )
 
 //		CHOICE_MENU_TITLE_VIS( "@MENU_MULTIPLAYER_CAPS", 0 20 272 28 1 1, ( dvarbool( "cl_updateavailable" ) ) )
@@ -60,13 +58,12 @@
 		CHOICE_SEPARATOR( CHOICE_SEP_2 )
 
 		CHOICE_BUTTON(4, "@MENU_BARRACKS_CAPS", open "menu_online_barracks"; )
-		CHOICE_BUTTON(5, "TEST MENU", open "createserver"; )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_3 )
 
-		CHOICE_BUTTON(6, "@MENU_MODS_CAPS", open mods_menu; )
-		CHOICE_BUTTON(7, "@MENU_OPTIONS_CAPS", open "main_options"; )
-		CHOICE_BUTTON(8, "@MENU_QUIT_CAPS", open "quit_popmenu"; )
+		CHOICE_BUTTON(5, "@MENU_MODS_CAPS", open mods_menu; )
+		CHOICE_BUTTON(6, "@MENU_OPTIONS_CAPS", open "main_options"; )
+		CHOICE_BUTTON(7, "@MENU_QUIT_CAPS", open "quit_popmenu"; )
 
 		itemDef
 		{
