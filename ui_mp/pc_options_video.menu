@@ -46,12 +46,6 @@
 		#define BG_1
 		#include "ui_mp/blurredbg.inc"
 
-		#undef CHOICE_X_START
-		#define CHOICE_X_START -64
-
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 28
-
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 
