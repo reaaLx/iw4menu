@@ -1,4 +1,4 @@
-language: c++
+language: cpp
 rvm:
  - ui
  - ui_mp
