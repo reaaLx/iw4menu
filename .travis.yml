@@ -2,5 +2,8 @@ language: cpp
 rvm:
  - ui
  - ui_mp
+ 
+ $ git push push origin master
+ 
 # uncomment and edit the following line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
