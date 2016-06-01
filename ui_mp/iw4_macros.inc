@@ -362,3 +362,4 @@
 // Voice
 #define VOICE_STRLIST { "@MENU_NO"; "1"; "@MENU_YES"; "0" }
 			
+			
