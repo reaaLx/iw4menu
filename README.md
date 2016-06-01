@@ -22,7 +22,9 @@ re-write choices_setup_popmenu.menu with proper defining & format.<br>
 <h2>How to use</h2>
 ----------------
 <p>
-Create a folder in your IW4 clients mods folder<br>
-iw4client/mods/iw4menu<br>
-and drop the ui & ui_mp in there<br>
+<ul>
+<li>Create a folder in your IW4 clients mods folder<br></li>
+<li>IW4Client/mods/iw4menu<br></li>
+<li>Drop the ui & ui_mp in iw4menu mods folder<br></li>
+</ul>
 </p>
