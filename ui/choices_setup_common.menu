@@ -222,6 +222,24 @@
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
 		
+#define CHOICE_DBUTTON_FOCUS_VIS( itemIndex, textArg, onFocusArg, leaveFocusArg, visArg ) \
+		itemDef \
+		{ \
+			rect CHOICE_RECT( itemIndex ) \
+			forecolor 0.6 0.55 0.55 1 \
+			style 1 \
+			background "menu_button_selection_bar" \
+			group "mw2_button" \
+			type 1 \
+			textAlign 6 \
+			textAlignX -60 \
+			textScale 0.375 \
+			textFont 3 \
+			exp text( textArg ); \
+			visible visArg \
+			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
+		}		
+		
 #define CHOICE_BUTTON_ADV( itemIndex, textArg, bgArg, actionArg ) \
 		CHOICE_BUTTON_ADV_VIS( itemIndex, textArg, bgArg, actionArg, 1 )
 
@@ -235,7 +253,7 @@
 			group "mw2_button" \
 			type 1 \
 			textAlign 8 \
-			textAlignX 225 \
+			textAlignX 170 \
 			textScale 0.375 \
 			textFont 3 \
 			text textArg \
@@ -281,7 +299,8 @@
 			dvarEnumList dvarListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}		
+		}
+		
 #define CHOICE_DVARSTRINGLIST( itemIndex, textArg, dvarArg, strListArg, actionArg ) \
 		CHOICE_DVARSTRINGLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, 1 )
 
