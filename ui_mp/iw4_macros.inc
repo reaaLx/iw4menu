@@ -322,6 +322,17 @@
 			setdvar xblive_privatematch 0; \
 			close self;
 
+		// this works pretty well here ;)
+		#define SETUP_SETTING_HARDCORE \
+			if (dvarInt( "g_hardcore" ) != 0 ) \
+			{ \
+				exec "exec hardcore_settings.cfg"; \
+			} \
+			if (dvarInt( "g_hardcore" ) != 1 ) \
+			{ \
+				exec "exec hardcore_disable.cfg"; \
+			}
+			
 #define NEWUNLOCKS when ( ( ( getplayerdataanybooltrue( "weaponNew" ) || getplayerdataanybooltrue( "camoNew" ) || getplayerdataanybooltrue( "attachmentNew" ) ) || getplayerdataanybooltrue( "perkNew" ) || ( ( getplayerdata( "perkNew" , "frag_grenade_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "frag_grenade_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "semtex_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "semtex_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "c4_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "c4_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "claymore_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "claymore_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "throwingknife_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "throwingknife_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_tacticalinsertion" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_tacticalinsertion" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_blastshield" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_blastshield" , 8 ) ) ) || weaponclassnew( "weapon_grenade" ) || weaponclassnew( "weapon_equipment" ) ) || getplayerdata( "featureNew" , "cac" ) ) )
 #define NEWUNLOCKS_PLAYERCARD when ( ( getplayerdata( "featureNew" , "cas" ) || getplayerdata( "featureNew" , "token_1" ) || getplayerdata( "featureNew" , "token_2" ) || getplayerdata( "featureNew" , "token_3" ) || getplayerdata( "featureNew" , "token_4" ) || getplayerdata( "featureNew" , "token_5" ) || getplayerdata( "featureNew" , "token_6" ) || getplayerdata( "featureNew" , "token_7" ) || getplayerdata( "featureNew" , "token_8" ) || getplayerdata( "featureNew" , "token_9" ) || getplayerdata( "featureNew" , "token_10" ) || getplayerdata( "featureNew" , "token_11" ) || getplayerdata( "featureNew" , "token_12" ) ) || getplayerdata( "featureNew" , "clantag" ) || ( getplayerdataanybooltrue( "iconNew" ) || getplayerdata( "featureNew" , "playercard_icon" ) ) || ( getplayerdataanybooltrue( "titleNew" ) || getplayerdata( "featureNew" , "playercard_title" ) ) )
 #define NEWUNLOCKS_CHALLENGES when ( ( ( getplayerdataanybooltrue( "challengeTierNew" ) || getplayerdata( "featureNew" , "challenges" ) ) || getplayerdata( "featureNew" , "challenges" ) || ( ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && getplayerdata( "featureNew" , "prestige" ) ) ) )
@@ -365,5 +376,4 @@
 
 // Voice
 #define VOICE_STRLIST { "@MENU_NO"; "1"; "@MENU_YES"; "0" }
-			
 			
