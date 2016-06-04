@@ -57,6 +57,7 @@
 		CHOICE_BUTTON_VIS_NOHI( 0, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_marines", when( TEAM_IS_ALLIES && MAY_CHOOSE_CLASS ) )
 		CHOICE_BUTTON_VIS_NOHI( 0, "@MPUI_CHOOSE_CLASS", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_AXIS && MAY_CHOOSE_CLASS ) )
 		CHOICE_DBUTTON_VIS( 0, "@MPUI_CHOOSE_CLASS", when( dvarInt( "scr_oldschool" ) == 1 ); )
+		
 		CHOICE_BUTTON( 1, "@MPUI_CHANGE_TEAM", scriptMenuResponse "changeteam"; )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
@@ -64,7 +65,7 @@
 		CHOICE_BUTTON( 2, "@MENU_OPTIONS", close "self"; open "main_options"; execNow "set ui_allow_graphic_change 0"; )
 		CHOICE_BUTTON( 3, "@MPUI_MUTE_PLAYERS", open "muteplayer"; close "self"; )
 		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
-		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", SETUP_LEAVE_CALL, when( !dvarbool( "sv_running" ) ) )
 
 		// needs to be fixed
 //		CHOICE_DBUTTON_VIS( 1, "@MPUI_CHOOSE_CLASS", when( TEAM_IS_AXIS_ALLIES ) )

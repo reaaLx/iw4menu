@@ -89,6 +89,6 @@
 		CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, when ( team( "name" ) == "TEAM_SPECTATOR" ) )
 
 		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
-		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", open "popup_leavegame", when( !dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_VIS_NOHI( 4, "@MENU_LEAVE_GAME", SETUP_LEAVE_CALL, when( !dvarbool( "sv_running" ) ) )
 	}	
 }
