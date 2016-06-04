@@ -469,7 +469,7 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 1 1 1 1  \
+			forecolor 1 1 1 1 \
 			style 1 \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
@@ -578,14 +578,13 @@
 #define CHOICE_CAPTION_COLOR_VIS( itemIndex, textArg, colorArg, visArg ) \
 		itemDef \
 		{ \
-			type 1 \
 			rect CHOICE_RECT( itemIndex ) \
 			exp text( textArg ); \
 			textfont 3 \
 			textscale 0.375 \
 			textAlign 6 \
-			forecolor 1 1 1 1 \
 			textAlignX -130 \
+			forecolor 1 1 1 1 \
 			visible visArg \
 			decoration \
 		}
@@ -606,22 +605,29 @@
 		CHOICE_SCRIPTS_ALL( itemIndex, actionArg, ;, ; )
 	
 #define CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
-			onFocus \
+		onFocus \
+		{ \
+			onFocusArg \
+			play "mouse_over"; \
+			if ( dvarstring( "gameMode" ) != "mp" ) \
 			{ \
-				onFocusArg \
-				play "mouse_over"; \
-				setItemColor self backcolor 0 0 0 1; \
+				setItemColor "mw2_button" backcolor 0 0 0 0; \
 			} \
-			leaveFocus \
-			{ \
-				leaveFocusArg \
-				setItemColor self backcolor 0 0 0 0.0; \
-			} \
-			action \
-			{ \
-				play "mouse_click"; \
-				actionArg; \
-			}		
+			setLocalVarBool "ui_menuAButton" ( 1 ); \
+			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
+			setItemColor self backcolor 0 0 0 1; \
+		} \
+		leaveFocus \
+		{ \
+			leaveFocusArg \
+			setItemColor self backcolor 0 0 0 0.0; \
+			setLocalVarBool "ui_menuAButton" ( 0 ); \
+		} \
+		action \
+		{ \
+			play "mouse_click"; \
+			actionArg; \
+		}
 #define CHOICE_BACK( textArg ) \
 		CHOICE_BACK_VIS( textArg, 1 )
 
@@ -670,6 +676,20 @@
 					} \
 				} \
 			} \
+		}
+#define CHOICE_DESCRIPTION( visArg ) \
+		itemDef \
+		{ \
+			name "description_choice" \
+			rect 0 220 212 18 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			exp text( dvarString( "ui_hint_text" ) ) \
+			textFont 3 \
+			textScale 0.375 \
+			textAlign 6 \
+			foreColor 1 1 1 0.65 \
+			visible visArg \
+			autoWrapped \
+			decoration \
 		}
 #define CHOICE_KEYBINDHELP \
 		itemDef \
