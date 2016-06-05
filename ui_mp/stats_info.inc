@@ -54,3 +54,7 @@
 #define stat_s_javelin		getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "javelin" , 0 ) ) )
 #define stat_s_stinger		getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "stinger" , 0 ) ) )
 #define stat_s_m79			getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m79" , 0 ) ) )
+
+// playercard icon stats
+
+// playercard emblem stats
