@@ -117,6 +117,42 @@
 			} \
 		}
 
+#define LOCAL_CHALLENGE_SELECTION_DBUTTON_ADV( itemIndex, onFocusArg, leaveFocusArg ) \
+		itemDef \
+		{ \
+			rect CHOICE_RECT( itemIndex ) \
+			forecolor 0.6 0.55 0.55 1 \
+			style 1 \
+			background "menu_button_selection_bar" \
+			group "mw2_button" \
+			type 1 \
+			textAlign 6 \
+			textAlignX -60 \
+			textScale 0.375 \
+			textFont 3 \
+			exp text ( "@" + tablelookup( "mp/challengeTable.csv" , 5 , itemIndex , 1 ) ) \
+			visible when ( !isitemunlocked( "tier_" + tablelookup( "mp/challengeTable.csv" , 5 , itemIndex , 0 ) ) ) \
+			onFocus \
+			{ \
+				play "mouse_over"; \
+				if ( dvarstring( "gameMode" ) != "mp" ) \
+				{ \
+					setItemColor "mw2_button" backcolor 0 0 0 0; \
+				} \
+				setItemColor self backcolor 0 0 0 1; \
+				setLocalVarBool "ui_menuAButton" ( 1 ); \
+				setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
+				setLocalVarInt "ui_menuIndex" ( itemIndex ); \
+				onFocusArg \
+			} \
+			leaveFocus \
+			{ \
+				setItemColor self backcolor 0 0 0 "0.0"; \
+				setLocalVarBool "ui_menuAButton" ( 0 ); \
+				leaveFocusArg \
+			} \
+		}
+
 #define C_TAB_P \
 		if ( localvarint( "ui_tabDepth" ) == 0 ) \
 		{ \
