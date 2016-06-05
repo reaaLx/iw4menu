@@ -333,7 +333,31 @@
 						{ \
 							open "popup_leavegame_ranked"; \
 						} \
-
+/*
+		#define SETUP_CAC_FOCUS_UNLOCK \
+				if ( isitemunlocked( "cac" ) ) \
+				{ \
+					setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS" ); \
+				} \
+				else \
+				{ \
+					if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) == 9999 ) \
+					{ \
+						setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); \
+					} \
+					else \
+					{ \
+						if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 3 ) != "" ) \
+						{ \
+							setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); \
+						} \
+						else \
+						{ \
+							setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) , 17 ) ); \
+						} \
+					} \
+				}
+*/
 		#define SETUP_ACTION_BACK \
 				exec "xstopparty"; \
 				if (inprivateparty() && !privatepartyhost() && privatepartyhostinlobby()) \
@@ -355,7 +379,10 @@
 					exec "exec hardcore_disable.cfg"; \
 				}
 
-#define CLEAR_UI_HINT	exec "set ui_hint_text @NULL_EMPTY";
+#define PRESTIGE_VIS when ( !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) )
+#define PRESTIGE_DIS when ( !( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) )
+			
+#define CLEAR_UI_HINT exec "set ui_hint_text @NULL_EMPTY";
 
 #define NEWUNLOCKS when ( ( ( getplayerdataanybooltrue( "weaponNew" ) || getplayerdataanybooltrue( "camoNew" ) || getplayerdataanybooltrue( "attachmentNew" ) ) || getplayerdataanybooltrue( "perkNew" ) || ( ( getplayerdata( "perkNew" , "frag_grenade_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "frag_grenade_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "semtex_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "semtex_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "c4_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "c4_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "claymore_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "claymore_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "throwingknife_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "throwingknife_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_tacticalinsertion" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_tacticalinsertion" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_blastshield" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_blastshield" , 8 ) ) ) || weaponclassnew( "weapon_grenade" ) || weaponclassnew( "weapon_equipment" ) ) || getplayerdata( "featureNew" , "cac" ) ) )
 #define NEWUNLOCKS_PLAYERCARD when ( ( getplayerdata( "featureNew" , "cas" ) || getplayerdata( "featureNew" , "token_1" ) || getplayerdata( "featureNew" , "token_2" ) || getplayerdata( "featureNew" , "token_3" ) || getplayerdata( "featureNew" , "token_4" ) || getplayerdata( "featureNew" , "token_5" ) || getplayerdata( "featureNew" , "token_6" ) || getplayerdata( "featureNew" , "token_7" ) || getplayerdata( "featureNew" , "token_8" ) || getplayerdata( "featureNew" , "token_9" ) || getplayerdata( "featureNew" , "token_10" ) || getplayerdata( "featureNew" , "token_11" ) || getplayerdata( "featureNew" , "token_12" ) ) || getplayerdata( "featureNew" , "clantag" ) || ( getplayerdataanybooltrue( "iconNew" ) || getplayerdata( "featureNew" , "playercard_icon" ) ) || ( getplayerdataanybooltrue( "titleNew" ) || getplayerdata( "featureNew" , "playercard_title" ) ) )
