@@ -1,7 +1,7 @@
 #include "ui/menudef.h"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_GROUP	"challenges" 
+#define CHOICE_GROUP	"challenges"
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
@@ -257,7 +257,7 @@
 		CHALLENGE_SHOW_PROGRESS( 14, 14 )
 				
 		CHALLENGE_DETAIL_BUTTON( 15, 15 )
-		CHALLENGE_SHOW_PROGRESS( 15, 51 )
+		CHALLENGE_SHOW_PROGRESS( 15, 15 )
 				
 		itemDef
 		{

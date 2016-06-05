@@ -327,7 +327,7 @@
 #define CHALLENGE_SHOW_PROGRESS( itemIndex, ChallengeIndex ) \
 		itemDef \
 		{ \
-			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 5 + 0 ) (CHOICE_SIZE_Y * 2 ) 10 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -340,7 +340,7 @@
 		} \
 		itemDef \
 		{ \
-			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 5 + 0 ) (CHOICE_SIZE_Y * 2 ) 10 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -353,7 +353,7 @@
 		} \
 		itemDef \
 		{ \
-			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 5 + 0 ) (CHOICE_SIZE_Y * 2 ) 10 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -366,7 +366,7 @@
 		} \
 		itemDef \
 		{ \
-			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -20 ) (CHOICE_Y( itemIndex ) + 5 + 0 ) (CHOICE_SIZE_Y * 2 ) 10 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
 			visible 1 \
 			style 1 \
