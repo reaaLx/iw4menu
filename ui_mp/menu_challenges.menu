@@ -120,17 +120,19 @@
 
 		// macro defining and stuff...
 		#include "ui_mp/challenges.menu"
-		
+		#include "ui_mp/stats_info.inc"
 		CHOICE_MENU_TITLE( "@MPUI_CHALLENGE_CAP", 0 0 272 28 1 1  )
 		
 		CHOICE_DESC_HINT( 1 )
 		CHOICE_TIER_HINT( 1 )		
 		
 		CHOICE_BUTTON_FOCUS_VIS( 0, "@CHALLENGE_PRIMARY_WEAPONS_CAPS", open "popup_challenge_weapon_primary"; C_TAB_P , exec "set ui_hint_text @CHALLENGE_PRIMARY_WEAPONS_HINT"; exec "set ui_selected_tier_ref @CHALLENGE_PRIMARY_WEAPONS_CAPS";, CLEAR_CH_HINT, 1 )
-//		CHOICE_NEWICON_VIS( 0, primary_unlock )
+		CHOICE_NEWICON_VIS( 0, primary_unlock ) 
+		CHOICE_NEWICON_VIS( 0, primary_unlock_2 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 1, "@CHALLENGE_SECONDARY_WEAPONS_CAPS", open "popup_challenge_weapon_secondary"; C_TAB_S, exec "set ui_hint_text @CHALLENGE_SECONDARY_WEAPONS_HINT"; exec "set ui_selected_tier_ref @CHALLENGE_SECONDARY_WEAPONS_CAPS";, CLEAR_CH_HINT, 1 )
-//		CHOICE_NEWICON_VIS( 1, secondary_unlock )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock_2 )
 
 		LOCAL_CHALLENGE_SELECTION_ADV( 2, exec "set ui_hint_text @CHALLENGE_PERK_CHALLENGES"; exec "set ui_selected_tier_ref @CHALLENGE_PERKS_CAPS";, CLEAR_CH_HINT, 1 )
 		LOCAL_CHALLENGE_SELECTION_DBUTTON_ADV( 2, exec "set ui_hint_text @PERKS_UNLOCKED_AT_LV5"; exec "set ui_selected_tier_ref @CHALLENGE_PERKS_CAPS";, CLEAR_CH_HINT )
@@ -178,11 +180,11 @@
 		LOCAL_CHALLENGE_SELECTION_DBUTTON_ADV( 12, exec "set ui_hint_text @PERKS_UNLOCKED_AT_LV61"; exec "set ui_selected_tier_ref @CHALLENGE_INTIMIDATION_CAPS";, CLEAR_CH_HINT )
 		CHOICE_NEWICON_VIS( 12, when ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 5 , 12 , 0 ) ) ) && ( tablelookup( "mp/challengeTable.csv" , 5 , 12 , 5 ) != "" ) && ( !( tablelookup( "mp/challengeTable.csv" , 5 , 12 , 7 ) != "" ) || isitemunlocked( "tier_prestige" ) ) ) )
 
-		LOCAL_CHALLENGE_SELECTION_ADV( 13, exec "set ui_hint_text @CHALLENGE_PRESTIGE_CHALLENGES"; exec "set ui_selected_tier_ref @CHALLENGE_PRESTIGE_CAPS";, CLEAR_CH_HINT, 1 )
+		LOCAL_CHALLENGE_SELECTION_ADV( 13, exec "set ui_hint_text @CHALLENGE_PRESTIGE_CHALLENGES"; exec "set ui_selected_tier_ref @CHALLENGE_PRESTIGE_CAPS";, CLEAR_CH_HINT, when ( ( tablelookup( "mp/challengeTable.csv" , 5 , 13 , 5 ) != "" ) && ( !( tablelookup( "mp/challengeTable.csv" , 5 , 13 , 7 ) != "" ) || isitemunlocked( "tier_prestige" ) ) ) )
 		LOCAL_CHALLENGE_SELECTION_DBUTTON_ADV( 13, exec "set ui_hint_text @PERKS_UNLOCKED_AT_LV70"; exec "set ui_selected_tier_ref @CHALLENGE_PRESTIGE_CAPS";, CLEAR_CH_HINT )
 		CHOICE_NEWICON_VIS( 13, when ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 5 , 13 , 0 ) ) ) && ( tablelookup( "mp/challengeTable.csv" , 5 , 13 , 5 ) != "" ) && ( !( tablelookup( "mp/challengeTable.csv" , 5 , 13 , 7 ) != "" ) || isitemunlocked( "tier_prestige" ) ) ) )
 
-		// the table exist but i cannot access it as the tablelookup number does not exist. (but we can still complete them)
+		// the table exist but i cannot access it as the tablelookup number does not exist. (but we can still complete them ingame)
 		// but we could figure a way to access it...
 		CHOICE_BUTTON_FOCUS_VIS( 14, "@CHALLENGE_SECRET_CAPS", ;, exec "set ui_hint_text @CHALLENGE_SECRET_CHALLENGES"; exec "set ui_selected_tier_ref @CHALLENGE_NO_SECRETS";, CLEAR_CH_HINT, 1 )
 		CHOICE_DBUTTON_FOCUS_VIS( 14, "@CHALLENGE_SECRET_CAPS", exec "set ui_hint_text @PERKS_UNLOCKED_AT_NONE"; exec "set ui_selected_tier_ref @CHALLENGE_NO_SECRETS";, CLEAR_CH_HINT, 1 )

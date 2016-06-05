@@ -1,7 +1,56 @@
 #define CLEAR_CH_HINT exec "set ui_hint_text @NULL_EMPTY"; exec "set ui_selected_tier_ref @NULL_EMPTY";
 
-#define primary_unlock when ( ( ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "masada" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m16" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "tavor" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "fn2000" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m4" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "scar" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "ak47" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "fal" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "famas" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "mp5k" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "uzi" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "kriss" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "ump45" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "p90" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m240" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "sa80" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "rpd" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "aug" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "mg4" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "cheytac" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m21" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "barrett" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "wa2000" , 0 ) ) ) ) )
-#define secondary_unlock when ( ( ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "glock" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "tmp" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "beretta393" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "pp2000" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "striker" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "aa12" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "ranger" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m1014" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "model1887" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "spas12" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "usp" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "coltanaconda" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "deserteagle" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "beretta" , 0 ) ) ) ) || ( getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "at4" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "rpg" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "javelin" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "stinger" , 0 ) ) ) || getplayerdata( "challengeTierNew" , int( tablelookup( "mp/challengeTable.csv" , 6 , "m79" , 0 ) ) ) ) )
+#define C_TAB_P \
+		if ( localvarint( "ui_tabDepth" ) == 0 ) \
+		{ \
+			setLocalVarString "ui_tab1Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 1 ) \
+		{ \
+			setLocalVarString "ui_tab2Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 2 ) \
+		{ \
+			setLocalVarString "ui_tab3Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 3 ) \
+		{ \
+			setLocalVarString "ui_tab4Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 4 ) \
+		{ \
+			setLocalVarString "ui_tab5Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 5 ) \
+		{ \
+			setLocalVarString "ui_tab6Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		} \
+		
+#define C_TAB_S \
+		if ( localvarint( "ui_tabDepth" ) == 0 ) \
+		{ \
+			setLocalVarString "ui_tab1Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 1 ) \
+		{ \
+			setLocalVarString "ui_tab2Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 2 ) \
+		{ \
+			setLocalVarString "ui_tab3Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 3 ) \
+		{ \
+			setLocalVarString "ui_tab4Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 4 ) \
+		{ \
+			setLocalVarString "ui_tab5Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
+		if ( localvarint( "ui_tabDepth" ) == 5 ) \
+		{ \
+			setLocalVarString "ui_tab6Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		} \
 
 //------------------------------------------------------------------------------------------------------\\
 //--------------------------------------CUSTOM BUTTON DEFINES-------------------------------------------\\
@@ -152,55 +201,3 @@
 				leaveFocusArg \
 			} \
 		}
-
-#define C_TAB_P \
-		if ( localvarint( "ui_tabDepth" ) == 0 ) \
-		{ \
-			setLocalVarString "ui_tab1Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 1 ) \
-		{ \
-			setLocalVarString "ui_tab2Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 2 ) \
-		{ \
-			setLocalVarString "ui_tab3Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 3 ) \
-		{ \
-			setLocalVarString "ui_tab4Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 4 ) \
-		{ \
-			setLocalVarString "ui_tab5Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 5 ) \
-		{ \
-			setLocalVarString "ui_tab6Name" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
-		} \
-		
-#define C_TAB_S \
-		if ( localvarint( "ui_tabDepth" ) == 0 ) \
-		{ \
-			setLocalVarString "ui_tab1Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 1 ) \
-		{ \
-			setLocalVarString "ui_tab2Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 2 ) \
-		{ \
-			setLocalVarString "ui_tab3Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 3 ) \
-		{ \
-			setLocalVarString "ui_tab4Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 4 ) \
-		{ \
-			setLocalVarString "ui_tab5Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
-		if ( localvarint( "ui_tabDepth" ) == 5 ) \
-		{ \
-			setLocalVarString "ui_tab6Name" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
-		} \
