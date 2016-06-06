@@ -1,0 +1,12 @@
+// patch_mp_menus menus
+
+{
+	loadMenu { "ui_mp/player_popup_party.menu" }
+	loadMenu { "ui_mp/player_popup_publiclobby.menu" }
+	loadMenu { "ui_mp/player_popup_privatematch.menu" }
+	loadMenu { "ui_mp/hostchangewarning.menu" }
+	loadMenu { "ui_mp/youarehost.menu" }
+	loadMenu { "ui_mp/settings_map.menu" }
+	loadMenu { "ui_mp/settings_bonus_map.menu" }
+	loadMenu { "ui_mp/signinbackground.menu" }
+}
