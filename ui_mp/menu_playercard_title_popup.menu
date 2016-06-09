@@ -18,34 +18,6 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		soundLoop "music_mainmenu_mp"
-		execKey 156
-		{
-			if ( localvarint( "ui_pageIndex" ) )
-			{
-				setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
-			}
-		}
-		execKeyInt 157
-		{
-			if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
-			{
-				setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
-			}
-		}
-		execKeyInt 185
-		{
-			if ( localvarint( "ui_pageIndex" ) )
-			{
-				setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
-			}
-		}
-		execKeyInt 186
-		{
-			if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
-			{
-				setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
-			}
-		}
 		onOpen
 		{
 			setLocalVarInt "ui_pageIndex" ( 0 );
@@ -400,7 +372,7 @@
 			visible when ( 1 )
 			exp text ( locstring( "@MPUI_PAGE_N_SLASH_N" , ( localvarint( "ui_pageIndex" ) + 1 ) , ( localvarint( "ui_numPages" ) + 1 ) ) )
 		}
-		itemDef
+		itemDef // playercard frame
 		{
 			rect 0 0 208 48 2 1
 			decoration
@@ -416,7 +388,7 @@
 			exp rect y ( ( 28 + 4 ) )
 			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
 		}
-		itemDef
+		itemDef // playercard bg
 		{
 			rect 0 0 160 32 2 1
 			decoration
@@ -429,7 +401,7 @@
 			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
 			exp material ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ) )
 		}
-		itemDef
+		itemDef // playercard text
 		{
 			rect 0 0 160 32 2 1
 			decoration
@@ -447,12 +419,14 @@
 			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
 			exp text ( "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ) )
 		}
-		itemDef
+		itemDef // player name
 		{
 			rect 0 0 160 18 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
+			backcolor 1 1 1 10
+			textstyle 3
 			textfont 10
 			textalign 4
 			textalignx 8
@@ -462,7 +436,7 @@
 			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
 			exp text ( getplayercardinfo( 8 , 1 , 0 ) )
 		}
-		itemDef
+		itemDef // player icon
 		{
 			rect 0 0 48 48 2 1
 			decoration
@@ -481,31 +455,31 @@
 		PLAYERCARD_DRAW( 1, "cardTitle1_1", 1 )
 		PLAYERCARD_DRAW( 2, "cardTitle1_2", 2 )
 		PLAYERCARD_DRAW( 3, "cardTitle1_3", 3 )
-		PLAYERCARD_DRAW( 4, "cardTitle1_0", 4 )
-		PLAYERCARD_DRAW( 5, "cardTitle1_0", 5 )
-		PLAYERCARD_DRAW( 6, "cardTitle1_2", 6 )
-		PLAYERCARD_DRAW( 7, "cardTitle1_3", 7 )
-		PLAYERCARD_DRAW( 8, "cardTitle1_0", 8 )
+		PLAYERCARD_DRAW( 4, "cardTitle1_4", 4 )
+		PLAYERCARD_DRAW( 5, "cardTitle1_5", 5 )
+		PLAYERCARD_DRAW( 6, "cardTitle1_6", 6 )
+		PLAYERCARD_DRAW( 7, "cardTitle1_7", 7 )
+		PLAYERCARD_DRAW( 8, "cardTitle1_8", 8 )
 
-		PLAYERCARD_DRAW( 20, "cardTitle1_0", 9 )
-		PLAYERCARD_DRAW( 21, "cardTitle1_0", 10 )
-		PLAYERCARD_DRAW( 22, "cardTitle1_0", 11 )
-		PLAYERCARD_DRAW( 23, "cardTitle1_0", 12 )
-		PLAYERCARD_DRAW( 24, "cardTitle1_0", 13 )
-		PLAYERCARD_DRAW( 25, "cardTitle1_0", 14 )
-		PLAYERCARD_DRAW( 26, "cardTitle1_0", 15 )
-		PLAYERCARD_DRAW( 27, "cardTitle1_0", 16 )
-		PLAYERCARD_DRAW( 28, "cardTitle1_0", 17 )
+		PLAYERCARD_DRAW( 20, "cardTitle2_0", 9 )
+		PLAYERCARD_DRAW( 21, "cardTitle2_1", 10 )
+		PLAYERCARD_DRAW( 22, "cardTitle2_2", 11 )
+		PLAYERCARD_DRAW( 23, "cardTitle2_3", 12 )
+		PLAYERCARD_DRAW( 24, "cardTitle2_4", 13 )
+		PLAYERCARD_DRAW( 25, "cardTitle2_5", 14 )
+		PLAYERCARD_DRAW( 26, "cardTitle2_6", 15 )
+		PLAYERCARD_DRAW( 27, "cardTitle2_7", 16 )
+		PLAYERCARD_DRAW( 28, "cardTitle2_8", 17 )
 
-		PLAYERCARD_DRAW( 40, "cardTitle1_0", 18 )
-		PLAYERCARD_DRAW( 41, "cardTitle1_0", 19 )
-		PLAYERCARD_DRAW( 42, "cardTitle1_0", 20 )
-		PLAYERCARD_DRAW( 43, "cardTitle1_0", 21 )
-		PLAYERCARD_DRAW( 44, "cardTitle1_0", 23 )
-		PLAYERCARD_DRAW( 45, "cardTitle1_0", 24 )
-		PLAYERCARD_DRAW( 46, "cardTitle1_0", 25 )
-		PLAYERCARD_DRAW( 47, "cardTitle1_0", 26 )
-		PLAYERCARD_DRAW( 48, "cardTitle1_0", 27 )		
+		PLAYERCARD_DRAW( 40, "cardTitle3_0", 18 )
+		PLAYERCARD_DRAW( 41, "cardTitle3_1", 19 )
+		PLAYERCARD_DRAW( 42, "cardTitle3_2", 20 )
+		PLAYERCARD_DRAW( 43, "cardTitle3_3", 21 )
+		PLAYERCARD_DRAW( 44, "cardTitle3_4", 23 )
+		PLAYERCARD_DRAW( 45, "cardTitle3_5", 24 )
+		PLAYERCARD_DRAW( 46, "cardTitle3_6", 25 )
+		PLAYERCARD_DRAW( 47, "cardTitle3_7", 26 )
+		PLAYERCARD_DRAW( 48, "cardTitle3_8", 27 )		
 
 		itemDef
 		{

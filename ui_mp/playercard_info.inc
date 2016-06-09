@@ -25,7 +25,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 0 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			name nameArg \
 			visible 1 \
-			style 1 \
+			style 3 \
 			forecolor 1 1 1 1 \
 			background "highlight_selected" \
 			group "mw2_button" \
@@ -71,6 +71,7 @@
 			forecolor 1 1 1 1 \
 			backcolor 1 1 1 1 \
 			textfont 3 \
+			textstyle 3 \
 			textalign 5 \
 			textaligny 8 \
 			textscale 0.375 \

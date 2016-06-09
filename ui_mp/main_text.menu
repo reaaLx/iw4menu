@@ -69,7 +69,7 @@
 		CHOICE_BUTTON(7, "@MENU_QUIT_CAPS", open "quit_popmenu"; )
 
 		CHOICE_DESCRIPTION( 1 )
-		
+
 		itemDef
 		{
 			name "ticker_bg"

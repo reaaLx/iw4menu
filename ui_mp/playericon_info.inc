@@ -14,7 +14,7 @@
 #define CHOICE_X_SPACING			58.6667
 
 #undef CHOICE_Y_SPACING
-#define CHOICE_Y_SPACING			40
+#define CHOICE_Y_SPACING			48
 
 #undef CHOICE_Y_COUNT
 #define CHOICE_Y_COUNT				20
@@ -32,7 +32,7 @@
 			textscale 0.55 \
 			exp forecolor g ( 0.45 + ( isitemunlocked( tablelookupbyrow( "mp/cardIconTable.csv" , p_icon_index + ( localvarint( "ui_pageIndex" ) * 48 ) , 0 ) ) && ( tablelookupbyrow( "mp/cardIconTable.csv" , p_icon_index + ( localvarint( "ui_pageIndex" ) * 48 ) , 0 ) != "" ) ) ) \
 			exp forecolor b ( 0.45 + ( isitemunlocked( tablelookupbyrow( "mp/cardIconTable.csv" , p_icon_index + ( localvarint( "ui_pageIndex" ) * 48 ) , 0 ) ) && ( tablelookupbyrow( "mp/cardIconTable.csv" , p_icon_index + ( localvarint( "ui_pageIndex" ) * 48 ) , 0 ) != "" ) ) ) \
-			exp forecolor a ( ( getfocuseditemname( ) == "cardIcon1_0" ) * ( ( sin( milliseconds( ) / 100 ) * 0.5 + 0.5 ) * 0.5 + 0.5 ) ) \
+			exp forecolor a ( ( getfocuseditemname( ) == "nameArg" ) * ( ( sin( milliseconds( ) / 100 ) * 0.5 + 0.5 ) * 0.5 + 0.5 ) ) \
 			visible when ( ( tablelookupbyrow( "mp/cardIconTable.csv" , p_icon_index + ( localvarint( "ui_pageIndex" ) * 48 ) , 0 ) != "" ) ) \
 			onFocus \
 			{ \

@@ -199,37 +199,37 @@
 						setDvar ui_mapname mp_complex;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Bailout" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_complex" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_COMPLEX" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );,  1 )
+						exec "set ui_info_name PATCH_COMPLEX";
+						exec "set ui_info_icon preview_mp_complex";
+						exec "set ui_info_desc PATCH_DESC_MAP_COMPLEX";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 1, "Crash",
 						setDvar ui_mapname mp_crash;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Crash" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_crash" );
-						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_CRASH" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );,  1 )
+						exec "set ui_info_name MPUI_CRASH";
+						exec "set ui_info_icon preview_mp_crash";
+						exec "set ui_info_desc MPUI_DESC_MAP_CRASH";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 				
 		CHOICE_BUTTON_FOCUS_VIS( 2, "Overgrown",
 						setDvar ui_mapname mp_overgrown;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Overgrown" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_overgrown" );
-						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_OVERGROWN" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name MPUI_OVERGROWN";
+						exec "set ui_info_icon preview_mp_overgrown";
+						exec "set ui_info_desc MPUI_DESC_MAP_OVERGROWN";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 3, "Salvage",
-						setDvar ui_mapname mp_Compact;
+						setDvar ui_mapname mp_compact;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Salvage" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_compact" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_COMPACT" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_COMPACT";
+						exec "set ui_info_icon preview_mp_compact";
+						exec "set ui_info_desc PATCH_DESC_MAP_COMPACT";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
@@ -237,55 +237,55 @@
 						setDvar ui_mapname mp_storm;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Storm" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_storm" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_STORM" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_STORM";
+						exec "set ui_info_icon preview_mp_storm";
+						exec "set ui_info_desc PATCH_DESC_MAP_STORM";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 5, "Carnival",
 						setDvar ui_mapname mp_abandon;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Carnival" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_abandon" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_ABANDON" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_ABANDON";
+						exec "set ui_info_icon preview_mp_abandon";
+						exec "set ui_info_desc PATCH_DESC_MAP_ABANDON";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 6, "Fuel",
 						setDvar ui_mapname mp_fuel2;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Fuel" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_fuel2" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_fuel2" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_FUEL2";
+						exec "set ui_info_icon preview_mp_fuel2";
+						exec "set ui_info_desc PATCH_DESC_MAP_fuel2";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 7, "Strike",
 						setDvar ui_mapname mp_checkpoint;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Strike" );
-						setLocalVarString "ui_info_icon" ( "preview_mp_strike" );
-						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_STRIKE" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_STRIKE";
+						exec "set ui_info_icon preview_mp_strike";
+						exec "set ui_info_desc MPUI_DESC_MAP_STRIKE";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 8, "Trailer Park",
 						setDvar ui_mapname mp_trailerpark;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Trailer Park");
-						setLocalVarString "ui_info_icon" ( "preview_mp_trailerpark" );
-						setLocalVarString "ui_info_desc" ( "PATCH_DESC_MAP_trailerpark" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_TRAILERPARK";
+						exec "set ui_info_icon preview_mp_trailerpark";
+						exec "set ui_info_desc PATCH_DESC_MAP_trailerpark";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_BUTTON_FOCUS_VIS( 9, "Vacant",
 						setDvar ui_mapname mp_vacant;
 						close "settings_map";
 						close "self";,
-						setLocalVarString "ui_info_name" ( "Vacant");
-						setLocalVarString "ui_info_icon" ( "preview_mp_vacant" );
-						setLocalVarString "ui_info_desc" ( "MPUI_DESC_MAP_VACANT" );,
-						setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );, 1 )
+						exec "set ui_info_name PATCH_VACANT";
+						exec "set ui_info_icon preview_mp_vacant";
+						exec "set ui_info_desc MPUI_DESC_MAP_VACANT";,
+						exec "set ui_hint_text @NULL_EMPTY";, 1 )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_2 )			
 
@@ -308,7 +308,7 @@
 			visible 1
 			forecolor 1 1 1 1
 			textscale 0.55
-			exp material ( localvarstring( "ui_info_icon" ) )
+			exp material ( dvarString( "ui_info_icon" ) )
 		}
 		itemDef
 		{
@@ -320,7 +320,7 @@
 			textfont 9
 			textalign 4
 			textscale 0.375
-			exp text ( "@" + localvarstring( "ui_info_name" ) )
+			exp text ( "@" + dvarString( "ui_info_name" ) )
 		}
 		itemDef
 		{
@@ -333,7 +333,7 @@
 			textfont 3
 			textalign 4
 			textscale 0.375
-			exp text ( "@" + localvarstring( "ui_info_desc" ) )
+			exp text ( "@" + dvarString( "ui_info_desc" ) )
 		}		
 		itemDef
 		{
@@ -355,7 +355,7 @@
 			{
 				play "mouse_click";
 				play "mouse_click";
-				"escape" self;
+				escape "self";
 			}
 			onFocus
 			{
@@ -370,7 +370,7 @@
 			leaveFocus
 			{
 				setItemColor self backcolor 0 0 0 "0.0";
-				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				exec "set ui_hint_text" ( "@NULL_EMPTY" );
 				setLocalVarBool "ui_menuAButton" ( 0 );
 			}
 		}
@@ -409,7 +409,7 @@
 			leaveFocus
 			{
 				setItemColor self backcolor 0 0 0 "0.0";
-				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				exec "set ui_hint_text" ( "@NULL_EMPTY" );
 				setLocalVarBool "ui_menuAButton" ( 0 );
 			}
 		}
