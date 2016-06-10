@@ -55,28 +55,13 @@
 //------------------------------------------------------------------------------------------------------\\
 //--------------------------------------CUSTOM BUTTON DEFINES-------------------------------------------\\
 //------------------------------------------------------------------------------------------------------\\
-
-#define CHOICE_DESC_HINT( visArg ) \
-		itemDef \
-		{ \
-			name "description_choice" \
-			rect -450 65 350 200 3 1 \
-			decoration \
-			autowrapped \
-			visible 1 \
-			forecolor 1 1 1 0.65 \
-			textfont 3 \
-			textalign 6 \
-			textscale 0.375 \
-			exp text( dvarString( "ui_hint_text" ) ) \
-		}
-
 #define CHOICE_TIER_HINT( visArg ) \
 		itemDef \
 		{ \
 			name "tier_hint" \
-			rect -300 45 200 20 3 1 \
+			rect 350 45 200 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
+			autoWrapped \
 			visible 1 \
 			forecolor 1 1 1 0.65 \
 			textfont 9 \
@@ -84,7 +69,20 @@
 			textscale 0.375 \
 			exp text( dvarString( "ui_selected_tier_ref" ) ) \
 		}
-
+#define CHOICE_DESC_HINT( visArg ) \
+		itemDef \
+		{ \
+			name "description_choice" \
+			rect 200 65 350 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			decoration \
+			autoWrapped \
+			visible 1 \
+			forecolor 1 1 1 0.65 \
+			textfont 3 \
+			textalign 6 \
+			textscale 0.375 \
+			exp text( dvarString( "ui_hint_text" ) ) \
+		}
 #define LOCAL_CHALLENGE_SELECTION( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
 		itemDef \
 		{ \
