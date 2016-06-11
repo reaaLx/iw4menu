@@ -404,7 +404,7 @@
 // 12/14 languages listed
 
 // graphic settings stuff
-#define ASPECT_RATIO_STRLIST { "@MENU_AUTO" auto "@MENU_STANDARD_4_3" standard "@MENU_WIDE_16_10" wide 16:10 "@MENU_WIDE_16_9" wide 16:9 }
+#define ASPECT_RATIO_STRLIST { "@MENU_AUTO" 0 "@MENU_STANDARD_4_3" 1 "@MENU_WIDE_16_10" 2 "@MENU_WIDE_16_9" 3 }
 #define AA_STRLIST { "@MENU_OFF" 1 "@MENU_2X" 2 "@MENU_4X" 4 }
 #define DLIGHT_STRLIST { "@MENU_OFF" 0 "@MENU_LOW" 2 "@MENU_NORMAL" "4" }
 #define ZFEATHER_STRLIST { "@MENU_NO" 0 "@MENU_YES" 1 }

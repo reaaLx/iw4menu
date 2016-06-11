@@ -276,19 +276,6 @@
 			textscale 0.55
 			visible when ( 1 )
 		}
-		itemDef
-		{
-			rect -272 28 160 18 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 6
-			textalignx -32
-			textscale 0.3333
-			exp text ( "@MPUI_GAME_RULES" )
-		}
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X 272
 		
@@ -300,66 +287,29 @@
 		
 		#undef CHOICE_Y_SPACING
 		#define CHOICE_Y_SPACING 18
-
+		
+		#include "ui_mp/common_game_options.inc"
 		CHOICE_MENU_TITLE( "@MENU_TEAM_DEATHMATCH", 150 0 0 28 2 1 )
 		
+		RULES_CHOICE_TEXT( "@MPUI_GAME_RULES", -272 28 160 18 2 1 )
 		CHOICE_DVARSTRINGLIST( 1, "@MPUI_RULES_TIME_LIMIT", "scr_war_timelimit", { "@MPUI_RULES_UNLIMITED" 0 "@MPUI_RULES_5MINUTES" 5 "@MPUI_RULES_10MINUTES" 10 "@MPUI_RULES_20MINUTES" 20 "@MPUI_RULES_30MINUTES" 30 }, open "settings_quick_war_@MPUI_RULES_TIME_LIMIT"; )
 		CHOICE_DVARSTRINGLIST( 2, "@MPUI_RULES_SCORE_LIMIT", "scr_war_scorelimit", { "@MPUI_RULES_UNLIMITED" 0 "@MPUI_RULES_2500POINTS" 2500 "@MPUI_RULES_5000POINTS" 5000 "@MPUI_RULES_7500POINTS" 7500 "@MPUI_RULES_10000POINTS" 10000 "@MPUI_RULES_15000POINTS" 15000 }, open "settings_quick_war_@MPUI_RULES_SCORE_LIMIT"; )
 
-		itemDef
-		{
-			rect -272 226 160 18 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 6
-			textalignx -32
-			textscale 0.3333
-			exp text ( "@MPUI_RULES_TEAM_OPTIONS" )
-		}
-
+		RULES_CHOICE_TEXT( "@MPUI_RULES_TEAM_OPTIONS", -272 226 160 18 2 1 )
 		CHOICE_DVARSTRINGLIST( 12, "@MPUI_RULES_SPECTATING", "scr_game_spectatetype", { "@MENU_DISABLED" 0 "@MPUI_RULES_TEAM_ONLY" 1 "@MPUI_RULES_FREE" 2 }, open "settings_quick_war_@MPUI_RULES_SPECTATING"; )		
 		CHOICE_DVARSTRINGLIST( 13, "@MPUI_RULES_WAVE_DELAY", "scr_war_waverespawndelay", { "@MPUI_RULES_NONE" 0 "@MPUI_RULES_5SECONDS" 5 "@MPUI_RULES_10SECONDS" 10 "@MPUI_RULES_15SECONDS" 15 "@MPUI_RULES_30SECONDS" 30 }, open "settings_quick_war_@MPUI_RULES_WAVE_DELAY"; )		
 		CHOICE_DVARSTRINGLIST( 14, "@MPUI_RULES_FORCE_RESPAWN", "scr_player_forcerespawn", { "@MENU_NO" 0 "@MENU_YES" 1 }, ; )
 		CHOICE_DVARSTRINGLIST( 15, "@MPUI_RULES_RADAR_ALWAYS_ON", "scr_game_forceuav", { "@MENU_NO" 0 "@MENU_YES" 1 }, ; )
 		CHOICE_DVARSTRINGLIST( 16, "@MPUI_RULES_FRIENDLY_FIRE", "scr_team_fftype", { "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 "@MPUI_RULES_REFLECT" 2 "@MPUI_RULES_SHARED" 3 }, open "settings_quick_war_@MPUI_RULES_FRIENDLY_FIRE"; )
 
-		itemDef
-		{
-			rect 0 28 160 18 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 6
-			textalignx -32
-			textscale 0.3333
-			exp text ( "@MPUI_RULES_PLAYER_OPTIONS" )
-		}
-
+		RULES_CHOICE_TEXT( "@MPUI_RULES_PLAYER_OPTIONS", 0 28 160 18 2 1 )
 		CHOICE_DVARSTRINGLIST( 21, "@MPUI_RULES_NUMBER_OF_LIVES", "scr_war_numlives", { "@MPUI_RULES_UNLIMITED" 0 "@MPUI_RULES_ITEM_LIFE" 1 "@MPUI_RULES_ITEM_2LIVES" 2 "@MPUI_RULES_ITEM_3LIVES" 3 "@MPUI_RULES_ITEM_5LIVES" 5 "@MPUI_RULES_ITEM_9LIVES" 9 }, open "settings_quick_war_@MPUI_RULES_NUMBER_OF_LIVES"; )		
 		CHOICE_DVARSTRINGLIST( 22, "@MPUI_RULES_RESPAWN_DELAY", "scr_war_playerrespawndelay", { "@MPUI_RULES_NONE" 0 "@MPUI_RULES_5SECONDS" 5 "@MPUI_RULES_10SECONDS" 10 "@MPUI_RULES_15SECONDS" 15 "@MPUI_RULES_30SECONDS" 30 }, open "settings_quick_war_@MPUI_RULES_WAVE_DELAY"; )		
 		CHOICE_DVARSTRINGLIST( 23, "@MPUI_RULES_MAX_HEALTH", "scr_player_maxhealth", { "@MPUI_RULES_MINISCULE" 30 "@MPUI_RULES_HALF" 50 "@MPUI_RULES_NORMAL" 100 "@MPUI_RULES_DOUBLE" 200 }, open "settings_quick_war_@MPUI_RULES_MAX_HEALTH"; )
 		CHOICE_DVARSTRINGLIST( 24, "@MPUI_RULES_HEALTH_REGEN", "scr_player_healthregentime", { "@MPUI_RULES_NONE" 0 "@MPUI_RULES_FAST" 2 "@MPUI_RULES_NORMAL" 5 "@MPUI_RULES_SLOW" 10 }, open "settings_quick_war_@MPUI_RULES_HEALTH_REGEN"; )
 		CHOICE_DVARSTRINGLIST( 25, "@MPUI_RULES_KILLCAM", "scr_game_allowkillcam", { "@MENU_NO" 0 "@MENU_YES" 1 }, ; )
 
-		itemDef
-		{
-			rect 0 226 160 18 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 6
-			textalignx -32
-			textscale 0.3333
-			exp text ( "@MPUI_RULES_GAMEPLAY_OPTIONS" )
-		}
-
+		RULES_CHOICE_TEXT( "@MPUI_RULES_GAMEPLAY_OPTIONS", 0 226 160 18 2 1 )
 		CHOICE_DVARSTRINGLIST( 32, "@MPUI_RULES_HEADSHOTS_ONLY", "scr_game_onlyheadshots", { "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }, ; )
 		CHOICE_DVARSTRINGLIST( 33, "@MPUI_RULES_PERKS", "scr_game_perks", { "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }, ; )
 		CHOICE_DVARSTRINGLIST( 34, "@MPUI_RULES_KILLSTREAK_REWARDS", "scr_game_hardpoints", { "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }, ; )

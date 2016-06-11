@@ -1,3 +1,10 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP				"popmenu"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
@@ -13,11 +20,12 @@
 		{
 			close "self";
 		}
-		#define ITEMNUM 5	
+//		#define ITEMNUM 5	
 		#include "ui/choices_setup_popmenu.menu"
 
 		POPMENU( 8, "popmenu", "@MENU_NOTICE" )
 		POPMENU_MESSAGE( "@MENU_ARE_YOU_SURE_QUIT" )
+
 		POPMENU_BUTTON( 1, "button_01", "@MENU_YES", uiScript "quit"; )
 		POPMENU_BUTTON( 2, "button_02", "@MENU_NO", close "self"; )	
 

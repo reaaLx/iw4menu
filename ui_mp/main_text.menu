@@ -23,7 +23,7 @@
 		fadeAmount 0.1
 		onOpen
 		{
-			setLocalVarInt "ui_centerPopup" ( "false" );
+			setLocalVarInt "ui_centerPopup" ( "0" );
 			exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow";
 		}
 		onESC
@@ -43,16 +43,16 @@
 		#define DO_THE_CHICKEN_WING
 		#include "ui_mp/bg.inc"
 
-		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 0 272 28 1 1  )
+		CHOICE_MENU_TITLE( "@MENU_MULTIPLAYER_CAPS", 0 0 272 28 1 1 )
 		CHOICE_BUTTON_FOCUS(0, "@MENU_JOIN_GAME_CAPS", open "pc_join_unranked", exec "set ui_hint_text @MPUI_DESC_JOIN_GAME", CLEAR_UI_HINT )
 		CHOICE_BUTTON_FOCUS(1, "@MENU_CREATE_GAME_CAPS", DO_THE_SERVER_EXEC, exec "set ui_hint_text @MPUI_DESC_CREATE_GAME", CLEAR_UI_HINT )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
-		
+
 		CHOICE_BUTTON_FOCUS( 2, "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup", exec "set ui_hint_text @MPUI_DESC_CREATE_A_CLASS", CLEAR_UI_HINT )
 		CHOICE_DBUTTON_FOCUS_VIS( 2, "@MENU_CREATE_A_CLASS_CAPS", exec "set ui_hint_text @MPUI_DESC_CREATE_A_CLASS_LOCKED", CLEAR_UI_HINT, when ( !isitemunlocked( "cac" ) ) )
 		CHOICE_NEWICON_VIS( 2, NEWUNLOCKS )
-		
+
 		CHOICE_BUTTON_FOCUS(3, "@MENU_PLAYERCARD_CAPS", open "popup_callsign", exec "set ui_hint_text @MPUI_DESC_PLAYERCARD", CLEAR_UI_HINT )
 		CHOICE_DBUTTON_VIS( 3, "@MENU_PLAYERCARD_CAPS", when ( !isitemunlocked( "playercard" ) ) )
 		CHOICE_NEWICON_VIS( 3, NEWUNLOCKS_PLAYERCARD )
@@ -63,10 +63,11 @@
 		CHOICE_NEWICON_VIS( 4, NEWUNLOCKS_CHALLENGES )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_3 )
-
 		CHOICE_BUTTON(5, "@MENU_MODS_CAPS", open "mods_menu"; )
 		CHOICE_BUTTON(6, "@MENU_OPTIONS_CAPS", open "main_options"; )
 		CHOICE_BUTTON(7, "@MENU_QUIT_CAPS", open "quit_popmenu"; )
+
+//		CHOICE_BUTTON(8, "@MENU_STORE_CAPS", exec "set ui_storeURL www.reactiongaming.us/"; exec "openStore"; )
 
 		CHOICE_DESCRIPTION( 1 )
 
