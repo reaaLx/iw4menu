@@ -1,20 +1,19 @@
 /*
-things to note
-created by reaaL not the finished product, still polishing this.
-rect x y width height 2 2
-85 + 3 * itemNum is the default size
-for the base popmenu, itemNum will increase the width.
-Buttons are dependent on its seperate itemNum Argument
-1. do not touch xpbar_stencilbase as this is the base for the fog scroll/stencil
-2. if you do touch them they will break the scroll and it will go out of the stencil
+	1. do not touch "xpbar_stencilbase" as this is the base for the fog scroll/stencil.
+	2. if you do touch them, they will break the scroll and it will go out of the stencil.
 */
 
 // define things here
 
 #define X_CENTER -164
 #define Y_CENTER -34 // -34 is center for now...
+
+#undef HORIZONTAL_ALIGN_CENTER
 #define HORIZONTAL_ALIGN_CENTER 2
+
+#undef VERTICAL_ALIGN_CENTER
 #define VERTICAL_ALIGN_CENTER 2
+
 #define HEIGHT_POPMENU 328
 #define WIDTH_POPMENU 68
 
