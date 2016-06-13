@@ -1,0 +1,63 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"main"
+#define CHOICE_SEP_1	4
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "options_voice"
+		rect 0 0 640 480
+		focusColor 1 1 1 1
+		foreColor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+			setLocalVarBool "ui_hideBack" ( 1 );
+			ExecNow "profile_menuDvarsSetup; resetViewport";
+		}
+		onClose
+		{
+			setLocalVarBool "ui_hideBack" ( 0 );
+		}
+		onESC
+		{
+			close "self";
+			if ( !( menuisopen( "pc_options_advanced_video" ) || menuisopen( "pc_options_video" ) || menuisopen( "pc_options_Audio" ) || menuisopen( "pc_options_controls" ) || menuisopen( "pc_options_voice" ) ) && localvarbool( "ui_showPicApply" ) && !localvarbool( "ui_showApply" ) && !localvarbool( "ui_showAudioApply" )  )
+			{
+				execnow "setfromdvar r_picmip ui_r_picmip";
+				execnow "setfromdvar r_picmip_bump ui_r_picmip_bump";
+				execnow "setfromdvar r_picmip_spec ui_r_picmip_spec";
+				execnow "setfromdvar r_picmip_manual ui_r_picmip_manual";
+				exec "wait; wait; r_applyPicmip";
+				setLocalVarBool "ui_showPicApply" ( 1 );
+			}
+			if ( !( menuisopen( "pc_options_advanced_video" ) || menuisopen( "pc_options_video" ) || menuisopen( "pc_options_Audio" ) || menuisopen( "pc_options_controls" ) || menuisopen( "pc_options_voice" ) ) && localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" )  )
+			{
+				open "all_restart_popmenu";
+			}
+			ExecNow "profile_menuDvarsFinish; resetViewport";
+		}
+
+		#define BG_1
+		#include "ui_mp/blurredbg.inc"
+
+
+		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
+		#include "ui_mp/leftside_options.inc"
+
+		CHOICE_SECTION_TITLE(20, "@MENU_VOICE")
+		
+		CHOICE_DVARSTRINGLIST( 20, "@MENU_MUTE_ALL", "cl_voice", VOICE_STRLIST, ; )
+		CHOICE_DVARSLIDER( 21, "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ; )
+
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+
+		// needs fixing, ownerdraw being a big meme to me.
+		// CHOICE_DVARLIST( 23, "@MENU_VOICECHAT_LEVEL_INDICATOR", "", 8, ownerDraw 265, ; )		
+
+	}
+}

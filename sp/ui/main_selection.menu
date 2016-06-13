@@ -1,0 +1,820 @@
+{
+	menuDef
+	{
+		name "main_selection"
+		fullscreen 1
+		rect 0 0 640 480
+		focusColor 1 1 1 1
+		foreColor 1 1 1 1
+		soundLoop "music_opening"
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onOpen
+		{
+			setLocalVarInt "ui_sp_stat_progression_easy" ( 1 );
+			setLocalVarInt "ui_sp_stat_progression_easy" ( 128 );
+			setLocalVarInt "ui_sp_stat_progression_easy" ( 132 );
+			setdvar ui_test none;
+			if ( localvarstring( "ui_setfocus_to" ) == "game_mp" )
+			{
+				setdvar ui_test game_mp;
+				setfocus "game_mp";
+			}
+			if ( localvarstring( "ui_setfocus_to" ) == "game_so" )
+			{
+				setdvar ui_test game_so;
+				setfocus "game_so";
+			}
+			if ( localvarstring( "ui_setfocus_to" ) != "game_so" && localvarstring( "ui_setfocus_to" ) != "game_mp" )
+			{
+				setdvar ui_test game_sp;
+				setfocus "game_sp";
+			}
+			if ( !getprofiledata( "hasEverPlayed_MainMenu" ) )
+			{
+				setLocalVarBool "ui_show_recommendation" ( 1 );
+				open "offensive_warning";
+			}
+		}
+		onClose
+		{
+		}
+		onESC
+		{
+			if ( localvarint( "ui_highlighted_game" ) == 1  )
+			{
+				setLocalVarString "ui_setfocus_to" ( "game_so" ) );
+			}
+			if ( localvarint( "ui_highlighted_game" ) == 2  )
+			{
+				setLocalVarString "ui_setfocus_to" ( "game_sp" ) );
+			}
+			if ( localvarint( "ui_highlighted_game" ) == 3  )
+			{
+				setLocalVarString "ui_setfocus_to" ( "game_mp" ) );
+			}
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 1
+			background "mw2_main_background"
+			decoration 
+			textScale 0.55
+			visible 1
+		}
+		itemDef
+		{
+			rect 0 0 1708 480
+			style 3
+			foreColor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480
+			style 3
+			foreColor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect -427 -240 854 480 2 2
+			style 3
+			foreColor 1 1 1 1
+			background "mw2_main_co_image"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( localvarint( "ui_highlighted_game" ) == 1 )
+		}
+		itemDef
+		{
+			rect -427 -240 854 480 2 2
+			style 3
+			foreColor 1 1 1 1
+			background "mw2_main_sp_image"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( localvarint( "ui_highlighted_game" ) == 2 )
+		}
+		itemDef
+		{
+			rect -427 -240 854 480 2 2
+			style 3
+			foreColor 1 1 1 1
+			background "mw2_main_mp_image"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( localvarint( "ui_highlighted_game" ) == 3 )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 0
+			background "mockup_bg_glow"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 0
+			background "mockup_bg_glow"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect -256 -198 512 128 2 2
+			style 3
+			foreColor 1 1 1 1
+			background "logo_cod2"
+			decoration 
+			textScale 0.55
+			visible 1
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_so_blur"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x ( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+			exp rect h ( 111 )
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_sp_blur"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+			exp rect h ( 111 )
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_mp_blur"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+			exp rect h ( 111 )
+		}
+		itemDef
+		{
+			rect 0 170 640 156 4 1
+			style 3
+			foreColor 0 0 0 0.2
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.5 0.5 0.5 0.65
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x( ( 0 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.5 0.5 0.5 0.65
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.5 0.5 0.5 0.65
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.5 0.5 0.5 0.65
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.5 0.5 0.5 0.65
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+			exp rect x( ( 4 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect -32 138 32 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_tl"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 138 640 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_t"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 138 32 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_tr"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 170 32 156 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_r"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 326 32 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_br"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 326 640 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_b"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 326 32 32 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_bl"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 170 32 156 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "drop_shadow_l"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 346 640 24 4 1
+			style 3
+			foreColor 0 0 0 1
+			background "line_horizontal"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -320 346 640 24 2 1
+			style 0
+			foreColor 1 1 1 0.75
+			decoration 
+			textAlign 13
+			textAlignY -4
+			textScale 0.375
+			textFont 3
+			visible 1
+			exp text ( localvarstring( "ui_game_desc" ) )
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.2 0.2 0.2 1
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 1 ) )
+			exp rect x( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_so"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 1 ) )
+			exp rect x( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( ( 200 ) - 4 )
+			exp rect h( 111 )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			text "@MENU_SP_CAMPAIGN"
+			visible 1
+			visible when ( "game_so" == "game_sp" )
+			exp rect x( ( - ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 1 - 1 ) * ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			rect 0 0 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textScale 0.33
+			textStyle 6
+			textFont 9
+			text "@MENU_SP_FOR_THE_RECORD"
+			visible 1
+			visible when ( "game_so" == "game_sp" && localvarint( "ui_highlighted_game" ) == 2 )
+			exp rect y ( 156 + 108 - ( !dvarbool( "hiDef" ) ) * 12 )
+			exp rect x ( ( - ( 200 - 20 * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 3 - 1 ) * ( 200 - 20 * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w ( 200 - 20 * ( !dvarbool( "hiDef" ) ) )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			text "@MENU_SP_SPECIAL_OPS_CAPS"
+			visible 1
+			visible when ( "game_so" != "game_sp" )
+			exp rect x( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( 200 )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			name "game_so"
+			rect 0 170 200 156 2 1
+			style 1
+			foreColor 1 1 1 1
+			type 1
+			textAlign 5
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp rect x ( ( 1 - 2.5 ) * ( 200 ) + 2 )			
+			onFocus
+			{
+				play "mouse_over";
+				setLocalVarInt "ui_highlighted_game" ( 1 );
+				setLocalVarString "ui_game_desc" ( "@MENU_SP_DESC_SPECIALOPS" );
+			}
+			action
+			{
+				if ( localvarbool( "ui_show_recommendation" ) )
+				{
+					open "popmenu_recommendation_so";
+				}
+				else
+				{
+					open "main_specops";
+				}
+			}
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 1
+			foreColor 0.75 0.75 0.75 1
+			decoration 
+			textAlign 13
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp text ( locstring( "@MENU_SP_COMPLETION_PERCENT" , int( getprofiledata( "percentCompleteSO" ) * 100 / 69 ) ) )
+			visible when ( 1 && localvarint( "ui_highlighted_game" ) == 1 )
+			exp rect x ( ( 1 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( 200 - 6 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.2 0.2 0.2 1
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 2 ) )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_sp"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 2 ) )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+			exp rect h ( 111 )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			text "@MENU_SP_CAMPAIGN"
+			visible 1
+			visible when ( "game_sp" == "game_sp" )
+			exp rect x ( ( - ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 2 - 1 ) * ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			rect 0 0 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textScale 0.33
+			textStyle 6
+			textFont 9
+			text "@MENU_SP_FOR_THE_RECORD"
+			visible 1
+			visible when ( "game_sp" == "game_sp" && localvarint( "ui_highlighted_game" ) == 2 )
+			exp rect y( 170 + 108 - ( !dvarbool( "hiDef" ) ) * 12 )
+			exp rect x( ( - ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 2 - 1 ) * ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			visible 1
+			visible when ( "game_sp" != "game_sp" )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w( 200 )
+			exp forecolor a( 1 )
+		}
+		itemDef
+		{
+			name "game_sp"
+			rect 0 170 200 156 2 1
+			style 1
+			foreColor 1 1 1 1
+			type 1
+			textAlign 5
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )			
+			onFocus
+			{
+				play "mouse_over";
+				setLocalVarInt "ui_highlighted_game" ( 2 );
+				setLocalVarString "ui_game_desc" ( "@MENU_SP_DESC_SINGLEPLAYER" );
+			}
+			action
+			{
+				if ( !getprofiledata( "hasEverPlayed_SP" ) )
+				{
+					setGameMode "sp";
+					setdvar "specialops" 0;
+					setdvar "ui_version_show" 0;
+					exec "select_save_device";
+					execnow "Updatedvarsfromprofile";
+					//exec "profile_difficultyLoad";
+					//exec "set nextmap devmap trainer"; 
+					//unskippablecinematic "intro_credits_load";
+				}
+				else
+				{
+					open "main_text";
+				}
+			}	
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 1
+			foreColor 0.75 0.75 0.75 1
+			decoration 
+			textAlign 13
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp text ( locstring( "@MENU_SP_COMPLETION_DOT_PERCENT" , int( ( getprofiledata( "percentCompleteSP" ) / 100 ) ) , int( ( ( getprofiledata( "percentCompleteSP" ) / 100 ) * 10 ) % 10 ) ) )
+			visible when ( ( int( ( ( getprofiledata( "percentCompleteSP" ) / 100 ) * 10 ) % 10 ) != 0 && int( ( ( localvarint( "ui_sp_stat_progression_easy" ) / 18 ) * 100 ) ) >= 100 ) && isprofilesignedin( ) && localvarint( "ui_highlighted_game" ) == 2 )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( 200 - 6 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 1
+			foreColor 0.75 0.75 0.75 1
+			decoration 
+			textAlign 13
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp text ( locstring( "@MENU_SP_COMPLETION_PERCENT" , int( ( getprofiledata( "percentCompleteSP" ) / 100 ) ) ) )
+			visible when ( ( int( ( ( getprofiledata( "percentCompleteSP" ) / 100 ) * 10 ) % 10 ) == 0 && int( ( ( localvarint( "ui_sp_stat_progression_easy" ) / 18 ) * 100 ) ) >= 100 ) && isprofilesignedin( ) && localvarint( "ui_highlighted_game" ) == 2 )
+			exp rect x ( ( 2 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( 200 - 6 )
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 3
+			foreColor 0.2 0.2 0.2 1
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 3 ) )
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+		}
+		itemDef
+		{
+			rect 0 186 0 0 2 1
+			style 3
+			foreColor 1 1 1 1
+			background "levelshot_mw2_game_mp"
+			decoration 
+			textScale 0.55
+			visible 1
+			visible when ( ( localvarint( "ui_highlighted_game" ) == 3 ) )
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( ( 200 ) - 4 )
+			exp rect h ( 111 )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			text "@MENU_SP_CAMPAIGN"
+			visible 1
+			visible when ( "game_mp" == "game_sp" )
+			exp rect x ( ( - ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 3 - 1 ) * ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			rect 0 0 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			type 1
+			textAlign 5
+			textScale 0.33
+			textStyle 6
+			textFont 9
+			text "@MENU_SP_FOR_THE_RECORD"
+			visible 1
+			visible when ( "game_mp" == "game_sp" && localvarint( "ui_highlighted_game" ) == 2 )
+			exp rect y ( 170 + 108 - ( !dvarbool( "hiDef" ) ) * 12 )
+			exp rect x ( ( - ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) * 1.5 ) + ( 3 - 1 ) * ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) ) + 2 )
+			exp rect w ( 200 - LOCAL_BAND_BUTTON_WIDTH_SD_DELTA * ( !dvarbool( "hiDef" ) ) )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			rect 0 170 0 -40 2 1
+			style 1
+			foreColor 1 1 1 1
+			decoration 
+			textAlign 5
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			text "@MENU_MULTIPLAYER_CAPS"
+			visible 1
+			visible when ( "game_mp" != "game_sp" )
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( 200 )
+			exp forecolor a ( 1 )
+		}
+		itemDef
+		{
+			name "game_mp"
+			rect 0 170 200 156 2 1
+			style 1
+			foreColor 1 1 1 1
+			type 1
+			textAlign 5
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )			
+			onFocus
+			{
+				play "mouse_over";
+				setLocalVarInt "ui_highlighted_game" ( 3 );
+				setLocalVarString "ui_game_desc" ( "@MENU_SP_DESC_MULTIPLAYER" );
+			}
+			action
+			{
+				if ( localvarbool( "ui_show_recommendation" ) )
+				{
+					open "popmenu_recommendation_mp";
+				}
+				else
+				{
+					uiScript "startMultiplayer";
+				}
+			}
+		}
+		itemDef
+		{
+			rect 0 170 0 156 2 1
+			style 1
+			foreColor 0.75 0.75 0.75 1
+			decoration 
+			textAlign 13
+			textAlignY -1
+			textScale 0.33
+			textFont 9
+			visible 1
+			exp text ( locstring( "@MENU_SP_COMPLETION_PERCENT" , int( getprofiledata( "percentCompleteMP" ) ) ) )
+			visible when ( 1 && localvarint( "ui_highlighted_game" ) == 3 )
+			exp rect x ( ( 3 - 2.5 ) * ( 200 ) + 2 )
+			exp rect w ( 200 - 6 )
+		}
+		itemDef
+		{
+			name "quit"
+			rect -85 0 170 20 2 3
+			style 1
+			foreColor 1 1 1 1
+			background "white"
+			type 1
+			textAlign 9
+			textScale 0.375
+			textFont 9
+			text "@MENU_QUIT"
+			visible 1
+			onFocus
+			{
+				setItemColor self backcolor 0 0 0 1;
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 0;
+			}
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+			action
+			{
+				play "mouse_click";
+				open "quit_popmenu";
+			}
+		}
+	}
+}
