@@ -12,7 +12,7 @@ REKT CLIENT buggy (<b>crashes while in mainmenu</b>)<br>
 ----------------
 <p>
 MP menus <b>55% (the beginning of popmenus)</b><br>
-SP menus <b>2%</b> (itemDef's only work due to new rect flags, so no defined buttons for now...)<br>
+SP menus <b>2% (itemDef's only work due to new rect flags, so no defined buttons for now...)</b><br>
 <!--note:http://pastebin.com/y8qrQyZi-->
 re-write choices_setup_popmenu.menu with proper defining & format.<br>
 </p>
