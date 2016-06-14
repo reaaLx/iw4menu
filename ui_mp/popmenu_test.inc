@@ -63,11 +63,10 @@
 			backcolor 0.5 0.5 0.5 1 \
 			background "white" \
 			textscale 0.55 \
-			exp rect h( 24 + itemNum * 20 ) \
 		} \
 		itemDef \
 		{ \
-			rect CHOICE_X_START CHOICE_Y_START 1708 480 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect 0 -102 1708 480 0 0 \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -78,9 +77,9 @@
 		} \
 		itemDef \
 		{ \
-			rect CHOICE_X_START CHOICE_Y_START -1708 -480 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect 0 -102 -1708 -480 0 0 \
 			decoration \
-			visible 1 \
+			visible 0 \
 			style 3 \
 			forecolor 0.85 0.85 0.85 1 \
 			background "mw2_popup_bg_fogscroll" \
@@ -100,7 +99,7 @@
 		} \
 		itemDef \
 		{ \
-			rect CHOICE_X_START CHOICE_Y_START -1708 -480 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect 0 -102 -1708 -480 0 0 \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -111,9 +110,9 @@
 		} \
 		itemDef \
 		{ \
-			rect CHOICE_X_START CHOICE_Y_START -1708 -480 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect 0 -102 -1708 -480 0 0 \
 			decoration \
-			visible 1 \
+			visible 0 \
 			style 3 \
 			forecolor 0.85 0.85 0.85 1 \
 			background "mw2_popup_bg_fogscroll" \
