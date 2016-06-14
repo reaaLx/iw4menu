@@ -1,0 +1,5 @@
+#undef CHOICE_X_START
+#define CHOICE_X_START -64
+
+#undef CHOICE_Y_START
+#define CHOICE_Y_START 28

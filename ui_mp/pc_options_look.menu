@@ -1,0 +1,64 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"pc_options"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "pc_options_look"
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onOpen
+		{
+			setLocalVarBool "ui_hideBack" ( 1 );
+		}
+		onRequestClose
+		{
+			setLocalVarBool "ui_hideBack" ( 0 );
+		}
+		onEsc
+		{
+			close self;
+		}
+
+		#define BG_2
+		#include "ui_mp/blurredbg.inc"
+
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+
+		CHOICE_SECTION_TITLE(20, "@MENU_ACTIONS")
+		
+		CHOICE_DVARSLIDER( 20, "@MENU_MOUSE_SENSITIVITY", "sensitivity", 5, 0.01, 100, ; )
+		CHOICE_DVARYESNO( 21, "@MENU_INVERT_MOUSE", "ui_mousePitch", ; )
+		
+		CHOICE_SECTION_SEPARATOR( 22 )
+		
+		CHOICE_DVARYESNO( 22, "@MENU_SMOOTH_MOUSE", "m_filter", ; )
+		CHOICE_DVARYESNO( 23, "@MENU_FREE_LOOK", "cl_freelook", ; )
+		CHOICE_BIND( 24, "@MENU_LOOK_UP", "+lookup", ; )
+		CHOICE_BIND( 25, "@MENU_LOOK_DOWN", "+lookdown", ; )
+		CHOICE_BIND( 26, "@MENU_MOUSE_LOOK", "+mlook", ; )
+		CHOICE_BIND( 27, "@MENU_CENTER_VIEW", "centerview", ; )
+		
+		itemDef
+		{
+			name "keyBindStatus"
+			rect 10 20 500 240 2 3
+			decoration
+			autowrapped
+			style 1
+			ownerdraw 250
+			forecolor 0.65 0.65 0.65 1
+			type 8
+			textalign 1
+			textscale 0.375
+		}
+	}
+}
