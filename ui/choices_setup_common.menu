@@ -10,6 +10,14 @@
 #define CHOICE_GROUP 				""
 #endif
 
+#ifndef CHOICE_TEXTCOLOR
+#define CHOICE_TEXTCOLOR			1 1 1 0.5
+#endif
+
+#ifndef CHOICE_TEXTCOLOR_CAPT
+#define CHOICE_TEXTCOLOR_CAPT		CHOICE_TEXTCOLOR
+#endif
+
 #ifndef CHOICE_X_START
 #define CHOICE_X_START				-15
 #endif
@@ -281,11 +289,11 @@
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
+		
 #define CHOICE_DVARENUMLIST( itemIndex, textArg, dvarArg, dvarListArg, actionArg ) \
 		CHOICE_DVARENUMLIST_VIS( itemIndex, textArg, dvarArg, dvarListArg, actionArg, 1 )
 
 #define CHOICE_DVARENUMLIST_VIS( itemIndex, textArg, dvarArg, dvarListArg, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -303,13 +311,13 @@
 			dvarEnumList dvarListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 		
 #define CHOICE_DVARSTRINGLIST( itemIndex, textArg, dvarArg, strListArg, actionArg ) \
 		CHOICE_DVARSTRINGLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, 1 )
 
 #define CHOICE_DVARSTRINGLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -327,7 +335,9 @@
 			dvarStrList strListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
+
 #define CHOICE_DVARSLIDER( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg ) \
 		CHOICE_DVARSLIDER_VIS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, 1 )
 		
@@ -335,7 +345,6 @@
 		CHOICE_DVARSLIDER_VIS_EX( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, ;, 1 )
 
 #define CHOICE_DVARSLIDER_VIS_EX( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, actionArg, extraArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -350,12 +359,13 @@
 			visible when ( visArg ) \
 			extraArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
+
 #define CHOICE_DVARYESNO( itemIndex, textArg, dvarArg, actionArg ) \
 		CHOICE_DVARYESNO_VIS( itemIndex, textArg, dvarArg, actionArg, 1 )
 
 #define CHOICE_DVARYESNO_VIS( itemIndex, textArg, dvarArg, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -372,13 +382,13 @@
 			dvar dvarArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 #define CHOICE_BIND( itemIndex, textArg, dvarArg, actionArg ) \
 		CHOICE_BIND_VIS( itemIndex, textArg, dvarArg, actionArg, 1 )
 		
 #define CHOICE_BIND_VIS( itemIndex, textArg, dvarArg, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -394,13 +404,13 @@
 			dvar dvarArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, show keyBindStatus, hide keyBindStatus ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 #define CHOICE_DVARFLOATLIST( itemIndex, textArg, dvarArg, strListArg, actionArg ) \
 		CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, 1 )
 		
 #define CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, visArg ) \
-		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -418,13 +428,13 @@
 			dvarStrList strListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 #define CHOICE_DVAREDIT( itemIndex, textArg, dvarArg, actionArg ) \
 		CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, ;, ;, actionArg, 1 )
 		
 #define CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, max_chars, max_paintchars, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -442,12 +452,13 @@
 			maxChars max_chars \
 			maxPaintChars max_paintchars \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
+
 #define CHOICE_DVAREDIT_NUMERIC( itemIndex, textArg, dvarArg, max_chars, actionArg ) \
 		CHOICE_DVAREDIT_NUMERIC_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, 1 )
 
 #define CHOICE_DVAREDIT_NUMERIC_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			type 4 \
@@ -462,14 +473,14 @@
 			visible visArg \
 			maxChars max_chars \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
-		}		
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 // focus stuff here ( will remove the focus and add the choice_script_all into the standard ones later. )
 #define CHOICE_DVARENUMLIST_FOCUS( itemIndex, textArg, dvarArg, dvarListArg, onFocusArg, leaveFocusArg, actionArg ) \
-		CHOICE_DVARENUMLIST_FOCUS_VIS( itemIndex, textArg, dvarArg, dvarListArg, onFocusArg, leaveFocusArg, actionArg, 1 )
+		CHOICE_DVARENUMLIST_FOCUS_VIS( itemIndex, textArg, dvarArg, dvarListArg, onFocusArg, leaveFocusArg, actionArg, 1 ) \
 
 #define CHOICE_DVARENUMLIST_FOCUS_VIS( itemIndex, textArg, dvarArg, dvarListArg, onFocusArg, leaveFocusArg, actionArg, visArg ) \
-		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -487,13 +498,13 @@
 			dvarEnumList dvarListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 #define CHOICE_DVARSLIDER_FOCUS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, onFocusArg, leaveFocusArg, actionArg ) \
 		CHOICE_DVARSLIDER_FOCUS_VIS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, onFocusArg, leaveFocusArg, actionArg, 1 )
 
 #define CHOICE_DVARSLIDER_FOCUS_VIS( itemIndex, textArg, dvarArg, defaultArg, minArg, maxArg, onFocusArg, leaveFocusArg, actionArg, visArg ) \
-		CHOICE_CAPTION( itemIndex, textArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -507,7 +518,9 @@
 			dvarFloat dvarArg defaultArg minArg maxArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
-		}
+		} \
+		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
+
 // end choice focus stuff
 
 #define CHOICE_MENU_TITLE( titleArg, rectArg ) \
@@ -581,19 +594,21 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			exp text( textArg ); \
+			style 1 \
+			text textArg \
+			decoration \
 			textfont 3 \
 			textscale 0.375 \
 			textAlign 6 \
 			textAlignX -130 \
 			forecolor 1 1 1 1 \
 			visible visArg \
-			decoration \
 		}
 #define CHOICE_SUBTEXT_COLOR_VIS( itemIndex, textArg, colorArg, visArg ) \
 		itemDef \
 		{ \
 			type 1 \
+			style 1 \
 			rect CHOICE_RECT( itemIndex ) \
 			exp text( textArg ); \
 			textfont 3\
@@ -602,7 +617,7 @@
 			forecolor colorArg \
 			visible visArg \
 			decoration \
-		}		
+		}			
 #define CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		CHOICE_SCRIPTS_ALL( itemIndex, actionArg, ;, ; )
 	
