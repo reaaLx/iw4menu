@@ -1,7 +1,7 @@
 {
 	menuDef
 	{
-		name "quit_popmenu"
+		name "all_restart_popmenu"
 		rect 0 40 640 480 0 0
 		popup
 		style 1
@@ -13,6 +13,7 @@
 		onOpen
 		{
 			setLocalVarInt "ui_centerPopup" ( 1 );
+			setfocus "no";
 		}
 		onRequestClose
 		{
@@ -20,12 +21,12 @@
 		}
 		onEsc
 		{
-			close "self";
+			close self;
+			close self;
 		}
-		itemDef // necessary
+		itemDef
 		{
-			name "do_not_touch"
-			rect -1004 -564 1708 960 2 2
+			rect -1004 -544 1708 960 2 2
 			decoration
 			visible 1
 			style 1
@@ -34,10 +35,9 @@
 			background "white"
 			textscale 0.55
 		}
-		itemDef // necessary
+		itemDef
 		{
-			name "do_not_touch"
-			rect -1004 -564 1708 960 2 2
+			rect -1004 -544 1708 960 2 2
 			decoration
 			visible 1
 			style 1
@@ -46,9 +46,20 @@
 			background "xpbar_stencilbase"
 			textscale 0.55
 		}
+		itemDef
+		{
+			rect -150 -64 300 64 2 2
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.5 0.5 0.5 1
+			background "white"
+			textscale 0.55
+		}
 		#include "ui/menudefinition.h"
 		#include "ui_mp/popmenu_test.inc"
-
+		
 		#undef CHOICE_X_START
 		#define CHOICE_X_START 						-150
 
@@ -59,7 +70,7 @@
 		#define CHOICE_X_SIZE 						300
 
 		#undef CHOICE_Y_SIZE
-		#define CHOICE_Y_SIZE 						84
+		#define CHOICE_Y_SIZE 						64
 
 		#undef HIGHLIGHT_SHADER
 		#define HIGHLIGHT_SHADER 					"popup_button_selection_bar"
@@ -69,18 +80,17 @@
 
 		#undef CHOICE_TEXTALIGN_X 
 		#define CHOICE_TEXTALIGN_X 					-24
-
+		
 		#undef CHOICE_BUTTON_Y_START
-		#define CHOICE_BUTTON_Y_START 				-60
-
+		#define CHOICE_BUTTON_Y_START 				-80
+		
 		#undef CHOICE_POPUP_SUBTITLE_TEXTALIGN 
 		#define CHOICE_POPUP_SUBTITLE_TEXTALIGN 	ITEM_ALIGN_TOP_CENTER
-
+		
 		CHOICE_POPMENU_CENTER( 4 )
-		CHOICE_POPMENU_TITLE( "@MENU_NOTICE" )
-		CHOICE_POPMENU_SUBTITLE( "@MENU_ARE_YOU_SURE_QUIT" )
-
-		CHOICE_BUTTON( 0, "@MENU_YES", uiScript "quit"; )
-		CHOICE_BUTTON( 1, "@MENU_NO", close "self"; )
+		CHOICE_POPMENU_TITLE( "@MENU_APPLY_SETTINGS" )
+		
+		CHOICE_BUTTON( 0, "@MENU_YES", exec "exec options_graphics_set.cfg"; exec "setfromdvar snd_khz ui_snd_khz"; exec "setfromdvar snd_outputConfiguration ui_OutputConfig"; exec "setfromdvar snd_enableEq ui_snd_enableEq"; close "self"; exec "snd_restart"; )
+		CHOICE_BUTTON( 1, "@MENU_NO", exec "exec options_graphics.cfg"; exec "setfromdvar ui_snd_khz snd_khz"; exec "setfromdvar ui_snd_enableEq snd_enableEq"; exec "setfromdvar ui_outputConfig snd_outputConfiguration"; setLocalVarBool "ui_showAudioApply" 0; setLocalVarBool "ui_showApply" 0; close "self"; )
 	}
 }
