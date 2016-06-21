@@ -171,7 +171,8 @@
 
 		// 17 is temporary, will make a separate define for this.
 		CHOICE_BUTTON(17, "@PLATFORM_GAME_SUMMARY_CAPS", open "popup_summary"; )
-		CHOICE_BACK( "@PLATFORM_BACK_CAPS" )
+		
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )
 
 		CHOICE_DESCRIPTION( 1 )
 

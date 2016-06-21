@@ -8,7 +8,7 @@
 {
 	menuDef
 	{
-		name "settings_quick_vip"
+		name "settings_quick_gtnw"
 		rect 0 0 640 480 0 0
 		style 1
 		forecolor 1 1 1 1
@@ -24,7 +24,7 @@
 		}
 		onEsc
 		{
-			close "settings_quick_ctf";
+			close "settings_quick_gtnw";
 		}
 		itemDef
 		{
@@ -301,7 +301,7 @@
 		#undef CHOICE_Y_SPACING
 		#define CHOICE_Y_SPACING 18
 
-		CHOICE_MENU_TITLE( "@MENU_VIP_DESC", 150 0 0 28 2 1 )
+		CHOICE_MENU_TITLE( "@MPUI_GTNW", 150 0 0 28 2 1 )
 		
 		CHOICE_DVARSTRINGLIST( 1, "@MPUI_RULES_TIME_LIMIT", "scr_gtnw_timelimit", { "@MPUI_RULES_UNLIMITED" 0 "@MPUI_RULES_5MINUTES" 5 "@MPUI_RULES_10MINUTES" 10 "@MPUI_RULES_20MINUTES" 20 "@MPUI_RULES_30MINUTES" 30 }, open "settings_quick_gtnw_@MPUI_RULES_TIME_LIMIT"; )
 		CHOICE_DVARSTRINGLIST( 2, "@MPUI_RULES_SCORE_LIMIT", "scr_gtnw_scorelimit", { "@MPUI_RULES_UNLIMITED" 0 "@MPUI_RULES_2500POINTS" 2500 "@MPUI_RULES_5000POINTS" 5000 "@MPUI_RULES_7500POINTS" 7500 "@MPUI_RULES_10000POINTS" 10000 "@MPUI_RULES_15000POINTS" 15000 }, open "settings_quick_gtnw_@MPUI_RULES_SCORE_LIMIT"; )

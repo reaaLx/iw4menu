@@ -186,7 +186,7 @@
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		CHOICE_SECTION_TITLE(20, "@MENU_GRAPHICS" )
 		CHOICE_DVARENUMLIST_FOCUS( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), setlocalVarBool "ui_showApply" ( 1 ) )

@@ -57,7 +57,7 @@
 
 		CHOICE_BUTTON_VIS( 15, "[DEV] Save Replay", exec "cg_replay_save ReplayAutoSave";, when ( dvarbool( "developer" ) || dvarbool( "beta" ) ) )
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )		
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )		
 		
 		itemDef
 		{

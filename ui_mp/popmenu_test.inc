@@ -66,7 +66,7 @@
 		} \
 		itemDef \
 		{ \
-			rect 0 -102 1708 480 0 0 \
+			rect 0 0 1708 480 1 1 \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -77,9 +77,9 @@
 		} \
 		itemDef \
 		{ \
-			rect 0 -102 -1708 -480 0 0 \
+			rect 0 0 -1708 -480 1 1 \
 			decoration \
-			visible 0 \
+			visible 1 \
 			style 3 \
 			forecolor 0.85 0.85 0.85 1 \
 			background "mw2_popup_bg_fogscroll" \
@@ -95,11 +95,10 @@
 			forecolor 1 1 1 1 \
 			background "mockup_popup_bg_stencilfill" \
 			textscale 0.55 \
-			exp rect h ( ( 24 + itemNum * 20 ) ) \
 		} \
 		itemDef \
 		{ \
-			rect 0 -102 -1708 -480 0 0 \
+			rect 0 0 -1708 -480 1 1 \
 			decoration \
 			visible 1 \
 			style 3 \
@@ -110,9 +109,9 @@
 		} \
 		itemDef \
 		{ \
-			rect 0 -102 -1708 -480 0 0 \
+			rect 0 0 -1708 -480 1 1 \
 			decoration \
-			visible 0 \
+			visible 1 \
 			style 3 \
 			forecolor 0.85 0.85 0.85 1 \
 			background "mw2_popup_bg_fogscroll" \
@@ -121,14 +120,13 @@
 		} \
 		itemDef \
 		{ \
-			rect CHOICE_X_START CHOICE_Y_START 300 0 1 1 \
+			rect CHOICE_X_START CHOICE_Y_START 300 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			decoration \
 			visible 1 \
 			style 3 \
 			forecolor 1 1 1 0 \
 			background "small_box_lightfx" \
 			textscale 0.55 \
-			exp rect h ( ( 24 + itemNum * 20 ) ) \
 		}
 #define CHOICE_POPMENU_TITLE( textArg ) \
 		itemDef \

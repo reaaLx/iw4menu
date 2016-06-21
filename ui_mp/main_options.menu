@@ -48,7 +48,7 @@
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 		
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 		}
 	}	
 }

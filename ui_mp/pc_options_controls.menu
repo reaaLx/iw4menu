@@ -43,7 +43,7 @@
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
 		#include "ui_mp/leftside_options.inc"
 		
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		CHOICE_SECTION_TITLE(20, "@MENU_CONTROLS")
 		CHOICE_BUTTON_ADV( 20, "@MENU_MOVEMENT", "menu_setting_selection_bar", open "pc_options_movement"; )

@@ -21,6 +21,15 @@
 				exec "checkforupdate"; \
 				open "auconfirm";
 
+		#define MENU_OPTION_IS_OPEN \
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) ) \
+				{ \
+					if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) ) \
+					{ \
+						open "all_restart_popmenu"; \
+					} \
+				}
+		
 		#define DO_THE_SERVER_EXEC \
 				exec "xrequirelivesignin"; \
 				setdvar "systemlink" 0; \

@@ -1,0 +1,185 @@
+{
+	menuDef
+	{
+		name "menu_challenge_detail_popup"
+		rect 0 0 640 480 0 0
+		popup
+		style 1
+		background "white"
+		focuscolor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onEsc
+		{
+			close "self";
+		}
+		itemDef
+		{
+			rect -1126 -540 3416 1920 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -1126 -540 3416 1920 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			background "xpbar_stencilbase"
+			textscale 0.55
+		}
+
+//		rect -427 -60 854 120 2 2
+		#include "ui/menudefinition.h"
+		#include "ui_mp/popmenu_test.inc"
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START 							-427
+
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 							-60
+
+		#undef CHOICE_X_SIZE
+		#define CHOICE_X_SIZE 							854
+
+		#undef CHOICE_Y_SIZE
+		#define CHOICE_Y_SIZE 							120
+
+		#undef CHOICE_POPUP_SUBTITLE_TEXTALIGN 
+		#define CHOICE_POPUP_SUBTITLE_TEXTALIGN 		ITEM_ALIGN_TOP_CENTER
+
+		CHOICE_POPMENU_CENTER( 9 )
+
+		itemDef // shader
+		{
+			rect -427 -60 854 20 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "white"
+			textscale 0.55
+		}		
+		itemDef
+		{
+			rect -272 -60 544 20 2 2
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.4
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) + "_" + localvarint( "ui_challenge_state" ) ) )
+		}
+		itemDef
+		{
+			rect -272 -40 544 40 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) != "@CHALLENGE_BLANK" && ( localvarstring( "ui_challenge_ref" ) != "ch_marathon_pro" && localvarstring( "ui_challenge_ref" ) != "ch_lightweight_pro" ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 2 ) , ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 6 + ( ( localvarint( "ui_challenge_state" ) - 1 ) * 2 ) ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -272 -40 544 40 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) != "@CHALLENGE_BLANK" && ( localvarstring( "ui_challenge_ref" ) == "ch_marathon_pro" || localvarstring( "ui_challenge_ref" ) == "ch_lightweight_pro" ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 2 ) , int( ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 6 + ( ( localvarint( "ui_challenge_state" ) - 1 ) * 2 ) ) ) ) / 5280 ) ) )
+		}
+		itemDef
+		{
+			rect -272 -40 544 40 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) == "@CHALLENGE_BLANK" )
+			exp text ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 2 ) )
+		}
+		itemDef
+		{
+			rect -272 0 544 20 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( localvarstring( "ui_challenge_ref" ) != "ch_marathon_pro" && localvarstring( "ui_challenge_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , getplayerdata( "challengeProgress" , localvarstring( "ui_challenge_ref" ) ) , ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 6 + ( ( localvarint( "ui_challenge_state" ) - 1 ) * 2 ) ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -272 0 544 20 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( localvarstring( "ui_challenge_ref" ) == "ch_marathon_pro" || localvarstring( "ui_challenge_ref" ) == "ch_lightweight_pro" )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , int( getplayerdata( "challengeProgress" , localvarstring( "ui_challenge_ref" ) ) / 5280 ) , int( ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 6 + ( ( localvarint( "ui_challenge_state" ) - 1 ) * 2 ) ) ) ) / 5280 ) ) )
+		}
+		itemDef
+		{
+			rect -272 20 544 20 2 2
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_REWARD_XP" , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 7 + ( ( localvarint( "ui_challenge_state" ) - 1 ) * 2 ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -272 40 544 20 2 2
+			decoration
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 4 ) != "" )
+			exp text ( locstring( "@MPUI_UNLOCKS_ATTACHMENT" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) ) )
+		}
+		itemDef
+		{
+			rect -272 40 544 40 2 2
+			decoration
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textscale 0.375
+			visible when ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 1 ) != "" )
+			exp text ( locstring( "@MPUI_UNLOCKS_CAMO" , "@" + tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) ) )
+		}
+	}
+}

@@ -54,7 +54,7 @@
 		CHOICE_DVARSTRINGLIST( 20, "@MENU_MUTE_ALL", "cl_voice", VOICE_STRLIST, ; )
 		CHOICE_DVARSLIDER( 21, "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ; )
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		// needs fixing, ownerdraw being a big meme to me.
 		// CHOICE_DVARLIST( 23, "@MENU_VOICECHAT_LEVEL_INDICATOR", "", 8, ownerDraw 265, ; )		

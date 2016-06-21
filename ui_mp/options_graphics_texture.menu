@@ -175,7 +175,7 @@
 		CHOICE_DVARFLOATLIST_VIS( 24, "@MENU_NORMAL_MAP_RESOLUTION", "ui_r_picmip_bump", TEXTURE_RESOLUTION_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
 		CHOICE_DVARFLOATLIST_VIS( 25, "@MENU_SPECULAR_MAP_RESOLUTION", "ui_r_picmip_spec", TEXTURE_RESOLUTION_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", 1 )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		itemDef
 		{
