@@ -1,83 +1,139 @@
 // generic shader draw, text draw, ui art elements to be included by menu scripts that use such
 
-#define PREPROC_SHADER_DRAW_ALIGNED( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor ) \
-		PREPROC_SHADER_DRAW_ALIGNED_VIS( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor, 1 )
+#define PREPROC_SHADER_DRAW_ALIGNED( prect, porigin, pshader, pcolor, pcolor2, pstyle ) \
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( prect, porigin, pshader, pcolor, pcolor2, pstyle, 1 )
 		
-#define PREPROC_SHADER_DRAW_ALIGNED_VIS( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor, visArg ) \
-itemDef { \
-	style			WINDOW_STYLE_SHADER \
-	rect			prect \
-	origin 			porigin \
-	forecolor		pcolor \
-	exp				material( pshader ); \
-	border			pborder \
-	bordersize		pbordersize \
-	bordercolor		pbordercolor \
-	visible			visArg decoration }		
+#define PREPROC_SHADER_DRAW_ALIGNED_VIS( prect, porigin, pshader, pcolor, pcolor2, pstyle, visArg ) \
+		itemDef \
+		{ \
+			rect prect \
+			origin porigin \
+			exp material( pshader ) \
+			forecolor pcolor \
+			backcolor pcolor2 \
+			visible visArg \
+			decoration \
+			style pstyle \
+		}
 
 // generic shader draw
 #define PREPROC_SHADER_DRAW( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor ) \
-itemDef { \
-	style			WINDOW_STYLE_SHADER \
-	rect			prect 0 0 origin porigin \
-	forecolor		pcolor \
-	exp				material( pshader ); \
-	border			pborder \
-	bordersize		pbordersize \
-	bordercolor		pbordercolor \
-	visible			1 decoration }		
+		itemDef \
+		{ \
+			style 			WINDOW_STYLE_SHADER \
+			rect 			prect \
+			origin 			porigin \
+			forecolor 		pcolor \
+			exp 			material( pshader ); \
+			border 			pborder \
+			bordersize 		pbordersize \
+			bordercolor 	pbordercolor \
+			visible 		1 \
+			decoration \
+		}
 
 #define PREPROC_SHADER_DRAW_VIS( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor, visArg ) \
-itemDef { \
-	style			WINDOW_STYLE_SHADER \
-	rect			prect 0 0 origin porigin \
-	forecolor		pcolor \
-	exp				material( pshader ); \
-	border			pborder \
-	bordersize		pbordersize \
-	bordercolor		pbordercolor \
-	visible			1 decoration }		
-
+		itemDef \
+		{ \
+			style			WINDOW_STYLE_SHADER \
+			rect			prect 0 0 \
+			origin 			porigin \
+			forecolor		pcolor \
+			exp				material( pshader ); \
+			border			pborder \
+			bordersize		pbordersize \
+			bordercolor		pbordercolor \
+			visible			visArg \
+			decoration \
+		}
 // generic text draw
 #define PREPROC_TEXT_DRAW( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
-itemDef { \
-	rect			prect 0 0 origin porigin \
-	textalignx		palignx textaligny paligny \
+itemDef \
+{ \
+	rect			prect 0 0 \
+	origin 			porigin \
+	textalignx		palignx \
+	textaligny		paligny \
 	textstyle		ITEM_TEXTSTYLE_SHADOWED \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
 	ptext \
-	visible			1 decoration }
-	
+	visible			visArg \
+	decoration \
+}
 // generic text draw
 #define PREPROC_TEXT_DRAW_ALIGNED( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
-itemDef { \
+itemDef \
+{ \
 	rect			prect \
 	origin 			porigin \
-	textalignx		palignx textaligny paligny \
-	textstyle		ITEM_TEXTSTYLE_SHADOWED \
+	textalignx		palignx \
+	textaligny 		paligny \
+	textstyle		0 \
+	textfont 		9 \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
-	ptext \
-	visible			1 decoration autowrapped }
+	exp text 		( ptext ) \
+	visible			1 \
+	decoration \
+}
+#define PREPROC_TEXT_DRAW_ALIGNED2( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
+itemDef \
+{ \
+	rect			prect \
+	origin 			porigin \
+	textalignx		palignx \
+	textaligny 		paligny \
+	textstyle		0 \
+	textfont 		3 \
+	textalign		palign \
+	textscale		psize \
+	forecolor		pcolor \
+	exp text 		( ptext ) \
+	visible			1 \
+	decoration \
+}
+#define PREPROC_TEXT_DRAW_ALIGNED_GLOW_VIS( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor, pglowA, pglow, visArg ) \
+		itemDef \
+		{ \
+			rect			prect \
+			origin 			porigin \
+			textalignx		palignx \
+			textaligny 		paligny \
+			textfont 		9 \
+			textalign		palign \
+			textscale		psize \
+			forecolor		pcolor \
+			exp text 		( ptext ) \
+			visible when ( visArg ) \
+			exp glowcolor a ( pglowA ) \
+			glowColor 		pglow \
+			decoration \
+		}
 
 // generic text draw
 #define PREPROC_TEXT_DRAW_ALIGNED_EXP( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
-itemDef { \
+itemDef \
+{ \
 	rect			prect \
 	origin 			porigin \
-	textalignx		palignx textaligny paligny \
+	textalignx		palignx \
+	textaligny 		paligny \
 	textstyle		ITEM_TEXTSTYLE_SHADOWED \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
 	exp				text( ptext ); \
-	visible			1 decoration autowrapped }
+	visible			1 \
+	decoration \
+	autowrapped \
+}
 
 #define PREPROC_TEXT_DRAW_ALIGNED_EXP2( prect, porigin, ptext, pfont, psize, palignx, paligny, palign, pcolor ) \
-itemDef { \
+itemDef \
+{ \
 	rect			prect \
 	origin 			porigin \
 	textalignx		palignx textaligny paligny \
@@ -87,23 +143,27 @@ itemDef { \
 	textscale		psize \
 	forecolor		pcolor \
 	exp				text( ptext ); \
-	visible			1 decoration autowrapped }
+	visible			1 \
+	decoration \
+	autowrapped \
+}
 		
 // generic shader draw using exp
-#define PREPROC_SHADER_DRAW_EXP( prect, porigin, pshader, pcolor, pborder, pbordersize, pbordercolor ) \
-itemDef { \
-	style			WINDOW_STYLE_SHADER \
-	rect			prect 0 0 origin porigin \
-	forecolor		pcolor \
-	pshader;\
-	border			pborder \
-	bordersize		pbordersize \
-	bordercolor		pbordercolor \
-	visible			1 decoration }		
+#define PREPROC_SHADER_DRAW_EXP( prect, pshader, pstyle, pcolor ) \
+		itemDef \
+		{ \
+			rect			prect \
+			forecolor		pcolor \
+			exp material    ( pshader ) \
+			visible			1 \
+			style			pstyle \
+			decoration \
+		}
 
 // generic text draw using exp
 #define PREPROC_TEXT_DRAW_EXP( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
-itemDef { \
+itemDef \
+{ \
 	rect			prect 0 0 origin porigin \
 	textalignx		palignx textaligny paligny \
 	textstyle		ITEM_TEXTSTYLE_SHADOWED \
@@ -111,7 +171,9 @@ itemDef { \
 	textscale		psize \
 	forecolor		pcolor \
 	ptext; \
-	visible			1 decoration }
+	visible			1 \
+	decoration \
+}
 
 // generic shader draw
 #define PREPROC_SHADER_DRAW_ADV( px, py, pw, ph, pshader, pcolor, pborder, pbordersize, pbordercolor ) \
