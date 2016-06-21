@@ -95,24 +95,6 @@ itemDef \
 	visible			1 \
 	decoration \
 }
-#define PREPROC_TEXT_DRAW_ALIGNED_GLOW_VIS( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor, pglowA, pglow, visArg ) \
-		itemDef \
-		{ \
-			rect			prect \
-			origin 			porigin \
-			textalignx		palignx \
-			textaligny 		paligny \
-			textfont 		9 \
-			textalign		palign \
-			textscale		psize \
-			forecolor		pcolor \
-			exp text 		( ptext ) \
-			visible when ( visArg ) \
-			exp glowcolor a ( pglowA ) \
-			glowColor 		pglow \
-			decoration \
-		}
-
 // generic text draw
 #define PREPROC_TEXT_DRAW_ALIGNED_EXP( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
 itemDef \
@@ -121,7 +103,7 @@ itemDef \
 	origin 			porigin \
 	textalignx		palignx \
 	textaligny 		paligny \
-	textstyle		ITEM_TEXTSTYLE_SHADOWED \
+	textstyle		3 \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
@@ -138,7 +120,7 @@ itemDef \
 	origin 			porigin \
 	textalignx		palignx textaligny paligny \
 	textfont		pfont \
-	textstyle		ITEM_TEXTSTYLE_SHADOWED \
+	textstyle		3 \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
@@ -152,11 +134,21 @@ itemDef \
 #define PREPROC_SHADER_DRAW_EXP( prect, pshader, pstyle, pcolor ) \
 		itemDef \
 		{ \
-			rect			prect \
-			forecolor		pcolor \
-			exp material    ( pshader ) \
-			visible			1 \
-			style			pstyle \
+			rect prect \
+			forecolor pcolor \
+			exp material ( pshader ) \
+			visible 1 \
+			style pstyle \
+			decoration \
+		}
+#define PREPROC_SHADER_DRAW_EXP_VIS( prect, pshader, pstyle, pcolor, visArg ) \
+		itemDef \
+		{ \
+			rect prect \
+			forecolor pcolor \
+			exp material ( pshader ) \
+			visible visArg \
+			style pstyle \
 			decoration \
 		}
 

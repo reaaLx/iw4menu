@@ -204,8 +204,8 @@
 		PREPROC_TEXT_DRAW_ALIGNED( -272 48 -272 18 3 1, 0 0, "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 3 ), 0.375, 4, 0, 4, 1 1 1 1 )
 		// primary attachments
 		PREPROC_SHADER_DRAW_ALIGNED( -268 106 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
-		PREPROC_SHADER_DRAW_ALIGNED( -268 66 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 0, 0 0 0 0, WINDOW_STYLE_SHADER )
-		PREPROC_SHADER_DRAW_ALIGNED( -224 66 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -224 106 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 0, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -224 106 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
 
 		// secondary 
 
@@ -238,16 +238,21 @@
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 268 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) ) )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 268 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 284 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+		PREPROC_SHADER_DRAW_EXP_VIS( -268 268 36 36 3 1, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ) + "_upgrade", 3, 1 1 1 1, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) && localvarstring( "loadoutPerk1" ) != "" ) )
+
 		// perk 2
 		PREPROC_SHADER_DRAW_ALIGNED( -272 268 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 304 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) ) )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 304 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 320 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+		PREPROC_SHADER_DRAW_EXP_VIS( -268 304 36 36 3 1, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ) + "_upgrade", 3, 1 1 1 1, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) && localvarstring( "loadoutPerk2" ) != "" ) )
+
 		// perk 3
 		PREPROC_SHADER_DRAW_ALIGNED( -272 340 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 340 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) ) )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 340 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
 		PREPROC_TEXT_DRAW_ALIGNED2( -232 356 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+		PREPROC_SHADER_DRAW_EXP_VIS( -268 340 36 36 3 1, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ) + "_upgrade", 3, 1 1 1 1, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) && localvarstring( "loadoutPerk3" ) != "" ) )
 
 		// death streak
 		
@@ -262,178 +267,7 @@
 			it also appears whereever you place these they need to be placed bottom to top i guess
 			placing the "tiny shaders" disappear when placed at the top.
 		*/
-		itemDef  // primary bling // need to define a seperate preproc with glowcolor and adv stuff
-		{
-			rect -272 48 272 100 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0
-			textfont 3
-			textalign 12
-			textalignx 4
-			textscale 0.375
-			glowColor 0.5 0 0 1
-			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment" ) == "none" ) ) )
-			visible when ( localvarstring( "loadoutPrimaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 11 ) != "" ) ) )
-			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 3 ) ) )
-		}
-		itemDef // primary bling // need to define a seperate preproc with glowcolor and adv stuff
-		{
-			rect -272 48 272 100 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0
-			textfont 3
-			textalign 12
-			textalignx 4
-			textaligny -40
-			textscale 0.375
-			glowColor 0.5 0 0 1
-			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment2" ) == "none" ) ) )
-			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 0 == 0 ) && localvarstring( "loadoutPrimaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , ( 11 + 1 ) ) != "" ) ) )
-			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 3 ) ) )
-		}
-		itemDef // secondary bling // need to define a seperate preproc with glowcolor and adv stuff
-		{
-			rect -272 148 272 100 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0
-			textfont 3
-			textalign 12
-			textalignx 4
-			textscale 0.375
-			glowColor 0.5 0 0 1
-			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment" ) == "none" ) ) )
-			visible when ( localvarstring( "loadoutSecondaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 11 ) != "" ) ) )
-			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment" ) , 3 ) ) )
-		}
-		itemDef // secondary bling // need to define a seperate preproc with glowcolor and adv stuff
-		{
-			rect -272 148 272 100 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0
-			textfont 3
-			textalign 12
-			textalignx 4
-			textaligny -40
-			textscale 0.375
-			glowColor 0.5 0 0 1
-			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment2" ) == "none" ) ) )
-			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 1 == 0 ) && localvarstring( "loadoutSecondaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , ( 11 + 1 ) ) != "" ) ) )
-			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 3 ) ) )
-		}
-		itemDef // pro perk 1 // need to define a seperate preproc
-		{
-			rect -268 268 36 36 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) && localvarstring( "loadoutPerk1" ) != "" )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ) + "_upgrade" )
-		}		
-		itemDef // pro perk // need to define a seperate preproc
-		{
-			rect -268 304 36 36 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) && localvarstring( "loadoutPerk2" ) != "" )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ) + "_upgrade" )
-		}
-		itemDef // pro perk 3 // need to define a seperate preproc
-		{
-			rect -268 340 36 36 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) && localvarstring( "loadoutPerk3" ) != "" )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ) + "_upgrade" )
-		}
-		itemDef
-		{
-			rect -64 -20 336 20 1 3
-			visible 1
-			group "mw2_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "menu_button_selection_bar"
-			type 1
-			textfont 3
-			textalign 6
-			textalignx -60
-			textscale 0.375
-			text "@PLATFORM_BACK_CAPS"
-			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_BACK_CAPS" )
-			action
-			{
-				play "mouse_click";
-				play "mouse_click";
-				escape "self";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_menuAButton" ( 1 );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 0 0 0 "0.0";
-				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
-				setLocalVarBool "ui_menuAButton" ( 0 );
-			}
-		}
-		itemDef
-		{
-			rect -64 -20 336 20 1 3
-			visible 1
-			group "mw2_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "menu_button_selection_bar"
-			type 1
-			textfont 3
-			textalign 6
-			textalignx -60
-			textscale 0.375
-			text "@PLATFORM_BACK_CAPS"
-			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_GAME_SUMMARY_CAPS" )
-			action
-			{
-				play "mouse_click";
-				play "mouse_click";
-				open "popup_summary";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_menuAButton" ( 1 );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 0 0 0 "0.0";
-				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
-				setLocalVarBool "ui_menuAButton" ( 0 );
-			}
-		}
+
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, "@PLATFORM_BACK_CAPS" == "@PLATFORM_BACK_CAPS" )
 	}
 }
