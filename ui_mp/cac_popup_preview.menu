@@ -1,0 +1,917 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_GROUP		"cac"
+
+#define CHOICE_SEP_1	2
+#define CHOICE_SEP_2	4
+#define CHOICE_SEP_3	8
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "cac_popup_preview"
+		rect 0 0 640 480 4 4
+		decoration
+		popup
+		style 1
+		forecolor 1 1 1 1
+		backcolor 1 1 1 0
+		focuscolor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onOpen
+		{
+			focusFirst;
+			lerp x "from" 300 "to" 0 "over" 0.15;
+		}
+		onClose
+		{
+			lerp x "from" 0 "to" 300 "over" 0.15;
+		}
+		itemDef
+		{
+			rect -272 28 336 384 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.45 0.45 0.45 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 28 336 384 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.65
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -304 -4 32 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -272 -4 336 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 64 -4 32 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 64 28 32 384 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 64 412 32 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -272 412 336 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -304 412 32 32 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -304 28 32 384 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		// class name
+
+		// classname shader frame
+		PREPROC_SHADER_DRAW_ALIGNED( -272 28 -272 20 3 1, 0 0, "gradient_fadein", 1 1 1 1, 1 1 1 0.25, WINDOW_STYLE_FILLED )
+		// classname text
+		PREPROC_TEXT_DRAW_ALIGNED( -272 28 -272 20 3 1, 0 0, getplayerdata( "customClasses" , localvarint( "classIndex" ) , "name" ), 0.375, 4, 0, 4, 1 1 1 1 )
+		// title bg shader
+		PREPROC_SHADER_DRAW_ALIGNED( -272 268 -272 4 3 1, 0 0, "gradient_fadein", 1 1 1 0, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -272 48 -272 100 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		// camo shader
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -272 48 272 100 3 1, 0 0, tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutPrimaryCamo" ) , 4 ), 1 1 1 0.5, 0 0 0 0, WINDOW_STYLE_SHADER, when ( localvarstring( "loadoutPrimaryCamo" ) != "none" ) )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -272 48 -272 100 3 1, 0 0, tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutPrimaryCamo" ) , 4 ), 0 0 0 0, 0 0 0 0, WINDOW_STYLE_SHADER, when ( localvarstring( "loadoutPrimaryCamo" ) != "none" ) )
+
+		// primary
+		
+		// shader frame
+		PREPROC_SHADER_DRAW_ALIGNED( -272 48 -272 18 3 1, 0 0, "gradient_fadein", 1 1 1 1, 0 0 0 0.35, WINDOW_STYLE_FILLED )
+		// primary gun
+		PREPROC_SHADER_DRAW_ALIGNED( -200 48 200 101.333 3 1, 0 0, tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		// title
+		PREPROC_TEXT_DRAW_ALIGNED( -272 48 -272 18 3 1, 0 0, "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 3 ), 0.375, 4, 0, 4, 1 1 1 1 )
+		// primary attachments
+		PREPROC_SHADER_DRAW_ALIGNED( -268 106 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -268 66 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 0, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -224 66 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+
+		// secondary 
+
+		PREPROC_SHADER_DRAW_ALIGNED( -272 148 -272 100 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -272 148 -272 18 3 1, 0 0, "gradient_fadein", 0 0 0 0.5, 0 0 0 0, WINDOW_STYLE_SHADER )
+		// title
+		PREPROC_TEXT_DRAW_ALIGNED( -272 148 -272 18 3 1, 0 0, "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 3 ), 0.375, 4, 0, 4, 1 1 1 1 )
+		// secondary gun
+		PREPROC_SHADER_DRAW_ALIGNED( -200 148 200 101.333 3 1, 0 0, tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		// secondary attachments
+		PREPROC_SHADER_DRAW_ALIGNED( -268 206 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -268 166 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 6 ), 1 1 1 0, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -224 206 40 40 3 1, 0 0, tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		
+		// equipment & special row
+		PREPROC_SHADER_DRAW_ALIGNED( -272 248 -272 20 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -272 248 -272 20 3 1, 0 0, "gradient_fadein", 0 0 0 0.5, 0 0 0 0, WINDOW_STYLE_SHADER )
+
+		// equipment
+		PREPROC_SHADER_DRAW_ALIGNED( -268 248 20 20 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_TEXT_DRAW_ALIGNED2( -248 248 272 20 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 2 ), 0.375, 4, 0, 4, 1 1 1 1 )
+		// special
+		PREPROC_SHADER_DRAW_ALIGNED( -136 248 20 20 3 1, 0 0, tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 6 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_TEXT_DRAW_ALIGNED2( -116 248 272 20 3 1, 0 0, locstring( "@MPUI_N_XN" , "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 3 ) , int( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 5 ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
+		
+		// perks \\
+		
+		// perk 1
+		PREPROC_SHADER_DRAW_ALIGNED( -272 304 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 268 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) ) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 268 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 284 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+		// perk 2
+		PREPROC_SHADER_DRAW_ALIGNED( -272 268 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 304 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) ) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 304 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 320 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+		// perk 3
+		PREPROC_SHADER_DRAW_ALIGNED( -272 340 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -268 340 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER, when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) ) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 340 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) * ( 9 - 2 ) ) ) ), 0.375, 4, 0, 4, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 356 228 18 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 4 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+
+		// death streak
+		
+		PREPROC_SHADER_DRAW_ALIGNED( -272 376 -272 36 3 1, 0 0, "gradient_fadein", 1 1 1 0.1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -268 376 36 36 3 1, 0 0, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 3 ), 1 1 1 1, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_TEXT_DRAW_ALIGNED2( -232 376 272 36 3 1, 0 0, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 2 ), 0.375, 4, 0, 4, 1 1 1 0.65 )
+
+		// tiny shaders to make the black shaders look sexy, well thats how iw did it atleast Lol.
+		PREPROC_SHADER_DRAW_ALIGNED( -272 268 -272 1 3 1, 0 0, "gradient_fadein", 0 0 0 0.5, 0 0 0 0, WINDOW_STYLE_SHADER )
+		PREPROC_SHADER_DRAW_ALIGNED( -272 376 -272 1 3 1, 0 0, "gradient_fadein", 0 0 0 0.5, 0 0 0 0, WINDOW_STYLE_SHADER )
+		/*
+			it also appears whereever you place these they need to be placed bottom to top i guess
+			placing the "tiny shaders" disappear when placed at the top.
+		*/
+		itemDef  // primary bling // need to define a seperate preproc with glowcolor and adv stuff
+		{
+			rect -272 48 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment" ) == "none" ) ) )
+			visible when ( localvarstring( "loadoutPrimaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 11 ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 3 ) ) )
+		}
+		itemDef // primary bling // need to define a seperate preproc with glowcolor and adv stuff
+		{
+			rect -272 48 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textaligny -40
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment2" ) == "none" ) ) )
+			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 0 == 0 ) && localvarstring( "loadoutPrimaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , ( 11 + 1 ) ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 3 ) ) )
+		}
+		itemDef // secondary bling // need to define a seperate preproc with glowcolor and adv stuff
+		{
+			rect -272 148 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment" ) == "none" ) ) )
+			visible when ( localvarstring( "loadoutSecondaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 11 ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment" ) , 3 ) ) )
+		}
+		itemDef // secondary bling // need to define a seperate preproc with glowcolor and adv stuff
+		{
+			rect -272 148 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textaligny -40
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment2" ) == "none" ) ) )
+			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 1 == 0 ) && localvarstring( "loadoutSecondaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , ( 11 + 1 ) ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 3 ) ) )
+		}
+		itemDef // pro perk 1 // need to define a seperate preproc
+		{
+			rect -268 268 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) && localvarstring( "loadoutPerk1" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ) + "_upgrade" )
+		}		
+		itemDef // pro perk // need to define a seperate preproc
+		{
+			rect -268 304 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) && localvarstring( "loadoutPerk2" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ) + "_upgrade" )
+		}
+		itemDef // pro perk 3 // need to define a seperate preproc
+		{
+			rect -268 340 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) && localvarstring( "loadoutPerk3" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ) + "_upgrade" )
+		}
+	}
+}		
+/*		
+		itemDef
+		{
+			rect -272 28 -272 20 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 0.25
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( localvarstring( "loadoutClassName" ) )
+		}
+		itemDef
+		{
+			rect -272 268 -272 4 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 48 -272 100 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 48 272 100 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			textscale 0.55
+			visible when ( localvarstring( "loadoutPrimaryCamo" ) != "none" )
+			exp material ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutPrimaryCamo" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -272 48 272 18 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.25
+			textscale 0.55
+			visible when ( localvarstring( "loadoutPrimaryCamo" ) != "none" )
+			exp material ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutPrimaryCamo" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -272 48 -272 18 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -200 48 200 101.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -268 66 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -268 106 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -224 106 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -272 48 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment" ) == "none" ) ) )
+			visible when ( localvarstring( "loadoutPrimaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , 11 ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment" ) , 3 ) ) )
+		}
+		itemDef
+		{
+			rect -272 48 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textaligny -40
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutPrimaryAttachment2" ) == "none" ) ) )
+			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 0 == 0 ) && localvarstring( "loadoutPrimaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , ( 11 + 1 ) ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutPrimaryAttachment2" ) , 3 ) ) )
+		}
+		itemDef
+		{
+			rect -272 148 -272 100 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 148 272 100 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			textscale 0.55
+			visible when ( localvarstring( "loadoutSecondaryCamo" ) != "none" )
+			exp material ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutSecondaryCamo" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -272 148 272 18 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.25
+			textscale 0.55
+			visible when ( localvarstring( "loadoutSecondaryCamo" ) != "none" )
+			exp material ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutSecondaryCamo" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -272 148 -272 18 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -200 148 200 101.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -268 166 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -268 206 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -224 206 40 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -272 148 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment" ) == "none" ) ) )
+			visible when ( localvarstring( "loadoutSecondaryAttachment" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 11 ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment" ) , 3 ) ) )
+		}
+		itemDef
+		{
+			rect -272 148 272 100 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0
+			textfont 3
+			textalign 12
+			textalignx 4
+			textaligny -40
+			textscale 0.375
+			glowColor 0.5 0 0 1
+			exp glowcolor a ( ( ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && localvarstring( "loadoutSecondaryAttachment2" ) == "none" ) ) )
+			visible when ( ( isitemunlocked( "specialty_secondarybling" ) || 1 == 0 ) && localvarstring( "loadoutSecondaryAttachment2" ) != "none" || ( localvarstring( "loadoutPerk1" ) == "specialty_bling" && ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , ( 11 + 1 ) ) != "" ) ) )
+			exp text ( locstring( "@MENU_PLUS" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "loadoutSecondaryAttachment2" ) , 3 ) ) )
+		}
+		itemDef
+		{
+			rect -272 268 -272 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -268 268 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -268 268 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) && localvarstring( "loadoutPerk1" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 3 ) + "_upgrade" )
+		}
+		itemDef
+		{
+			rect -232 268 272 36 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) * ( 9 - 2 ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -228 284 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -228 284 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk1" ) , 8 ) , 9 ) )
+		}
+		itemDef
+		{
+			rect -272 304 -272 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -268 304 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -268 304 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) && localvarstring( "loadoutPerk2" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 3 ) + "_upgrade" )
+		}
+		itemDef
+		{
+			rect -232 304 272 36 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) * ( 9 - 2 ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -228 320 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -228 320 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk2" ) , 8 ) , 9 ) )
+		}
+		itemDef
+		{
+			rect -272 340 -272 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -268 340 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -268 340 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) && localvarstring( "loadoutPerk3" ) != "" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 3 ) + "_upgrade" )
+		}
+		itemDef
+		{
+			rect -232 340 272 36 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , int( 2 + ( isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) * ( 9 - 2 ) ) ) ) )
+		}
+		itemDef
+		{
+			rect -228 356 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) == "specialty_null" || !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -228 356 228 18 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			type 21
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutPerk3" ) , 8 ) , 9 ) )
+		}
+		itemDef
+		{
+			rect -272 376 -272 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -268 376 36 36 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -232 376 272 36 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 2 ) )
+		}
+		itemDef
+		{
+			rect -272 376 -272 1 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.5
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 248 -272 20 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -272 248 -272 20 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.35
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -268 248 20 20 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -248 248 272 20 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 2 ) )
+		}
+		itemDef
+		{
+			rect -136 248 20 20 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -116 248 272 20 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( locstring( "@MPUI_N_XN" , "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 3 ) , int( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 5 ) ) ) )
+		}
+		itemDef
+		{
+			rect -272 268 -272 1 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.5
+			background "gradient_fadein"
+			textscale 0.55
+		}
+*/
