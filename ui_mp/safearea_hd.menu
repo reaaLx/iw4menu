@@ -1,13 +1,11 @@
-/*********************************************************
-***************** Dumped by aerosoul94 *******************
-*********************************************************/
+#include "ui/menudef.h"
 
 {
 	menuDef
 	{
 		name "safearea_hd"
-		rect 0 0 640 480 4 4
+		rect FULLSCREEN 4 4
 		visible 1
-		forecolor 1 1 1 1
+		forecolor COLOR_FOCUSED
 	}
 }

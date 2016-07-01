@@ -1,0 +1,184 @@
+#include "ui/menudef.h"
+
+#define RECT_COMPASS 				6 6 COMPASS_SIZE_MP COMPASS_SIZE_MP 8 8
+
+#undef MINIMAP_ORIGIN
+#define MINIMAP_ORIGIN 				6 6
+
+#define MINIMAP_SCANLINES			4000
+
+#define NOT_SPECTATING_CLIENT		( !spectatingClient() )
+#define NOT_SPECTATING_FREE			( !spectatingfree() )
+
+#define SHOW_KILLEDBY_SECONDS		( !milliseconds() - localvarint( "ui_show_killedBy" ) < MINIMAP_SCANLINES )
+#define NOT_WEAPONNAME_WHEN			( !( ( ( weaponname() == "killstreak_ac130_mp" ) || ( weaponname() == "killstreak_helicopter_minigun_mp" ) || ( weaponname() == "killstreak_predator_missile_mp" ) || ( ( weaponname() == "ac130_105mm_mp" ) || ( weaponname() == "ac130_40mm_mp" ) || ( weaponname() == "ac130_25mm_mp" ) ) || ( adsjavelin() ) || ( weaponname() == "heli_remote_mp" ) || missilecam() ) || ( getperk( "equipment" ) == "_specialty_blastshield" ) ) )
+{
+	menuDef
+	{
+		name "minimap_fullscreen"
+		rect RECT_COMPASS
+		forecolor COLOR_FOCUSED
+		visible 1
+		visible when ( !inkillcam() && !flashbanged() && !scoped() && !ui_active() && !isempjammed() && !selecting_location() && !adsjavelin() && !missilecam() && NOT_SPECTATING_CLIENT && NOT_SPECTATING_FREE && SHOW_KILLEDBY_SECONDS && NOT_WEAPONNAME_WHEN && ( !dvarint( "scr_gameended" ) ) && ( !dvarbool( "g_hardcore" ) ) && ( !dvarint( "g_compassShowEnemies" ) ) )
+
+		itemDef
+		{
+			name 	"minimap_border"
+			rect	MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			border 1
+			bordersize 0.666667
+			forecolor COLOR_FOCUSED
+			bordercolor 1 1 1 0.35
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor 0.89 0.98 0.95 0.05
+			background "minimap_scanlines"
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "minimap_map"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_MAP
+			forecolor COLOR_FOCUSED
+			background "compass_map_default"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "minimap_friendlies"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_FRIENDS
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			name "minimap_objectives"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_POINTERS
+			forecolor COLOR_FOCUSED
+			background "objective_line"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "minimap_enemies"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_ENEMIES
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			name "minimap_vehicles"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_HELICOPTERS
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			name "minimap_planes"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_PLANES
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			name "minimap_sentries"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_SENTRIES
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			name "minimap_player"
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_PLAYER
+			forecolor COLOR_FOCUSED
+			background "compassping_player"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			exp forecolor a ( 1 - radarjamintensity() )
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor 0.64 0.74 0.71 1
+			background "white"
+			textscale FONTSCALE_BIG
+			exp forecolor a ( radarjamintensity() )
+			visible when ( radarisjammed() )
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor 0.89 0.98 0.95 1
+			background "ac130_overlay_grain"
+			textscale FONTSCALE_BIG
+			exp forecolor a ( radarjamintensity() )
+			visible when ( radarisjammed() )
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor COLOR_FOCUSED
+			background "stencil_base"
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor COLOR_FOCUSED
+			background "scanlines_stencil"
+			textscale FONTSCALE_BIG
+			exp rect y ( ( 0 - 100 ) + ( ( 100 * 2 ) * ( 1 - ( ( milliseconds() % MINIMAP_SCANLINES ) / MINIMAP_SCANLINES ) ) ) )
+		}
+		itemDef
+		{
+			rect MINIMAP_ORIGIN MINIMAP_W_MP MINIMAP_H_MP 8 8
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor 0.89 0.98 0.95 1
+			background "stencil_fill"
+			textscale FONTSCALE_BIG
+		}
+	}
+}
