@@ -1,0 +1,113 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"cac"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/cac.inc"
+#include "ui_mp/weaponinfo.menu"
+{
+	menuDef
+	{
+		name "popup_cac_weapon_primary"
+		rect 0 0 854 124 0 0
+		popup
+		style 1
+		background "white"
+		focusColor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( CAC_DVAR ) )
+		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
+		onOpen
+		{
+			focusfirst;
+			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
+			setLocalVarInt CAC_DVAR ( localvarint( "ui_tabDepth" ) );
+			focusfirst;
+		}
+		onRequestClose
+		{
+			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) - 1 );
+		}
+		onEsc
+		{
+			close "self";
+		}
+		itemDef
+		{
+			rect -918 -480 1708 960 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "white"
+			textscale 0.55
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect -918 -480 1708 960 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			background "xpbar_stencilbase"
+			textscale 0.55
+		}
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START	5
+		POPMENU_CAC_TAB( "popup_cac_weapon_primary" )
+		LOCAL_WEAPON_CLASS2( 0, "@MENU_ASSAULT_RIFLES_CAPS", open "popup_cac_assault_primary";, setLocalVarString "ui_info_name" ( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
+		LOCAL_WEAPON_CLASS2( 1, "@MENU_SMGS_CAPS", 			 open "popup_cac_smg_primary";, 	setLocalVarString "ui_info_name" ( "@MENU_SMGS_CAPS" ), ; )
+		LOCAL_WEAPON_CLASS2( 2, "@MENU_LMGS_CAPS", 			 open "popup_cac_lmg_primary";, 	setLocalVarString "ui_info_name" ( "@MENU_LMGS_CAPS" ), ; )
+		LOCAL_WEAPON_CLASS2( 3, "@MENU_SNIPER_RIFLES_CAPS",  open "popup_cac_sniper_primary";,  setLocalVarString "ui_info_name" ( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
+		LOCAL_WEAPON_ITEM( 	 4,	"@MENU_RIOT_SHIELD_CAPS", 	 "Riot Shield", REF_SHIELD )
+
+		itemDef
+		{
+			rect -56 0 200 124 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( localvarstring( "ui_info_name" ) )
+		}
+		itemDef
+		{
+			rect -56 10 200 100 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( localvarstring( "ui_info_icon" ) != "" )
+			exp material ( localvarstring( "ui_info_icon" ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 124 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 84
+			textscale 0.375
+			visible when ( isitemunlocked( "weaponRefString" + " " + "refString" ) )
+			exp text ( localvarstring( "ui_info_desc" ) )
+		}
+	}
+}

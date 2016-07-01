@@ -1,0 +1,32 @@
+// --------- weapons ---------
+
+#define REF_SHIELD 						"riotshield"
+#define STAT_SHIELD						tablelookup( "mp/statstable.csv", 4, REF_SHIELD, 0 )
+
+// primary
+#define REF_M4A1 						"m4"
+#define STAT_M4A1						tablelookup( "mp/statstable.csv", 4, REF_M4A1, 0 )
+
+#define REF_FAMAS 						"famas"
+#define STAT_FAMAS						tablelookup( "mp/statstable.csv", 4, REF_FAMAS, 0 )
+
+#define REF_SCAR 						"scar"
+#define STAT_SCAR						tablelookup( "mp/statstable.csv", 4, REF_SCAR, 0 )
+
+#define REF_TAR 						"tavor"
+#define STAT_TAR						tablelookup( "mp/statstable.csv", 4, REF_TAR, 0 )
+
+#define REF_FAL 						"fal"
+#define STAT_FAL						tablelookup( "mp/statstable.csv", 4, REF_FAL, 0 )
+
+#define REF_M16A4 						"m16"
+#define STAT_M16A4						tablelookup( "mp/statstable.csv", 4, REF_M16A4, 0 )
+
+#define REF_ACR							"masada"
+#define STAT_ACAR						tablelookup( "mp/statstable.csv", 4, REF_ACR, 0 )
+
+#define REF_FN2000						"fn2000"
+#define STAT_FN2000						tablelookup( "mp/statstable.csv", 4, REF_FN2000, 0 )
+
+#define REF_AK47 						"ak47"
+#define STAT_AK47						tablelookup( "mp/statstable.csv", 4, REF_AK47, 0 )

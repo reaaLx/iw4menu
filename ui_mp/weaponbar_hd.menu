@@ -1,0 +1,242 @@
+#include "ui/menudef.h"
+
+#define HUD_ALPHA 0.65
+#define HUD_FOREGROUND_ALPHA 0.75
+
+#define NOT_WEAPONNAME_WHEN ( ! ( ( weaponname() == "killstreak_ac130_mp" ) || ( weaponname() == "killstreak_helicopter_minigun_mp" ) || ( weaponname() == "killstreak_predator_missile_mp" ) || ( ( weaponname() == "ac130_105mm_mp" ) || ( weaponname() == "ac130_40mm_mp" ) || ( weaponname() == "ac130_25mm_mp" ) ) || ( adsjavelin() ) || ( weaponname() == "heli_remote_mp" ) || missilecam() ) )
+{
+	menuDef
+	{
+		name "weaponbar_hd"
+		rect FULLSCREEN HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		visible 1
+		forecolor COLOR_FOCUSED
+		visible when ( !ui_active() && !flashbanged() && !isempjammed() && !inkillcam() && !selecting_location() && !spectatingfree() && NOT_WEAPONNAME_WHEN && ( !dvarbool( "g_hardcore" ) ) && ( !dvarint( "scr_gameended" ) ) && ( !dvarBool( "ammoCounterHide" ) == 1 ) )
+		itemDef
+		{
+			rect -349.333 -76 349.333 56 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor 1 1 1 HUD_ALPHA
+			background "hud_weaponbar"
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			rect -136 -32.6667 37.3333 0.666667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_AMMO_STOCK
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textfont UI_FONT_UNKNOWN3
+			textscale 0.5833
+			visible when ( ( player( "stockAmmo" ) ) < 100 )
+		}
+		itemDef
+		{
+			rect -128 -32.6667 37.3333 0.666667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_AMMO_STOCK
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textfont UI_FONT_UNKNOWN3
+			textscale 0.437475
+			visible when ( ( player( "stockAmmo" ) ) >= 100 )
+		}
+		itemDef
+		{
+			name "offhandFragIcon"
+			rect -108 -31.3333 18.6667 18.6667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_OFFHAND_WEAPON_ICON_FRAG
+			forecolor 0.75 0.75 0.75 1
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			visible when ( player( "fragAmmo" ) > 1 )
+		}
+		itemDef
+		{
+			name "offhandFragIcon"
+			rect -104 -32 18.6667 18.6667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_OFFHAND_WEAPON_ICON_FRAG
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			visible when ( player( "fragAmmo" ) )
+		}
+		itemDef
+		{
+			name "offhandSmokeIcon"
+			rect -133.333 -32 18.6667 18.6667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_OFFHAND_WEAPON_ICON_SMOKEFLASH
+			forecolor 0.5 0.5 0.5 1
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			visible when ( player( "smokeAmmo" ) > 2 )
+		}
+		itemDef
+		{
+			name "offhandSmokeIcon"
+			rect -129.333 -32 18.6667 18.6667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_OFFHAND_WEAPON_ICON_SMOKEFLASH
+			forecolor 0.75 0.75 0.75 1
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			visible when ( player( "smokeAmmo" ) > 1 )
+		}
+		itemDef
+		{
+			name "offhandSmokeIcon"
+			rect -125.333 -32 18.6667 18.6667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_OFFHAND_WEAPON_ICON_SMOKEFLASH
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+			visible when ( player( "smokeAmmo" ) )
+		}
+		itemDef
+		{
+			name "clipGraphic"
+			rect -130 -42.6667 0 0 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_AMMO_CLIP_GRAPHIC
+			forecolor 1 1 1 HUD_ALPHA
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "clipGraphicAkimbo"
+			rect -130 -25.3333 0 0 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_AMMO_CLIP2_GRAPHIC
+			forecolor 1 1 1 HUD_ALPHA
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef  // need to find out what this does...
+		{
+			rect -102.667 -52.6667 37.3333 0.666667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw 83
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textfont UI_FONT_UNKNOWN4
+			textalign ITEM_ALIGN_LEGACY_RIGHT
+			textscale FONTSCALE_SS
+			visible when ( inkillcam() || spectatingclient() )
+		}
+		itemDef
+		{
+			rect -102.667 -52.6667 37.3333 0.666667 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_NAME
+			forecolor COLOR_FOCUSED
+			type ITEM_TYPE_OWNERDRAW
+			textfont UI_FONT_UNKNOWN4
+			textalign ITEM_ALIGN_LEGACY_RIGHT
+			textscale FONTSCALE_SS
+			visible when ( !inkillcam() && !spectatingclient() )
+		}
+		itemDef
+		{
+			name "lowammowarning"
+			rect -50 -20 100 100 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_WEAPON_LOW_AMMO_WARNING
+			forecolor 1 1 1 HUD_ALPHA
+			type ITEM_TYPE_OWNERDRAW
+			textfont UI_FONT_UNKNOWN3
+			textalign ITEM_ALIGN_MIDDLE_CENTER
+			textscale FONTSCALE_SS
+			visible when ( !inkillcam() && !spectatingclient() )
+		}
+		itemDef
+		{
+			name "Shadow_Pass1"
+			rect -108 -97 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor COLOR_FOCUSED
+			background "hud_compass_alpha"
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "Shadow_Pass2"
+			rect -108 -97 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_WEAPONBAR
+			forecolor 1 1 1 HUD_FOREGROUND_ALPHA 
+			background "hud_compass_letters_shadow_step2"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "Shadow_Pass3"
+			rect -108 -97 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_WEAPONBAR
+			forecolor COLOR_FOCUSED
+			background "hud_compass_letters_shadow_step3"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "Pass1"
+			rect -109 -98 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			style WINDOW_STYLE_SHADER
+			forecolor COLOR_FOCUSED
+			background "hud_compass_alpha"
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "Pass2"
+			rect -109 -98 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_WEAPONBAR
+			forecolor 1 1 1 HUD_FOREGROUND_ALPHA 
+			background "hud_compass_letters_step2"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+		itemDef
+		{
+			name "Pass3"
+			rect -109 -98 126 126 HORIZONTAL_ALIGN_UNKNOWN3 VERTICAL_ALIGN_UNKNOWN3
+			decoration
+			visible 1
+			ownerdraw CG_PLAYER_COMPASS_WEAPONBAR
+			forecolor COLOR_FOCUSED
+			background "hud_compass_letters_step3"
+			type ITEM_TYPE_OWNERDRAW
+			textscale FONTSCALE_BIG
+		}
+	}
+}

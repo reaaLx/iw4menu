@@ -1,0 +1,127 @@
+{
+	menuDef
+	{
+		name "iwnet_login_popmenu"
+		rect 0 40 640 480 0 0
+		popup
+		style 1
+		background "white"
+		focuscolor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		execKey 13
+		{
+			uiScript "iwNetLogin";
+		}
+		onOpen
+		{
+			setLocalVarInt "ui_centerPopup" ( 1 );
+			setfocus "login_user";
+		}
+		onRequestClose
+		{
+			setLocalVarInt "ui_centerPopup" ( 0 );
+			uiScript "openMenuOnDvar" "ui_iwnetLoggedIn" 0 "iwnet_mustlogin_popmenu";
+			uiScript "closeMenuOnDvar" "ui_iwnetLoggedIn" 1 "iwnet_account";
+		}
+		onEsc
+		{
+			close "self";
+		}
+		itemDef
+		{
+			rect -1004 -604 1708 960 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -1004 -604 1708 960 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			background "xpbar_stencilbase"
+			textscale 0.55
+		}
+		#include "ui/menudefinition.h"
+		#include "ui_mp/popmenu_test.inc"
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START 						-150
+
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 						-124
+
+		#undef CHOICE_X_SIZE
+		#define CHOICE_X_SIZE 						300
+
+		#undef CHOICE_Y_SIZE
+		#define CHOICE_Y_SIZE 						124
+
+		#undef HIGHLIGHT_SHADER
+		#define HIGHLIGHT_SHADER 					"popup_button_selection_bar"
+
+		#undef CHOICE_TEXTALIGN 
+		#define CHOICE_TEXTALIGN 					ITEM_ALIGN_TOP_RIGHT
+
+		#undef CHOICE_TEXTALIGN_X 
+		#define CHOICE_TEXTALIGN_X 					-8
+
+		#undef CHOICE_BUTTON_Y_START
+		#define CHOICE_BUTTON_Y_START 				-60
+
+		#undef CHOICE_POPUP_SUBTITLE_TEXTALIGN 
+		#define CHOICE_POPUP_SUBTITLE_TEXTALIGN 	ITEM_ALIGN_TOP_CENTER
+
+		CHOICE_POPMENU_CENTER( 4 )
+		CHOICE_POPMENU_TITLE2( "@MENU_IWNET_LOGIN", 0 -20 )
+		CHOICE_BUTTON( 0, "@MENU_LOGIN", uiScript "iwNetLogin"; )
+		CHOICE_BUTTON( 1, "@MENU_IWNET_CREATE", open "iwnet_create_popmenu"; )
+		CHOICE_BUTTON( 2, "@MENU_IWNET_RESET", open "reset_password_popup"; )
+		
+		itemDef
+		{
+			name "login_user"
+			rect -146 -98 292 18 2 2
+			visible 1
+			style 1
+			forecolor 0.9 0.9 0.9 1
+			backcolor 0 0 0 0.3
+			type 16
+			textfont 1
+			textalign 8
+			textalignx 4
+			textscale 0.375
+			text "@MENU_IWNET_USERNAME"
+			dvar "iwnet_username"
+			maxChars 16
+			maxPaintChars 16
+		}
+		itemDef
+		{
+			name "login_password"
+			rect -146 -78 292 18 2 2
+			visible 1
+			style 1
+			forecolor 0.9 0.9 0.9 1
+			backcolor 0 0 0 0.3
+			type 23
+			textfont 1
+			textalign 8
+			textalignx 4
+			textscale 0.375
+			text "@MENU_PASSWORD1"
+			dvar "iwnet_password"
+			maxChars 16
+			maxPaintChars 16
+		}
+	}
+}
