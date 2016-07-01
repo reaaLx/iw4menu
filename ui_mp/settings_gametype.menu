@@ -189,18 +189,19 @@
 			visible 1
 		}
 
-		CHOICE_BUTTON_FOCUS_VIS( 0, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  dm , 1 ) + "_CAPS", setdvar "ui_gametype" dm; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dm , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dm , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , dm , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 1, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  war , 1 ) + "_CAPS", setdvar "ui_gametype" war; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , war , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , war , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , war , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 2, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  sd , 1 ) + "_CAPS", setdvar "ui_gametype" sd; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , sd , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , sd , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , sd , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 3, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  sab , 1 ) + "_CAPS", setdvar "ui_gametype" sab; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , sab , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , sab , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , sab , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 4, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  dom , 1 ) + "_CAPS", setdvar "ui_gametype" dom; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dom , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dom , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , dom , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 5, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  koth , 1 ) + "_CAPS", setdvar "ui_gametype" koth; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , koth , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , koth , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , koth , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 6, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  ctf , 1 ) + "_CAPS", setdvar "ui_gametype" ctf; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , ctf , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , ctf , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , ctf , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 7, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  dd , 1 ) + "_CAPS", setdvar "ui_gametype" dd; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dd , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , dd , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , dd , 3  ), ;, 1 )
+		#include "ui_mp/gametype_info.inc"
 
-		CHOICE_BUTTON_FOCUS_VIS( 8, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  vip , 1 ) + "_CAPS", setdvar "ui_gametype" vip; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , vip , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , vip , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , vip , 3  ), ;, 1 )
-		CHOICE_BUTTON_FOCUS_VIS( 9, "@" + tablelookup( "mp/gameTypesTable.csv" , 0 ,  gtnw , 1 ) + "_CAPS", setdvar "ui_gametype" gtnw; close "self";, setLocalVarString ui_info_name "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , gtnw , 1  ); setLocalVarString ui_info_desc "@" + tablelookup( "mp/gameTypesTable.csv" , 0 , gtnw , 2  ); setLocalVarString ui_info_icon tablelookup( "mp/gameTypesTable.csv" , 0 , gtnw , 3  ), ;, 1 )
-		
+		LOCAL_GAMETYPE_SELECTION( 0, "dm", "dm" )
+		LOCAL_GAMETYPE_SELECTION( 1, "war", "war" )
+		LOCAL_GAMETYPE_SELECTION( 2, "sd", "sd" )
+		LOCAL_GAMETYPE_SELECTION( 3, "sab", "sab" )
+		LOCAL_GAMETYPE_SELECTION( 4, "dom", "dom" )
+		LOCAL_GAMETYPE_SELECTION( 5, "koth", "koth" )
+		LOCAL_GAMETYPE_SELECTION( 6, "ctf", "ctf" )
+		LOCAL_GAMETYPE_SELECTION( 7, "dd", "dd" )
+		LOCAL_GAMETYPE_SELECTION( 8, "vip", "vip" )
+		LOCAL_GAMETYPE_SELECTION( 9, "gtnw", "gtnw" )
+
 		itemDef
 		{
 			rect -64 -20 336 20 1 3
@@ -218,13 +219,13 @@
 			onFocus
 			{
 				play "mouse_over";
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool ui_menuAButton 1;
+				setItemColor self "backcolor" 0 0 0 1;
+				setLocalVarBool "ui_menuAButton" ( 1 );
 			}
 			leaveFocus
 			{
-				setItemColor self backcolor 0 0 0 0.0;
-				setLocalVarBool ui_menuAButton 0;
+				setItemColor self "backcolor" 0 0 0 0;
+				setLocalVarBool "ui_menuAButton" ( 0 );
 			}
 			action
 			{

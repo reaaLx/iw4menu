@@ -1,4 +1,6 @@
 #include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
 #include "ui_mp/iw4_macros.inc"
 
 #define CHOICE_GROUP	"main"
@@ -71,6 +73,21 @@
 
 		CHOICE_DESCRIPTION( 1 )
 
+		// card base
+		PREPROC_SHADER_DRAW_ALIGNED( -208 18 208 70 3 1, ORIGIN_NONE, "white", 0 0 0 0.25, 0 0 0 0, 3 )
+		// card title
+		PREPROC_SHADER_DRAW_ALIGNED( -208 18 208 70 3 1, ORIGIN_NONE, "cardtitle_248x48", 1 1 1 1, 1 1 1 1, 1 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 16 160 32 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ), 0 0 0 0.25, 1 1 1 1, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 16 160 32 3 1, ORIGIN_NONE, "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ), 0.375, 0, 0, 9, 3, 1 1 1 1 )
+
+		// player name
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 46 160 32 3 1, ORIGIN_NONE, getplayercardinfo( 8 , 1 , 0 ), 0.3333, 8, 0, 4, 10, 1 1 1 1 )
+		// player emblem
+		PREPROC_SHADER_DRAW_ALIGNED( -48 18 48 48 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ), 1 1 1 1, 0 0 0 0, 3 )
+		PREPROC_SHADER_DRAW_ALIGNED( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ), 1 1 1 1, 1 1 1 1, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ), 0.375, 20, 0, 9, 3, 1 1 1 1 )
+		
+		
 		itemDef
 		{
 			name "ticker_bg"

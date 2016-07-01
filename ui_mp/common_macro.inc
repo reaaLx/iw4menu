@@ -1,3 +1,5 @@
+#define ORIGIN_NONE 0 0
+
 // generic shader draw, text draw, ui art elements to be included by menu scripts that use such
 
 #define PREPROC_SHADER_DRAW_ALIGNED( prect, porigin, pshader, pcolor, pcolor2, pstyle ) \
@@ -62,6 +64,22 @@ itemDef \
 	visible			visArg \
 	decoration \
 }
+#define PREPROC_TEXT_DRAW_ADV_VIS( prect, porigin, ptext, psize, palignx, paligny, palign, pfont, pcolor, visArg ) \
+itemDef \
+{ \
+	rect			prect \
+	origin 			porigin \
+	textalignx		palignx \
+	textaligny 		paligny \
+	textstyle		3 \
+	textfont 		pfont \
+	textalign		palign \
+	textscale		psize \
+	forecolor		pcolor \
+	exp text 		( ptext ) \
+	visible			visArg \
+	decoration \
+}
 // generic text draw
 #define PREPROC_TEXT_DRAW_ALIGNED( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
 itemDef \
@@ -88,6 +106,23 @@ itemDef \
 	textaligny 		paligny \
 	textstyle		0 \
 	textfont 		3 \
+	textalign		palign \
+	textscale		psize \
+	forecolor		pcolor \
+	exp text 		( ptext ) \
+	visible			1 \
+	decoration \
+}
+// generic text draw with thickness
+#define PREPROC_TEXT_DRAW_ALIGNED3( prect, porigin, ptext, psize, palignx, paligny, palign, pfont, pcolor ) \
+itemDef \
+{ \
+	rect			prect \
+	origin 			porigin \
+	textalignx		palignx \
+	textaligny 		paligny \
+	textstyle		3 \
+	textfont 		pfont \
 	textalign		palign \
 	textscale		psize \
 	forecolor		pcolor \
@@ -156,8 +191,10 @@ itemDef \
 #define PREPROC_TEXT_DRAW_EXP( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
 itemDef \
 { \
-	rect			prect 0 0 origin porigin \
-	textalignx		palignx textaligny paligny \
+	rect			prect \
+	origin 			porigin \
+	textalignx		palignx \
+	textaligny 		paligny \
 	textstyle		ITEM_TEXTSTYLE_SHADOWED \
 	textalign		palign \
 	textscale		psize \

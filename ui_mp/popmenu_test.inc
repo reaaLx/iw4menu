@@ -142,6 +142,21 @@
 			textscale 0.375 \
 			text textArg \
 		}
+#define CHOICE_POPMENU_TITLE2( textArg, originArg ) \
+		itemDef \
+		{ \
+			rect -150 -102 300 24 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			decoration \
+			visible 1 \
+			style 1 \
+			forecolor 1 1 1 1 \
+			origin originArg \
+			background "gradient_fadein" \
+			textfont 9 \
+			textalign 5 \
+			textscale 0.375 \
+			text textArg \
+		}
 #define CHOICE_POPMENU_SUBTITLE( textArg ) \
 		itemDef \
 		{ \
