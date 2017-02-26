@@ -70,7 +70,7 @@
 			rect -64 0 280 480 1 0
 			style 3
 			foreColor 1 1 1 0.1
-			background "gradient_fadein_fadebottom"
+			background "gradient_bottom"
 			decoration 
 			textScale 0.55
 			visible 1

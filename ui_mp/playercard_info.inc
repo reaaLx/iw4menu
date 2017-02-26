@@ -70,11 +70,11 @@
 			style 1 \
 			forecolor 1 1 1 1 \
 			backcolor 1 1 1 1 \
-			textfont 3 \
-			textstyle 3 \
-			textalign 5 \
-			textaligny 8 \
-			textscale 0.375 \
+			textAlign 5 \
+			textAlignY 8 \
+			textScale 0.375 \
+			textStyle 8 \
+			textFont 3 \
 			exp forecolor r ( tablelookupbyrow( "mp/cardTitleTable.csv" , p_card_index + ( localvarint( "ui_pageIndex" ) * 27 ) , 3 ) ) \
 			exp forecolor g ( tablelookupbyrow( "mp/cardTitleTable.csv" , p_card_index + ( localvarint( "ui_pageIndex" ) * 27 ) , 4 ) ) \
 			exp forecolor b ( tablelookupbyrow( "mp/cardTitleTable.csv" , p_card_index + ( localvarint( "ui_pageIndex" ) * 27 ) , 5 ) ) \

@@ -1,6 +1,5 @@
 #include "ui/menudef.h"
 #include "ui_mp/iw4_macros.inc"
-#include "ui_mp/cac_macros.inc"
 #include "ui_mp/common_macro.inc"
 
 #define CHOICE_GROUP		"cac"

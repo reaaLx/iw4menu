@@ -46,7 +46,7 @@
 		#include "ui_mp/blurredbg.inc"
 
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
-		#include "ui_mp/leftside_options.inc"
+		#include "ui_mp/leftside_optionsx.inc"
 		
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 		}
