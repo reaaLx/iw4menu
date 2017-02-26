@@ -41,10 +41,8 @@
 
 		
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
-		#include "ui_mp/leftside_options.inc"
+		#include "ui_mp/leftside_optionsx.inc"
 		
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
-
 		CHOICE_SECTION_TITLE(20, "@MENU_CONTROLS")
 		CHOICE_BUTTON_ADV( 20, "@MENU_MOVEMENT", "menu_setting_selection_bar", open "pc_options_movement"; )
 		CHOICE_BUTTON_ADV( 21, "@MENU_ACTIONS", "menu_setting_selection_bar", open "pc_options_actions"; )
@@ -52,6 +50,8 @@
 		CHOICE_BUTTON_ADV( 23, "@MENU_CHAT", "menu_setting_selection_bar", open "controls_multi"; )
 		CHOICE_SECTION_SEPARATOR( 24 )
 		CHOICE_BUTTON_ADV( 24, "@MENU_RESTORE_DEFAULT_CONTROLS", "menu_setting_selection_bar", open "options_control_defaults"; )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
+
 
 		}
 	}

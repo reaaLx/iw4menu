@@ -53,35 +53,22 @@
 		#define CHOICE_Y_START 28
 
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
-		#include "ui_mp/leftside_options.inc"
+		#include "ui_mp/leftside_optionsx.inc"
 
 		CHOICE_SECTION_TITLE( 20, "@MENU_VIDEO" )
 		CHOICE_DVARENUMLIST_FOCUS( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), setlocalVarBool "ui_showApply" ( 1 ) )
 		CHOICE_DVARSLIDER_FOCUS( 21, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, setLocalVarBool "ui_brightness_hint_display" ( 1 ),setLocalVarBool "ui_brightness_hint_display" ( 0 ), ExecNow "profile_menuDvarsFinish"; )
+
+		
+		#undef HIGHTLIGHT_BACKCOLOR
+		#define HIGHTLIGHT_BACKCOLOR 0 0 0 0
+		CHOICE_BUTTON_NOHI( 23, "@MENU_ADVANCED_VIDEO", open "pc_options_advanced_video"; )
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 		
 //		CHOICE_DVARENUMLIST( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ) )
 //		CHOICE_DVARSLIDER( 22, "@MENU_BRIGHTNESS", "profileMenuOption_gamma", 0.8, 0.5, 3, setlocalVarBool "ui_showApply" ( 1 ) )
 		
-
-		itemDef
-		{
-			rect 260 88 225 20 1 1
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 1
-			textfont 3
-			textalign 6
-			textalignx -60
-			textscale 0.375
-			text "@MENU_ADVANCED_VIDEO"
-			action
-			{
-				open "pc_options_advanced_video";
-			}
-		}
 		itemDef
 		{
 			name "graphic_warning"

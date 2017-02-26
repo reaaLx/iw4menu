@@ -1,0 +1,202 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"pc_options"
+#define CHOICE_SEP_1	2
+#define CHOICE_SEP_2	6
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "pc_store"
+		fullscreen 1
+		rect 0 0 640 480
+		focusColor 1 1 1 1
+		foreColor 1 1 1 1
+		soundLoop "music_mainmenu_mp"
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onOpen
+		{
+			focusFirst;
+		}
+		onESC
+		{
+			close "self";
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 1
+			background "mw2_main_background"
+			decoration 
+			textScale 0.55
+			visible 1
+		}
+		itemDef
+		{
+			rect 0 0 1708 480
+			style 3
+			foreColor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) )  )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480
+			style 3
+			foreColor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			decoration 
+			textScale 0.55
+			visible 1
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) )  )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 0
+			background "mockup_bg_glow"
+			decoration 
+			textScale 0.55
+			visible 1
+   		    exp forecolor a ( ( ( ( sin milliseconds( ) / 1500 ) + 1 ) * 0.250000 ) + 0.250000  )  
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			style 3
+			foreColor 1 1 1 0
+			background "mockup_bg_glow"
+			decoration 
+			textScale 0.55
+			visible 1
+     		exp forecolor a ( ( ( ( sin milliseconds( ) / 480 ) + 1 ) * 0.250000 ) + 0.250000  )
+		}
+		itemDef
+		{
+			rect 0 28 640 356 4 1
+			style 3
+			foreColor 1 1 1 0.15
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+		}	
+		itemDef
+		{
+			rect 0 0 272 28 1 1
+			foreColor 1 1 1 1
+			decoration 
+			textAlign 6
+			textAlignX -60
+			textScale 0.5
+			textFont 9
+			text "@MENU_STORE_CAPS"
+			visible 1
+		}
+		
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, -4, 32, 32, "drop_shadow_tl")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, -4, 640, 32, "drop_shadow_t")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, -4, 32, 32, "drop_shadow_tr")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 28, 32, 356, "drop_shadow_r")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 384, 32, 32, "drop_shadow_br")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, 384, 640, 32, "drop_shadow_b")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 384, 32, 32, "drop_shadow_bl")
+		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 28, 32, 356, "drop_shadow_l")
+		
+#define LOCAL_DLC_FOCUS( name, desc, icon ) \
+		setLocalVarString "ui_info_name" ( name );  \
+		setLocalVarString "ui_info_desc" ( desc );  \
+		setLocalVarString "ui_info_icon" ( icon ) 
+		
+#define LOCAL_DLC_SELECTION( itemIndex, textArg, actionArg, name, desc, icon ) \
+		CHOICE_BUTTON_FOCUS( itemIndex, textArg, actionArg, LOCAL_DLC_FOCUS( name, desc, icon ), leaveFocusArg )
+		
+		LOCAL_DLC_SELECTION( 0, "@PATCH_DLC1", uiScript downloadDLC 1, "PATCH_DLC1", "PATCH_DESC_DLC1", "preview_dlc1" )
+		CHOICE_NEWICON_VIS( 0, when(!dvarbool( "isDlcInstalled_1" ) ) )
+		
+		LOCAL_DLC_SELECTION( 1, "@PATCH_DLC2", uiScript downloadDLC 2, "PATCH_DLC2", "PATCH_DESC_DLC2", "preview_dlc2" )
+		CHOICE_NEWICON_VIS( 1, when(!dvarbool( "isDlcInstalled_2" ) ) )
+		
+		CHOICE_SEPARATOR( CHOICE_SEP_1 )
+
+		LOCAL_DLC_SELECTION( 2, "@PATCH_DLC4", uiScript downloadDLC 4, "PATCH_DLC4", "PATCH_DESC_DLC4", "preview_dlc4" )
+		CHOICE_NEWICON_VIS( 2, when(!dvarbool( "isDlcInstalled_4" ) ) )
+		
+		LOCAL_DLC_SELECTION( 3, "@PATCH_DLC5", uiScript downloadDLC 5, "PATCH_DLC5", "PATCH_DESC_DLC5", "preview_dlc5" )
+		CHOICE_NEWICON_VIS( 3, when(!dvarbool( "isDlcInstalled_5" ) ) )
+		
+		LOCAL_DLC_SELECTION( 4, "@PATCH_DLC7", uiScript downloadDLC 7, "PATCH_DLC7", "PATCH_DESC_DLC7", "preview_dlc7" )
+		CHOICE_NEWICON_VIS( 4, when(!dvarbool( "isDlcInstalled_7" ) ) )
+		
+		LOCAL_DLC_SELECTION( 5, "@PATCH_DLC8", uiScript downloadDLC 8, "PATCH_DLC8", "PATCH_DESC_DLC8", "preview_dlc8" )
+		CHOICE_NEWICON_VIS( 5, when(!dvarbool( "isDlcInstalled_8" ) ) )
+		
+
+		CHOICE_SEPARATOR( CHOICE_SEP_2 )
+
+		LOCAL_DLC_SELECTION( 6, "@PATCH_DLC3", uiScript downloadDLC 3, "PATCH_DLC3", "PATCH_DESC_DLC3", "preview_dlc3" )
+		CHOICE_NEWICON_VIS( 6, when(!dvarbool( "isDlcInstalled_3" ) ) )
+		
+		LOCAL_DLC_SELECTION( 7, "@PATCH_DLC6", uiScript downloadDLC 6, "PATCH_DLC6", "PATCH_DESC_DLC6", "preview_dlc6" )
+		CHOICE_NEWICON_VIS( 7, when(!dvarbool( "isDlcInstalled_6" ) ) )
+		
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )
+
+		itemDef
+		{
+			rect -292 28 292 356 3 1
+			style 3
+			foreColor 0 0 0 0.7
+			background "black"
+			decoration 
+			textScale 0.55
+			visible 1
+		}
+		itemDef
+		{
+			name "dlcimage"
+			rect -282 50 272 127 3 1
+			style 3
+			foreColor 1 1 1 1
+			decoration 
+			textScale 0.55
+			visible when(localvarstring( "ui_info_icon" ) != "" )
+			exp material ( localvarstring( "ui_info_icon" ) )
+		}
+		itemDef
+		{
+			name "longname"
+			rect -282 28 272 22 3 1
+			foreColor 1 1 1 1
+			decoration 
+			textAlign 4
+			textScale 0.375
+			textFont 9
+			visible 1
+			exp text ( "@" + localvarstring( "ui_info_name" ) )
+		}
+		itemDef
+		{
+			name "description"
+			rect -282 180 272 20 3 1
+			foreColor 1 1 1 0.65
+			decoration 
+			autoWrapped 
+			textAlign 4
+			textScale 0.375
+			textFont 3
+			visible 1
+			exp text ( "@" + localvarstring( "ui_info_desc" ) )
+		}
+	}
+}

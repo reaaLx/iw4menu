@@ -1,0 +1,165 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+//#define CHOICE_X_START			84
+//#define CHOICE_Y_START			150
+
+#define CHOICE_GROUP			"single"
+
+#define STYLE_PC	1
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/popupstyle.inc"	
+#include "ui/choices_setup_popmenu.menu"
+
+#undef CHOICE_HORIZONTAL_ALIGN
+#define CHOICE_HORIZONTAL_ALIGN	HORIZONTAL_ALIGN_CENTER
+#undef CHOICE_VERTICAL_ALIGN
+#define CHOICE_VERTICAL_ALIGN VERTICAL_ALIGN_CENTER
+
+#undef HIGHLIGHT_SHADER_ART
+#define HIGHLIGHT_SHADER_ART "popup_button_selection_bar"
+
+#undef CHOICE_SIZE_X
+#define CHOICE_SIZE_X	300
+
+#define NUM_INDEX 4
+{	
+	menuDef
+	{
+		name "single_popmenu"
+		rect (0-(CHOICE_POPUP_WIDTH/2)) (0-(CHOICE_POPUP_HEIGHT( NUM_INDEX )/2)) CHOICE_POPUP_WIDTH CHOICE_POPUP_HEIGHT( NUM_INDEX ) HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+		focusColor 1 1 1 1
+	   	style 1
+		visible 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1		
+		popup
+		onOpen
+		{
+			setLocalVarBool	"ui_centerPopup" ( 1 );
+		}
+		onClose
+		{
+			setLocalVarBool	"ui_centerPopup" ( 0 );
+		}
+		onESC
+		{
+			close "self";
+			setLocalVarBool	"ui_centerPopup" ( 0 );
+		}	
+		PREPROC_CANCEL_OVERLAY( 1 )
+		itemDef
+		{
+			style 1
+			rect 0 0 (CHOICE_POPUP_WIDTH-( NUM_INDEX )) (CHOICE_POPUP_HEIGHT( NUM_INDEX )-( NUM_INDEX )) HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			background "white"
+			forecolor 1 1 1 1
+			backcolor 0.5 0.5 0.5 1
+			visible 1
+			decoration
+		}
+		PREPROC_FOG_OVERLAY( 1 )
+		itemDef
+		{
+			rect 0 -64 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 4 -64 300 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 304 -64 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 304 0 64 84 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 304 84 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 84 304 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -64 84 64 84 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -64 0 64 84 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+		}
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START			-16
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X			(296)
+
+		#undef CHOICE_SIZE_Y
+		#define CHOICE_SIZE_Y			20
+		
+		#undef CHOICE_TEXTALIGN
+		#define	CHOICE_TEXTALIGN		6
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X	-34
+
+		CHOICE_POPMENU_TITLE( "@MENU_NOTICE" )
+		CHOICE_POPMENU_SUBTITLE( "@MENU_SWITCH_TO_SINGLE_PLAYER" )
+		CHOICE_BUTTON( 3, "@MENU_YES", uiScript "startsingleplayer"; )
+		CHOICE_BUTTON( 4, "@MENU_NO", close "self"; )
+	}
+}

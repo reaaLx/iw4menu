@@ -47,14 +47,14 @@
 		#include "ui_mp/blurredbg.inc"
 
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )
-		#include "ui_mp/leftside_options.inc"
-
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
+		#include "ui_mp/leftside_optionsx.inc"
 
 		CHOICE_SECTION_TITLE(20, "@MENU_AUDIO")
 
-		CHOICE_DVARSLIDER( 20, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
-		CHOICE_DVARSTRINGLIST( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setLocalVarBool "ui_showAudioApply" ( 1 ) )		
+		CHOICE_DVARSLIDER( 20, "@MENU_MASTER_VOLUME", "snd_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
+		CHOICE_DVARSTRINGLIST( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setlocalVarBool "ui_showApply" ( 1 ) )
+
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		// will make this more advanced later
 //		CHOICE_DVARSLIDER_VIS( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish";, when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )

@@ -1,10 +1,22 @@
 #include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_GROUP	"menu"
-
+#define CHOICE_GROUP	"main"
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
+
+#undef CHOICE_X_START
+#define CHOICE_X_START			0
+
+#undef CHOICE_Y_START
+#define CHOICE_Y_START			74
+
+#undef CHOICE_SIZE_X
+#define CHOICE_SIZE_X			220
+		
+		#define DONT_DO_THE_SIDEBAR_THINGY
+		#include "ui_mp/bg.inc"
 {
 	menuDef
 	{
@@ -306,66 +318,34 @@
 			else
 			{
 				setPlayerData( "killstreaks" , 0 , "localVarString" ( "ui_streak1Name" ) );
-				; setPlayerData( "killstreaks" , 1 , "localVarString" ( "ui_streak2Name" ) );
-				; setPlayerData( "killstreaks" , 2 , "localVarString" ( "ui_streak3Name" ) );
-				; execnow "uploadstats";
-				close self;
+				setPlayerData( "killstreaks" , 1 , "localVarString" ( "ui_streak2Name" ) );
+				setPlayerData( "killstreaks" , 2 , "localVarString" ( "ui_streak3Name" ) );
+				execnow "uploadstats";
+				close "self";
 			}
 		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "mw2_main_background"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 0 0 1708 480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
-		}
-		itemDef
-		{
-			rect 0 0 -1708 -480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
-		}
+		
+		#define DONT_DO_THE_SIDEBAR_THINGY
+		#include "ui_mp/bg.inc"
+		
+		#include "ui_mp/cas_info.inc"
+
+		KS_BUTTON( 0, "uav" )
+		KS_BUTTON( 1, "airdrop" )
+		KS_BUTTON( 2, "counter_uav" )
+		KS_BUTTON( 3, "airdrop_sentry_minigun" )
+		KS_BUTTON( 4, "predator_missile" )
+		KS_BUTTON( 5, "precision_airstrike" )
+		KS_BUTTON( 6, "harrier_airstrike" )
+		KS_BUTTON( 7, "helicopter" )
+		KS_BUTTON( 8, "airdrop_mega" )
+		KS_BUTTON( 9, "helicopter_flares" )
+		KS_BUTTON( 10, "stealth_airstrike" )
+		KS_BUTTON( 11, "helicopter_minigun" )
+		KS_BUTTON( 12, "ac130" )
+		KS_BUTTON( 13, "emp" )
+		KS_BUTTON( 14, "nuke" )
+
 		itemDef
 		{
 			rect 0 18 640 46 1 1
@@ -628,63 +608,53 @@
 			visible when ( !( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) && localvarint( "ui_numTokens" ) && localvarbool( "ui_buttonFocused" ) )
 			exp text ( "@PLATFORM_UNLOCK_KILLSTREAK" )
 		}
-		
-		#undef CHOICE_X_START
-		#define CHOICE_X_START		0
-
-		#undef CHOICE_SIZE_X
-		#define CHOICE_SIZE_X		220
-
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START		74
-
-
-		#include "ui_mp/cas_info.inc"
-		CAS_BUTTON( 0, "uav", 1 )
-		CAS_CHECK_BOX( 0, "uav", 1 )
-
-		CAS_BUTTON( 1, "airdrop", 1 )
-		CAS_CHECK_BOX( 1, "airdrop", 1 )
-
-		CAS_BUTTON( 2, "counter_uav", 1 )
-		CAS_CHECK_BOX( 2, "counter_uav", 1 )
-
-		CAS_BUTTON( 3, "predator_missile", 1 )
-		CAS_CHECK_BOX( 3, "predator_missile", 1 )
-
-		CAS_BUTTON( 4, "airdrop_sentry_minigun", 1 )
-		CAS_CHECK_BOX( 4, "airdrop_sentry_minigun", 1 )
-
-		CAS_BUTTON( 5, "precision_airstrike", 1 )
-		CAS_CHECK_BOX( 5, "precision_airstrike", 1 )
-
-		CAS_BUTTON( 6, "harrier_airstrike", 1 )
-		CAS_CHECK_BOX( 6, "harrier_airstrike", 1 )
-
-		CAS_BUTTON( 7, "helicopter", 1 )
-		CAS_CHECK_BOX( 7, "helicopter", 1 )
-
-		CAS_BUTTON( 8, "airdrop_mega", 1 )
-		CAS_CHECK_BOX( 8, "airdrop_mega", 1 )
-
-		CAS_BUTTON( 9, "helicopter_flares", 1 )
-		CAS_CHECK_BOX( 9, "helicopter_flares", 1 )
-
-		CAS_BUTTON( 10, "stealth_airstrike", 1 )
-		CAS_CHECK_BOX( 10, "stealth_airstrike", 1 )
-
-		CAS_BUTTON( 11, "helicopter_minigun", 1 )
-		CAS_CHECK_BOX( 11, "helicopter_minigun", 1 )
-
-		CAS_BUTTON( 12, "ac130", 1 )
-		CAS_CHECK_BOX( 12, "ac130", 1 )
-
-		CAS_BUTTON( 13, "emp", 1 )
-		CAS_CHECK_BOX( 13, "emp", 1 )
-
-		CAS_BUTTON( 14, "nuke", 1 )
-		CAS_CHECK_BOX( 14, "nuke", 1 )
-		
+		itemDef
+		{
+			rect -320 46 320 78 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 0.85 0.4 0.4 1
+			textfont 3
+			textalign 12
+			textalignx 12
+			textaligny 18
+			textscale 0.375
+			visible when ( localvarstring( "ui_conflicting_ref" ) != "" && ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) )
+			exp text ( locstring( "@MPUI_ATTACHMENT_INCOMPATIBLE" , "@" + tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_conflicting_ref" ) , 2 ) ) )
+		}
+		itemDef
+		{
+			rect 0 46 220 20 1 1
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textaligny 1
+			textscale 0.375
+			visible when ( ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) || ( !( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) && !localvarint( "ui_numTokens" ) ) || !localvarbool( "ui_buttonFocused" ) )
+			exp text ( "@PLATFORM_UI_CLEAR_KILLSTREAKS" )
+			action
+			{
+				setLocalVarInt "ui_numStreaks" ( 0 );
+				setLocalVarString "ui_streak1Name" ( "none" );
+				setLocalVarString "ui_streak2Name" ( "none" );
+				setLocalVarString "ui_streak3Name" ( "none" );
+			}
+		}
+		itemDef
+		{
+			rect 0 46 220 20 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textaligny 1
+			textscale 0.375
+			visible when ( !( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) && localvarint( "ui_numTokens" ) && localvarbool( "ui_buttonFocused" ) )
+			exp text ( "@PLATFORM_UNLOCK_KILLSTREAK" )
+		}
 		itemDef
 		{
 			rect 0 54 220 20 1 1
@@ -858,20 +828,6 @@
 		}
 		itemDef
 		{
-			rect -272 0 0 18 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 20
-			textscale 0.375
-			exp text ( getpartystatus( ) )
-		}
-		itemDef
-		{
 			rect -22 26 20 20 3 1
 			decoration
 			visible 1
@@ -897,6 +853,7 @@
 			forecolor 1 1 1 1
 			backcolor 0.55 0.93 0.56 1
 			background "ks_button_check_unlocked"
+			textstyle 8
 			textfont 9
 			textalign 10
 			textalignx -22
@@ -915,6 +872,7 @@
 			forecolor 1 1 1 1
 			backcolor 0.55 0.93 0.56 1
 			background "ks_button_check_unlocked"
+			textstyle 8
 			textfont 9
 			textalign 10
 			textalignx -22
@@ -933,6 +891,7 @@
 			forecolor 0.55 0.93 0.56 1
 			backcolor 0.55 0.93 0.56 1
 			background "ks_button_check_unlocked"
+			textstyle 8
 			textfont 9
 			textalign 10
 			textalignx -22
@@ -951,6 +910,7 @@
 			forecolor 0.55 0.93 0.56 1
 			backcolor 0.55 0.93 0.56 1
 			background "ks_button_check_unlocked"
+			textstyle 8
 			textfont 9
 			textalign 10
 			textalignx -22
@@ -959,6 +919,20 @@
 			exp backcolor a ( ( localvarint( "ui_numTokens" ) ) * min( 0.25 , max( 0 , 0 - sin( milliseconds( ) / 700 ) ) ) * 4 )
 			visible when ( localvarint( "ui_numTokens" ) > 1 )
 			exp text ( locstring( "@MPUI_N_UNLOCKS_AVAILABLE" , localvarint( "ui_numTokens" ) ) )
+		}		
+		itemDef
+		{
+			rect -272 0 0 18 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			background "white"
+			textfont 3
+			textalign 4
+			textalignx 20
+			textscale 0.375
+			exp text ( getpartystatus( ) )
 		}
 		itemDef
 		{

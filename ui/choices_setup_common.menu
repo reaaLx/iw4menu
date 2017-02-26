@@ -10,8 +10,36 @@
 #define CHOICE_GROUP 				""
 #endif
 
+#ifndef CHOICE_TEXTSIZE
+#define CHOICE_TEXTSIZE			TEXTSIZE_SMALL
+#endif
+
+#ifndef CHOICE_TEXTFONT
+#define CHOICE_TEXTFONT			3
+#endif
+
 #ifndef CHOICE_TEXTCOLOR
-#define CHOICE_TEXTCOLOR			1 1 1 0.5
+#define CHOICE_TEXTCOLOR		1 1 1 1
+#endif
+
+#ifndef CHOICE_TEXTSTYLE
+#define CHOICE_TEXTSTYLE		1
+#endif
+
+#ifndef CHOICE_TEXTALIGN
+#define	CHOICE_TEXTALIGN		6
+#endif
+
+#ifndef CHOICE_TEXT_OFFSET_X
+#define CHOICE_TEXT_OFFSET_X	-60
+#endif
+
+#ifndef CHOICE_TEXTCOLOR_DISABLED
+#define CHOICE_TEXTCOLOR_DISABLED   1 1 1 0.5
+#endif
+
+#ifndef CHOICE_BACKCOLOR
+#define CHOICE_BACKCOLOR 			0 0 0 1
 #endif
 
 #ifndef CHOICE_TEXTCOLOR_CAPT
@@ -63,9 +91,12 @@
 #endif
 
 #ifndef HIGHLIGHT_SHADER_ART
-#define HIGHLIGHT_SHADER_ART	"menu_button_selection_bar"
+#define HIGHLIGHT_SHADER_ART		"menu_button_selection_bar"
 #endif
 
+#ifndef HIGHTLIGHT_BACKCOLOR
+#define HIGHTLIGHT_BACKCOLOR 		CHOICE_BACKCOLOR
+#endif
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
 #define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
 
@@ -126,6 +157,7 @@
 			visible visArg \
 			decoration \
 		}
+		
 #define	CHOICE_NEWICON_VIS( itemIndex, visArg ) \
 		itemDef \
 		{ \
@@ -141,57 +173,57 @@
 		CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, 1 )
 
 #define CHOICE_BUTTON_NOHI( itemIndex, textArg, actionArg ) \
-		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, 1 )
+		CHOICE_BUTTON_NOHI_VIS( itemIndex, textArg, actionArg, 1 )
 
 #define CHOICE_BUTTON_VIS( itemIndex, textArg, actionArg, visArg ) \
-		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg )
+		CHOICE_BUTTON_NOHI_VIS( itemIndex, textArg, actionArg, visArg )
 		
 #define CHOICE_BUTTON_VIS_ADV( itemIndex, textArg, actionArg, visArg, vis ) \
-		CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg )
+		CHOICE_BUTTON_NOHI_VIS( itemIndex, textArg, actionArg, visArg )
 
-#define CHOICE_BUTTON_VIS_NOHI( itemIndex, textArg, actionArg, visArg ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, ;, ;, visArg )
+#define CHOICE_BUTTON_NOHI_VIS( itemIndex, textArg, actionArg, visArg ) \
+		CHOICE_BUTTON_FOCUS_NOHI_VIS( itemIndex, textArg, actionArg, ;, ;, visArg )
 
 #define CHOICE_BUTTON_FOCUS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg ) \
 		CHOICE_BUTTON_FOCUS_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, 1 )
 
 #define CHOICE_BUTTON_FOCUS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, 1 )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, 1 )
 
 #define CHOICE_BUTTON_FOCUS_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
 		
 #define CHOICE_BUTTON_FOCUS_VIS_ADV( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, vis ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg )
 
-#define CHOICE_BUTTON_FOCUS_VIS_NOHI( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, ; )
+#define CHOICE_BUTTON_FOCUS_NOHI_VIS( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg ) \
+		CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, ; )
 
 #define CHOICE_BUTTON_EX( itemIndex, textArg, actionArg, extraArgs ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, ;, ;, 1, extraArgs )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, ;, ;, 1, extraArgs )
 
 #define CHOICE_BUTTON_EX_ADV( itemIndex, textArg, actionArg, extraArgs, visArg ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, ;, ;, visArg, extraArgs )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, ;, ;, visArg, extraArgs )
 		
 #define CHOICE_BUTTON_FOCUS_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
+		CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
 		
-#define CHOICE_BUTTON_FOCUS_VIS_EX_ADV( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs, vis ) \
-		CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
+#define CHOICE_BUTTON_FOCUS_VIS_ADV_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs, vis ) \
+		CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
 
-#define CHOICE_BUTTON_FOCUS_VIS_NOHI_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs ) \
+#define CHOICE_BUTTON_FOCUS_NOHI_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 1 1 1 1  \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
-			type 1 \
-			textAlign 6 \
-			textAlignX -60 \
-			textScale 0.375 \
-			textFont 3 \
+			type ITEM_TYPE_BUTTON \
+			textAlign CHOICE_TEXTALIGN \
+			textAlignX CHOICE_TEXT_OFFSET_X \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			exp text( textArg ); \
 			visible visArg \
 			extraArgs \
@@ -407,13 +439,13 @@
 		} \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
-#define CHOICE_DVARFLOATLIST( itemIndex, textArg, dvarArg, strListArg, actionArg ) \
-		CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, 1 )
-		
-#define CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, strListArg, actionArg, visArg ) \
+#define CHOICE_DVARFLOATLIST( itemIndex, textArg, dvarArg, dvarFloatListArg, actionArg ) \
+		CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, dvarFloatListArg, actionArg, 1 )
+
+#define CHOICE_DVARFLOATLIST_VIS( itemIndex, textArg, dvarArg, dvarFloatListArg, actionArg, visArg ) \
 		itemDef \
 		{ \
-			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			style 1 \
 			foreColor 1 1 1 1 \
 			background "menu_setting_selection_bar" \
@@ -425,16 +457,16 @@
 			textFont 3 \
 			text textArg \
 			dvar dvarArg \
-			dvarStrList strListArg \
+			dvarFloatList dvarFloatListArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		} \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
 #define CHOICE_DVAREDIT( itemIndex, textArg, dvarArg, actionArg ) \
-		CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, ;, ;, actionArg, 1 )
+		CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, ;, actionArg, 1 )
 		
-#define CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, max_chars, max_paintchars, actionArg, visArg ) \
+#define CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, visArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
@@ -450,7 +482,7 @@
 			text " " \
 			dvar dvarArg \
 			maxChars max_chars \
-			maxPaintChars max_paintchars \
+			maxPaintChars max_chars \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		} \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
@@ -537,7 +569,7 @@
 			textScale 0.5 \
 			textFont 9 \
 			text titleArg \
-			visible when( visArg ) \
+			visible visArg \
 		}
 #define CHOICE_SECTION_TITLE( itemIndex, titleArg ) \
 		CHOICE_SECTION_TITLE_VIS( itemIndex, titleArg, 1 )	
@@ -632,12 +664,12 @@
 			} \
 			setLocalVarBool "ui_menuAButton" ( 1 ); \
 			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
-			setItemColor self backcolor 0 0 0 1; \
+			setItemColor self backcolor HIGHTLIGHT_BACKCOLOR; \
 		} \
 		leaveFocus \
 		{ \
 			leaveFocusArg \
-			setItemColor self backcolor 0 0 0 0.0; \
+			setItemColor self backcolor 0 0 0 0; \
 			setLocalVarBool "ui_menuAButton" ( 0 ); \
 		} \
 		action \
@@ -692,7 +724,7 @@
 		itemDef \
 		{ \
 			name "description_choice" \
-			rect 0 220 212 18 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect 0 320 215 18 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			exp text( dvarString( "ui_hint_text" ) ) \
 			textFont 3 \
 			textScale 0.375 \

@@ -43,14 +43,8 @@
 
 #define COLOR_TITLE			1 1 1 1
 #define COLOR_FOCUSED		1 1 1 1
-#define COLOR_UNFOCUSED		0.4823 0.4823 0.4823 1
-#define COLOR_DISABLED		0.35 0.35 0.35 1
-#define COLOR_SAFEAREA		0 0 1 1
-
-#define	COLOR_USMC			0.6 0.64 0.69
-#define COLOR_ARAB			0.65 0.57 0.41
-#define COLOR_USSR			0.52 0.28 0.28
-#define COLOR_SAS			0 0 0
+#define COLOR_UNFOCUSED		0 0 0 0
+#define COLOR_DISABLED		0.6 0.55 0.55 1
 
 #define DEFAULT_MP_CFG		"default_mp.cfg"
 #define SPLITSCREEN_MP_CFG	"default_splitscreen.cfg"
@@ -65,4 +59,23 @@
 #define PRESTIGE_FINISH 	( stat( 2326 ) == MAX_PRESTIGE )
 
 #define CAN_RANK_UP			( stat( 252 ) < MAX_RANK || stat( 2326 ) < MAX_PRESTIGE )
+
+#define HUD_IS_ACTIVE					( ui_active() )
+#define HUD_IS_HARDCORE					( dvarbool( "g_hardcore" ) )
+#define HUD_HIDE_FLASHED				( flashbanged() )
+#define HUD_HIDE_WEAPONS				( ( weaponname( ) == "killstreak_ac130_mp" ) || ( weaponname( ) == "killstreak_helicopter_minigun_mp" ) || ( weaponname( ) == "killstreak_predator_missile_mp" ) || ( ( weaponname( ) == "ac130_105mm_mp" ) || ( weaponname( ) == "ac130_40mm_mp" ) || ( weaponname( ) == "ac130_25mm_mp" ) ) || ( adsjavelin( ) ) || ( weaponname( ) == "heli_remote_mp" ) || missilecam( ) ) 
+#define HUD_HIDE_ENDGAME				( dvarint( "scr_gameended" ) )
+
+#define HUD_HIDE_EMP					isempjammed()
+#define HUD_HIDE_SELECTINGLOCATION		selecting_location()
+#define HUD_HIDE_INKILLCAM				inkillcam()
+
+// team related stuff
+#define HUD_HIDE_WHEN_SPECTATING		( team( "name" ) != "TEAM_SPECTATOR" )
+#define HUD_HIDE_WHEN_FREE				( team( "name" ) ) == "TEAM_FREE" )
+
+#define PLAYER_IS_UNKNOWN1 				( player( "score" ) ) == ( scoreatrank( 1 ) ) ) * ( scoreatrank( 2 ) 
+#define PLAYER_IS_UNKNOWN2				( player( "score" ) ) != ( scoreatrank( 1 ) ) ) * ( scoreatrank( 1 )
+
+#define HUD_TEXT_SWITCH					( ( ( milliseconds( ) % 30000 ) > 4000 && ( milliseconds( ) % 30000 ) < 30000 ) )
 

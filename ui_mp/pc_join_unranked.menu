@@ -1,0 +1,131 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"joinserver"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "pc_join_unranked"
+		fullscreen 1
+		rect 0 0 640 480 0 0
+		focusColor 1 1 1 1
+		foreColor 1 1 1 1
+		soundLoop "music_mainmenu_mp"
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		onOpen
+		{
+			exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow";
+			uiScript "LoadArenas";
+			uiScript "UpdateFilter";
+			uiScript "RefreshServers";
+			setFocus "serverlist";
+		}
+		onEsc	
+		{
+			close "self";
+			open "main_text";
+		}
+		
+		#define DONT_DO_THE_SIDEBAR_THINGY
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect 0 42 640 318 4 1
+			style 3
+			foreColor 1 1 1 0.15
+			background "white"
+			decoration 
+			textScale 0.55
+			visible 1
+		}
+		itemDef
+		{
+			rect -32 10 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 10 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 640 10 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 640 42 32 318 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 640 360 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 360 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -32 360 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -32 42 32 318 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+		}		
+		#include "ui_mp/joinserver.inc"
+
+	}	
+}
