@@ -4,8 +4,7 @@
 <p>
 re-using "choices_setup_common" from IW3.<br>
 rewriting it with IW4 format SP & MP for ease of use directed at the modding community.<br>
-REACT CLIENT (<b>currently supported version</b>)<br>
-REKT CLIENT buggy (<b>crashes while in mainmenu</b>)<br>
+IW4x CLIENT (<b>currently supported version</b>)<br>
 </p>
 
 <h2>To Do List</h2>
