@@ -1,0 +1,593 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"main"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "menu_records"
+		rect 0 0 640 480 0 0
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarInt "ui_pageIndex" ( 0 );
+			setLocalVarInt "ui_numPages" ( 0 );
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 1 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 1 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 2 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 2 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 3 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 3 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 4 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 4 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 5 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 5 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 6 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 6 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 7 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 7 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 8 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 8 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 9 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 9 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 10 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 10 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 11 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 11 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 12 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 12 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 13 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 13 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 14 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 14 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 15 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 15 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 16 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 16 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 17 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 17 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 18 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 18 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 19 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 19 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 20 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 20 );
+			}
+			if ( ( tablelookupbyrow( "mp/awardTable.csv" , ( 21 * 18 ) , 1 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 21 );
+			}
+			focusfirst;
+		}
+		onEsc
+		{
+			close self;
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "mw2_main_background"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 1708 480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect -320 0 640 28 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.5833
+			text "@MPUI_HIGHLIGHTS_CAPS"
+		}
+		itemDef
+		{
+			rect 0 28 640 268 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.15
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -32 -4 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 -4 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 -4 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 28 32 268 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 296 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 296 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 296 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 28 32 268 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 360 640 20 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.15
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -32 328 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 328 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 328 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 360 32 20 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 640 380 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 380 640 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 380 32 32 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -32 360 32 20 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -272 28 544 24 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 10
+			textalign 6
+			textalignx -4
+			textscale 0.3333
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_PAGE_N_SLASH_N" , ( localvarint( "ui_pageIndex" ) + 1 ) , ( localvarint( "ui_numPages" ) + 1 ) ) )
+		}
+		#include "ui_mp/accolades_info.inc"
+		CHOICE_ACCOLADE( 0, "highlightImage0_0", 0 )
+		CHOICE_ACCOLADE( 1, "highlightImage0_1", 1 )
+		CHOICE_ACCOLADE( 2, "highlightImage0_2", 2 )
+		
+		CHOICE_ACCOLADE( 20, "highlightImage1_0", 3 )
+		CHOICE_ACCOLADE( 21, "highlightImage1_1", 4 )
+		CHOICE_ACCOLADE( 22, "highlightImage1_2", 5 )
+		
+		CHOICE_ACCOLADE( 40, "highlightImage2_0", 6 )
+		CHOICE_ACCOLADE( 41, "highlightImage2_1", 7 )
+		CHOICE_ACCOLADE( 42, "highlightImage2_2", 8 )
+		
+		CHOICE_ACCOLADE( 60, "highlightImage3_0", 9 )
+		CHOICE_ACCOLADE( 61, "highlightImage3_1", 10 )
+		CHOICE_ACCOLADE( 62, "highlightImage3_2", 11 )
+		
+		CHOICE_ACCOLADE( 80, "highlightImage4_0", 12 )
+		CHOICE_ACCOLADE( 81, "highlightImage4_1", 13 )
+		CHOICE_ACCOLADE( 82, "highlightImage4_2", 14 )
+		
+		CHOICE_ACCOLADE( 100, "highlightImage5_0", 15 )
+		CHOICE_ACCOLADE( 101, "highlightImage5_1", 16 )
+		CHOICE_ACCOLADE( 102, "highlightImage5_2", 17 )
+
+		itemDef
+		{
+			rect 0 296 640 64 4 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "black"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -232 -112 464 64 2 3
+			decoration
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 9
+			textalign 5
+			textaligny 8
+			textscale 0.5833
+			exp text ( "@" + tablelookup( "mp/awardTable.csv" , 1 , tablelookupbyrow( "mp/awardTable.csv" , localvarint( "ui_highlightIndex" ) , 1 ) , 3 ) )
+		}
+		itemDef
+		{
+			rect -232 -112 464 64 2 3
+			decoration
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 5
+			textaligny 32
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/awardTable.csv" , 1 , tablelookupbyrow( "mp/awardTable.csv" , localvarint( "ui_highlightIndex" ) , 1 ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -272 104 -32 128 2 1
+			decoration
+			visible 1
+			group "left_arrow"
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) )
+		}
+		itemDef
+		{
+			rect -272 104 32 128 2 1
+			visible 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) )
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
+				}
+			}
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "left_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "left_arrow" forecolor 1 1 1 1;
+			}
+		}
+		itemDef
+		{
+			name "right_arrow"
+			rect 240 104 32 128 2 1
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
+				}
+			}
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "right_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "right_arrow" forecolor 1 1 1 1;
+			}
+		}
+		itemDef
+		{
+			rect -64 -20 336 20 1 3
+			visible 1
+			group "mw2_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "menu_button_selection_bar"
+			type 1
+			textfont 3
+			textalign 6
+			textalignx -60
+			textscale 0.375
+			text "@PLATFORM_BACK_CAPS"
+			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_BACK_CAPS" )
+			action
+			{
+				play "mouse_click";
+				play "mouse_click";
+				"escape" self;
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_menuAButton" ( 1 );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 "0.0";
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				setLocalVarBool "ui_menuAButton" ( 0 );
+			}
+		}
+		itemDef
+		{
+			rect -64 -20 336 20 1 3
+			visible 1
+			group "mw2_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "menu_button_selection_bar"
+			type 1
+			textfont 3
+			textalign 6
+			textalignx -60
+			textscale 0.375
+			text "@PLATFORM_BACK_CAPS"
+			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_GAME_SUMMARY_CAPS" )
+			action
+			{
+				play "mouse_click";
+				play "mouse_click";
+				open "popup_summary";
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_menuAButton" ( 1 );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 "0.0";
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				setLocalVarBool "ui_menuAButton" ( 0 );
+			}
+		}
+	}
+}

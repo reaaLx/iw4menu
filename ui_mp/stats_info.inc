@@ -1,11 +1,15 @@
 
 // definitions for primary / secondary challenges
-#define primary_unlock when ( ( ( stat_p_masada || stat_p_m16 || stat_p_tavor || stat_p_fn2000 || stat_p_m4 || stat_p_scar || stat_p_ak47 || stat_p_fal || stat_p_famas || stat_p_mp5k || stat_p_uzi || stat_p_kriss || stat_p_ump45 || stat_p_p90 || stat_p_m240 || stat_p_sa80 || stat_p_rpd || stat_p_aug )
-#define primary_unlock_2 when ( ( ( stat_p_cheytac || stat_p_m21 || stat_p_barrett || stat_p_wa2000 )
+#define primary_unlock when ( ( ( stat_p_masada || stat_p_m16 || stat_p_tavor || stat_p_fn2000 || stat_p_m4 )
+#define primary_unlock_1 when ( ( ( stat_p_scar || stat_p_ak47 || stat_p_fal || stat_p_famas )
+#define primary_unlock_2 when ( ( ( stat_p_mp5k || stat_p_uzi || stat_p_kriss || stat_p_ump45 || stat_p_p90 )
+#define primary_unlock_3 when ( ( ( stat_p_m240 || stat_p_sa80 || stat_p_rpd || stat_p_aug )
+#define primary_unlock_4 when ( ( ( stat_p_cheytac || stat_p_m21 || stat_p_barrett || stat_p_wa2000 )
 
-#define secondary_unlock when ( ( ( stat_s_glock || stat_s_tmp || stat_s_beretta393 || stat_s_pp2000 || stat_s_striker || stat_s_aa12 || stat_s_ranger || stat_s_m1014 || stat_s_model1887 || stat_s_spas12 || stat_s_usp || stat_s_coltanaconda || stat_s_deserteagle || stat_s_beretta )
-#define secondary_unlock_2 when ( ( ( stat_s_at4 || stat_s_rpg || stat_s_javelin || stat_s_stinger || stat_s_m79 )
-
+#define secondary_unlock when ( ( ( stat_s_glock || stat_s_tmp || stat_s_beretta393 || stat_s_pp2000  )
+#define secondary_unlock_1 when ( ( ( stat_s_striker || stat_s_aa12 || stat_s_ranger || stat_s_m1014 || stat_s_model1887 || stat_s_spas12 )
+#define secondary_unlock_2 when ( ( ( stat_s_usp || stat_s_coltanaconda || stat_s_deserteagle || stat_s_beretta )
+#define secondary_unlock_3 when ( ( ( stat_s_at4 || stat_s_rpg || stat_s_javelin || stat_s_stinger || stat_s_m79 )
 
 // primary challenge stats
 

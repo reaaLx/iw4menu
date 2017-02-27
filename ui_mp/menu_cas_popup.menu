@@ -14,9 +14,6 @@
 
 #undef CHOICE_SIZE_X
 #define CHOICE_SIZE_X			220
-		
-		#define DONT_DO_THE_SIDEBAR_THINGY
-		#include "ui_mp/bg.inc"
 {
 	menuDef
 	{

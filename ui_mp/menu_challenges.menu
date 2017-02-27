@@ -1,0 +1,306 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"menu"
+
+#define CHOICE_SEP_1	2
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#define PRIMARY_DESC \
+		setLocalVarString "ui_selected_tier_ref" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); \
+		setLocalVarString "ui_hint_text" ( "@CHALLENGE_PRIMARY_WEAPONS_HINT" );
+
+#define SECONDARY_DESC \
+		setLocalVarString "ui_selected_tier_ref" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); \
+		setLocalVarString "ui_hint_text" ( "@CHALLENGE_SECONDARY_WEAPONS_HINT" );
+{
+	menuDef
+	{
+		name "menu_challenges"
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 5
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			focusfirst;
+			setLocalVarInt "ui_centerPopup" ( "false" );
+		}
+		onEsc
+		{
+			close self;
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "mw2_main_background"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 1708 480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "mockup_bg_glow"
+			textscale 0.55
+			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
+		}
+		itemDef
+		{
+			rect -64 0 280 480 1 0
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.1
+			background "gradient_fadein_fadebottom"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 640 480 4 4
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.2
+			background "big_menu_lightfx"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 272 28 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 6
+			textalignx -60
+			textscale 0.5
+			text "@MPUI_CHALLENGE_CAP"
+		}
+		itemDef
+		{
+			rect -272 0 272 18 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			background "white"
+			textfont 3
+			textalign 4
+			textalignx 20
+			textscale 0.375
+			dvar "party_statusString"
+			visible when ( !dvarint( "xblive_privatematch" ) && inlobby( ) )
+		}
+		itemDef
+		{
+			rect -300 45 200 20 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 9
+			textalign 6
+			textscale 0.375
+			visible when ( dvarbool( "wideScreen" ) )
+			exp text ( localvarstring( "ui_selected_tier_ref" ) )
+		}
+		itemDef
+		{
+			rect -450 65 350 200 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textscale 0.375
+			visible when ( dvarbool( "wideScreen" ) )
+			exp text ( localvarstring( "ui_hint_text" ) )
+		}
+		itemDef
+		{
+			rect -250 45 250 20 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 9
+			textalign 6
+			textalignx -5
+			textscale 0.375
+			visible when ( !dvarbool( "wideScreen" ) )
+			exp text ( localvarstring( "ui_selected_tier_ref" ) )
+		}
+		itemDef
+		{
+			rect -250 65 250 200 3 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textalignx -5
+			textscale 0.375
+			visible when ( !dvarbool( "wideScreen" ) )
+			exp text( localvarstring( "ui_hint_text" ) )
+		}		
+		#include "ui_mp/challenges.inc"
+		#include "ui_mp/stats_info.inc"
+		
+		CHOICE_BUTTON_FOCUS_VIS( 0, "@CHALLENGE_PRIMARY_WEAPONS_CAPS", open "popup_challenge_weapon_primary"; C_TAB_P , PRIMARY_DESC, CLEAR_CH_HINT, 1 )
+		CHOICE_NEWICON_VIS( 0, primary_unlock )
+		CHOICE_NEWICON_VIS( 0, primary_unlock_1 )
+		CHOICE_NEWICON_VIS( 0, primary_unlock_2 )
+		CHOICE_NEWICON_VIS( 0, primary_unlock_3 )
+		CHOICE_NEWICON_VIS( 0, primary_unlock_4 )
+
+		CHOICE_BUTTON_FOCUS_VIS( 1, "@CHALLENGE_SECONDARY_WEAPONS_CAPS", open "popup_challenge_weapon_secondary"; C_TAB_S, SECONDARY_DESC, CLEAR_CH_HINT, 1 )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock_1 )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock_2 )
+		CHOICE_NEWICON_VIS( 1, secondary_unlock_3 )		
+		
+		CHOICE_SEPARATOR( CHOICE_SEP_1 )
+		
+		LOCAL_CH_BUTTON( 2, 2 )
+		LOCAL_CH_BUTTON( 3, 3 )
+		LOCAL_CH_BUTTON( 4, 4 )
+		LOCAL_CH_BUTTON( 5, 5 )
+		LOCAL_CH_BUTTON( 6, 6 )
+		LOCAL_CH_BUTTON( 7, 7 )
+		LOCAL_CH_BUTTON( 8, 8 )
+		LOCAL_CH_BUTTON( 9, 9 )
+		LOCAL_CH_BUTTON( 10, 10 )
+		LOCAL_CH_BUTTON( 11, 11 )
+		LOCAL_CH_BUTTON( 12, 12 )
+		LOCAL_CH_BUTTON( 13, 13 )
+		LOCAL_CH_BUTTON( 14, 14 )
+		itemDef
+		{
+			rect -64 -20 336 20 1 3
+			visible 1
+			group "mw2_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "menu_button_selection_bar"
+			type 1
+			textfont 3
+			textalign 6
+			textalignx -60
+			textscale 0.375
+			text "@PLATFORM_BACK_CAPS"
+			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_BACK_CAPS" )
+			action
+			{
+				play "mouse_click";
+				play "mouse_click";
+				"escape" self;
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_menuAButton" ( 1 );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 "0.0";
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				setLocalVarBool "ui_menuAButton" ( 0 );
+			}
+		}
+		itemDef
+		{
+			rect -64 -20 336 20 1 3
+			visible 1
+			group "mw2_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "menu_button_selection_bar"
+			type 1
+			textfont 3
+			textalign 6
+			textalignx -60
+			textscale 0.375
+			text "@PLATFORM_BACK_CAPS"
+			visible when ( "@PLATFORM_BACK_CAPS" == "@PLATFORM_GAME_SUMMARY_CAPS" )
+			action
+			{
+				play "mouse_click";
+				play "mouse_click";
+				open "popup_summary";
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_menuAButton" ( 1 );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 "0.0";
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+				setLocalVarBool "ui_menuAButton" ( 0 );
+			}
+		}
+	}
+}

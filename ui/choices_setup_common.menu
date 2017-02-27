@@ -97,6 +97,7 @@
 #ifndef HIGHTLIGHT_BACKCOLOR
 #define HIGHTLIGHT_BACKCOLOR 		CHOICE_BACKCOLOR
 #endif
+
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
 #define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
 
@@ -230,11 +231,12 @@
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}
 
-#define CHOICE_DBUTTON_VIS( itemIndex, textArg, visArg ) \
+#define CHOICE_DBUTTON_VIS( itemIndex, textArg, disArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
+			forecolor 1 1 1 1 \
+			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
@@ -244,15 +246,16 @@
 			textScale 0.375 \
 			textFont 3 \
 			text textArg \
-			visible visArg \
+			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
 
-#define CHOICE_DBUTTON_NOHI_VIS( itemIndex, textArg, visArg ) \
+#define CHOICE_DBUTTON_NOHI_VIS( itemIndex, textArg, disArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
+			forecolor 1 1 1 1 \
+			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
@@ -262,15 +265,16 @@
 			textScale 0.375 \
 			textFont 3 \
 			exp text( textArg ); \
-			visible visArg \
+			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
 		
-#define CHOICE_DBUTTON_FOCUS_VIS( itemIndex, textArg, onFocusArg, leaveFocusArg, visArg ) \
+#define CHOICE_DBUTTON_FOCUS_VIS( itemIndex, textArg, onFocusArg, leaveFocusArg, disArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
+			forecolor 1 1 1 1 \
+			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
@@ -280,7 +284,7 @@
 			textScale 0.375 \
 			textFont 3 \
 			exp text( textArg ); \
-			visible visArg \
+			disabled disArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}		
 		
