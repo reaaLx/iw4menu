@@ -1,55 +1,33 @@
-#ifndef CHOICE_SIZE_X
+#undef CHOICE_SIZE_X
 #define CHOICE_SIZE_X				260
-#endif
 
-#ifndef CHOICE_SIZE_Y
+#undef CHOICE_SIZE_Y
 #define CHOICE_SIZE_Y				18
-#endif
 
-#ifndef CHOICE_X_START
+#undef CHOICE_X_START
 #define CHOICE_X_START				46
-#endif
 
-#ifndef CHOICE_X_SPACING
+#undef CHOICE_X_SPACING
 #define CHOICE_X_SPACING			270
-#endif
 
-#ifndef CHOICE_Y_START
+#undef CHOICE_Y_START
 #define CHOICE_Y_START				82
-#endif
 
-#ifndef CHOICE_Y_SPACING
+#undef CHOICE_Y_SPACING
 #define CHOICE_Y_SPACING			20
-#endif
 
-#ifndef CHOICE_Y_COUNT
+#undef CHOICE_Y_COUNT
 #define CHOICE_Y_COUNT				20
-#endif
 
-#ifndef CHOICE_SEP_SPACING
+#undef CHOICE_SEP_SPACING
 #define CHOICE_SEP_SPACING			0
-#endif
 
-#if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
-#define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
+#undef CHOICE_HORIZONTAL_ALIGN
+#define CHOICE_HORIZONTAL_ALIGN 	0
 
-#elif !defined( CHOICE_SEP_2 )
-#define CHOICE_SEP_TOTAL_SPACING( itemIndex )	( ( itemIndex <= CHOICE_SEP_1 ) ? 0 : CHOICE_SEP_SPACING )
+#undef CHOICE_VERTICAL_ALIGN
+#define CHOICE_VERTICAL_ALIGN 		0
 
-#elif !defined( CHOICE_SEP_3 )
-#define CHOICE_SEP_TOTAL_SPACING( itemIndex )	( ( itemIndex <= CHOICE_SEP_1 ) ? 0 : ( ( itemIndex <= CHOICE_SEP_2 ) ? CHOICE_SEP_SPACING : CHOICE_SEP_SPACING * 2 ) )
-
-#else
-#define CHOICE_SEP_TOTAL_SPACING( itemIndex )	( ( itemIndex <= CHOICE_SEP_1 ) ? 0 : ( ( itemIndex <= CHOICE_SEP_2 ) ? CHOICE_SEP_SPACING : ( ( itemIndex <= CHOICE_SEP_3 ) ? CHOICE_SEP_SPACING * 2 : CHOICE_SEP_SPACING * 3 ) ) )
-#endif
-
-#define CHOICE_ROW( itemIndex )		( ( itemIndex - 0 ) % CHOICE_Y_COUNT )
-#define CHOICE_COL( itemIndex )		( ( itemIndex - 0 - ( ( itemIndex - 0 ) % CHOICE_Y_COUNT ) ) / CHOICE_Y_COUNT )
-
-#define CHOICE_X( itemIndex ) 		( CHOICE_X_START + CHOICE_X_SPACING * CHOICE_COL( itemIndex ) )
-#define CHOICE_Y( itemIndex ) 		( CHOICE_Y_START + CHOICE_Y_SPACING * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) )
-#define CHOICE_ORIGIN( itemIndex )	CHOICE_X( itemIndex ) CHOICE_Y( itemIndex )
-#define CHOICE_RECT( itemIndex )	CHOICE_ORIGIN( itemIndex ) CHOICE_SIZE_X CHOICE_SIZE_Y 0 0
 //============================================================================
 // frame
 //============================================================================

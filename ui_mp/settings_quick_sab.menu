@@ -1,27 +1,29 @@
 #include "ui/menudef.h"
-#include "ui_mp/main.inc"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
 
-#define MENU_NAME 					"settings_quick_sab"
-#define MENU_MUSIC					"music_mainmenu_mp"
+#define CHOICE_GROUP	"main"
 
-#undef CHOICE_GROUP
-#define CHOICE_GROUP				MENU_NAME
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
-		name MENU_NAME
+		name "settings_quick_sab"
 		fullscreen 1
 		rect 0 0 640 480
 		foreColor CHOICE_TEXTCOLOR
 		focusColor CHOICE_TEXTCOLOR
-		soundLoop MENU_MUSIC
+		soundLoop "music_mainmenu_mp"
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
+		onEsc
+		{
+			close "self";
+		}
 
-		MENU_ON_ESC(close "self";)
-
-		#define DISABLE_SIDEBAR
+		#define DONT_DO_THE_SIDEBAR_THINGY
 		#include "ui_mp/bg.inc"
 		
 		#define SAB_SETTINGS
@@ -58,6 +60,6 @@
 		GAMETYPE_DVARFLOATLIST( 33, CHOICE_HARDCORE_TEXT, CHOICE_HARDCORE_EXEC, CHOICE_HARDCORE_STRLIST, CHOICE_HARDCORE_DVAR )
 		GAMETYPE_DVARFLOATLIST( 34, CHOICE_CAMERA_TEXT, CHOICE_CAMERA_EXEC, CHOICE_CAMERA_STRLIST, CHOICE_CAMERA_DVAR )
 
-		ITEM_BUTTON_BACK( close "self"; )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", close "self";, 1 )
 	}
 }

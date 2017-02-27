@@ -1,51 +1,34 @@
 #include "ui/menudef.h"
-#include "ui_mp/main.inc"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
 
-#define MENU_NAME 					"settings_quick_dm"
-#define MENU_MUSIC					"music_mainmenu_mp"
+#define CHOICE_GROUP	"main"
 
-#undef CHOICE_GROUP
-#define CHOICE_GROUP				MENU_NAME
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
-		name MENU_NAME
+		name "settings_quick_dm"
 		fullscreen 1
 		rect 0 0 640 480
 		foreColor CHOICE_TEXTCOLOR
 		focusColor CHOICE_TEXTCOLOR
-		soundLoop MENU_MUSIC
+		soundLoop "music_mainmenu_mp"
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
+		onEsc
+		{
+			close "self";
+		}
 
-		MENU_ON_ESC(close "self";)
-
-		#define DISABLE_SIDEBAR
+		#define DONT_DO_THE_SIDEBAR_THINGY
 		#include "ui_mp/bg.inc"
 		
 		#define DM_SETTINGS
 		#include "ui_mp/settings_quick_gametype.inc"
-		itemDef
-		{
-			rect 0 28 640 162 4 1
-			style 3
-			foreColor 1 1 1 0.15
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect 0 226 640 144 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}		
+
 		GAMETYPE_TITLE( "@MENU_FREE_FOR_ALL" )
 		GAMETYPE_RULES_TITLES("@MPUI_GAME_RULES", -272, 28, 160, 1 )
 		GAMETYPE_DVARFLOATLIST( 0, CHOICE1_TEXT, CHOICE1_EXEC, CHOICE1_STRLIST, CHOICE1_DVAR )
@@ -71,6 +54,6 @@
 		GAMETYPE_DVARFLOATLIST( 33, CHOICE_HARDCORE_TEXT, CHOICE_HARDCORE_EXEC, CHOICE_HARDCORE_STRLIST, CHOICE_HARDCORE_DVAR )
 		GAMETYPE_DVARFLOATLIST( 34, CHOICE_CAMERA_TEXT, CHOICE_CAMERA_EXEC, CHOICE_CAMERA_STRLIST, CHOICE_CAMERA_DVAR )
 
-		ITEM_BUTTON_BACK( close "self"; )
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", close "self";, 1 )
 	}
 }
