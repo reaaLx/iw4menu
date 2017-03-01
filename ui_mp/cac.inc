@@ -1,7 +1,12 @@
 #define CAC_THING_1 \
-if(!(tablelookup("mp/attachmentTable.csv",4,GPD_WS,0,"attachment",0),12)!=""||tablelookup("mp/attachmentTable.csv",4,GPD_WS,1,"attachment",0),12)!="")&&(GPD_SHORT,"perks",0)=="specialty_null_gl"||GPD_SHORT,"perks",0)=="specialty_null_grip"||GPD_SHORT,"perks",0)=="specialty_null_shotgun")||GPD_SHORT,"perks",0)=="specialty_null_heartbeat") \
+if(!(tablelookup("mp/attachmentTable.csv",4,GPD_WS,0,"attachment",0),12)!=""|| \
+tablelookup("mp/attachmentTable.csv",4,GPD_WS,1,"attachment",0),12)!="")&& \
+(GPD_SHORT,"perks",0)=="specialty_null_gl"|| \
+GPD_SHORT,"perks",0)=="specialty_null_grip"|| \
+GPD_SHORT,"perks",0)=="specialty_null_shotgun")|| \
+GPD_SHORT,"perks",0)=="specialty_null_heartbeat") \
 { \
-	setPlayerData("customClasses",LOCALVARINT,"perks",0,"specialty_null"); \
+	setPlayerData("customClasses",LOCALVARINT1,"perks",0,"specialty_null"); \
 }
 
 #define CAC_THING_2 \
@@ -41,17 +46,17 @@ setLocalVarString "loadoutDeathStreak" 				(GPD_SHORT,"perks",4)); \
 setLocalVarString "loadoutOffhandSecondary" 		(GPD_SHORT,"specialGrenade")); \
 setLocalVarString "loadoutClassName" 				(GPD_SHORT,"name"));
 
-#define LOCALVARINT \
-localvarint( "classIndex" )
+#define LOCALVARINT1 \
+localVarInt( "classIndex" )
 
 #define GPD_WS \
-getplayerdata("customClasses",LOCALVARINT,"weaponSetups"
+getPlayerData("customClasses",LOCALVARINT1,"weaponSetups"
 
 #define GPD_SHORT \
-getplayerdata("customClasses",LOCALVARINT
+getPlayerData("customClasses",LOCALVARINT1
 
 #define GPD_SHORTER \
-getplayerdata
+getPlayerData
 
 #define CAC_THING_FOCUS \
 CAC_THING_1 	\
@@ -62,16 +67,27 @@ CAC_THING_3_1 	\
 CAC_THING_4
 
 #define CAC_STATNUM( statNum ) \
-setPlayerData( "customClasses" , statNum , "inUse" , "true" ); \
-setLocalVarInt "classIndex" ( statNum ); \
+setPlayerData("customClasses",statNum,"inUse","true"); \
+setlocalVarInt "classIndex" (statNum); \
 open "menu_cac_assault"; \
 
-#define CAC_STATNUM_HI( statNum ) \
+#define CAC_STATNUM_HI(statNum) \
 CAC_THING_FOCUS \
-setLocalVarInt "classIndex" ( statNum ); \
+setlocalVarInt "classIndex" (statNum); \
 
 #define CAC_STATNUM_NAME( statNum ) \
-getplayerdata( "customClasses" , statNum , "name" ) \
+getPlayerData("customClasses",statNum,"name") \
 
 #define WHEN \
-when ( getplayerdata( "prestige" ) \
+when ( getPlayerData( "prestige" ) \
+
+#define LOCAL_WPN_ACTION1( statNum ) \
+
+#define DEF_1 \
+		getPlayerData("customClasses",localVarInt("classIndex"),"weaponSetups",0,"weapon")
+
+#define LOCAL_WEAPON_NAME( statNum ) \
+		"@"+tablelookup("mp/attachmentTable.csv",statNum,tablelookup("mp/statsTable.csv",statNum,DEF_1,11),3)
+
+#define LOCAL_WEAPON( itemIndex, statNum ) \
+		CHOICE_BUTTON_FOCUS( itemIndex, LOCAL_WEAPON_NAME ( statNum ), LOCAL_WPN_ACTION1( statNum ), onFocusArg, leaveFocusArg )

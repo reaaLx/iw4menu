@@ -18,9 +18,9 @@
 					close "main_controls";
 
 		#define MENU_OPTION_IS_OPEN \
-				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) ) \
+				if(!menuisopen("pc_options_advanced_video")&&!menuisopen("pc_options_video")&&!menuisopen("pc_options_Audio")&&!menuisopen("pc_options_controls")&&!menuisopen("pc_options_voice")) \
 				{ \
-					if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) ) \
+					if(localvarbool("ui_showApply")||localvarbool("ui_showAudioApply")) \
 					{ \
 						open "all_restart_popmenu"; \
 					} \
@@ -49,323 +49,55 @@
 				exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow"; \
 				exec "xpartygo";
 			
-		#define SETUP_ACTION_STARTDEV \
-				if (dvarstring( "ui_mapname" ) == "mp_afghan") \
-				{ \
-					exec "devmap mp_afghan"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_boneyard") \
-				{ \
-					exec "devmap mp_boneyard"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_brecourt") \
-				{ \
-					exec "devmap mp_brecourt"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_checkpoint") \
-				{ \
-					exec "devmap mp_checkpoint"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_derail") \
-				{ \
-					exec "devmap mp_derail"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_estate") \
-				{ \
-					exec "devmap mp_estate"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_favela") \
-				{ \
-					exec "devmap mp_favela"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_highrise") \
-				{ \
-					exec "devmap mp_highrise"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_invasion") \
-				{ \
-					exec "devmap mp_invasion"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_nightshift") \
-				{ \
-					exec "devmap mp_nightshift"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_quarry") \
-				{ \
-					exec "devmap mp_quarry"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_rundown") \
-				{ \
-					exec "devmap mp_rundown"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_rust") \
-				{ \
-					exec "devmap mp_rust"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_subbase") \
-				{ \
-					exec "devmap mp_subbase"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_terminal") \
-				{ \
-					exec "devmap mp_terminal"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_underpass") \
-				{ \
-					exec "devmap mp_underpass"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "af_caves") \
-				{ \
-					exec "devmap af_caves"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "af_chase") \
-				{ \
-					exec "devmap af_chase"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "airport") \
-				{ \
-					exec "devmap airport"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "arcadia") \
-				{ \
-					exec "devmap arcadia"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "boneyard") \
-				{ \
-					exec "devmap boneyard"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "cliffhanger") \
-				{ \
-					exec "devmap cliffhanger"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "co_hunted") \
-				{ \
-					exec "devmap co_hunted"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "contingency") \
-				{ \
-					exec "devmap contingency"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "dc_whitehouse") \
-				{ \
-					exec "devmap dc_whitehouse"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "dcburning") \
-				{ \
-					exec "devmap dcburning"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "dcemp") \
-				{ \
-					exec "devmap dcemp"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "ending") \
-				{ \
-					exec "devmap ending"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "estate") \
-				{ \
-					exec "devmap estate"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "favela") \
-				{ \
-					exec "devmap favela"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "favela_escape") \
-				{ \
-					exec "devmap favela_escape"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "gulag") \
-				{ \
-					exec "devmap gulag"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "invasion") \
-				{ \
-					exec "devmap invasion"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "iw4_credits") \
-				{ \
-					exec "devmap iw4_credits"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "oilrig") \
-				{ \
-					exec "devmap oilrig"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "so_bridge") \
-				{ \
-					exec "devmap so_bridge"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "so_ghillies") \
-				{ \
-					exec "devmap so_ghillies"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "trainer") \
-				{ \
-					exec "devmap trainer"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_abandon") \
-				{ \
-					exec "devmap mp_abandon"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_bloc") \
-				{ \
-					exec "devmap mp_bloc"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_bog_sh") \
-				{ \
-					exec "devmap mp_bog_sh"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_cargoship") \
-				{ \
-					exec "devmap mp_cargoship"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_compact") \
-				{ \
-					exec "devmap mp_compact"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_complex") \
-				{ \
-					exec "devmap mp_complex"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_crash") \
-				{ \
-					exec "devmap mp_crash"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_cross_fire") \
-				{ \
-					exec "devmap mp_cross_fire"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_fuel2") \
-				{ \
-					exec "devmap mp_fuel2"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_killhouse") \
-				{ \
-					exec "devmap mp_killhouse"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_nuked") \
-				{ \
-					exec "devmap mp_nuked"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_overgrown") \
-				{ \
-					exec "devmap mp_overgrown"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_storm") \
-				{ \
-					exec "devmap mp_storm"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_strike") \
-				{ \
-					exec "devmap mp_strike"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_trailerpark") \
-				{ \
-					exec "devmap mp_trailerpark"; \
-				} \
-				if (dvarstring( "ui_mapname" ) == "mp_vacant") \
-				{ \
-					exec "devmap mp_vacant"; \
-				}
-		
-		#define SETUP_ACTION_RULES \
-				if (dvarstring( "ui_gametype" ) == "arena") \
-				{ \
-					open "settings_quick_arena"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "war") \
-				{ \
-					open "settings_quick_war"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "sd") \
-				{ \
-					open "settings_quick_sd"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "sab") \
-				{ \
-					open "settings_quick_sab"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "dm") \
-				{ \
-					open "settings_quick_dm"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "dom") \
-				{ \
-					open "settings_quick_dom"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "ctf") \
-				{ \
-					open "settings_quick_ctf"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "koth") \
-				{ \
-					open "settings_quick_koth"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "oneflag") \
-				{ \
-					open "settings_quick_oneflag"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "dd") \
-				{ \
-					open "settings_quick_dd"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "vip") \
-				{ \
-					open "settings_quick_vip"; \
-				} \
-				if (dvarstring( "ui_gametype" ) == "gtnw") \
-				{ \
-					open "settings_quick_gtnw"; \
-				}
-
 		#define SETUP_LEAVE_CALL \
-				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( ( dvarbool( "sv_running" ) ) == 0 ) && ( inprivateparty( ) && !privatepartyhost( ) && privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegameandparty"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( ( dvarbool( "sv_running" ) ) == 0 ) && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegame"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) ) \
-						{ \
-							open "popup_endgame_ranked"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( inprivateparty( ) && !privatepartyhost( ) && privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegameandparty_ranked"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegame_ranked"; \
-						} \
+				if((dvarbool("onlinegame")&&!dvarbool("xblive_privatematch"))==0&&((dvarbool("sv_running"))==0)&&(inprivateparty()&&!privatepartyhost()&&privatepartyhostinlobby())) \
+				{ \
+					open "popup_leavegameandparty"; \
+				} \
+				if((dvarbool("onlinegame")&&!dvarbool("xblive_privatematch"))==0&&((dvarbool("sv_running"))==0)&&(!inprivateparty()||privatepartyhost()||!privatepartyhostinlobby())) \
+				{ \
+					open "popup_leavegame"; \
+				} \
+				if((dvarbool("onlinegame")&&!dvarbool("xblive_privatematch"))&&(dvarbool("sv_running"))) \
+				{ \
+					open "popup_endgame_ranked"; \
+				} \
+				if((dvarbool("onlinegame")&&!dvarbool("xblive_privatematch"))&&(dvarbool("sv_running"))==0&&(inprivateparty()&&!privatepartyhost()&&privatepartyhostinlobby())) \
+				{ \
+					open "popup_leavegameandparty_ranked"; \
+				} \
+				if((dvarbool("onlinegame")&&!dvarbool("xblive_privatematch"))&&(dvarbool("sv_running"))==0&&(!inprivateparty()||privatepartyhost()||!privatepartyhostinlobby())) \
+				{ \
+					open "popup_leavegame_ranked"; \
+				} \
 /*
 		#define SETUP_CAC_FOCUS_UNLOCK \
-				if ( isitemunlocked( "cac" ) ) \
+				if(isitemunlocked("cac")) \
 				{ \
 					setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS" ); \
 				} \
 				else \
 				{ \
-					if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) == 9999 ) \
+					if(tablelookup("mp/unlockTable.csv",0,"cac",2)==9999) \
 					{ \
 						setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); \
 					} \
 					else \
 					{ \
-						if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 3 ) != "" ) \
+						if(tablelookup("mp/unlockTable.csv",0,"cac",3)!="") \
 						{ \
 							setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); \
 						} \
 						else \
 						{ \
-							setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) , 17 ) ); \
+							setLocalVarString "ui_hint_text" ("@"+tablelookup("mp/rankTable.csv",0,tablelookup("mp/unlockTable.csv",0,"cac",2),17)); \
 						} \
 					} \
 				}
 */
 		#define SETUP_ACTION_BACK \
 				exec "xstopparty"; \
-				if (inprivateparty() && !privatepartyhost() && privatepartyhostinlobby()) \
+				if(inprivateparty()&&!privatepartyhost()&&privatepartyhostinlobby()) \
 				{ \
 					exec "xstopprivateparty"; \
 					exec "xstartprivateparty"; \
@@ -375,35 +107,35 @@
 
 		// this works pretty well here ;)
 		#define SETUP_SETTING_HARDCORE \
-				if (dvarInt( "g_hardcore" ) != 0 ) \
+				if(dvarInt("g_hardcore")!=0) \
 				{ \
 					exec "exec hardcore_settings.cfg"; \
 				} \
-				if (dvarInt( "g_hardcore" ) != 1 ) \
+				if(dvarInt("g_hardcore")!=1) \
 				{ \
 					exec "exec hardcore_disable.cfg"; \
 				}
 
-#define PRESTIGE_VIS when ( !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) )
-#define PRESTIGE_DIS when ( !( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) )
+#define PRESTIGE_VIS when(!(getplayerdata("prestige")==int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))
+#define PRESTIGE_DIS when(!(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&getplayerdata("experience")>=int(tablelookup("mp/rankTable.csv",0,int(tablelookup("mp/rankTable.csv",0,"maxrank",1)),7)))&&!(getplayerdata("prestige")==int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))))
 			
 #define CLEAR_UI_HINT exec "set ui_hint_text @NULL_EMPTY";
 
-#define NEWUNLOCKS when ( ( ( getplayerdataanybooltrue( "weaponNew" ) || getplayerdataanybooltrue( "camoNew" ) || getplayerdataanybooltrue( "attachmentNew" ) ) || getplayerdataanybooltrue( "perkNew" ) || ( ( getplayerdata( "perkNew" , "frag_grenade_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "frag_grenade_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "semtex_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "semtex_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "c4_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "c4_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "claymore_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "claymore_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "throwingknife_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "throwingknife_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_tacticalinsertion" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_tacticalinsertion" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_blastshield" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_blastshield" , 8 ) ) ) || weaponclassnew( "weapon_grenade" ) || weaponclassnew( "weapon_equipment" ) ) || getplayerdata( "featureNew" , "cac" ) ) )
-#define NEWUNLOCKS_PLAYERCARD when ( ( getplayerdata( "featureNew" , "cas" ) || getplayerdata( "featureNew" , "token_1" ) || getplayerdata( "featureNew" , "token_2" ) || getplayerdata( "featureNew" , "token_3" ) || getplayerdata( "featureNew" , "token_4" ) || getplayerdata( "featureNew" , "token_5" ) || getplayerdata( "featureNew" , "token_6" ) || getplayerdata( "featureNew" , "token_7" ) || getplayerdata( "featureNew" , "token_8" ) || getplayerdata( "featureNew" , "token_9" ) || getplayerdata( "featureNew" , "token_10" ) || getplayerdata( "featureNew" , "token_11" ) || getplayerdata( "featureNew" , "token_12" ) ) || getplayerdata( "featureNew" , "clantag" ) || ( getplayerdataanybooltrue( "iconNew" ) || getplayerdata( "featureNew" , "playercard_icon" ) ) || ( getplayerdataanybooltrue( "titleNew" ) || getplayerdata( "featureNew" , "playercard_title" ) ) )
-#define NEWUNLOCKS_CHALLENGES when ( ( ( getplayerdataanybooltrue( "challengeTierNew" ) || getplayerdata( "featureNew" , "challenges" ) ) || getplayerdata( "featureNew" , "challenges" ) || ( ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && getplayerdata( "featureNew" , "prestige" ) ) ) )
+#define NEWUNLOCKS when(((getplayerdataanybooltrue("weaponNew")||getplayerdataanybooltrue("camoNew")||getplayerdataanybooltrue("attachmentNew"))||getplayerdataanybooltrue("perkNew")||((getplayerdata("perkNew","frag_grenade_mp")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"frag_grenade_mp",8)))||(getplayerdata("perkNew","semtex_mp")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"semtex_mp",8)))||(getplayerdata("perkNew","c4_mp")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"c4_mp",8)))||(getplayerdata("perkNew","claymore_mp")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"claymore_mp",8)))||(getplayerdata("perkNew","throwingknife_mp")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"throwingknife_mp",8)))||(getplayerdata("perkNew","specialty_tacticalinsertion")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"specialty_tacticalinsertion",8)))||(getplayerdata("perkNew","specialty_blastshield")||getplayerdata("perkNew",tablelookup("mp/perkTable.csv",1,"specialty_blastshield",8)))||weaponclassnew("weapon_grenade")||weaponclassnew("weapon_equipment"))||getplayerdata("featureNew","cac")))
+#define NEWUNLOCKS_PLAYERCARD when((getplayerdata("featureNew","cas")||getplayerdata("featureNew","token_1")||getplayerdata("featureNew","token_2")||getplayerdata("featureNew","token_3")||getplayerdata("featureNew","token_4")||getplayerdata("featureNew","token_5")||getplayerdata("featureNew","token_6")||getplayerdata("featureNew","token_7")||getplayerdata("featureNew","token_8")||getplayerdata("featureNew","token_9")||getplayerdata("featureNew","token_10")||getplayerdata("featureNew","token_11")||getplayerdata("featureNew","token_12"))||getplayerdata("featureNew","clantag")||(getplayerdataanybooltrue("iconNew")||getplayerdata("featureNew","playercard_icon"))||(getplayerdataanybooltrue("titleNew")||getplayerdata("featureNew","playercard_title")))
+#define NEWUNLOCKS_CHALLENGES when(((getplayerdataanybooltrue("challengeTierNew")||getplayerdata("featureNew","challenges"))||getplayerdata("featureNew","challenges")||((getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&getplayerdata("experience")>=int(tablelookup("mp/rankTable.csv",0,int(tablelookup("mp/rankTable.csv",0,"maxrank",1)),7)))&&getplayerdata("featureNew","prestige"))))
 
-#define MAY_CHOOSE_CLASS	(dvarInt( "scr_oldschool" ) != 1)
+#define MAY_CHOOSE_CLASS (dvarInt("scr_oldschool")!=1)
 
-#define TEAM_IS_SPECTATOR ( localVarString( "ui_team" ) == "spectator" ) )
+#define TEAM_IS_SPECTATOR (localVarString("ui_team")=="spectator"))
 
-#define TEAM_IS_AXIS ( ( localvarstring( "ui_team" ) == "opfor" ) )
-#define TEAM_IS_ALLIES ( ( localvarstring( "ui_team" ) == "marines" ) )
-#define TEAM_IS_AXIS_ALLIES ( !( localvarstring( "ui_team" ) == "marines" ) || ( localvarstring( "ui_team" ) == "opfor" ) ) || !( 1 ) ) )
+#define TEAM_IS_AXIS ((localvarstring("ui_team")=="opfor"))
+#define TEAM_IS_ALLIES ((localvarstring("ui_team")=="marines"))
+#define TEAM_IS_AXIS_ALLIES (!(localvarstring("ui_team")=="marines")||(localvarstring("ui_team")=="opfor"))||!(1)))
 
-#define TEAM_IS_NONE ( localVarString( "ui_team" ) == "" ) )
+#define TEAM_IS_NONE (localVarString("ui_team")==""))
 
-#define ALLIES_DISABLED ( localVarString( "ui_team" ) == "marines" ) || ( localVarString( "ui_team" ) == "opfor" ) ) || !( 1 ) )
+#define ALLIES_DISABLED (localVarString("ui_team")=="marines")||(localVarString("ui_team")=="opfor"))||!(1))
 
 // string list defined for buttons.
 // 12/14 languages listed

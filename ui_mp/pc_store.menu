@@ -141,7 +141,6 @@
 		LOCAL_DLC_SELECTION( 5, "@PATCH_DLC8", uiScript downloadDLC 8, "PATCH_DLC8", "PATCH_DESC_DLC8", "preview_dlc8" )
 		CHOICE_NEWICON_VIS( 5, when(!dvarbool( "isDlcInstalled_8" ) ) )
 		
-
 		CHOICE_SEPARATOR( CHOICE_SEP_2 )
 
 		LOCAL_DLC_SELECTION( 6, "@PATCH_DLC3", uiScript downloadDLC 3, "PATCH_DLC3", "PATCH_DESC_DLC3", "preview_dlc3" )

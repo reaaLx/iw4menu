@@ -5,6 +5,7 @@
 
 #define CHOICE_GROUP		"menu"
 #define CHOICE_SEP_1		3
+#define CHOICE_SEP_2		5
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
@@ -108,6 +109,16 @@
 			dvar "party_statusString"
 			visible when ( !dvarint( "xblive_privatematch" ) && inlobby( ) )
 		}
+		#define PRESTIGE_HI \
+				if(!(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&getplayerdata("experience")>=int(tablelookup("mp/rankTable.csv",0,int(tablelookup("mp/rankTable.csv",0,"maxrank",1)),7)))) \
+				{  \
+					exec "set ui_hint_text @MPUI_DESC_PRESTIGE2" ); \
+				} \
+				else \
+				{ \
+					exec "set ui_hint_text @MPUI_DESC_PRESTIGE" ); \
+				} \
+				
 		CHOICE_MENU_TITLE( "@MPUI_BARRACKS_CAP", 0 0 272 28 1 1  )
 
 		CHOICE_BUTTON_FOCUS( 0, "@MPUI_CHALLENGES_CAPS", setPlayerData( "featureNew" , "challenges" , "false" ); open "menu_challenges", exec "set ui_hint_text @MPUI_DESC_CHALLENGES", CLEAR_UI_HINT )
@@ -117,11 +128,14 @@
 		CHOICE_BUTTON_FOCUS( 1, "@MPUI_HIGHLIGHTS_CAPS", open "menu_records", exec "set ui_hint_text @MPUI_DESC_HIGHLIGHTS", CLEAR_UI_HINT )
 		CHOICE_BUTTON(2, "@MENU_OPTIONS_CAPS", open "pc_options_video"; )
 
-		CHOICE_SEPARATOR_VIS( CHOICE_SEP_1, when ( ( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) == 0 ) )
-
-		CHOICE_BUTTON_FOCUS_VIS( 3, "@MPUI_PRESTIGE_MODE_CAPS", open "prestige_reset1", exec "set ui_hint_text @MPUI_DESC_PRESTIGE", CLEAR_UI_HINT setPlayerData( "featureNew" , "prestige" , "false" );, PRESTIGE_VIS )
-		CHOICE_DBUTTON_FOCUS_VIS( 3, "@MPUI_PRESTIGE_MODE_CAPS", exec "set ui_hint_text @MPUI_DESC_PRESTIGE2", CLEAR_UI_HINT setPlayerData( "featureNew" , "prestige" , "false" );, PRESTIGE_DIS )
-		CHOICE_NEWICON_VIS( 3, when ( ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && getplayerdata( "featureNew" , "prestige" ) ) )
+		CHOICE_SEPARATOR( CHOICE_SEP_1 )
+		CHOICE_BUTTON_FOCUS(3, "@MPUI_RESET_STATS_CAPS", open "stats_reset";, exec "set ui_hint_text @MPUI_RESET_STATS_CAPS", CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS(4, "@MPUI_UNLOCK_STATS_CAPS", open "stats_unlock";, exec "set ui_hint_text @MPUI_UNLOCK_STATS_CAPS", CLEAR_UI_HINT )
+		CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, when((getplayerdata("prestige")==int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))==0))
+		
+		CHOICE_BUTTON_FOCUS_VIS( 5, "@MPUI_PRESTIGE_MODE_CAPS", open "prestige_reset1", PRESTIGE_HI, CLEAR_UI_HINT setPlayerData("featureNew","prestige","false");, when(!(getplayerdata("prestige")==int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))) )
+		CHOICE_DBUTTON_FOCUS_VIS( 5, "@MPUI_PRESTIGE_MODE_CAPS", PRESTIGE_HI, CLEAR_UI_HINT setPlayerData("featureNew","prestige","false");, when(!(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&getplayerdata("experience")>=int(tablelookup("mp/rankTable.csv",0,int(tablelookup("mp/rankTable.csv",0,"maxrank",1)),7)))&&!(getplayerdata("prestige")==int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))))
+		CHOICE_NEWICON_VIS( 5, when((getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&getplayerdata("experience")>=int(tablelookup("mp/rankTable.csv",0,int(tablelookup("mp/rankTable.csv",0,"maxrank",1)),7)))&&getplayerdata("featureNew","prestige")))
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )	
 
@@ -135,14 +149,14 @@
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 18 208 70 3 1, ORIGIN_NONE, "cardtitle_248x48", 1 1 1 1, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
 		
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 16 160 32 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ), 0 0 0 0.25, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
-		PREPROC_TEXT_DRAW_ALIGNED3( -208 16 160 32 3 1, ORIGIN_NONE, "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ), 0.375, 0, 0, 9, 3, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 16 160 32 3 1, ORIGIN_NONE, "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ), 0.375, 0, 0, 9, 3, 1 1 1 1 textstyle 8 )
 
 		// player name
-		PREPROC_TEXT_DRAW_ALIGNED3( -208 46 160 32 3 1, ORIGIN_NONE, getplayercardinfo( 8 , 1 , 0 ), 0.3333, 8, 0, 4, 10, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 46 160 32 3 1, ORIGIN_NONE, getplayercardinfo( 8 , 1 , 0 ), 0.3333, 8, 0, 4, 10, 1 1 1 1 textstyle 8 )
 		// player emblem
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -48 18 48 48 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ), 1 1 1 1, 0 0 0 0, 3, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ), 1 1 1 1, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && ( getplayercardinfo( 4 , 1 , 0 ) >= 0 ) ) )
-		PREPROC_TEXT_DRAW_ALIGNED3( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ), 0.375, 20, 0, 9, 3, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ), 0.375, 20, 0, 9, 3, 1 1 1 1 textstyle 8 )
 
 		// stats
 		PREPROC_SHADER_DRAW_ALIGNED( -208 90 -208 270 3 1, ORIGIN_NONE, "white", 1 1 1 0.1, 0 0 0 0, 3 )
@@ -206,7 +220,7 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) == 0 )
+			visible when((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))==0)
 			exp text ( "@MPUI_NEXT_PRE" )
 		}
 		itemDef // need to define these sucks because lots of expressions :/

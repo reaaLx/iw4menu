@@ -24,14 +24,15 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		exp rect y ( localvarfloat( "ui_cac_popup_ypos" ) )
+		exp rect w ( 24 + ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) * 20 )
 		onOpen
 		{
 			setLocalVarFloat "ui_cac_popup_ypos" ( localvarfloat( "ui_popupYPos" ) );
 			setLocalVarInt "ui_leftPopup" ( 1 );
-			focusFirst;
+			focusfirst;
 			open "cac_popup_preview";
 		}
-		onClose
+		onRequestClose
 		{
 			setLocalVarInt "ui_leftPopup" ( 0 );
 			close "cac_popup_preview";
@@ -118,7 +119,10 @@
 
 		#undef CHOICE_SIZE_Y
 		#define CHOICE_SIZE_Y				20
-
+		
+		#undef CHOICE_FOCUS_UI
+		#define CHOICE_FOCUS_UI "ui_popupAButton"
+		
 		CHOICE_BUTTON_FOCUS(0, CAC_STATNUM_NAME( 0 ), CAC_STATNUM( 0 ), CAC_STATNUM_HI( 0 ), CLEAR_UI_HINT )
 		CHOICE_BUTTON_FOCUS(1, CAC_STATNUM_NAME( 1 ), CAC_STATNUM( 1 ), CAC_STATNUM_HI( 1 ), CLEAR_UI_HINT )
 		CHOICE_BUTTON_FOCUS(2, CAC_STATNUM_NAME( 2 ), CAC_STATNUM( 2 ), CAC_STATNUM_HI( 2 ), CLEAR_UI_HINT )

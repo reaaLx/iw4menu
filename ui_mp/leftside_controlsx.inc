@@ -4,8 +4,8 @@ CHOICE_BUTTON( 3, "Look", LOCAL_CLOSE_ALL open "pc_options_look" )
 
 CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-CHOICE_BUTTON_VIS( 4, "@MENU_MULTIPLAYER", LOCAL_CLOSE_ALL open "controls_multi", when( dvarInt( "ui_multiplayer" ) ) )
-CHOICE_DBUTTON_VIS( 4, "@MENU_MULTIPLAYER", when( !dvarInt( ui_multiplayer ) ); )
+CHOICE_BUTTON_VIS( 4, "@MENU_MULTIPLAYER", LOCAL_CLOSE_ALL open "controls_multi", when(dvarInt("ui_multiplayer")))
+CHOICE_DBUTTON_VIS( 4, "@MENU_MULTIPLAYER", when(!dvarInt(ui_multiplayer));)
 
 CHOICE_SEPARATOR( CHOICE_SEP_2 )
 

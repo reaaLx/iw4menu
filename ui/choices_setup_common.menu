@@ -11,27 +11,27 @@
 #endif
 
 #ifndef CHOICE_TEXTSIZE
-#define CHOICE_TEXTSIZE			TEXTSIZE_SMALL
+#define CHOICE_TEXTSIZE				TEXTSIZE_SMALL
 #endif
 
 #ifndef CHOICE_TEXTFONT
-#define CHOICE_TEXTFONT			3
+#define CHOICE_TEXTFONT				3
 #endif
 
 #ifndef CHOICE_TEXTCOLOR
-#define CHOICE_TEXTCOLOR		1 1 1 1
+#define CHOICE_TEXTCOLOR			1 1 1 1
 #endif
 
 #ifndef CHOICE_TEXTSTYLE
-#define CHOICE_TEXTSTYLE		1
+#define CHOICE_TEXTSTYLE			1
 #endif
 
 #ifndef CHOICE_TEXTALIGN
-#define	CHOICE_TEXTALIGN		6
+#define	CHOICE_TEXTALIGN			6
 #endif
 
 #ifndef CHOICE_TEXT_OFFSET_X
-#define CHOICE_TEXT_OFFSET_X	-60
+#define CHOICE_TEXT_OFFSET_X		-60
 #endif
 
 #ifndef CHOICE_TEXTCOLOR_DISABLED
@@ -96,6 +96,10 @@
 
 #ifndef HIGHTLIGHT_BACKCOLOR
 #define HIGHTLIGHT_BACKCOLOR 		CHOICE_BACKCOLOR
+#endif
+
+#ifndef CHOICE_FOCUS_UI
+#define CHOICE_FOCUS_UI				"ui_menuAButton"
 #endif
 
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
@@ -235,7 +239,7 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 1 1 1 1 \
+			forecolor 0.6 0.55 0.55 1 \
 			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
@@ -246,6 +250,7 @@
 			textScale 0.375 \
 			textFont 3 \
 			text textArg \
+			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
@@ -254,7 +259,7 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 1 1 1 1 \
+			forecolor 0.6 0.55 0.55 1 \
 			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
@@ -265,6 +270,7 @@
 			textScale 0.375 \
 			textFont 3 \
 			exp text( textArg ); \
+			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
@@ -273,7 +279,7 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 1 1 1 1 \
+			forecolor 0.6 0.55 0.55 1 \
 			disablecolor 0.6 0.55 0.55 1 \
 			style 1 \
 			background HIGHLIGHT_SHADER_ART \
@@ -284,6 +290,7 @@
 			textScale 0.375 \
 			textFont 3 \
 			exp text( textArg ); \
+			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}		
@@ -666,15 +673,15 @@
 			{ \
 				setItemColor "mw2_button" backcolor 0 0 0 0; \
 			} \
-			setLocalVarBool "ui_menuAButton" ( 1 ); \
-			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
+			setLocalVarBool CHOICE_FOCUS_UI ( 1 ); \
+			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy() ); \
 			setItemColor self backcolor HIGHTLIGHT_BACKCOLOR; \
 		} \
 		leaveFocus \
 		{ \
 			leaveFocusArg \
 			setItemColor self backcolor 0 0 0 0; \
-			setLocalVarBool "ui_menuAButton" ( 0 ); \
+			setLocalVarBool CHOICE_FOCUS_UI ( 0 ); \
 		} \
 		action \
 		{ \

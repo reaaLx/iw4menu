@@ -220,7 +220,7 @@
 			textfont 9
 			textalign 4
 			textscale 0.5
-			exp text ( "@" + tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 1 ) )
+			exp text ("@"+tablelookup("mp/challengeTable.csv",4,localvarstring("ui_challengeTierTable"),1))
 		}
 		itemDef
 		{
@@ -234,7 +234,7 @@
 			textalign 4
 			textalignx 20
 			textscale 0.375
-			visible when ( !dvarint( "xblive_privatematch" ) )
+			visible when (!dvarint("xblive_privatematch" ))
 		}
 		#include "ui_mp/challenges.inc"
 		LOCAL_CHD_BUTTON ( 0, 0 )
@@ -277,8 +277,8 @@
 			textfont 3
 			textalign 4
 			textscale 0.375
-			visible when ( localvarstring( "ui_selected_ref" ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
-			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) + "_" + int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) )
+			visible when (localvarstring("ui_selected_ref")!=""&&!(int(tablelookup("mp/allChallengesTable.csv",0,localvarstring("ui_selected_ref"),6+((int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))-1)*2)))==""))
+			exp text (locstring("@"+tablelookup("mp/allChallengesTable.csv",0,localvarstring("ui_selected_ref"),1))+locstring("@"+tablelookup("mp/allChallengesTable.csv",0,localvarstring("ui_selected_ref"),3)+"_"+int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))))
 		}
 		itemDef
 		{
