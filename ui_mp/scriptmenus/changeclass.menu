@@ -30,7 +30,7 @@
 		#include "ui_mp/cac_macros.inc"
 
 		CHOICE_MENU_TITLE( "@MPUI_CHOOSE_CLASS_CAP", 0 0 272 28 1 1 )		
-
+/*
 		CHOICE_CAC_DEFAULT( 0, "@CLASS_CLASS1", scriptmenuresponse "class0";, 1 )
 		CHOICE_CAC_DEFAULT( 1, "@CLASS_CLASS2", scriptmenuresponse "class1";, 1 )
 		CHOICE_CAC_DEFAULT( 2, "@CLASS_CLASS3", scriptmenuresponse "class2";, 1 )
@@ -53,7 +53,7 @@
 		CHOICE_CAC_CUSTOM( "class_custom_8", 12, 7, scriptmenuresponse "custom8"; )
 		CHOICE_CAC_CUSTOM( "class_custom_9", 13, 8, scriptmenuresponse "custom9"; )
 		CHOICE_CAC_CUSTOM( "class_custom_10", 14, 9, scriptmenuresponse "custom10"; )
-
+*/
 		CHOICE_BUTTON_VIS( 15, "[DEV] Save Replay", exec "cg_replay_save ReplayAutoSave";, when ( dvarbool( "developer" ) || dvarbool( "beta" ) ) )
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )		
