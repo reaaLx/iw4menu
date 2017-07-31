@@ -31,96 +31,71 @@
 //============================================================================
 // frame
 //============================================================================
-		itemDef
-		{
-			rect 0 28 640 162 4 1
-			style 3
-			foreColor 1 1 1 0.15
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect 0 226 640 144 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, -4, 32, 32, "drop_shadow_tl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, -4, 640, 32, "drop_shadow_t")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, -4, 32, 32, "drop_shadow_tr")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 28, 32, 162, "drop_shadow_r")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 190, 32, 32, "drop_shadow_br")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, 190, 640, 32, "drop_shadow_b")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 190, 32, 32, "drop_shadow_bl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 28, 32, 162, "drop_shadow_l")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 194, 32, 32, "drop_shadow_tl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, 194, 640, 32, "drop_shadow_t")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 194, 32, 32, "drop_shadow_tr")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 226, 32, 144, "drop_shadow_r")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 370, 32, 32, "drop_shadow_br")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, 370, 640, 32, "drop_shadow_b")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 370, 32, 32, "drop_shadow_bl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 226, 32, 144, "drop_shadow_l")
+
+		PREPROC_SHADER_DRAW( 0 28 640 162 4 1, ORIGIN_NONE, "white", 1 1 1 0.15, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 226 640 144 4 1, ORIGIN_NONE, "white", 1 1 1 0.15, 0, 0, 0 0 0 0 )
+		
+		PREPROC_SHADER_DRAW( -32 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 4 1, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 28 32 162 4 1, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 190 32 32 4 1, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 190 640 32 4 1, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 190 32 32 4 1, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 28 32 162 4 1, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 194 32 32 4 1, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 194 640 32 4 1, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 194 32 32 4 1, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 226 32 144 4 1, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 370 32 32 4 1, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 370 640 32 4 1, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 370 32 32 4 1, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 226 32 144 4 1, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1, 0, 0, 0 0 0 0 )
+
+		PREPROC_TEXT_DRAW_ALIGNED( -272 28 160 1 2 1, ORIGIN_NONE, "@MPUI_GAME_RULES", 0.3333, -32, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED( -272 226 160 18 2 1, ORIGIN_NONE, "@MPUI_RULES_TEAM_OPTIONS", 0.3333, -32, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED( 0 28 160 18 2 1, ORIGIN_NONE, "@MPUI_RULES_PLAYER_OPTIONS", 0.3333, -32, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED( 0 226 160 18 2 1, ORIGIN_NONE, "@MPUI_RULES_GAMEPLAY_OPTIONS", 0.3333, -32, 0, 6, 1 1 1 1 )
 
 //============================================================================
-// button definitions and such
+// button definition
 //============================================================================
 
-#define GAMETYPE_TITLE( textArg ) \
+#define CHOICE_MENU_TITLE2( textArg ) \
 		itemDef \
 		{ \
 			rect 0 0 0 28 2 1 \
 			decoration \
 			visible 1 \
-			forecolor 1 1 1 1 \
-			textfont 9 \
-			textalign 5 \
-			textalignx 5 \
-			textscale 0.5 \
+			foreColor 1 1 1 1 \
+			textFont 9 \
+			textAlign 5 \
+			textAlignX 5 \
+			textScale 0.5 \
 			exp text ( textArg ) \
 		}
-#define GAMETYPE_RULES_TITLES(textArg, x, y, w, h ) \
-		itemDef \
-		{ \
-			rect x y w h 2 1 \
-			decoration \
-			visible 1 \
-			style 1 \
-			forecolor 1 1 1 1 \
-			textfont 9 \
-			textalign 6 \
-			textalignx -32 \
-			textscale 0.3333 \
-			exp text ( textArg ) \
-		}
-#define GAMETYPE_DVARFLOATLIST( itemIndex, textArg, actionArg, listArg, dvarArg ) \
+#define CHOICE_DVARFLOATLIST2( itemIndex, textArg, dvarArg, dvarFloatListArg, actionArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
 			group "mw2_button" \
 			style 1 \
-			forecolor 1 1 1 1 \
+			foreColor 1 1 1 1 \
 			background "menu_rules_selection_bar" \
 			type 1 \
-			textfont 3 \
-			textalign 4 \
-			textaligny -2 \
-			textscale 0.375 \
+			textFont 3 \
+			textAlign 4 \
+			textAlignY -2 \
+			textScale 0.375 \
 			text textArg \
 			dvar dvarArg \
 			visible 1 \
 			onFocus \
 			{ \
 				play "mouse_over"; \
-				if ( dvarstring( "gameMode" ) != "mp" ) \
+				if ( dvarString( "gameMode" ) != "mp" ) \
 				{ \
-					setItemColor "mw2_button" backcolor 0 0 0 0; \
+					setItemColor "mw2_button" backColor 0 0 0 0; \
 				} \
 				setItemColor self backcolor 0 0 0 1; \
 				setLocalVarBool "ui_menuAButton" ( 1 ); \
@@ -128,7 +103,7 @@
 			} \
 			leaveFocus \
 			{ \
-				setItemColor self backcolor 0 0 0 "0.0"; \
+				setItemColor self backColor 0 0 0 "0.0"; \
 				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" ); \
 				setLocalVarBool "ui_menuAButton" ( 0 ); \
 			} \
@@ -144,17 +119,17 @@
 			decoration \
 			visible 1 \
 			style 1 \
-			forecolor 1 1 1 0.65 \
-			backcolor 1 1 1 0 \
+			foreColor 1 1 1 0.65 \
+			backColor 1 1 1 0 \
 			background "white" \
 			type 12 \
-			textfont 3 \
-			textalign 4 \
-			textalignx 160 \
-			textaligny -2 \
-			textscale 0.375 \
+			textFont 3 \
+			textAlign 4 \
+			textAlignX 160 \
+			textAlignY -2 \
+			textScale 0.375 \
 			dvar dvarArg \
-			dvarStrList listArg \
+			dvarStrList dvarFloatListArg \
 		}
 //============================================================================
 // gametype options
@@ -164,6 +139,8 @@
 #define NUMLIVES_DVAR 		"scr_ctf_numlives"
 #define PLAYERRESPAWN_DVAR 	"scr_ctf_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_ctf_waverespawndelay"
+
+#define CHOICE_MENU_TEXT 	"@MENU_CAPTURE_THE_FLAG"
 
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_ctf_timelimit
@@ -214,6 +191,8 @@
 #define PLAYERRESPAWN_DVAR 	"scr_dm_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_dm_waverespawndelay"
 
+#define CHOICE_MENU_TEXT 	"@MENU_FREE_FOR_ALL"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_dm_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
@@ -263,6 +242,8 @@
 #define PLAYERRESPAWN_DVAR 	"scr_war_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_war_waverespawndelay"
 
+#define CHOICE_MENU_TEXT 	"@MENU_TEAM_DEATHMATCH"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_war_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
@@ -311,6 +292,8 @@
 #define NUMLIVES_DVAR		"scr_sd_numlives"
 #define PLAYERRESPAWN_DVAR 	"scr_sd_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_sd_waverespawndelay"
+
+#define CHOICE_MENU_TEXT 	"@MENU_SEARCH_AND_DESTROY"
 
 #define CHOICE1_TEXT		"@MPUI_RULES_ROUND_LENGTH"
 #define CHOICE1_DVAR		scr_sd_timelimit
@@ -448,6 +431,8 @@
 #define PLAYERRESPAWN_DVAR 	"scr_koth_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_koth_waverespawndelay"
 
+#define CHOICE_MENU_TEXT 	"@MPUI_HEADQUARTERS"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_koth_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
@@ -546,6 +531,8 @@
 #define PLAYERRESPAWN_DVAR 	"scr_dom_playerrespawndelay"
 #define WAVERESPAWN_DVAR	"scr_dom_waverespawndelay"
 
+#define CHOICE_MENU_TEXT 	"@MPUI_DOMINATION"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_dom_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
@@ -591,6 +578,9 @@
 
 #ifdef DEMO_SETTINGS /* Demolition Settings */
 #define GAME_OPTIONS_MENU_NAME "settings_quick_dd"
+
+#define CHOICE_MENU_TEXT 	"@MENU_DD_DESC"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_dd_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
@@ -715,6 +705,9 @@
 
 #ifdef SAB_SETTINGS /* Sabotage Settings */
 #define GAME_OPTIONS_MENU_NAME "settings_quick_sab"
+
+#define CHOICE_MENU_TEXT 	"@MPUI_SABOTAGE"
+
 #define CHOICE1_TEXT		"@MPUI_RULES_TIME_LIMIT"
 #define CHOICE1_DVAR		scr_sab_timelimit
 #define CHOICE1_DVARTEXT	CHOICE1_DVAR"_text"
