@@ -11,27 +11,31 @@
 #endif
 
 #ifndef CHOICE_TEXTSIZE
-#define CHOICE_TEXTSIZE				TEXTSIZE_SMALL
+#define CHOICE_TEXTSIZE			TEXTSIZE_SMALL
 #endif
 
 #ifndef CHOICE_TEXTFONT
-#define CHOICE_TEXTFONT				3
+#define CHOICE_TEXTFONT			3
 #endif
 
 #ifndef CHOICE_TEXTCOLOR
-#define CHOICE_TEXTCOLOR			1 1 1 1
+#define CHOICE_TEXTCOLOR		1 1 1 1
 #endif
 
 #ifndef CHOICE_TEXTSTYLE
-#define CHOICE_TEXTSTYLE			1
+#define CHOICE_TEXTSTYLE		1
 #endif
 
 #ifndef CHOICE_TEXTALIGN
-#define	CHOICE_TEXTALIGN			6
+#define	CHOICE_TEXTALIGN		6
 #endif
 
 #ifndef CHOICE_TEXT_OFFSET_X
-#define CHOICE_TEXT_OFFSET_X		-60
+#define CHOICE_TEXT_OFFSET_X	-60
+#endif
+
+#ifndef CHOICE_TEXT_OFFSET_Y
+#define CHOICE_TEXT_OFFSET_Y	0
 #endif
 
 #ifndef CHOICE_TEXTCOLOR_DISABLED
@@ -90,6 +94,10 @@
 #define CHOICE_SEP_SPACING			0
 #endif
 
+#ifndef CHOICE_SEP_BACKGROUND
+#define	CHOICE_SEP_BACKGROUND		"line_horizontal"
+#endif
+
 #ifndef HIGHLIGHT_SHADER_ART
 #define HIGHLIGHT_SHADER_ART		"menu_button_selection_bar"
 #endif
@@ -98,9 +106,18 @@
 #define HIGHTLIGHT_BACKCOLOR 		CHOICE_BACKCOLOR
 #endif
 
-#ifndef CHOICE_FOCUS_UI
-#define CHOICE_FOCUS_UI				"ui_menuAButton"
+#ifndef BUTTON_BG_COLOR
+#define BUTTON_BG_COLOR				1 1 1 0.65
 #endif
+
+#ifndef NEW_X_OFFSET
+#define NEW_X_OFFSET -40
+#endif
+
+#ifndef NEW_Y_OFFSET
+#define NEW_Y_OFFSET 0
+#endif
+
 
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
 #define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
@@ -167,7 +184,7 @@
 		itemDef \
 		{ \
 			style 3 \
-			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + -40 ) (CHOICE_Y( itemIndex ) + 0 + 0 ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+			rect (CHOICE_X( itemIndex ) + CHOICE_SIZE_X + NEW_X_OFFSET ) (CHOICE_Y( itemIndex ) + 0 + NEW_Y_OFFSET ) (CHOICE_SIZE_Y * 2 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			exp material( "specialty_new" ) \
 			visible visArg; \
 			textscale 0.55 \
@@ -239,18 +256,17 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
-			disablecolor 0.6 0.55 0.55 1 \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			disablecolor CHOICE_TEXTCOLOR_DISABLED \
+			style CHOICE_TEXTSTYLE \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
-			type 1 \
-			textAlign 6 \
-			textAlignX -60 \
-			textScale 0.375 \
-			textFont 3 \
+			type ITEM_TYPE_BUTTON \
+			textAlign CHOICE_TEXTALIGN \
+			textAlignX CHOICE_TEXT_OFFSET_X \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
-			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
@@ -259,18 +275,17 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
-			disablecolor 0.6 0.55 0.55 1 \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			disablecolor CHOICE_TEXTCOLOR_DISABLED \
+			style CHOICE_TEXTSTYLE \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
-			type 1 \
-			textAlign 6 \
-			textAlignX -60 \
-			textScale 0.375 \
-			textFont 3 \
+			type ITEM_TYPE_BUTTON \
+			textAlign CHOICE_TEXTALIGN \
+			textAlignX CHOICE_TEXT_OFFSET_X \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			exp text( textArg ); \
-			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		}
@@ -279,18 +294,17 @@
 		itemDef \
 		{ \
 			rect CHOICE_RECT( itemIndex ) \
-			forecolor 0.6 0.55 0.55 1 \
-			disablecolor 0.6 0.55 0.55 1 \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			disablecolor CHOICE_TEXTCOLOR_DISABLED \
+			style CHOICE_TEXTSTYLE \
 			background HIGHLIGHT_SHADER_ART \
 			group "mw2_button" \
-			type 1 \
-			textAlign 6 \
-			textAlignX -60 \
-			textScale 0.375 \
-			textFont 3 \
+			type ITEM_TYPE_BUTTON \
+			textAlign CHOICE_TEXTALIGN \
+			textAlignX CHOICE_TEXT_OFFSET_X \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			exp text( textArg ); \
-			visible disArg \
 			disabled disArg \
 			CHOICE_SCRIPTS_ALL( itemIndex, actionArg, onFocusArg, leaveFocusArg ) \
 		}		
@@ -302,15 +316,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 1 1 1 1  \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background bgArg \
 			group "mw2_button" \
-			type 1 \
+			type ITEM_TYPE_BUTTON \
 			textAlign 8 \
 			textAlignX 170 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
@@ -319,15 +333,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 0.6 0.55 0.55 1 \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background bgArg \
 			group "mw2_button" \
-			type 1 \
+			type ITEM_TYPE_BUTTON \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
@@ -340,15 +354,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 1 1 1 1  \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR  \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 13 \
+			type ITEM_TYPE_DVARENUM \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			dvarEnumList dvarListArg \
@@ -364,15 +378,16 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			style 1 \
-			foreColor 1 1 1 1 \
+			foreColor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 12 \
+			type ITEM_TYPE_MULTI \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textAlignY CHOICE_TEXT_OFFSET_Y \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			dvarStrList strListArg \
@@ -391,12 +406,12 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			foreColor 1 1 1 1 \
-			type 10 \
+			foreColor CHOICE_TEXTCOLOR \
+			type ITEM_TYPE_SLIDER \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvarFloat dvarArg defaultArg minArg maxArg \
 			visible when ( visArg ) \
@@ -412,15 +427,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 1 1 1 1  \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 11 \
+			type ITEM_TYPE_YESNO \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			visible visArg \
@@ -435,14 +450,14 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			style 1 \
-			foreColor 1 1 1 1 \
+			foreColor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
-			type 14 \
+			type ITEM_TYPE_BIND \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			visible visArg \
@@ -457,15 +472,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			style 1 \
-			foreColor 1 1 1 1 \
+			foreColor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 12 \
+			type ITEM_TYPE_MULTI \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			dvarFloatList dvarFloatListArg \
@@ -474,26 +489,27 @@
 		} \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
 
-#define CHOICE_DVAREDIT( itemIndex, textArg, dvarArg, actionArg ) \
-		CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, ;, actionArg, 1 )
+#define CHOICE_DVAREDIT( itemIndex, textArg, dvarArg, maxCharsArg, actionArg ) \
+		CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, maxCharsArg, actionArg, 1 )
 		
-#define CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, visArg ) \
+#define CHOICE_DVAREDIT_VIS( itemIndex, textArg, dvarArg, maxCharsArg, actionArg, visArg ) \
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			style 1 \
-			foreColor 1 1 1 1 \
+			foreColor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 4 \
+			type ITEM_TYPE_EDITFIELD \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text " " \
 			dvar dvarArg \
-			maxChars max_chars \
-			maxPaintChars max_chars \
+			maxChars maxCharsArg \
+			maxPaintChars maxCharsArg \
+			visible visArg \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
 		} \
 		CHOICE_CAPTION_VIS( itemIndex, textArg, visArg )
@@ -504,15 +520,15 @@
 #define CHOICE_DVAREDIT_NUMERIC_VIS( itemIndex, textArg, dvarArg, max_chars, actionArg, visArg ) \
 		itemDef \
 		{ \
-			type 4 \
+			type ITEM_TYPE_NUMERICFIELD \
 			text " " \
 			dvar dvarArg \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			textAlign 8 \
-			textAlignX 225  \
-			textScale 0.375 \
-			style 1 \
-			foreColor 1 1 1 1 \
+			textAlignX 225 \
+			textScale CHOICE_TEXTSIZE \
+			style CHOICE_TEXTSTYLE \
+			foreColor CHOICE_TEXTCOLOR \
 			visible visArg \
 			maxChars max_chars \
 			CHOICE_SCRIPTS_ACTION( itemIndex, actionArg ) \
@@ -527,15 +543,15 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			forecolor 1 1 1 1 \
-			style 1 \
+			forecolor CHOICE_TEXTCOLOR \
+			style CHOICE_TEXTSTYLE \
 			background "menu_setting_selection_bar" \
 			group "mw2_button" \
-			type 13 \
+			type ITEM_TYPE_DVARENUM \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvar dvarArg \
 			dvarEnumList dvarListArg \
@@ -551,12 +567,12 @@
 		itemDef \
 		{ \
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			foreColor 1 1 1 1 \
-			type 10 \
+			foreColor CHOICE_TEXTCOLOR \
+			type ITEM_TYPE_SLIDER \
 			textAlign 8 \
 			textAlignX 225 \
-			textScale 0.375 \
-			textFont 3 \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			text textArg \
 			dvarFloat dvarArg defaultArg minArg maxArg \
 			visible visArg \
@@ -573,12 +589,12 @@
 		itemDef \
 		{ \
 			rect rectArg \
-			foreColor 1 1 1 1 \
+			foreColor CHOICE_TEXTCOLOR \
 			decoration  \
 			textAlign 6 \
 			textAlignX -59 \
-			textScale 0.5 \
-			textFont 9 \
+			textScale TEXTSIZE_TITLE \
+			textFont UI_FONT_UNKNOWN3 \
 			text titleArg \
 			visible visArg \
 		}
@@ -588,12 +604,11 @@
 #define CHOICE_SECTION_TITLE_VIS( itemIndex, titleArg, visArg ) \
 		itemDef \
 		{ \
-			type 0 \
 			rect 232 0 344 28 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			forecolor 1 1 1 1 \
 			exp text( titleArg );\
-			textFont 9 \
-			textScale 0.5 \
+			textFont UI_FONT_UNKNOWN3 \
+			textScale TEXTSIZE_TITLE \
 			textAlign 5 \
 			visible visArg \
 			decoration \
@@ -603,7 +618,7 @@
 		{ \
 			rect ( 0 + 75 ) 0 240 1 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			origin CHOICE_ORIGIN( itemIndex ) \
-			background "line_horizontal" \
+			background CHOICE_SEP_BACKGROUND \
 			forecolor 1 1 1 0.65 \
 			style 3 \
 			visible 1 \
@@ -615,11 +630,11 @@
 #define CHOICE_SEPARATOR_VIS( afterItemIndex, visArg ) \
 		itemDef \
 		{ \
-			style 3 \
+			style WINDOW_STYLE_SHADER \
 			rect ( CHOICE_SEP_OFFSET_X ) ( CHOICE_Y_SPACING + CHOICE_SEP_SPACING / 2 + CHOICE_SEP_OFFSET_Y - 20 ) CHOICE_SEP_WIDTH 1 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			origin CHOICE_ORIGIN( afterItemIndex ) \
 			background "gradient_fadein" \
-			forecolor 1 1 1 0.65 \
+			forecolor BUTTON_BG_COLOR \
 			textscale 0.55 \
 			visible visArg \
 			decoration \
@@ -673,15 +688,15 @@
 			{ \
 				setItemColor "mw2_button" backcolor 0 0 0 0; \
 			} \
-			setLocalVarBool CHOICE_FOCUS_UI ( 1 ); \
-			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy() ); \
 			setItemColor self backcolor HIGHTLIGHT_BACKCOLOR; \
+			setLocalVarBool "ui_menuAButton" ( 1 ); \
+			setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
 		} \
 		leaveFocus \
 		{ \
 			leaveFocusArg \
+			setLocalVarBool "ui_menuAButton" ( 0 ); \
 			setItemColor self backcolor 0 0 0 0; \
-			setLocalVarBool CHOICE_FOCUS_UI ( 0 ); \
 		} \
 		action \
 		{ \
@@ -708,6 +723,50 @@
 			textscale 0.375 \
 			text textArg \
 			visible when ( visArg ) \
+			onFocus \
+			{ \
+				play "mouse_over"; \
+				if ( dvarstring( "gameMode" ) != "mp" ) \
+				{ \
+					setItemColor "mw2_button" backcolor 0 0 0 0; \
+				} \
+				setItemColor self backcolor 0 0 0 1; \
+				setLocalVarBool "ui_menuAButton" ( 1 ); \
+			} \
+			leaveFocus \
+			{ \
+				setItemColor self backcolor 0 0 0 "0.0"; \
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" ); \
+				setLocalVarBool "ui_menuAButton" ( 0 ); \
+			} \
+			action \
+			{ \
+				play "mouse_click"; \
+				escape "self"; \
+				actionArg \
+			} \
+		}
+
+#define CHOICE_APPLY( textArg, actionArg ) \
+		CHOICE_APPLY_VIS( textArg, actionArg, 1 )
+
+#define CHOICE_APPLY_VIS( textArg, actionArg, visArg ) \
+		itemDef \
+		{ \
+			rect -64 -20 336 20 1 3 \
+			visible 1 \
+			group "mw2_button" \
+			style 1 \
+			forecolor 1 1 1 1 \
+			disablecolor 0.6 0.55 0.55 1 \
+			background "menu_button_selection_bar" \
+			type 1 \
+			textfont 3 \
+			textalign 6 \
+			textalignx -60 \
+			textscale 0.375 \
+			text textArg \
+			visible visArg \
 			onFocus \
 			{ \
 				play "mouse_over"; \
