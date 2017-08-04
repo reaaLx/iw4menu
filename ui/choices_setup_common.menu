@@ -373,7 +373,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			forecolor CHOICE_TEXTCOLOR  \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_DVARENUM \
 			textAlign CHOICE_DVAR_TEXTALIGN \
@@ -398,7 +398,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			foreColor CHOICE_TEXTCOLOR \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_MULTI \
 			textAlign CHOICE_DVAR_TEXTALIGN \
@@ -448,7 +448,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			forecolor CHOICE_TEXTCOLOR \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_YESNO \
 			textAlign CHOICE_DVAR_TEXTALIGN \
@@ -495,7 +495,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) (CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			foreColor CHOICE_TEXTCOLOR \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_MULTI \
 			textAlign CHOICE_DVAR_TEXTALIGN \
@@ -520,7 +520,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			foreColor CHOICE_TEXTCOLOR \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_EDITFIELD \
 			textAlign CHOICE_DVAR_TEXTALIGN \
@@ -569,7 +569,7 @@
 			rect CHOICE_ORIGIN( itemIndex ) ( CHOICE_SIZE_X + 50 ) CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			forecolor CHOICE_TEXTCOLOR \
 			style CHOICE_TEXTSTYLE \
-			background "menu_setting_selection_bar" \
+			background CHOICE_DVAR_HIGHLIGHT \
 			group "mw2_button" \
 			type ITEM_TYPE_DVARENUM \
 			textAlign CHOICE_DVAR_TEXTALIGN \
