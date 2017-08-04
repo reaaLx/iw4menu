@@ -166,6 +166,9 @@
 		#include "ui_mp/leftside_optionsx.inc"
 
 		CHOICE_SECTION_TITLE(20, "@MENU_TEXTURE_SETTINGS" )
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
 
 		CHOICE_DVARSTRINGLIST( 20, "@MENU_TEXTURE_MIPMAPS", "r_texFilterMipMode", TEXTURE_MM_STRLIST, setlocalVarBool "ui_showApply" ( 1 ) )
 		CHOICE_DVARSLIDER( 21, "@MENU_TEXTURE_ANISOTROPY", "r_texFilterAnisoMin", 1, 1, 16, setlocalVarBool "ui_showApply" ( 1 ) )

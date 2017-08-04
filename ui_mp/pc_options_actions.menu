@@ -35,6 +35,9 @@
 
 		CHOICE_SECTION_TITLE(20, "@MENU_ACTIONS")
 		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
+
 		CHOICE_BIND( 20, "@MENU_FIRE_WEAPON", "+attack", ; )
 		CHOICE_BIND( 21, "@MENU_AIM_DOWN_THE_SIGHT", "+toggleads_throw", ; )
 		CHOICE_BIND( 22, "@MENU_HOLD_AIM_DOWN_SIGHT", "+speed_throw", ; )

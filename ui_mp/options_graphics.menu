@@ -189,6 +189,10 @@
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 		CHOICE_SECTION_TITLE(20, "@MENU_GRAPHICS" )
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
+
 		CHOICE_DVARENUMLIST_FOCUS( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), setlocalVarBool "ui_showApply" ( 1 ) )
 		CHOICE_DVARYESNO( 21, "@MENU_FULLSCREEN", "ui_r_fullscreen", ; )
 		CHOICE_DVARENUMLIST( 22, "@MENU_SCREEN_REFRESH_RATE", "ui_r_displayRefresh", "r_displayRefresh", setlocalVarBool "ui_showApply" ( 1 ) )

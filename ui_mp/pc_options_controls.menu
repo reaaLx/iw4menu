@@ -44,6 +44,10 @@
 		#include "ui_mp/leftside_optionsx.inc"
 		
 		CHOICE_SECTION_TITLE(20, "@MENU_CONTROLS")
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
+
 		CHOICE_BUTTON_ADV( 20, "@MENU_MOVEMENT", "menu_setting_selection_bar", open "pc_options_movement"; )
 		CHOICE_BUTTON_ADV( 21, "@MENU_ACTIONS", "menu_setting_selection_bar", open "pc_options_actions"; )
 		CHOICE_BUTTON_ADV( 22, "@MENU_LOOK", "menu_setting_selection_bar", open "pc_options_look"; )

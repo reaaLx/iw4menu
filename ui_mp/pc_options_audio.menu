@@ -51,6 +51,9 @@
 
 		CHOICE_SECTION_TITLE(20, "@MENU_AUDIO")
 
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
+		
 		CHOICE_DVARSLIDER( 20, "@MENU_MASTER_VOLUME", "snd_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
 		CHOICE_DVARSTRINGLIST( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setlocalVarBool "ui_showApply" ( 1 ) )
 

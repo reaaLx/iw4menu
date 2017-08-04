@@ -35,6 +35,9 @@
 
 		CHOICE_SECTION_TITLE(20, "@MENU_MOVEMENT")
 		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -130
+
 		CHOICE_BIND( 20, "@MENU_FORWARD", "+forward", ; )
 		CHOICE_BIND( 21, "@MENU_BACKPEDAL", "+back", ; )
 		CHOICE_BIND( 22, "@MENU_MOVE_LEFT", "+moveleft", ; )

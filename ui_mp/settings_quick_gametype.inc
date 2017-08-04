@@ -1,5 +1,6 @@
+
 #undef CHOICE_SIZE_X
-#define CHOICE_SIZE_X				260
+#define CHOICE_SIZE_X				200
 
 #undef CHOICE_SIZE_Y
 #define CHOICE_SIZE_Y				18
@@ -8,7 +9,7 @@
 #define CHOICE_X_START				46
 
 #undef CHOICE_X_SPACING
-#define CHOICE_X_SPACING			270
+#define CHOICE_X_SPACING			272
 
 #undef CHOICE_Y_START
 #define CHOICE_Y_START				82
@@ -27,6 +28,24 @@
 
 #undef CHOICE_VERTICAL_ALIGN
 #define CHOICE_VERTICAL_ALIGN 		0
+
+#undef CHOICE_TEXTALIGN
+#define CHOICE_TEXTALIGN 			4
+
+#undef CHOICE_TEXT_OFFSET_X
+#define CHOICE_TEXT_OFFSET_X 		0
+
+#undef CHOICE_DVAR_HIGHLIGHT
+#define CHOICE_DVAR_HIGHLIGHT		"menu_rules_selection_bar"
+
+#undef CHOICE_DVAR_TEXTALIGN
+#define CHOICE_DVAR_TEXTALIGN		4
+
+#undef CHOICE_DVAR_OFFSET_X
+#define CHOICE_DVAR_OFFSET_X		160
+
+#undef CHOICE_DVAR_OFFSET_Y
+#define CHOICE_DVAR_OFFSET_Y		-2
 
 //============================================================================
 // frame
@@ -73,63 +92,6 @@
 			textAlignX 5 \
 			textScale 0.5 \
 			exp text ( textArg ) \
-		}
-#define CHOICE_DVARFLOATLIST2( itemIndex, textArg, dvarArg, dvarFloatListArg, actionArg ) \
-		itemDef \
-		{ \
-			rect CHOICE_RECT( itemIndex ) \
-			group "mw2_button" \
-			style 1 \
-			foreColor 1 1 1 1 \
-			background "menu_rules_selection_bar" \
-			type 1 \
-			textFont 3 \
-			textAlign 4 \
-			textAlignY -2 \
-			textScale 0.375 \
-			text textArg \
-			dvar dvarArg \
-			visible 1 \
-			onFocus \
-			{ \
-				play "mouse_over"; \
-				if ( dvarString( "gameMode" ) != "mp" ) \
-				{ \
-					setItemColor "mw2_button" backColor 0 0 0 0; \
-				} \
-				setItemColor self backcolor 0 0 0 1; \
-				setLocalVarBool "ui_menuAButton" ( 1 ); \
-				setLocalVarFloat "ui_popupYPos" ( getfocuseditemy( ) ); \
-			} \
-			leaveFocus \
-			{ \
-				setItemColor self backColor 0 0 0 "0.0"; \
-				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" ); \
-				setLocalVarBool "ui_menuAButton" ( 0 ); \
-			} \
-			action \
-			{ \
-				play "mouse_click"; \
-				actionArg \
-			} \
-		} \
-		itemDef \
-		{ \
-			rect CHOICE_RECT( itemIndex ) \
-			decoration \
-			visible 1 \
-			style 1 \
-			foreColor 1 1 1 0.65 \
-			backColor 1 1 1 0 \
-			background "white" \
-			type 12 \
-			textFont 3 \
-			textAlign 4 \
-			textAlignX 160 \
-			textAlignY -2 \
-			textScale 0.375 \
-			dvar dvarArg \
-			dvarStrList dvarFloatListArg \
 		}
 //============================================================================
 // gametype options
