@@ -342,7 +342,7 @@
 #define CHOICE5_DVARTEXT	CHOICE5_DVAR"_text"
 #define CHOICE5_SHOW		1
 #define CHOICE5_STRLIST		{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE5_EXEC		exec "toggle "CHOICE5_DVAR" 0 1"; play "mouse_click";
+#define CHOICE5_EXEC		toggle ""CHOICE5_DVAR" 0 1"; play "mouse_click";
 
 #define CHOICE6_TEXT		"@MPUI_RULES_SCORE_LIMIT"
 #define CHOICE6_DVAR		"scr_sd_scorelimit"
@@ -484,7 +484,7 @@
 #define CHOICE5_DVARTEXT	CHOICE5_DVAR"_text"
 #define CHOICE5_SHOW		1
 #define CHOICE5_STRLIST		{ "@MENU_DISABLED" 1 "@MENU_ENABLED" 0 }
-#define CHOICE5_EXEC		exec "toggle "CHOICE5_DVAR" 0 1"; play "mouse_click";
+#define CHOICE5_EXEC		toggle ""CHOICE5_DVAR" 0 1"; play "mouse_click";
 #endif  /* End Headquarters Settings */
 
 #ifdef DOM_SETTINGS /* Domination Settings */
@@ -759,7 +759,7 @@
 #define CHOICE5_DVARTEXT	CHOICE5_DVAR"_text"
 #define CHOICE5_SHOW		1
 #define CHOICE5_STRLIST		{ "@MENU_NO" 0 "@MENU_YES" 1 }
-#define CHOICE5_EXEC		exec "toggle "CHOICE5_DVAR" 0 1"; play "mouse_click";
+#define CHOICE5_EXEC		toggle ""CHOICE5_DVAR" 0 1"; play "mouse_click";
 
 #define CHOICE6_TEXT		"@MPUI_RULES_SCORE_LIMIT"
 #define CHOICE6_DVAR		"scr_sab_scorelimit"
@@ -807,6 +807,15 @@
 // gameplay options
 //============================================================================
 
+#define CHOICE_DIEHARD_TEXT					"@MPUI_RULES_DIEHARD"
+#define CHOICE_DIEHARD_DVAR					"scr_diehard"
+#define CHOICE_DIEHARD_DVARTEXT				CHOICE_diehard_DVAR"_text"
+#define CHOICE_DIEHARD_SHOW					1
+#define CHOICE_DIEHARD_EXEC1				execNowOnDvarIntValue scr_diehard 0 "exec diehard_disable.cfg";
+#define CHOICE_DIEHARD_EXEC2				execNowOnDvarIntValue scr_diehard 1 "exec diehard_settings.cfg";
+#define CHOICE_DIEHARD_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
+#define CHOICE_DIEHARD_EXEC					play "mouse_click"; toggle "scr_diehard 0 1"; CHOICE_diehard_EXEC1 CHOICE_diehard_EXEC2
+
 #define CHOICE_OLDSCHOOL_TEXT				"@MPUI_RULES_OLDSCHOOL"
 #define CHOICE_OLDSCHOOL_DVAR				"scr_oldschool"
 #define CHOICE_OLDSCHOOL_DVARTEXT			CHOICE_OLDSCHOOL_DVAR"_text"
@@ -814,23 +823,23 @@
 #define CHOICE_OLDSCHOOL_EXEC1				execNowOnDvarIntValue scr_oldschool 0 "exec oldschool_disable.cfg";
 #define CHOICE_OLDSCHOOL_EXEC2				execNowOnDvarIntValue scr_oldschool 1 "exec oldschool_settings.cfg";
 #define CHOICE_OLDSCHOOL_STRLIST			{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_OLDSCHOOL_EXEC				play "mouse_click"; execNow "toggle scr_oldschool 0 1"; CHOICE_OLDSCHOOL_EXEC1 CHOICE_OLDSCHOOL_EXEC2
+#define CHOICE_OLDSCHOOL_EXEC				play "mouse_click"; toggle "scr_oldschool 0 1"; CHOICE_OLDSCHOOL_EXEC1 CHOICE_OLDSCHOOL_EXEC2
 
 #define CHOICE_HARDCORE_TEXT				"@MPUI_RULES_HARDCORE"
-#define CHOICE_HARDCORE_DVAR				"scr_hardcore"
+#define CHOICE_HARDCORE_DVAR				"g_hardcore"
 #define CHOICE_HARDCORE_DVARTEXT			CHOICE_HARDCORE_DVAR"_text"
 #define CHOICE_HARDCORE_SHOW				1
-#define CHOICE_HARDCORE_EXEC1				execNowOnDvarIntValue "scr_hardcore" 0 "exec hardcore_disable.cfg";
-#define CHOICE_HARDCORE_EXEC2				execNowOnDvarIntValue "scr_hardcore" 1 "exec hardcore_settings.cfg";
+#define CHOICE_HARDCORE_EXEC1				execNowOnDvarIntValue "g_hardcore" 0 "exec hardcore_disable.cfg";
+#define CHOICE_HARDCORE_EXEC2				execNowOnDvarIntValue "g_hardcore" 1 "exec hardcore_settings.cfg";
 #define CHOICE_HARDCORE_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_HARDCORE_EXEC				play "mouse_click"; execNow "toggle scr_hardcore 0 1"; CHOICE_HARDCORE_EXEC1 CHOICE_HARDCORE_EXEC2
+#define CHOICE_HARDCORE_EXEC				play "mouse_click";  toggle "g_hardcore 0 1"; CHOICE_HARDCORE_EXEC1 CHOICE_HARDCORE_EXEC2
 
 #define CHOICE_KILLCAM_TEXT					"@MPUI_RULE_ALLOW_KILLCAM"
 #define CHOICE_KILLCAM_DVAR					"scr_game_allowkillcam"
 #define CHOICE_KILLCAM_DVARTEXT				CHOICE_KILLCAM_DVAR"_text"
 #define CHOICE_KILLCAM_SHOW					1
 #define CHOICE_KILLCAM_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_KILLCAM_EXEC					exec "toggle scr_game_allowkillcam 0 1"; play "mouse_click";
+#define CHOICE_KILLCAM_EXEC					toggle "scr_game_allowkillcam 0 1"; play "mouse_click";
 
 #define CHOICE_WAVERESPAWN_TEXT				"@MPUI_RULES_WAVE_DELAY"
 #define CHOICE_WAVERESPAWN_DVAR				"scr_player_waverespawndelay"
@@ -858,42 +867,42 @@
 #define CHOICE_CAMERA_DVARTEXT				CHOICE_CAMERA_DVAR"_text"
 #define CHOICE_CAMERA_SHOW					1
 #define CHOICE_CAMERA_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_CAMERA_EXEC					exec "toggle scr_thirdperson 0 1";
+#define CHOICE_CAMERA_EXEC					toggle "scr_thirdperson 0 1";
 
 #define CHOICE_KSREWARD_TEXT				"@MPUI_RULES_KILLSTREAK_REWARDS"
 #define CHOICE_KSREWARD_DVAR				"scr_game_hardpoints"
 #define CHOICE_KSREWARD_DVARTEXT			CHOICE_KSREWARD_DVAR"_text"
 #define CHOICE_KSREWARD_SHOW				1
 #define CHOICE_KSREWARD_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_KSREWARD_EXEC				exec "toggle scr_game_hardpoints 0 1";
+#define CHOICE_KSREWARD_EXEC				toggle "scr_game_hardpoints 0 1";
 
 #define CHOICE_PERKS_TEXT					"@MPUI_RULES_PERKS"
 #define CHOICE_PERKS_DVAR					"scr_game_perks"
 #define CHOICE_PERKS_DVARTEXT				CHOICE_PERKS_DVAR"_text"
 #define CHOICE_PERKS_SHOW					1
 #define CHOICE_PERKS_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_PERKS_EXEC					exec "toggle scr_game_perks 0 1";
+#define CHOICE_PERKS_EXEC					toggle "scr_game_perks 0 1";
 
 #define CHOICE_HSONLY_TEXT					"@MPUI_RULES_HEADSHOTS_ONLY"
 #define CHOICE_HSONLY_DVAR					"scr_game_onlyheadshots"
 #define CHOICE_HSONLY_DVARTEXT				CHOICE_HSONLY_DVAR"_text"
 #define CHOICE_HSONLY_SHOW					1
 #define CHOICE_HSONLY_STRLIST				{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_HSONLY_EXEC					exec "toggle scr_game_onlyheadshots 0 1";
+#define CHOICE_HSONLY_EXEC					toggle "scr_game_onlyheadshots 0 1";
 
 #define CHOICE_FORCERESPAWN_TEXT			"@MPUI_RULES_FORCE_RESPAWN"
 #define CHOICE_FORCERESPAWN_DVAR			"scr_player_forcerespawn"
 #define CHOICE_FORCERESPAWN_DVARTEXT		CHOICE_FORCERESPAWN_DVAR"_text"
 #define CHOICE_FORCERESPAWN_SHOW			1
 #define CHOICE_FORCERESPAWN_STRLIST			{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_FORCERESPAWN_EXEC			exec "toggle scr_player_forcerespawn 0 1";
+#define CHOICE_FORCERESPAWN_EXEC			toggle "scr_player_forcerespawn 0 1";
 
 #define CHOICE_RADARALWAYSON_TEXT			"@MPUI_RULES_RADAR_ALWAYS_ON"
 #define CHOICE_RADARALWAYSON_DVAR			"scr_game_forceuav"
 #define CHOICE_RADARALWAYSON_DVARTEXT		CHOICE_RADARALWAYSON_DVAR"_text"
 #define CHOICE_RADARALWAYSON_SHOW			1
 #define CHOICE_RADARALWAYSON_STRLIST		{ "@MENU_DISABLED" 0 "@MENU_ENABLED" 1 }
-#define CHOICE_RADARALWAYSON_EXEC			exec "toggle scr_game_forceuav 0 1";
+#define CHOICE_RADARALWAYSON_EXEC			toggle "scr_game_forceuav 0 1";
 
 #define CHOICE_MAXHEALTH_TEXT			"@MPUI_RULES_MAX_HEALTH"
 #define CHOICE_MAXHEALTH_DVAR			"scr_player_maxhealth"
