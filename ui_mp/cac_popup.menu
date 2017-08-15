@@ -23,18 +23,17 @@
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
-		exp rect y ( localvarfloat( "ui_cac_popup_ypos" ) )
-		exp rect w ( 24 + ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) * 20 )
+		//exp rect y ( localvarfloat( "ui_cac_popup_ypos" ) )
 		onOpen
 		{
-			setLocalVarFloat "ui_cac_popup_ypos" ( localvarfloat( "ui_popupYPos" ) );
-			setLocalVarInt "ui_leftPopup" ( 1 );
-			focusfirst;
+			//setLocalVarFloat "ui_cac_popup_ypos" ( localvarfloat( "ui_popupYPos" ) );
+			//setLocalVarInt "ui_leftPopup" ( 1 );
+			focusFirst;
 			open "cac_popup_preview";
 		}
-		onRequestClose
+		onClose
 		{
-			setLocalVarInt "ui_leftPopup" ( 0 );
+			//setLocalVarInt "ui_leftPopup" ( 0 );
 			close "cac_popup_preview";
 		}
 		onEsc
@@ -76,7 +75,7 @@
 			backcolor 0.5 0.5 0.5 1
 			background "white"
 			textscale 0.55
-			exp rect h ( 24 + ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) * 20 )
+			exp rect h ( 24 + ( ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) + ( int( min( 10, getplayerdata( "prestige" ) ) / 10.0 ) * ( 15 - 10 ) ) ) * 20 )
 		}
 		itemDef
 		{
@@ -88,7 +87,7 @@
 			backcolor 0.35 0.35 0.35 1
 			background "gradient_slow_fadein"
 			textscale 0.55
-			exp rect h ( 24 + ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) * 20 )
+			exp rect h ( 24 + ( ( int( 5 + min( 5 , getplayerdata( "prestige" ) / 2 + 0.5 ) ) ) + ( int( min( 10, getplayerdata( "prestige" ) ) / 10.0 ) * ( 15 - 10 ) ) ) * 20 )
 		}
 
 		itemDef
@@ -119,29 +118,42 @@
 
 		#undef CHOICE_SIZE_Y
 		#define CHOICE_SIZE_Y				20
+
+		CHOICE_BUTTON_FOCUS(0,CAC_STATNUM_NAME(0),CAC_STATNUM(0),CAC_STATNUM_HI(0),CLEAR_UI_HINT)
+		CHOICE_BUTTON_FOCUS(1,CAC_STATNUM_NAME(1),CAC_STATNUM(1),CAC_STATNUM_HI(1),CLEAR_UI_HINT)
+		CHOICE_BUTTON_FOCUS(2,CAC_STATNUM_NAME(2),CAC_STATNUM(2),CAC_STATNUM_HI(2),CLEAR_UI_HINT)
+		CHOICE_BUTTON_FOCUS(3,CAC_STATNUM_NAME(3),CAC_STATNUM(3),CAC_STATNUM_HI(3),CLEAR_UI_HINT)
+		CHOICE_BUTTON_FOCUS(4,CAC_STATNUM_NAME(4),CAC_STATNUM(4),CAC_STATNUM_HI(4),CLEAR_UI_HINT)
+
+		CHOICE_BUTTON_FOCUS_VIS(5,CAC_STATNUM_NAME(5),CAC_STATNUM(5),CAC_STATNUM_HI(5),CLEAR_UI_HINT,WHEN>0)
+		CHOICE_NEWICON_VIS(5,when(getplayerdata("customClasses",5,"inUse")==0&&getplayerdata("prestige")>5))
+
+		CHOICE_BUTTON_FOCUS_VIS(6,CAC_STATNUM_NAME(6),CAC_STATNUM(6),CAC_STATNUM_HI(6),CLEAR_UI_HINT,WHEN>2)
+		CHOICE_NEWICON_VIS(6,when(getplayerdata("customClasses",6,"inUse")==0&&getplayerdata("prestige")>6))
+
+		CHOICE_BUTTON_FOCUS_VIS(7,CAC_STATNUM_NAME(7),CAC_STATNUM(7),CAC_STATNUM_HI(7),CLEAR_UI_HINT,WHEN>6)
+		CHOICE_NEWICON_VIS(7,when(getplayerdata("customClasses",7,"inUse")==0&&getplayerdata("prestige")>7))
+
+		CHOICE_BUTTON_FOCUS_VIS(8,CAC_STATNUM_NAME(8),CAC_STATNUM(8),CAC_STATNUM_HI(8),CLEAR_UI_HINT,WHEN>8)
+		CHOICE_NEWICON_VIS(8,when(getplayerdata("customClasses",8,"inUse")==0&&getplayerdata("prestige")>8))
+
+		CHOICE_BUTTON_FOCUS_VIS(9,CAC_STATNUM_NAME(9),CAC_STATNUM(9),CAC_STATNUM_HI(9),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(9,when(getplayerdata("customClasses",9,"inUse")==0&&getplayerdata("prestige")>9))
 		
-		#undef CHOICE_FOCUS_UI
-		#define CHOICE_FOCUS_UI "ui_popupAButton"
-		
-		CHOICE_BUTTON_FOCUS(0, CAC_STATNUM_NAME( 0 ), CAC_STATNUM( 0 ), CAC_STATNUM_HI( 0 ), CLEAR_UI_HINT )
-		CHOICE_BUTTON_FOCUS(1, CAC_STATNUM_NAME( 1 ), CAC_STATNUM( 1 ), CAC_STATNUM_HI( 1 ), CLEAR_UI_HINT )
-		CHOICE_BUTTON_FOCUS(2, CAC_STATNUM_NAME( 2 ), CAC_STATNUM( 2 ), CAC_STATNUM_HI( 2 ), CLEAR_UI_HINT )
-		CHOICE_BUTTON_FOCUS(3, CAC_STATNUM_NAME( 3 ), CAC_STATNUM( 3 ), CAC_STATNUM_HI( 3 ), CLEAR_UI_HINT )
-		CHOICE_BUTTON_FOCUS(4, CAC_STATNUM_NAME( 4 ), CAC_STATNUM( 4 ), CAC_STATNUM_HI( 4 ), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS_VIS(10,CAC_STATNUM_NAME(10),CAC_STATNUM(10),CAC_STATNUM_HI(10),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(10,when(getplayerdata("customClasses",5,"inUse")==0&&getplayerdata("prestige")>9))
 
-		CHOICE_BUTTON_FOCUS_VIS(5, CAC_STATNUM_NAME( 5 ), CAC_STATNUM( 5 ), CAC_STATNUM_HI( 5 ), CLEAR_UI_HINT, WHEN > 0 )
-		CHOICE_NEWICON_VIS( 5, when ( getplayerdata( "customClasses" , 5 , "inUse" ) == 0 && getplayerdata( "prestige" ) > 5 ) )
+		CHOICE_BUTTON_FOCUS_VIS(11,CAC_STATNUM_NAME(11),CAC_STATNUM(11),CAC_STATNUM_HI(11),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(11,when(getplayerdata("customClasses",6,"inUse")==0&&getplayerdata("prestige")>9))
 
-		CHOICE_BUTTON_FOCUS_VIS(6, CAC_STATNUM_NAME( 6 ), CAC_STATNUM( 6 ), CAC_STATNUM_HI( 6 ), CLEAR_UI_HINT, WHEN > 2 )
-		CHOICE_NEWICON_VIS( 6, when ( getplayerdata( "customClasses" , 6 , "inUse" ) == 0 && getplayerdata( "prestige" ) > 6 ) )
+		CHOICE_BUTTON_FOCUS_VIS(12,CAC_STATNUM_NAME(12),CAC_STATNUM(12),CAC_STATNUM_HI(12),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(12,when(getplayerdata("customClasses",7,"inUse")==0&&getplayerdata("prestige")>9))
 
-		CHOICE_BUTTON_FOCUS_VIS(7, CAC_STATNUM_NAME( 7 ), CAC_STATNUM( 7 ), CAC_STATNUM_HI( 7 ), CLEAR_UI_HINT, WHEN > 6 )
-		CHOICE_NEWICON_VIS( 7, when ( getplayerdata( "customClasses" , 7 , "inUse" ) == 0 && getplayerdata( "prestige" ) > 7 ) )
+		CHOICE_BUTTON_FOCUS_VIS(13,CAC_STATNUM_NAME(13),CAC_STATNUM(13),CAC_STATNUM_HI(8),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(13,when(getplayerdata("customClasses",8,"inUse")==0&&getplayerdata("prestige")>9))
 
-		CHOICE_BUTTON_FOCUS_VIS(8, CAC_STATNUM_NAME( 8 ), CAC_STATNUM( 8 ), CAC_STATNUM_HI( 8 ), CLEAR_UI_HINT, WHEN > 8 )
-		CHOICE_NEWICON_VIS( 8, when ( getplayerdata( "customClasses" , 8 , "inUse" ) == 0 && getplayerdata( "prestige" ) > 8 ) )
+		CHOICE_BUTTON_FOCUS_VIS(14,CAC_STATNUM_NAME(14),CAC_STATNUM(14),CAC_STATNUM_HI(14),CLEAR_UI_HINT,WHEN>9)
+		CHOICE_NEWICON_VIS(14,when(getplayerdata("customClasses",9,"inUse")==0&&getplayerdata("prestige")>9))
 
-		CHOICE_BUTTON_FOCUS_VIS(9, CAC_STATNUM_NAME( 9 ), CAC_STATNUM( 9 ), CAC_STATNUM_HI( 9 ), CLEAR_UI_HINT, WHEN > 9 )
-		CHOICE_NEWICON_VIS( 9, when ( getplayerdata( "customClasses" , 9 , "inUse" ) == 0 && getplayerdata( "prestige" ) > 9 ) )
 	}
 }

@@ -322,26 +322,26 @@
 			}
 		}
 		
-		#define DONT_DO_THE_SIDEBAR_THINGY
+		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
 		
 		#include "ui_mp/cas_info.inc"
 
-		KS_BUTTON( 0, "uav" )
-		KS_BUTTON( 1, "airdrop" )
-		KS_BUTTON( 2, "counter_uav" )
-		KS_BUTTON( 3, "airdrop_sentry_minigun" )
-		KS_BUTTON( 4, "predator_missile" )
-		KS_BUTTON( 5, "precision_airstrike" )
-		KS_BUTTON( 6, "harrier_airstrike" )
-		KS_BUTTON( 7, "helicopter" )
-		KS_BUTTON( 8, "airdrop_mega" )
-		KS_BUTTON( 9, "helicopter_flares" )
-		KS_BUTTON( 10, "stealth_airstrike" )
-		KS_BUTTON( 11, "helicopter_minigun" )
-		KS_BUTTON( 12, "ac130" )
-		KS_BUTTON( 13, "emp" )
-		KS_BUTTON( 14, "nuke" )
+		CHOICE_BUTTON_KILLSTREAK( 0, "uav" )
+		CHOICE_BUTTON_KILLSTREAK( 1, "airdrop" )
+		CHOICE_BUTTON_KILLSTREAK( 2, "counter_uav" )
+		CHOICE_BUTTON_KILLSTREAK( 3, "airdrop_sentry_minigun" )
+		CHOICE_BUTTON_KILLSTREAK( 4, "predator_missile" )
+		CHOICE_BUTTON_KILLSTREAK( 5, "precision_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 6, "harrier_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 7, "helicopter" )
+		CHOICE_BUTTON_KILLSTREAK( 8, "airdrop_mega" )
+		CHOICE_BUTTON_KILLSTREAK( 9, "helicopter_flares" )
+		CHOICE_BUTTON_KILLSTREAK( 10, "stealth_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 11, "helicopter_minigun" )
+		CHOICE_BUTTON_KILLSTREAK( 12, "ac130" )
+		CHOICE_BUTTON_KILLSTREAK( 13, "emp" )
+		CHOICE_BUTTON_KILLSTREAK( 14, "nuke" )
 
 		itemDef
 		{

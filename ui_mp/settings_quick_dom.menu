@@ -23,7 +23,7 @@
 			close "self";
 		}
 
-		#define DONT_DO_THE_SIDEBAR_THINGY
+		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
 		
 		#define DOM_SETTINGS

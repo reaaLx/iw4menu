@@ -56,7 +56,7 @@
 			execNow "profile_menuDvarsFinish; updateGamerProfile; resetViewport";
 		}
 
-		#define BG_1
+		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
 
 		#undef CHOICE_X_START

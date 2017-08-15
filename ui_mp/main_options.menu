@@ -1,7 +1,7 @@
 #include "ui/menudef.h"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_GROUP		"main"
+#define CHOICE_GROUP		"main_options"
 #define CHOICE_SEP_1		4
 
 #include "ui_mp/menustyle.inc"
@@ -42,7 +42,7 @@
 			}
 			execnow "profile_menuDvarsFinish; resetViewport";
 		}
-		#define BG_1
+		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
 
 		CHOICE_MENU_TITLE( "@MENU_OPTIONS_CAPS", 0 0 272 28 1 1 )

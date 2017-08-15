@@ -28,7 +28,7 @@
 			close self;
 		}
 
-		#define BG_2
+		#define BACKGROUND_SETTINGS_ADVANCED
 		#include "ui_mp/blurredbg.inc"
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	

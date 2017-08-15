@@ -43,7 +43,7 @@
 			execnow "profile_menuDvarsFinish; resetViewport";
 		}
 
-		#define BG_1
+		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
 
 

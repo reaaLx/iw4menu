@@ -32,7 +32,7 @@
 			open "main_text";
 		}
 		
-		#define DONT_DO_THE_SIDEBAR_THINGY
+		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
 
 		itemDef

@@ -30,13 +30,17 @@
 	{
 		name "single_popmenu"
 		rect (0-(CHOICE_POPUP_WIDTH/2)) (0-(CHOICE_POPUP_HEIGHT( NUM_INDEX )/2)) CHOICE_POPUP_WIDTH CHOICE_POPUP_HEIGHT( NUM_INDEX ) HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
-		focusColor 1 1 1 1
-	   	style 1
+		popup
+		legacySplitScreenScale
 		visible 1
+		style 1
+		forecolor 1 1 1 1
+		backcolor 1 1 1 1
+		background "white"
+		focuscolor 1 1 1 1
 		fadeCycle 1
 		fadeClamp 1
-		fadeAmount 0.1		
-		popup
+		fadeAmount 0.1
 		onOpen
 		{
 			setLocalVarBool	"ui_centerPopup" ( 1 );

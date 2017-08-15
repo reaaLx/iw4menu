@@ -8,6 +8,11 @@
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
+
+#define BUTTON_GAMERULES_FOCUS \
+		if ( !privatepartyhost( ) ) \
+		{ setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP_LOCKED" ); } \
+		else { setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP" ); }
 {
 	menuDef
 	{
@@ -44,18 +49,19 @@
 			close "self";
 		}
 
-		#define DO_THE_CHICKEN_WING_2
+		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
 
+
 		CHOICE_MENU_TITLE( "@MENU_CREATE_GAME_CAPS", 0 0 272 28 1 1 )
-		CHOICE_BUTTON_FOCUS_VIS(0, "@MENU_START_GAME_CAPS", SETUP_ACTION_START, exec "set ui_hint_text @MENU_DESC_START_MATCH", CLEAR_UI_HINT, 1 )
+		CHOICE_BUTTON_FOCUS_VIS(0, "@MENU_START_GAME_CAPS", SETUP_ACTION_START, setLocalVarString "ui_hint_text" ( "@MENU_DESC_START_MATCH" ), CLEAR_UI_HINT, 1 )
+
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_BUTTON_FOCUS_VIS(1, "@MENU_CHANGE_MAP_CAPS", open "settings_map", exec "set ui_hint_text Change map.", CLEAR_UI_HINT,  1 )
-		CHOICE_BUTTON_FOCUS_VIS(2, "@MENU_CHANGE_GAME_MODE_CAPS", open "settings_gametype", exec "set ui_hint_text Change gametype.", CLEAR_UI_HINT, 1 )
+		CHOICE_BUTTON_FOCUS_VIS(1, "@MENU_CHANGE_MAP_CAPS", open "settings_map", setLocalVarString "ui_hint_text" ( "Change map." ), CLEAR_UI_HINT,  1 )
+		CHOICE_BUTTON_FOCUS_VIS(2, "@MENU_CHANGE_GAME_MODE_CAPS", open "settings_gametype", setLocalVarString "ui_hint_text" ( "Change gametype." ), CLEAR_UI_HINT, 1 )
 		
-		CHOICE_BUTTON_FOCUS_VIS(3, "@MENU_CHANGE_GAME_RULES_CAPS", SETUP_ACTION_RULES, exec "set ui_hint_text Change gametype rules.", CLEAR_UI_HINT, when( dvarString( "ui_gametype" ) != "arena" && dvarString( "ui_gametype" ) != "oneflag" && dvarString( "ui_gametype" ) != "ss" && dvarString( "ui_gametype" ) != "gg" && dvarString( "ui_gametype" ) != "oitc" && dvarString( "ui_gametype" ) != "conf" && dvarString( "ui_gametype" ) != "cranked" && dvarString( "ui_gametype" ) != "infected" && dvarString( "ui_gametype" ) != "tdef" ) )
-		CHOICE_DBUTTON_FOCUS_VIS(3, "@MENU_CHANGE_GAME_RULES_CAPS", exec "set ui_hint_text Unable to change gametype.", CLEAR_UI_HINT, when( dvarString( "ui_gametype" ) == "arena" || dvarString( "ui_gametype" ) == "oneflag" || dvarString( "ui_gametype" ) == "ss" || dvarString( "ui_gametype" ) == "gg" || dvarString( "ui_gametype" ) == "oitc" || dvarString( "ui_gametype" ) == "conf" || dvarString( "ui_gametype" ) == "cranked" || dvarString( "ui_gametype" ) == "infected" || dvarString( "ui_gametype" ) == "tdef" ) )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "@MENU_CHANGE_GAME_RULES_CAPS", SETUP_ACTION_RULES, BUTTON_GAMERULES_FOCUS, CLEAR_UI_HINT, 1, disabled when ( !privatepartyhost( ) ) )
 
 		CHOICE_SEPARATOR( CHOICE_SEP_2 )
 

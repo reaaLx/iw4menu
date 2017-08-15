@@ -1,0 +1,224 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"popup_friends"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+{
+	menuDef
+	{
+		name "popup_friends"
+		rect -250 -184 520 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+		popup
+		legacySplitScreenScale
+		style WINDOW_STYLE_FILLED
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		backColor 1 1 1 1
+		background "white"
+		onOpen
+		{
+			uiScript "LoadFriends";
+			setLocalVarInt "ui_centerPopup" ( 1 );
+		}
+		onClose
+		{
+			setLocalVarInt "ui_centerPopup" ( 0 );
+		}
+		onEsc
+		{
+			close "self";
+		}
+		execKey "F"
+		{
+			escape "self";
+		}
+		itemDef 
+		{ 
+			rect 0 0 520 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			style WINDOW_STYLE_FILLED 
+			foreColor CHOICE_TEXTCOLOR 
+			backColor 0 0 0 0.35 
+			background "white" 
+			decoration 
+			visible 1 
+		} 
+		itemDef 
+		{ 
+			rect -1004 -564 1708 960 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			style WINDOW_STYLE_FILLED 
+			foreColor CHOICE_TEXTCOLOR 
+			backColor 1 1 1 1 
+			background "xpbar_stencilbase" 
+			decoration 
+			visible 1 
+		} 
+		itemDef 
+		{ 
+			rect 0 0 520 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			style WINDOW_STYLE_FILLED 
+			foreColor CHOICE_TEXTCOLOR 
+			backColor 0.5 0.5 0.5 1 
+			background "white" 
+			decoration 
+			visible 1 
+		} 
+		itemDef 
+		{ 
+			rect -150 -44 1708 480 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 1 1 1 0.75 
+			background "mw2_popup_bg_fogstencil" 
+			exp rect x ( 0 - ( ( float( milliseconds() % 60000 ) / 60000 ) * ( 854 ) ) ) 
+		} 
+		itemDef 
+		{ 
+			rect -150 -110 -1708 -480 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0.85 0.85 0.85 1 
+			background "mw2_popup_bg_fogscroll" 
+			exp rect x ( 0 - ( ( float( milliseconds() % 60000 ) / 60000 ) * ( 854 ) ) ) 
+		} 
+		itemDef 
+		{ 
+			rect 0 0 520 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor CHOICE_TEXTCOLOR 
+			background "mockup_popup_bg_stencilfill" 
+		} 
+		itemDef 
+		{ 
+			rect -150 -44 -1708 -480 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 1 1 1 0.75 
+			background "mw2_popup_bg_fogstencil" 
+			exp rect x ( ( 0 - 854 ) + ( ( float( milliseconds() % 50000 ) / 50000 ) * ( 854 ) ) ) 
+		} 
+		itemDef 
+		{ 
+			rect -150 -110 -1708 -480 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0.85 0.85 0.85 1 
+			background "mw2_popup_bg_fogscroll" 
+			exp rect x ( ( 0 - 854 ) + ( ( float(milliseconds() % 50000 ) / 50000 ) * ( 854 ) ) ) 
+		} 
+		itemDef 
+		{ 
+			rect -150 -44 520 0 1 1 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 1 1 1 0 
+			background "small_box_lightfx" 
+			exp rect h ( ( 24 + 3 * 20 ) ) 
+		} 
+		itemDef 
+		{ 
+			rect -64 -64 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_tl" 
+		} 
+		itemDef 
+		{ 
+			rect 0 -64 520 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_t" 
+		} 
+		itemDef 
+		{ 
+			rect 520 -64 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_tr" 
+		} 
+		itemDef 
+		{ 
+			rect 520 0 64 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_r" 
+		} 
+		itemDef 
+		{ 
+			rect 520 370 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_br" 
+		} 
+		itemDef 
+		{ 
+			rect 0 370 520 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_b" 
+		} 
+		itemDef 
+		{ 
+			rect -64 370 64 64 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration							
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_bl" 
+		} 
+		itemDef 
+		{ 
+			rect -64 0 64 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER 
+			decoration 
+			visible 1 
+			style WINDOW_STYLE_SHADER 
+			foreColor 0 0 0 1 
+			background "drop_shadow_l" 
+		}
+		itemDef
+		{
+			name "friendsList"
+			rect 0 22 520 326
+			type ITEM_TYPE_LISTBOX
+			style WINDOW_STYLE_FILLED
+			elementWidth 120
+			elementHeight 16
+			textFont UI_FONT_NORMAL
+			foreColor CHOICE_TEXTCOLOR
+			backColor 0 0 0 0.5
+			outlineColor 0 0 0 0.6
+			textScale .25
+			feeder 61
+			visible 1
+//			numcols			xpos		xwidth		textlen		alignment
+			columns 3		8			16			4			0
+							42			178			51			0
+							226			263			52			0
+			doubleClick
+			{
+				uiScript "JoinFriend";
+			}
+		}
+	}

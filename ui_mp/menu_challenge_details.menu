@@ -20,8 +20,8 @@
 	{
 		name "menu_challenge_details"
 		rect 0 0 640 480 0 0
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
 		fullscreen 1
 		fadeCycle 1
 		fadeClamp 1
@@ -37,205 +37,24 @@
 		{
 			close self;
 		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "mw2_main_background"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 0 0 1708 480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
-		}
-		itemDef
-		{
-			rect 0 0 -1708 -480 0 0
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			textscale 0.55
-			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "mockup_bg_glow"
-			textscale 0.55
-			exp forecolor a ( ( ( sin( milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
-		}
-		itemDef
-		{
-			rect 0 28 640 380 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 -4 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_t"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tr"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 28 32 380 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_r"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 408 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_br"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 408 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_b"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 408 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_bl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 28 32 380 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_l"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0
-			background "big_menu_lightfx"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 0 0 272 28 1 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 6
-			textalignx -78
-			textscale 0.5
-			text "@MPUI_CHALLENGE_CAP"
-		}
-		itemDef
-		{
-			rect 0 0 272 28 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 4
-			textscale 0.5
-			exp text ("@"+tablelookup("mp/challengeTable.csv",4,localvarstring("ui_challengeTierTable"),1))
-		}
-		itemDef
-		{
-			rect -272 0 272 18 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 20
-			textscale 0.375
-			visible when (!dvarint("xblive_privatematch" ))
-		}
+		#define BACKGROUND_SIDEBAR
+		#include "ui_mp/bg.inc"
+		
+		PREPROC_SHADER_DRAW( 0 28 640 380 4 1, ORIGIN_NONE, "white", 1 1 1 0.15, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 4 1, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 640 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 408 640 32 4 1, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( -32 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1, 0, 0, 0 0 0 0 )
+		
+		CHOICE_MENU_TITLE( "@MPUI_CHALLENGE_CAP", 0 0 272 28 1 1  )
+
+		PREPROC_TEXT_DRAW_ADV_VIS( 0 0 272 28 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/challengeTable.csv", 4, localvarstring( "ui_challengeTierTable" ), 1 ), 0.5, 0, 0, 4, 9, CHOICE_TEXTCOLOR, 1 )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -272 0 272 18 3 1, ORIGIN_NONE, "white", 1 1 1 0.65, 0 0 0 0, 1, when ( !dvarint( "xblive_privatematch" ) ) textfont 3 textalign 4 textalignx 20 textscale 0.375 )
+
 		#include "ui_mp/challenges.inc"
 		LOCAL_CHD_BUTTON ( 0, 0 )
 		LOCAL_CHD_BUTTON ( 1, 1 )

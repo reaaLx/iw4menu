@@ -51,7 +51,7 @@
 			decoration 
 			textScale 0.55
 			visible 1
-			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) )  )
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -62,7 +62,7 @@
 			decoration 
 			textScale 0.55
 			visible 1
-			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) )  )
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -73,7 +73,7 @@
 			decoration 
 			textScale 0.55
 			visible 1
-   		    exp forecolor a ( ( ( ( sin milliseconds( ) / 1500 ) + 1 ) * 0.250000 ) + 0.250000  )  
+   		    exp forecolor a ( ( ( ( sin milliseconds( ) / 1500 ) + 1 ) * 0.25 ) + 0.25 )  
 		}
 		itemDef
 		{
@@ -84,7 +84,7 @@
 			decoration 
 			textScale 0.55
 			visible 1
-     		exp forecolor a ( ( ( ( sin milliseconds( ) / 480 ) + 1 ) * 0.250000 ) + 0.250000  )
+     		exp forecolor a ( ( ( ( sin milliseconds( ) / 480 ) + 1 ) * 0.25 ) + 0.25 )
 		}
 		itemDef
 		{

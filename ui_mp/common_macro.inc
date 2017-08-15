@@ -52,7 +52,7 @@
 #define PREPROC_TEXT_DRAW( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
 itemDef \
 { \
-	rect			prect 0 0 \
+	rect			prect \
 	origin 			porigin \
 	textalignx		palignx \
 	textaligny		paligny \
@@ -188,11 +188,10 @@ itemDef \
 		}
 
 // generic text draw using exp
-#define PREPROC_TEXT_DRAW_EXP( prect, porigin, ptext, psize, palignx, paligny, palign, pcolor ) \
+#define PREPROC_TEXT_DRAW_EXP( prect, ptext, psize, palignx, paligny, palign, pcolor ) \
 itemDef \
 { \
 	rect			prect \
-	origin 			porigin \
 	textalignx		palignx \
 	textaligny 		paligny \
 	textstyle		ITEM_TEXTSTYLE_SHADOWED \

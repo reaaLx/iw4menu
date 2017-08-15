@@ -66,6 +66,32 @@ CAC_THING_3 	\
 CAC_THING_3_1 	\
 CAC_THING_4
 
+#define LOCAL_CLOSE_WEAPON_ALL \
+close "popup_cac_weapon_primary"; \
+close "popup_primary_attachments"; \
+close "popup_secondary_attachments"  \
+close "popup_cac_weapon_secondary"; \
+close "popup_cac_handgun_secondary"; \
+close "popup_cac_machinePistols_secondary"; \
+close "popup_cac_assault_primary"; \
+close "popup_cac_SMG_primary"; \
+close "popup_cac_LMG_primary"; \
+close "popup_cac_sniper_primary"; \
+close "popup_cac_shotgun_primary"; \
+close "popup_cac_assault_secondary"; \
+close "popup_cac_SMG_secondary"; \
+close "popup_cac_sniper_secondary"; \
+close "popup_cac_shotgun_secondary"; \
+close "popup_cac_template"; \
+close "popup_cac_primary_camo"; \
+close "popup_cac_secondary_camo"; \
+close "popup_cac_bling"; \
+close "popup_cac_perk2"; \
+close "popup_cac_rocket_secondary"; \
+close "popup_primary_attachments_bling"; \
+close "popup_secondary_attachments_bling"; \
+close "popup_cac_other_primary"; \
+
 #define CAC_STATNUM( statNum ) \
 setPlayerData("customClasses",statNum,"inUse","true"); \
 setlocalVarInt "classIndex" (statNum); \
@@ -91,3 +117,8 @@ when ( getPlayerData( "prestige" ) \
 
 #define LOCAL_WEAPON( itemIndex, statNum ) \
 		CHOICE_BUTTON_FOCUS( itemIndex, LOCAL_WEAPON_NAME ( statNum ), LOCAL_WPN_ACTION1( statNum ), onFocusArg, leaveFocusArg )
+
+#define LOCAL_WEAPON_INFO_WINDOW( highlight_dvar ) \
+		PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH) 0 854 CHOICE_POPUP_HEIGHT( 7 ) CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "white", CHOICE_POPUP_BORDER_COLOR, 1, 2, CHOICE_POPUP_BORDER_COLOR visible 1 ) \
+
+

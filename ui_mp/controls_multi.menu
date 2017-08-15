@@ -51,7 +51,7 @@
 		
 // 		pointless for so many iw4 clients, unless used on REACT.IW4 due to having name changing ingame support.
 //		19-02-2017 - needs fixing
-//		CHOICE_DVAREDIT_VIS( 29, "@MENU_PLAYER_NAME", "ui_name", 15, ;, 1 )
+//		CHOICE_DVAREDIT_VIS( 29, "@MENU_PLAYER_NAME", "ui_name", 15, ;, 1, 0 )
 
 // 		it appears this doesn't work due to only having 1 language I suppose?
 

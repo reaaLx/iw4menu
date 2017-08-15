@@ -1,5 +1,4 @@
 #include "ui/menudef.h"
-#include "ui/widescreen.inc"
 #include "ui/choices_setup_common.menu"
 #include "ui_mp/iw4_macros.inc"
 
@@ -32,7 +31,7 @@
 		{
 			close self;
 		}
-		#define BG_1
+		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
 
 		#undef CHOICE_Y_START

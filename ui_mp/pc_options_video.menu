@@ -1,7 +1,7 @@
 #include "ui/menudef.h"
 #include "ui_mp/iw4_macros.inc"
 
-#define CHOICE_GROUP		"pc_options"
+#define CHOICE_GROUP		"pc_options_video"
 #define CHOICE_SEP_1		4
 
 #include "ui_mp/menustyle.inc"
@@ -43,7 +43,7 @@
 			execNow "profile_menuDvarsFinish; resetViewport";
 		}
 
-		#define BG_1
+		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
 
 		#undef CHOICE_X_START
@@ -60,17 +60,19 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X -130
 
-		CHOICE_DVARENUMLIST_FOCUS( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARENUMLIST_FOCUS_EX( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), ; )
 		CHOICE_DVARSLIDER_FOCUS( 21, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, setLocalVarBool "ui_brightness_hint_display" ( 1 ),setLocalVarBool "ui_brightness_hint_display" ( 0 ), ExecNow "profile_menuDvarsFinish"; )
 
 		#undef HIGHTLIGHT_BACKCOLOR
 		#define HIGHTLIGHT_BACKCOLOR 0 0 0 0
+		
+		// repositioned accordingly to stock IW4
+		#undef CHOICE_X_START
+		#define CHOICE_X_START -34
+
 		CHOICE_BUTTON_NOHI( 23, "@MENU_ADVANCED_VIDEO", open "pc_options_advanced_video"; )
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
-		
-//		CHOICE_DVARENUMLIST( 21, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ) )
-//		CHOICE_DVARSLIDER( 22, "@MENU_BRIGHTNESS", "profileMenuOption_gamma", 0.8, 0.5, 3, setlocalVarBool "ui_showApply" ( 1 ) )
 		
 		itemDef
 		{
