@@ -12,40 +12,34 @@
 		name "options_graphics_texture"
 		fullscreen 0
 		rect 0 0 640 480
-		focusColor 1 1 1 1		
-		foreColor 1 1 1 1
+		focusColor CHOICE_TEXTCOLOR	
+		foreColor CHOICE_TEXTCOLOR
 		blurWorld 7
 		onOpen
 		{
-			setLocalVarBool "ui_showApply" ( 0 );
 			setLocalVarBool "ui_hideBack" ( 1 );
-			Exec "setfromdvar ui_r_picmip r_picmip";
-			Exec "setfromdvar ui_r_picmip_bump r_picmip_bump";
-			Exec "setfromdvar ui_r_picmip_spec r_picmip_spec";
-			Exec "setfromdvar ui_r_picmip_manual r_picmip_manual";
-			ExecNow "profile_menuDvarsSetup; resetViewport";
+			setLocalVarBool "ui_showApply" ( 0 );
+			exec "setfromdvar ui_r_picmip			r_picmip";
+			exec "setfromdvar ui_r_picmip_bump		r_picmip_bump";
+			exec "setfromdvar ui_r_picmip_spec		r_picmip_spec";
+			exec "setfromdvar ui_r_picmip_manual	r_picmip_manual";
+			execNow "profile_menuDvarsSetup; resetViewport";
 		}
-		onClose
+		onRequestClose
 		{
 			setLocalVarBool "ui_hideBack" ( 0 );
 		}
-		onESC
+		onEsc
 		{
 			close "self";
-			if ( !( menuisopen( "pc_options_advanced_video" ) || menuisopen( "pc_options_video" ) || menuisopen( "pc_options_Audio" ) || menuisopen( "pc_options_controls" ) || menuisopen( "pc_options_voice" ) ) && localvarbool( "ui_showPicApply" ) && !localvarbool( "ui_showApply" ) && !localvarbool( "ui_showAudioApply" )  )
+			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
 			{
-				execNow "setfromdvar r_picmip ui_r_picmip";
-				execNow "setfromdvar r_picmip_bump ui_r_picmip_bump";
-				execNow "setfromdvar r_picmip_spec ui_r_picmip_spec";
-				execNow "setfromdvar r_picmip_manual ui_r_picmip_manual";
-				exec "wait; r_applyPicmip";
-				setLocalVarBool "ui_showPicApply" ( 0 );
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				{
+					open "all_restart_popmenu";
+				}
 			}
-			if ( !( menuisopen( "pc_options_advanced_video" ) || menuisopen( "pc_options_video" ) || menuisopen( "pc_options_Audio" ) || menuisopen( "pc_options_controls" ) || menuisopen( "pc_options_voice" ) ) && localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" )  )
-			{
-				open "all_restart_popmenu";
-			}
-			ExecNow "profile_menuDvarsFinish; resetViewport";
+			execNow "profile_menuDvarsFinish; resetViewport";
 		}
 		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"
@@ -58,13 +52,13 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X -130
 
-		CHOICE_DVARSTRINGLIST( 20, "@MENU_TEXTURE_MIPMAPS", "r_texFilterMipMode", TEXTURE_MM_STRLIST, setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARSTRINGLIST( 20, "@MENU_TEXTURE_MIPMAPS", "r_texFilterMipMode", { "@MENU_AUTOMATIC" "Unchanged" "@MENU_BILINEAR" "Force Bilinear" "@MENU_TRILINEAR" "Force Trilinear" }, setlocalVarBool "ui_showApply" ( 1 ) )
 		CHOICE_DVARSLIDER( 21, "@MENU_TEXTURE_ANISOTROPY", "r_texFilterAnisoMin", 1, 1, 16, setlocalVarBool "ui_showApply" ( 1 ) )
 
-		CHOICE_DVARFLOATLIST( 22, "@MENU_TEXTURE_QUALITY", "ui_r_picmip_manual", TEXTURE_QUALITY_STRLIST, setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARFLOATLIST_VIS( 23, "@MENU_TEXTURE_RESOLUTION", "ui_r_picmip", TEXTURE_RESOLUTION_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
-		CHOICE_DVARFLOATLIST_VIS( 24, "@MENU_NORMAL_MAP_RESOLUTION", "ui_r_picmip_bump", TEXTURE_RESOLUTION_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
-		CHOICE_DVARFLOATLIST_VIS( 25, "@MENU_SPECULAR_MAP_RESOLUTION", "ui_r_picmip_spec", TEXTURE_RESOLUTION_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+		CHOICE_DVARFLOATLIST( 22, "@MENU_TEXTURE_QUALITY", "ui_r_picmip_manual", { "@MENU_AUTOMATIC" 0 "@MENU_MANUAL" 1 }, setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARFLOATLIST_VIS( 23, "@MENU_TEXTURE_RESOLUTION", "ui_r_picmip", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+		CHOICE_DVARFLOATLIST_VIS( 24, "@MENU_NORMAL_MAP_RESOLUTION", "ui_r_picmip_bump", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+		CHOICE_DVARFLOATLIST_VIS( 25, "@MENU_SPECULAR_MAP_RESOLUTION", "ui_r_picmip_spec", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 

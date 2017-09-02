@@ -181,104 +181,17 @@
 			text "@MENU_TITLE_CAPS"
 			visible when ( dvarbool( "wideScreen" ) )
 		}
-		itemDef
-		{
-			rect 0 28 640 356 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 -4 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_t"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tr"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 28 32 356 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_r"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 384 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_br"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 384 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_b"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 384 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_bl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 28 32 356 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_l"
-			textscale 0.55
-			visible when ( 1 )
-		}
+		
+		PREPROC_SHADER_DRAW( 0 28 640 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "white", 1 1 1 0.15 )
+		PREPROC_SHADER_DRAW( -32 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 384 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
+
 		itemDef
 		{
 			rect -272 0 0 18 3 1
@@ -358,6 +271,7 @@
 			visible 1
 			forecolor 1 1 1 1
 			textfont 3
+			textstyle 8
 			textalign 9
 			textscale 0.375
 			exp rect x ( 0 - ( ( 208 ) / 2 ) )
@@ -429,144 +343,13 @@
 		LOCAL_CARDTITLE( 47, "cardTitle9_1", 25 )
 		LOCAL_CARDTITLE( 48, "cardTitle9_2", 26 )
 
-		itemDef
-		{
-			rect -304 140 -32 128 2 1
-			visible 1
-			group "left_arrow"
-			style 3
-			forecolor 1 1 1 1
-			background "summary_arrow"
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) )
-			action
-			{
-				if ( localvarint( "ui_pageIndex" ) )
-				{
-					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
-				}
-			}
-		}
-		itemDef
-		{
-			rect -304 140 32 128 2 1
-			visible 1
-			forecolor 1 1 1 1
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) )
-			action
-			{
-				if ( localvarint( "ui_pageIndex" ) )
-				{
-					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
-				}
-			}
-			onFocus
-			{
-				play "mouse_over";
-				setItemColor "left_arrow" forecolor 1 1 "0.5" 1;
-			}
-			leaveFocus
-			{
-				setItemColor "left_arrow" forecolor 1 1 1 1;
-			}
-		}
-		itemDef
-		{
-			rect 272 140 32 128 2 1
-			visible 1
-			group "right_arrow"
-			style 3
-			forecolor 1 1 1 1
-			background "summary_arrow"
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && dvarbool( "wideScreen" ) )
-			action
-			{
-				if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
-				{
-					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
-				}
-			}
-			onFocus
-			{
-				play "mouse_over";
-				setItemColor "right_arrow" forecolor 1 1 "0.5" 1;
-			}
-			leaveFocus
-			{
-				setItemColor "right_arrow" forecolor 1 1 1 1;
-			}
-		}
-		itemDef
-		{
-			rect -260 26 -20 80 2 1
-			decoration
-			visible 1
-			group "left_arrow"
-			style 3
-			forecolor 1 1 1 1
-			background "summary_arrow"
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) )
-		}
-		itemDef
-		{
-			rect -260 26 20 80 2 1
-			visible 1
-			forecolor 1 1 1 1
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) )
-			action
-			{
-				if ( localvarint( "ui_pageIndex" ) )
-				{
-					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
-				}
-			}
-			onFocus
-			{
-				play "mouse_over";
-				setItemColor "left_arrow" forecolor 1 1 "0.5" 1;
-			}
-			leaveFocus
-			{
-				setItemColor "left_arrow" forecolor 1 1 1 1;
-			}
-		}
-		itemDef
-		{
-			rect 240 26 20 80 2 1
-			visible 1
-			group "right_arrow"
-			style 3
-			forecolor 1 1 1 1
-			background "summary_arrow"
-			type 1
-			textscale 0.55
-			visible when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && !dvarbool( "wideScreen" ) )
-			action
-			{
-				if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
-				{
-					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
-				}
-			}
-			onFocus
-			{
-				play "mouse_over";
-				setItemColor "right_arrow" forecolor 1 1 "0.5" 1;
-			}
-			leaveFocus
-			{
-				setItemColor "right_arrow" forecolor 1 1 1 1;
-			}
-		}
+		SINGULAR_BUTTON_RAW_VIS(-304 140 -32 128 2 1, "left_arrow", "summary_arrow", WINDOW_STYLE_SHADER, if ( localvarint( "ui_pageIndex" ) ) { setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 ); }, when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) ) )
+		SINGULAR_BUTTON_RAW_FOCUS_BGLESS_VIS(-304 140 32 128 2 1, WINDOW_STYLE_EMPTY, if ( localvarint( "ui_pageIndex" ) ) { setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 ); }, setItemColor "left_arrow" forecolor 1 1 "0.5" 1;, setItemColor "left_arrow" forecolor 1 1 1 1;, visible when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) ) )
+		SINGULAR_BUTTON_RAW_FOCUS_VIS(272 140 32 128 2 1, "right_arrow", "summary_arrow", WINDOW_STYLE_SHADER,  if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) ) { setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 ); }, setItemColor "right_arrow" forecolor 1 1 "0.5" 1;, setItemColor "right_arrow" forecolor 1 1 1 1;, when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && dvarbool( "wideScreen" ) ) )
+		SINGULAR_BUTTON_RAW_VIS(-260 26 -20 80 2 1, "left_arrow", "summary_arrow", WINDOW_STYLE_SHADER, ;, when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) ) )
+		SINGULAR_BUTTON_RAW_FOCUS_BGLESS_VIS(-260 26 20 80 2 1, WINDOW_STYLE_EMPTY, if ( localvarint( "ui_pageIndex" ) ) { setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 ); }, setItemColor "left_arrow" forecolor 1 1 "0.5" 1;, setItemColor "left_arrow" forecolor 1 1 1 1;, when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) ) )
+		SINGULAR_BUTTON_RAW_FOCUS_VIS(240 26 20 80 2 1, "right_arrow", "summary_arrow", WINDOW_STYLE_SHADER, if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) ) { setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 ); }, setItemColor "right_arrow" forecolor 1 1 "0.5" 1;, setItemColor "right_arrow" forecolor 1 1 1 1;, when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && !dvarbool( "wideScreen" ) ) )
+
 		itemDef
 		{
 			rect -64 -20 336 20 1 3

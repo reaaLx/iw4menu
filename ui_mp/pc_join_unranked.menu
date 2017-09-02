@@ -34,97 +34,17 @@
 		
 		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
+		
+		PREPROC_SHADER_DRAW( 0 42 640 318 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "white", 1 1 1 0.15 )
+		PREPROC_SHADER_DRAW( -32 10 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 10 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 10 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 42 32 318 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 360 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 360 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 360 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 42 32 318 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
 
-		itemDef
-		{
-			rect 0 42 640 318 4 1
-			style 3
-			foreColor 1 1 1 0.15
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect -32 10 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tl"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 0 10 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_t"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 640 10 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tr"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 640 42 32 318 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_r"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 640 360 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_br"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect 0 360 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_b"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 360 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_bl"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 42 32 318 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_l"
-			textscale 0.55
-		}		
 		#include "ui_mp/joinserver.inc"
 
 	}	

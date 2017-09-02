@@ -32,7 +32,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
 			{
 				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )

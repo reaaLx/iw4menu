@@ -108,14 +108,14 @@
 
 		CHOICE_SEPARATOR( CHOICE_SEP_6 )
 		
-		CHOICE_BUTTON_FOCUS(9, "@MENU_OPTIONS_CAPS", open "options_graphics", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_OPTIONS" ), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS(9, "@MENU_OPTIONS_CAPS", open "main_options", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_OPTIONS" ), CLEAR_UI_HINT )
 		
 		CHOICE_SEPARATOR( CHOICE_SEP_7 )
 		
 		CHOICE_BUTTON_FOCUS(10, "@MENU_QUIT_CAPS", open "quit_popmenu", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_QUIT" ), CLEAR_UI_HINT )
 
 
-		CHOICE_DESCRIPTION( 1 )
+		CHOICE_DESCRIPTION( 1, 355 )
 
 		// card base
 		PREPROC_SHADER_DRAW_ALIGNED( -208 18 208 70 3 1, ORIGIN_NONE, "white", 0 0 0 0.25, 0 0 0 0, 3 )

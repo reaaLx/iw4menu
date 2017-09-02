@@ -62,3 +62,131 @@
 // playercard icon stats
 
 // playercard emblem stats
+
+/////////////////
+// weapon info //
+/////////////////
+
+// assault
+#define REF_M4              "m4"
+#define REF_FAMAS           "famas"
+#define REF_SCAR            "scar"
+#define REF_TAVOR           "tavor"
+#define REF_FAL             "fal"
+#define REF_M16             "m16"
+#define REF_MASADA          "masada"
+#define REF_FN2000          "fn2000"
+#define REF_AK47            "ak47"
+
+#define WEAPON_M4           tablelookup( "mp/statsTable.csv" , 4 , REF_M4 , 3 )
+#define WEAPON_FAMAS        tablelookup( "mp/statsTable.csv" , 4 , REF_FAMAS , 3 )
+#define WEAPON_SCAR         tablelookup( "mp/statsTable.csv" , 4 , REF_SCAR , 3 )
+#define WEAPON_TAVOR        tablelookup( "mp/statsTable.csv" , 4 , REF_TAVOR , 3 )
+#define WEAPON_FAL          tablelookup( "mp/statsTable.csv" , 4 , REF_FAL , 3 )
+#define WEAPON_M16          tablelookup( "mp/statsTable.csv" , 4 , REF_M16 , 3 )
+#define WEAPON_MASADA       tablelookup( "mp/statsTable.csv" , 4 , REF_MASADA , 3 )
+#define WEAPON_FN2000       tablelookup( "mp/statsTable.csv" , 4 , REF_FN2000 , 3 )
+#define WEAPON_AK47         tablelookup( "mp/statsTable.csv" , 4 , REF_AK47 , 3 )
+
+// smg
+#define REF_MP5K            "mp5k"
+#define REF_UMP45           "ump45"
+#define REF_KRISS           "kriss"
+#define REF_P90             "p90"
+#define REF_TAVOR           "uzi"
+
+#define WEAPON_MP5K         tablelookup( "mp/statsTable.csv" , 4 , REF_MP5K , 3 )
+#define WEAPON_UMP45        tablelookup( "mp/statsTable.csv" , 4 , REF_UMP45 , 3 )
+#define WEAPON_KRISS        tablelookup( "mp/statsTable.csv" , 4 , REF_KRISS , 3 )
+#define WEAPON_P90          tablelookup( "mp/statsTable.csv" , 4 , REF_P90 , 3 )
+#define WEAPON_TAVOR        tablelookup( "mp/statsTable.csv" , 4 , REF_TAVOR , 3 )
+
+// lmg
+
+#define REF_SA80            "sa80"
+#define REF_RPD             "rpd"
+#define REF_MG4             "mg4"
+#define REF_AUG             "aug"
+#define REF_M240            "m240"
+
+#define WEAPON_SA80         tablelookup( "mp/statsTable.csv" , 4 , REF_SA80 , 3 )
+#define WEAPON_RPD          tablelookup( "mp/statsTable.csv" , 4 , REF_RPD , 3 )
+#define WEAPON_MG4          tablelookup( "mp/statsTable.csv" , 4 , REF_MG4 , 3 )
+#define WEAPON_AUG          tablelookup( "mp/statsTable.csv" , 4 , REF_AUG , 3 )
+#define WEAPON_M240         tablelookup( "mp/statsTable.csv" , 4 , REF_M240 , 3 )
+
+// sniper
+
+#define REF_CHEYTAC         "cheytac"
+#define REF_BARRETT         "barrett"
+#define REF_WA2000          "wa2000"
+#define REF_M21             "m21"
+
+#define WEAPON_CHEYTAC      tablelookup( "mp/statsTable.csv" , 4 , WEAPON_CHEYTAC , 3 )
+#define WEAPON_BARRETT      tablelookup( "mp/statsTable.csv" , 4 , WEAPON_BARRETT , 3 )
+#define WEAPON_WA2000       tablelookup( "mp/statsTable.csv" , 4 , WEAPON_WA2000 , 3 )
+#define WEAPON_M21          tablelookup( "mp/statsTable.csv" , 4 , WEAPON_M21 , 3 )
+
+// machine pistol
+
+#define REF_PP2000          "pp2000"
+#define REF_GLOCK           "glock"
+#define REF_BARETTA393      "baretta393"
+#define REF_TMP             "tmp"
+
+#define WEAPON_PP2000       tablelookup( "mp/statsTable.csv" , 4 , REF_PP2000 , 3 )
+#define WEAPON_GLOCK        tablelookup( "mp/statsTable.csv" , 4 , REF_GLOCK , 3 )
+#define WEAPON_BARETTA393   tablelookup( "mp/statsTable.csv" , 4 , REF_BARETTA393 , 3 )
+#define WEAPON_TMP          tablelookup( "mp/statsTable.csv" , 4 , REF_TMP , 3 )
+
+// shotgun
+
+#define REF_SPAS12          "spas12"
+#define REF_AA12            "aa12"
+#define REF_STRIKER         "striker"
+#define REF_RANGER          "ranger"
+#define REF_M1014           "m1014"
+#define REF_MODEL1887       "model1887"
+
+#define WEAPON_SPAS12       tablelookup( "mp/statsTable.csv" , 4 , REF_SPAS12 , 3 )
+#define WEAPON_AA12         tablelookup( "mp/statsTable.csv" , 4 , REF_AA12 , 3 )
+#define WEAPON_STRIKER      tablelookup( "mp/statsTable.csv" , 4 , REF_STRIKER , 3 )
+#define WEAPON_RANGER       tablelookup( "mp/statsTable.csv" , 4 , REF_RANGER , 3 )
+#define WEAPON_M1014        tablelookup( "mp/statsTable.csv" , 4 , REF_M1014 , 3 )
+#define WEAPON_MODEL1887    tablelookup( "mp/statsTable.csv" , 4 , REF_MODEL1887 , 3 )
+
+// pistol
+
+#define REF_USP             "usp"
+#define REF_COLTANACONDA    "coltanaconda"
+#define REF_BERETTA         "beretta"
+#define REF_DESERTEAGLE     "deserteagle"
+
+#define WEAPON_USP          tablelookup( "mp/statsTable.csv" , 4 , REF_USP , 3 )
+#define WEAPON_COLTANACONDA tablelookup( "mp/statsTable.csv" , 4 , REF_COLTANACONDA , 3 )
+#define WEAPON_BARETTA      tablelookup( "mp/statsTable.csv" , 4 , REF_BARETTA , 3 )
+#define WEAPON_DESERTEAGLE  tablelookup( "mp/statsTable.csv" , 4 , REF_DESERTEAGLE , 3 )
+
+// rocket launchers
+
+#define REF_AT4             "at4"
+#define REF_M79             "m79"
+#define REF_STINGER         "stinger"
+#define REF_JAVELIN         "javelin"
+#define REF_RPG             "rpg"
+
+#define WEAPON_AT4          tablelookup( "mp/statsTable.csv" , 4 , REF_AT4 , 3 )
+#define WEAPON_M79          tablelookup( "mp/statsTable.csv" , 4 , REF_M79 , 3 )
+#define WEAPON_STINGER      tablelookup( "mp/statsTable.csv" , 4 , REF_STINGER , 3 )
+#define WEAPON_JAVELIN      tablelookup( "mp/statsTable.csv" , 4 , REF_JAVELIN , 3 )
+#define WEAPON_RPG          tablelookup( "mp/statsTable.csv" , 4 , REF_RPG , 3 )
+
+// extra grenades
+
+#define REF_FLASH			"flash_grenade"
+#define REF_CONCUSSION		"concussion_grenade"
+#define REF_SMOKE			"smoke_grenade"
+
+#define STAT_FLASH          tablelookup( "mp/statstable.csv", 4, REF_FLASH, 3 )
+#define STAT_CONCUSSION     tablelookup( "mp/statstable.csv", 4, REF_CONCUSSION, 3 )
+#define STAT_SMOKE          tablelookup( "mp/statstable.csv", 4, REF_SMOKE, 3 )

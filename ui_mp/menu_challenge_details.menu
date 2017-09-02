@@ -35,25 +35,31 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 		}
 		#define BACKGROUND_SIDEBAR
 		#include "ui_mp/bg.inc"
 		
-		PREPROC_SHADER_DRAW( 0 28 640 380 4 1, ORIGIN_NONE, "white", 1 1 1 0.15, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( -32 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( 0 -4 640 32 4 1, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( 640 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( 640 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( 640 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( 0 408 640 32 4 1, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( -32 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1, 0, 0, 0 0 0 0 )
-		PREPROC_SHADER_DRAW( -32 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1, 0, 0, 0 0 0 0 )
+		PREPROC_SHADER_DRAW( 0 28 640 380 4 1, ORIGIN_NONE, "white", 1 1 1 0.15 )
+		PREPROC_SHADER_DRAW( -32 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 4 1, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 4 1, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 408 640 32 4 1, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 408 32 32 4 1, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 28 32 380 4 1, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
 		
 		CHOICE_MENU_TITLE( "@MPUI_CHALLENGE_CAP", 0 0 272 28 1 1  )
 
 		PREPROC_TEXT_DRAW_ADV_VIS( 0 0 272 28 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/challengeTable.csv", 4, localvarstring( "ui_challengeTierTable" ), 1 ), 0.5, 0, 0, 4, 9, CHOICE_TEXTCOLOR, 1 )
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -272 0 272 18 3 1, ORIGIN_NONE, "white", 1 1 1 0.65, 0 0 0 0, 1, when ( !dvarint( "xblive_privatematch" ) ) textfont 3 textalign 4 textalignx 20 textscale 0.375 )
+
+		#undef HIGHLIGHT_SHADER_ART
+		#define HIGHLIGHT_SHADER_ART		"popup_button_selection_bar_short"
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		-76
 
 		#include "ui_mp/challenges.inc"
 		LOCAL_CHD_BUTTON ( 0, 0 )
@@ -292,214 +298,51 @@
 			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 1 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
 			exp text ( "@MPUI_UNLOCKS_CAMOS" )
 		}
-		itemDef
-		{
-			rect 0 243 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor g ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor b ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor a ( ( 0.65 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 1 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_I" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 1 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 258 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor g ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor b ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor a ( ( 0.65 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 2 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_II" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 2 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 273 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor g ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor b ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor a ( ( 0.65 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 3 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_III" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 3 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 288 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor g ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor b ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor a ( ( 0.65 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 4 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_IV" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 4 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 303 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor g ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor b ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor a ( ( 0.65 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 5 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_V" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 5 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 318 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor g ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor b ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor a ( ( 0.65 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 6 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "attachment" )
-			exp text ( locstring( "@MPUI_VI" , "@" + tablelookup( "mp/attachmentTable.csv" , 4 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 6 ) - 1 ) ) , 3 ) ) )
-		}
-		itemDef
-		{
-			rect 0 243 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor g ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor b ( ( 0.85 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			exp forecolor a ( ( 0.65 * ( 1 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 1 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 1 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 1 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_I" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 1 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 258 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor g ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor b ( ( 0.85 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			exp forecolor a ( ( 0.65 * ( 2 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 2 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 2 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 2 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_II" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 2 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 273 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor g ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor b ( ( 0.85 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			exp forecolor a ( ( 0.65 * ( 3 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 3 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 3 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 3 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_III" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 3 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 288 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor g ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor b ( ( 0.85 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			exp forecolor a ( ( 0.65 * ( 4 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 4 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 4 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 4 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_IV" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 4 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 303 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor g ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor b ( ( 0.85 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			exp forecolor a ( ( 0.65 * ( 5 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 5 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 5 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 5 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_V" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 5 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 318 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor g ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor b ( ( 0.85 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			exp forecolor a ( ( 0.65 * ( 6 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 6 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 6 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 6 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_VI" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 6 ) - 1 ) ) , 2 ) ) )
-		}
-		itemDef
-		{
-			rect 0 333 -272 20 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textscale 0.375
-			exp forecolor r ( ( 0.85 * ( 7 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 7 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 7 ) )
-			exp forecolor g ( ( 0.85 * ( 7 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 7 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 7 ) )
-			exp forecolor b ( ( 0.85 * ( 7 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.85 * ( 7 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 7 ) )
-			exp forecolor a ( ( 0.65 * ( 7 < int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( 0.65 * ( 7 > int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) ) + ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) == 7 ) )
-			visible when ( ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 7 ) - 1 ) ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_unlockType" ) == "camo" )
-			exp text ( locstring( "@MPUI_VII" , "@" + tablelookup( "mp/camoTable.csv" , 1 , ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , ( 4 + 7 ) - 1 ) ) , 2 ) ) )
-		}
+
+		// defintions to reduce the clunk within PREPROC_TEXT_DRAW_EXP_RGBA_VIS()
+		#define PREPROC_TEXT_ATTACHMENT( text, num_id ) \
+				locstring(text,"@"+tablelookup("mp/attachmentTable.csv",4,(tablelookup("mp/unlockTable.csv",0,localvarstring("ui_selected_ref"),(4+num_id)-1)),3))
+		
+		#define PREPROC_FORECOLOR_ATTACHMENT( num_id ) \
+				(0.85*(num_id<int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1)))) \
+				+(0.85*(num_id>int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1)))) \
+				+(int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))==num_id)
+				
+		#define PREPROC_VIS_ATTACHMENT( num_id ) \
+				when((tablelookup("mp/unlockTable.csv",0,localvarstring("ui_selected_ref"),(4+num_id)-1))!="" \
+				&&!(int(tablelookup("mp/allChallengesTable.csv",0,localvarstring("ui_selected_ref"), \
+				6+((int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))-1)*2)))=="") \
+				&&localvarstring("ui_selected_unlockType")=="attachment")
+
+		#define PREPROC_TEXT_CAMO( text, num_id ) \
+				locstring(text,"@"+tablelookup("mp/camoTable.csv",1,(tablelookup("mp/unlockTable.csv",0,localvarstring("ui_selected_ref"),(4+num_id)-1)),2))
+		
+		#define PREPROC_FORECOLOR_CAMO( num_id ) \
+				(0.85*(num_id<int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1)))) \
+				+(0.85*(num_id>int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1)))) \
+				+(int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))==num_id)
+				
+		#define PREPROC_VIS_CAMO( num_id ) \
+				when((tablelookup("mp/unlockTable.csv",0,localvarstring("ui_selected_ref"),(4+num_id)-1))!="" \
+				&&!(int(tablelookup("mp/allChallengesTable.csv",0,localvarstring("ui_selected_ref"), \
+				6+((int(max(getplayerdata("challengeState",localvarstring("ui_selected_ref")),1))-1)*2)))=="") \
+				&&localvarstring("ui_selected_unlockType")=="camo")
+		
+		//unlock attachment string preprocessor
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 243 -272 20 2 1, PREPROC_TEXT_ATTACHMENT( "@MPUI_I", 1 ),PREPROC_FORECOLOR_ATTACHMENT( 1 ), PREPROC_VIS_ATTACHMENT( 1 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 258 -272 20 2 1, PREPROC_TEXT_ATTACHMENT( "@MPUI_II", 2 ),PREPROC_FORECOLOR_ATTACHMENT( 2 ), PREPROC_VIS_ATTACHMENT( 2 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 273 -272 20 2 1, PREPROC_TEXT_ATTACHMENT( "@MPUI_III", 3 ),PREPROC_FORECOLOR_ATTACHMENT( 3 ), PREPROC_VIS_ATTACHMENT( 3 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 288 -272 20 2 1, PREPROC_TEXT_ATTACHMENT( "@MPUI_IV", 4 ),PREPROC_FORECOLOR_ATTACHMENT( 4 ), PREPROC_VIS_ATTACHMENT( 4 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 303 -272 20 2 1, PREPROC_TEXT_ATTACHMENT( "@MPUI_V", 5 ),PREPROC_FORECOLOR_ATTACHMENT( 5 ), PREPROC_VIS_ATTACHMENT( 5 ) )
+		//unlock camo string preprocessor
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 243 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_I", 1 ), PREPROC_FORECOLOR_CAMO( 1 ), PREPROC_VIS_CAMO( 1 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 258 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_II", 2 ), PREPROC_FORECOLOR_CAMO( 2 ), PREPROC_VIS_CAMO( 2 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 273 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_III", 3 ), PREPROC_FORECOLOR_CAMO( 3 ), PREPROC_VIS_CAMO( 3 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 288 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_IV", 4 ), PREPROC_FORECOLOR_CAMO( 4 ), PREPROC_VIS_CAMO( 4 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 303 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_V", 5 ), PREPROC_FORECOLOR_CAMO( 5 ), PREPROC_VIS_CAMO( 5 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 318 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_VI", 6 ), PREPROC_FORECOLOR_CAMO( 6 ), PREPROC_VIS_CAMO( 6 ) )
+		PREPROC_TEXT_DRAW_EXP_RGBA_VIS( 0 333 -272 20 2 1, PREPROC_TEXT_CAMO( "@MPUI_VII", 7 ), PREPROC_FORECOLOR_CAMO( 7 ), PREPROC_VIS_CAMO( 7 ) )
+
 		itemDef
 		{
 			rect 0 228 -272 20 2 1
@@ -544,7 +387,7 @@
 			{
 				play "mouse_click";
 				play "mouse_click";
-				"escape" self;
+				escape "self";
 			}
 			onFocus
 			{

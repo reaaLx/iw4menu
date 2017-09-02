@@ -11,8 +11,8 @@
 	{
 		name "options_voice"
 		rect 0 0 640 480
-		focusColor 1 1 1 1
-		foreColor 1 1 1 1
+		focusColor CHOICE_TEXTCOLOR
+		foreColor CHOICE_TEXTCOLOR
 		blurWorld 7
 		onOpen
 		{
@@ -56,10 +56,50 @@
 		CHOICE_DVARSTRINGLIST( 20, "@MENU_MUTE_ALL", "cl_voice", { "@MENU_ON" 1 "@MENU_OFF" 0 }, play "mouse_click"; )
 		CHOICE_DVARSLIDER( 21, "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ; )
 
-		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
+		itemDef
+		{
+			name "voicechat_level_indicator"
+			rect 278 196 96 10 1 1
+			decoration
+			visible 1
+			ownerdraw 265
+			forecolor 1 1 1 1
+			background "menu_setting_selection_bar"
+			type 8
+			textfont 3
+			textalign 4
+			textalignx 180
+			textscale 0.375
+			exp rect w ( 100 )
+			exp rect h ( 10 )
+			action
+			{
+				play "mouse_click";
+			}
+			onFocus
+			{
+				setItemColor self backcolor 0 0 0 1 play "mouse_over";
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 0;
+			}
+		}
+		itemDef
+		{
+			rect 232 68 344 20 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 6
+			textalignx -180
+			textscale 0.375
+			text "@MENU_VOICECHAT_LEVEL_INDICATOR"
+			visible when ( 1 )
+		}
 
-		// needs fixing, ownerdraw being a big meme to me.
-		// CHOICE_DVARLIST( 23, "@MENU_VOICECHAT_LEVEL_INDICATOR", "", 8, ownerDraw 265, ; )		
+		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
 	}
 }

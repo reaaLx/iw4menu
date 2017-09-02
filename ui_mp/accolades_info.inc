@@ -10,11 +10,11 @@
 			name accoladesName \
 			rect ( -234.952 + 75 * CHOICE_COL( itemIndex ) ) ( 51.3 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 81.3 81.3 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 			visible 1 \
-			style 3 \
-			forecolor 1 1 1 1 \
+			style WINDOW_STYLE_SHADER \
+			forecolor CHOICE_TEXTCOLOR \
 			background "highlight_selected" \
-			type 1 \
-			textscale 0.55 \
+			type ITEM_TYPE_BUTTON \
+			textScale 0.55 \
 			exp forecolor g ( 0.45 + ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) ) \
 			exp forecolor b ( 0.45 + ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) ) \
 			exp forecolor a ( ( getfocuseditemname( ) == accoladesName ) * ( ( sin( milliseconds( ) / 150 ) * 0.5 + 0.5 ) * 0.5 + 0.5 ) ) \
@@ -29,38 +29,14 @@
 				play "mouse_click"; \
 			} \
 		} \
-		itemDef \
-		{ \
-			rect ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			decoration \
-			visible 1 \
-			style 3 \
-			forecolor 1 1 1 1 \
-			background "award_locked" \
-			textscale 0.55 \
-			visible when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) && getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) == 0 ) \
-		} \
-		itemDef \
-		{ \
-			rect ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			decoration \
-			visible 1 \
-			style 3 \
-			forecolor 1 1 1 1 \
-			textscale 0.55 \
-			visible when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) && getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) > 0 ) \
-			exp material ( tablelookup( "mp/awardTable.csv" , 1 , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) , 2 ) ) \
-		} \
-		itemDef \
-		{ \
-			rect ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
-			decoration \
-			visible 1 \
-			forecolor 1 1 1 1 \
-			textfont 3 \
-			textalign 14 \
-			textstyle 8 \
-			textscale 0.375 \
-			visible when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) && getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) > 0 ) \
-			exp text ( locstring( "@MPUI_X_N" , getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) ) ) \
-		}
+		PREPROC_SHADER_DRAW_VIS( ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, ORIGIN_NONE, "award_locked", 1 1 1 1, \
+		when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) \
+		&& getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) == 0 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, ORIGIN_NONE, \
+		tablelookup( "mp/awardTable.csv" , 1 , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) , 2 ), 1 1 1 1, COLOR_NONE, 3, \
+		when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) \
+		&& getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) > 0 ) ) \
+		PREPROC_TEXT_DRAW_VIS( ( -226.286 + 75 * CHOICE_COL( itemIndex ) ) ( 60 + 75 * CHOICE_ROW( itemIndex ) + CHOICE_SEP_TOTAL_SPACING( itemIndex ) ) 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, ORIGIN_NONE, \
+		exp text ( locstring( "@MPUI_X_N" , getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) ) ), 0.375, 0, 0, 14, 1 1 1 1, \
+		when ( ( tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) != "" ) \
+		&& getplayerdata( "awards" , tablelookupbyrow( "mp/awardTable.csv" , accoladesIndex + ( localvarint( "ui_pageIndex" ) * 18 ) , 1 ) ) > 0 ) )

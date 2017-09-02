@@ -1,6 +1,9 @@
 #include "ui/menudef.h"
 #include "ui_mp/common_macro.inc"
+
 #include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/cac.inc"
 
 #define CHOICE_GROUP	"cac"
 
@@ -23,17 +26,18 @@
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
-		//exp rect y ( localvarfloat( "ui_cac_popup_ypos" ) )
+		fullscreen 0
+		exp rect y ( localvarfloat( "ui_cac_popup_ypos" ) )
 		onOpen
 		{
-			//setLocalVarFloat "ui_cac_popup_ypos" ( localvarfloat( "ui_popupYPos" ) );
-			//setLocalVarInt "ui_leftPopup" ( 1 );
+			setLocalVarFloat "ui_cac_popup_ypos" ( localvarfloat( "ui_popupYPos" ) );
+			setLocalVarInt "ui_leftPopup" ( 1 );
 			focusFirst;
 			open "cac_popup_preview";
 		}
 		onClose
 		{
-			//setLocalVarInt "ui_leftPopup" ( 0 );
+			setLocalVarInt "ui_leftPopup" ( 0 );
 			close "cac_popup_preview";
 		}
 		onEsc
@@ -105,7 +109,6 @@
 			textscale 0.375
 			text "@MENU_YOUR_CLASSES_CAPS"
 		}
-		#include "ui_mp/cac.inc"
 
 		#undef CHOICE_X_START
 		#define CHOICE_X_START	-64
@@ -118,6 +121,9 @@
 
 		#undef CHOICE_SIZE_Y
 		#define CHOICE_SIZE_Y				20
+		
+		#undef CHOICE_GETFOCUSEDITEMY
+		#define CHOICE_GETFOCUSEDITEMY
 
 		CHOICE_BUTTON_FOCUS(0,CAC_STATNUM_NAME(0),CAC_STATNUM(0),CAC_STATNUM_HI(0),CLEAR_UI_HINT)
 		CHOICE_BUTTON_FOCUS(1,CAC_STATNUM_NAME(1),CAC_STATNUM(1),CAC_STATNUM_HI(1),CLEAR_UI_HINT)

@@ -11,31 +11,40 @@
 	{
 		name "pc_options_video"
 		rect 0 0 640 480 0 0
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
 		blurWorld 7
 		onOpen
 		{
-			setLocalVarBool "ui_showApply" ( 0 );
+			execNow "profile_menuDvarsSetup; resetViewport";
 			setLocalVarBool "ui_hideBack" ( 1 );
-			setItemColor "fadebox" backcolor 0 0 0 1;
-			fadeout "fadebox";
-			setdvar "g_reloading" 0;
-			execnow "profile_menuDvarsSetup; resetViewport";
+			if ( !localvarint( "ui_showApply" ) )
+			{
+				exec "exec options_graphics.cfg";
+			}
+			execOnDvarFloatValue "r_zfeather" 0 "set ui_zfeather 0";
+			execOnDvarFloatValue "r_zfeather" 1 "set ui_zfeather 1";
+			execOnDvarFloatValue "r_depthPrepassModels" 1 "set ui_zfeather 2";
+			execNow "profile_menuDvarsSetup; resetViewport";
 		}
 		onRequestClose
 		{
+			execNow "profile_menuDvarsFinish; resetViewport";
 			setLocalVarBool "ui_hideBack" ( 0 );
+			execOnDvarIntValue "ui_zfeather" 0 "set r_zfeather 0;set r_depthPrepassModels 0";
+			execOnDvarIntValue "ui_zfeather" 1 "set r_zfeather 1;set r_depthPrepassModels 0";
+			execOnDvarIntValue "r_lodScaleRigid" 2 "set r_lodScaleSkinned 4; set r_lodBiasSkinned -200; set r_lodBiasRigid -100";
+			execOnDvarIntValue "r_lodScaleRigid" 1 "set r_lodScaleSkinned 1; set r_lodBiasSkinned 0; set r_lodBiasRigid 0";
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
 			{
-				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
 				{
 					open "all_restart_popmenu";
 				}
@@ -60,7 +69,7 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X -130
 
-		CHOICE_DVARENUMLIST_FOCUS_EX( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), ; )
+		CHOICE_DVARENUMLIST_FOCUS_EX( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
 		CHOICE_DVARSLIDER_FOCUS( 21, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, setLocalVarBool "ui_brightness_hint_display" ( 1 ),setLocalVarBool "ui_brightness_hint_display" ( 0 ), ExecNow "profile_menuDvarsFinish"; )
 
 		#undef HIGHTLIGHT_BACKCOLOR

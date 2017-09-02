@@ -1,4 +1,5 @@
 #include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
 #include "ui_mp/iw4_macros.inc"
 
 #define CHOICE_GROUP	"pc_options"
@@ -27,70 +28,19 @@
 		{
 			close "self";
 		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			style 3
-			foreColor 1 1 1 1
-			background "mw2_main_background"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect 0 0 1708 480
-			style 3
-			foreColor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			decoration 
-			textScale 0.55
-			visible 1
-			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) )  )
-		}
-		itemDef
-		{
-			rect 0 0 -1708 -480
-			style 3
-			foreColor 1 1 1 0.5
-			background "mw2_main_cloud_overlay"
-			decoration 
-			textScale 0.55
-			visible 1
-			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) )  )
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			style 3
-			foreColor 1 1 1 0
-			background "mockup_bg_glow"
-			decoration 
-			textScale 0.55
-			visible 1
-   		    exp forecolor a ( ( ( ( sin milliseconds( ) / 1500 ) + 1 ) * 0.250000 ) + 0.250000  )  
-		}
-		itemDef
-		{
-			rect 0 0 640 480 4 4
-			style 3
-			foreColor 1 1 1 0
-			background "mockup_bg_glow"
-			decoration 
-			textScale 0.55
-			visible 1
-     		exp forecolor a ( ( ( ( sin milliseconds( ) / 480 ) + 1 ) * 0.250000 ) + 0.250000  )
-		}
-		itemDef
-		{
-			rect 0 28 640 356 4 1
-			style 3
-			foreColor 1 1 1 0.15
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}	
+		#define BACKGROUND_SIDEBAR
+		#include "ui_mp/bg.inc"
+
+		PREPROC_SHADER_DRAW( 0 28 640 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "white", 1 1 1 0.15 )
+		PREPROC_SHADER_DRAW( -32 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 384 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
+
 		itemDef
 		{
 			rect 0 0 272 28 1 1
@@ -103,16 +53,7 @@
 			text "@MENU_STORE_CAPS"
 			visible 1
 		}
-		
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, -4, 32, 32, "drop_shadow_tl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, -4, 640, 32, "drop_shadow_t")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, -4, 32, 32, "drop_shadow_tr")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 28, 32, 356, "drop_shadow_r")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(640, 384, 32, 32, "drop_shadow_br")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(0, 384, 640, 32, "drop_shadow_b")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 384, 32, 32, "drop_shadow_bl")
-		MENU_BACKGROUND_FRAME_DROP_SHADOW(-32, 28, 32, 356, "drop_shadow_l")
-		
+
 #define LOCAL_DLC_FOCUS( name, desc, icon ) \
 		setLocalVarString "ui_info_name" ( name );  \
 		setLocalVarString "ui_info_desc" ( desc );  \

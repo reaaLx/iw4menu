@@ -38,7 +38,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
 			{
 				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
@@ -61,13 +61,9 @@
 		#define CHOICE_TEXT_OFFSET_X -130
 		
 		CHOICE_DVARSLIDER( 20, "@MENU_MASTER_VOLUME", "snd_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
-		CHOICE_DVARSTRINGLIST( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", { "@MENU_WINDOWS_DEFAULT"; "Windows Default"; "@MENU_MONO"; "Mono"; "@MENU_STEREO"; "Stereo"; "@MENU_FOUR_SPEAKERS"; "4 Speakers"; "@MENU_FIVE_ONE_SPEAKERS"; "5.1 Speakers"; }, setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARSTRINGLIST_EX( 21, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", { "@MENU_WINDOWS_DEFAULT"; "Windows Default"; "@MENU_MONO"; "Mono"; "@MENU_STEREO"; "Stereo"; "@MENU_FOUR_SPEAKERS"; "4 Speakers"; "@MENU_FIVE_ONE_SPEAKERS"; "5.1 Speakers"; }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
-
-		// will make this more advanced later
-//		CHOICE_DVARSLIDER_VIS( 21, "@MENU_MASTER_VOLUME", "profileMenuOption_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish";, when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
-//		CHOICE_DVARSTRINGLIST_VIS( 22, "@MENU_SPEAKER_CONFIG", "ui_outputConfig", SOUND_CONFIG_STRLIST, setlocalVarBool "ui_showApply" ( 1 ), when( dvarBool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 
 	}
 }

@@ -10,14 +10,28 @@
 #include "ui/choices_setup_common.menu"
 
 #define BUTTON_CH_FOCUS \
-		if ( isitemunlocked( "challenges" ) ) { setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CHALLENGES" ); } \
-		else { \
-		if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) == 9999 ) { setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); } \
-		else { \
-		if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 3 ) != "" ) { setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); } \
-		else { \
-		setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) , 17 ) ); } } }
-
+		if ( isitemunlocked( "challenges" ) ) \
+		{ \
+			setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CHALLENGES" ); \
+		} \
+		else \
+		{ \
+			if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) == 9999 ) \
+			{ \
+						setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); \
+			} \
+			else \
+			{ \
+				if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 3 ) != "" ) \
+				{ \
+							setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); \
+				} \
+				else \
+				{ \
+							setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) , 17 ) ); \
+				} \
+			} \
+		}
 #define BUTTON_PRESTIGE_FOCUS \
 		if ( !( getplayerdata( "prestige" ) \
 		< int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) \
@@ -64,9 +78,8 @@
 			visible when ( !dvarint( "xblive_privatematch" ) && inlobby( ) )
 		}
 		CHOICE_MENU_TITLE( "@MPUI_BARRACKS_CAP", 0 0 272 28 1 1  )
-				
-		CHOICE_DBUTTON_FOCUS_VIS( 0, "@MPUI_CHALLENGES_CAPS", BUTTON_CH_FOCUS, CLEAR_UI_HINT, when ( !isitemunlocked( "challenges" ) ) )
-		CHOICE_BUTTON_FOCUS_VIS( 0, "@MPUI_CHALLENGES_CAPS", setPlayerData( "featureNew" , "challenges" , "false" ); open "menu_challenges", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CHALLENGES" ), CLEAR_UI_HINT, when ( isitemunlocked( "challenges" ) ) )
+		
+		CHOICE_BUTTON_FOCUS_VIS_EX( 0, "@MPUI_CHALLENGES_CAPS", setPlayerData( "featureNew" , "challenges" , "false" ); open "menu_challenges";, BUTTON_CH_FOCUS, CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "challenges" ) ) )
 		CHOICE_NEWICON_VIS( 0, when ( ( getplayerdataanybooltrue( "challengeTierNew" ) || getplayerdata( "featureNew" , "challenges" ) ) && isitemunlocked( "challenges" ) ) )
 
 		CHOICE_BUTTON_FOCUS( 1, "@MPUI_HIGHLIGHTS_CAPS", open "menu_records", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_HIGHLIGHTS" ), CLEAR_UI_HINT )
@@ -79,7 +92,7 @@
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )	
 
-		CHOICE_DESCRIPTION( 1 )
+		CHOICE_DESCRIPTION( 1, 220 )
 
 		// note to self: add bordercolor / backcolor to the text
 				

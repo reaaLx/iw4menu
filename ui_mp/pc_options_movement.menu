@@ -10,8 +10,8 @@
 	{
 		name "pc_options_movement"
 		rect 0 0 640 480 0 0
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
@@ -25,7 +25,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 		}
 
 		#define BACKGROUND_SETTINGS_ADVANCED
@@ -58,18 +58,6 @@
 		CHOICE_BIND( 34, "@MENU_TURN_RIGHT", "+right", ; )
 		CHOICE_BIND( 35, "@MENU_STRAFE", "+strafe", ; )
 		
-		itemDef
-		{
-			name "keyBindStatus"
-			rect 10 20 500 240 2 3
-			decoration
-			autowrapped
-			style 1
-			ownerdraw 250
-			forecolor 0.65 0.65 0.65 1
-			type 8
-			textalign 1
-			textscale 0.375
-		}
+		CHOICE_KEYBINDHELP
 	}
 }

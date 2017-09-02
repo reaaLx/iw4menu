@@ -11,10 +11,10 @@
 	{
 		name "menu_records"
 		rect 0 0 640 480 0 0
-		style 1
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
-		fullscreen 1
+		style WINDOW_STYLE_FILLED
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		fullScreen 1
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
@@ -107,7 +107,7 @@
 			{
 				setLocalVarInt "ui_numPages" ( 21 );
 			}
-			focusfirst;
+			focusFirst;
 		}
 		onEsc
 		{
@@ -127,202 +127,16 @@
 			textscale 0.5833
 			text "@MPUI_HIGHLIGHTS_CAPS"
 		}
-		itemDef
-		{
-			rect 0 28 640 268 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 -4 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_t"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 -4 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tr"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 28 32 268 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_r"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 296 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_br"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 296 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_b"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 296 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_bl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 28 32 268 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_l"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 360 640 20 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.15
-			background "white"
-			textscale 0.55
-		}
-		itemDef
-		{
-			rect -32 328 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 328 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_t"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 328 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_tr"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 360 32 20 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_r"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 640 380 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_br"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect 0 380 640 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_b"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 380 32 32 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_bl"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef
-		{
-			rect -32 360 32 20 4 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 1
-			background "drop_shadow_l"
-			textscale 0.55
-			visible when ( 1 )
-		}
+		PREPROC_SHADER_DRAW( 0 28 640 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "white", 1 1 1 0.15 )
+		PREPROC_SHADER_DRAW( -32 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 -4 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_t", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 -4 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_tr", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_r", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 640 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_br", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( 0 384 640 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_b", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 384 32 32 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_bl", 0 0 0 1 )
+		PREPROC_SHADER_DRAW( -32 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
+
 		itemDef
 		{
 			rect -272 28 544 24 2 1

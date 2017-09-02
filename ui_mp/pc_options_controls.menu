@@ -25,7 +25,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
 			{
 				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
@@ -51,7 +51,7 @@
 		CHOICE_BUTTON_ADV( 20, "@MENU_MOVEMENT", "menu_setting_selection_bar", open "pc_options_movement"; )
 		CHOICE_BUTTON_ADV( 21, "@MENU_ACTIONS", "menu_setting_selection_bar", open "pc_options_actions"; )
 		CHOICE_BUTTON_ADV( 22, "@MENU_LOOK", "menu_setting_selection_bar", open "pc_options_look"; )
-		CHOICE_BUTTON_ADV( 23, "@MENU_CHAT", "menu_setting_selection_bar", open "controls_multi"; )
+		CHOICE_BUTTON_ADV_EX( 23, "@MENU_CHAT", "menu_setting_selection_bar", open "controls_multi";, disabled when ( dvarstring( "gameMode" ) != "mp" ) )
 		CHOICE_SECTION_SEPARATOR( 24 )
 		CHOICE_BUTTON_ADV( 24, "@MENU_RESTORE_DEFAULT_CONTROLS", "menu_setting_selection_bar", open "options_control_defaults"; )
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	

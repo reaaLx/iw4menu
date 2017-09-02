@@ -29,7 +29,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 		}
 		#define BACKGROUND_SETTINGS
 		#include "ui_mp/blurredbg.inc"

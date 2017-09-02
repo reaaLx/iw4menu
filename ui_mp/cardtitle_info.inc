@@ -44,17 +44,17 @@
 			decoration \
 			visible 1 \
 			style 1 \
-			forecolor 1 1 1 1 \
-			backcolor 1 1 1 1 \
-			textfont 3 \
-			textalign 5 \
-			textaligny 8 \
-			textstyle 8 \
-			textscale 0.375 \
-			exp forecolor r ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 3 ) ) \
-			exp forecolor g ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 4 ) ) \
-			exp forecolor b ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 5 ) ) \
-			exp forecolor a ( ( 1 * !( getfocuseditemname( ) == cardName ) ) + ( ( ( sin( milliseconds( ) / 100 ) * 0.5 + 0.5 ) * 0.25 + 0.75 ) * ( getfocuseditemname( ) == cardName ) ) ) \
+			foreColor 1 1 1 1 \
+			backColor 1 1 1 1 \
+			textFont 3 \
+			textAlign 5 \
+			textAlignY 8 \
+			textStyle 8 \
+			textScale 0.375 \
+			exp foreColor r ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 3 ) ) \
+			exp foreColor g ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 4 ) ) \
+			exp foreColor b ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 5 ) ) \
+			exp foreColor a ( ( 1 * !( getfocuseditemname( ) == cardName ) ) + ( ( ( sin( milliseconds( ) / 100 ) * 0.5 + 0.5 ) * 0.25 + 0.75 ) * ( getfocuseditemname( ) == cardName ) ) ) \
 			visible when ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 0 ) != "" ) && isitemunlocked( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 0 ) ) ) \
 			exp text ( "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 1 ) ) \
 			exp material ( tablelookupbyrow( "mp/cardTitleTable.csv" , cardStat + ( localvarint( "ui_pageIndex" ) * 27 ) , 2 ) ) \

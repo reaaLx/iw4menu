@@ -13,6 +13,20 @@
 		if ( !privatepartyhost( ) ) \
 		{ setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP_LOCKED" ); } \
 		else { setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP" ); }
+
+#define SETUP_ACTION_RULES \
+		uiScript openMenuOnDvar "ui_gametype" war "settings_quick_war"; \
+		uiScript openMenuOnDvar "ui_gametype" sd "settings_quick_sd"; \
+		uiScript openMenuOnDvar "ui_gametype" sab "settings_quick_sab"; \
+		uiScript openMenuOnDvar "ui_gametype" dm "settings_quick_dm"; \
+		uiScript openMenuOnDvar "ui_gametype" dom "settings_quick_dom"; \
+		uiScript openMenuOnDvar "ui_gametype" ctf "settings_quick_ctf"; \
+		uiScript openMenuOnDvar "ui_gametype" koth "settings_quick_koth"; \
+		uiScript openMenuOnDvar "ui_gametype" dd "settings_quick_dd"; \
+		uiScript openMenuOnDvar "ui_gametype" dd "settings_quick_vip"; \
+		uiScript openMenuOnDvar "ui_gametype" koth "settings_quick_gtnw"; \
+		uiScript openMenuOnDvar "ui_gametype" oneflag "settings_quick_oneflag"; \
+		uiScript openMenuOnDvar "ui_gametype" arena "settings_quick_arena";
 {
 	menuDef
 	{
@@ -26,6 +40,7 @@
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
+		allowedBinding "+talk"
 		onOpen
 		{
 			uiScript "loadArenas";
@@ -67,154 +82,8 @@
 
 		CHOICE_BUTTON_VIS(4, "@PLATFORM_BACK_CAPS", SETUP_ACTION_BACK, 1)
 
-		CHOICE_DESCRIPTION( 1 )
+		CHOICE_DESCRIPTION( 1, 168 )
 		
-		itemDef
-		{
-			rect 0 10 100 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			decoration
-			type 1
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 9
-			text "@MENU_GAME_SETTINGS_CAPS"
-			visible 1
-		}
-		itemDef
-		{
-			rect 0 30 350 80 2 1
-			style 1
-			border 1
-			borderSize 0.1
-			foreColor 1 1 1 1
-			backColor 1 1 1 0.1
-			outlineColor 1 1 1 0.5
-			decoration
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			visible 1
-		}
-		itemDef
-		{
-			rect 0 30 100 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			decoration
-			type 1
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text "@MENU_SERVER_NAME"
-			visible 1
-		}
-		itemDef
-		{
-			rect 80 30 120 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			group "mw2_button"
-			type 4
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text " "
-			visible 1
-			dvar "sv_hostname"
-		}
-		itemDef
-		{
-			rect 0 50 100 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			decoration
-			type 1
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text "@MENU_PASSWORD1"
-			visible 1
-		}
-		itemDef
-		{
-			rect 60 50 120 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			group "mw2_button"
-			type 4
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text " "
-			visible 1
-			dvar "g_password"
-		}
-		itemDef
-		{
-			rect 0 70 100 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			decoration
-			type 1
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text "@MENU_MAXIMUM_PLAYERS"
-			visible 1
-		}
-		itemDef
-		{
-			rect 100 70 120 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			group "mw2_button"
-			type 4
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text " "
-			visible 1
-			dvar "party_maxplayers"
-		}
-		itemDef
-		{
-			rect 0 90 100 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			decoration
-			type 1
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text "@MENU_MAXIMUM_PING"
-			visible 1
-		}
-		itemDef
-		{
-			rect 80 90 120 20 2 1
-			style 1
-			foreColor 1 1 1 1
-			group "mw2_button"
-			type 4
-			textAlign 4
-			textAlignX 2
-			textScale 0.375
-			textFont 3
-			text " "
-			visible 1
-			dvar "party_maxping"
-		}
 		itemDef
 		{
 			rect 0 -139 216 122 1 3

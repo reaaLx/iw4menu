@@ -33,7 +33,7 @@
 #ifdef BACKGROUND_MP
 		itemDef
 		{
-			rect -107 0 854 480
+			rect -107 0 854 480 0 0
 			style 3
 			foreColor 1 1 1 1
 			background "mw2_main_mp_image"
@@ -43,7 +43,7 @@
 #endif
 		itemDef
 		{
-			rect 0 0 1708 480
+			rect 0 0 1708 480 0 0
 			style 3
 			foreColor 1 1 1 0.5
 			background "mw2_main_cloud_overlay"
@@ -54,7 +54,7 @@
 		}
 		itemDef
 		{
-			rect 0 0 -1708 -480
+			rect 0 0 -1708 -480 0 0
 			style 3
 			foreColor 1 1 1 0.5
 			background "mw2_main_cloud_overlay"
@@ -102,7 +102,7 @@
 			rect -64 0 280 480 1 0
 			style 3
 			foreColor 1 1 1 0.1
-			background "gradient_bottom"
+			background "gradient_fadein_fadebottom"
 			decoration 
 			textScale 0.55
 			visible 1

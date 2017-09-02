@@ -36,7 +36,7 @@
 				exec "xblive_privatematch 0"; \
 				exec "xblive_rankedmatch 0"; \
 				exec "xstartprivateparty"; \
-				setdvar ui_mptype 0; \
+				setdvar "ui_mptype" 0; \
 				exec "xcheckezpatch"; \
 				exec "exec default_xboxlive.cfg" \
 				exec "exec xblive_rankedmatch 0"; \
@@ -267,66 +267,18 @@
 					exec "devmap mp_vacant"; \
 				}
 		
-		#define SETUP_ACTION_RULES \
-				uiScript openMenuOnDvar "ui_gametype" war "settings_quick_war"; \
-				uiScript openMenuOnDvar "ui_gametype" sd "settings_quick_sd"; \
-				uiScript openMenuOnDvar "ui_gametype" sab "settings_quick_sab"; \
-				uiScript openMenuOnDvar "ui_gametype" dm "settings_quick_dm"; \
-				uiScript openMenuOnDvar "ui_gametype" dom "settings_quick_dom"; \
-				uiScript openMenuOnDvar "ui_gametype" ctf "settings_quick_ctf"; \
-				uiScript openMenuOnDvar "ui_gametype" koth "settings_quick_koth"; \
-				uiScript openMenuOnDvar "ui_gametype" dd "settings_quick_dd"; \
-				uiScript openMenuOnDvar "ui_gametype" dd "settings_quick_vip"; \
-				uiScript openMenuOnDvar "ui_gametype" koth "settings_quick_gtnw"; \
-				uiScript openMenuOnDvar "ui_gametype" oneflag "settings_quick_oneflag"; \
-				uiScript openMenuOnDvar "ui_gametype" arena "settings_quick_arena";
-
 		#define SETUP_LEAVE_CALL \
 				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( ( dvarbool( "sv_running" ) ) == 0 ) && ( inprivateparty( ) && !privatepartyhost( ) && privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegameandparty"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( ( dvarbool( "sv_running" ) ) == 0 ) && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegame"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) ) \
-						{ \
-							open "popup_endgame_ranked"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( inprivateparty( ) && !privatepartyhost( ) && privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegameandparty_ranked"; \
-						} \
-						if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
-						{ \
-							open "popup_leavegame_ranked"; \
-						} \
-/*
-		#define SETUP_CAC_FOCUS_UNLOCK \
-				if ( isitemunlocked( "cac" ) ) \
-				{ \
-					setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS" ); \
-				} \
-				else \
-				{ \
-					if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) == 9999 ) \
-					{ \
-						setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); \
-					} \
-					else \
-					{ \
-						if ( tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 3 ) != "" ) \
-						{ \
-							setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); \
-						} \
-						else \
-						{ \
-							setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "cac" , 2 ) , 17 ) ); \
-						} \
-					} \
-				}
-*/
+				{ open "popup_leavegameandparty"; } \
+				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( ( dvarbool( "sv_running" ) ) == 0 ) && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
+				{ open "popup_leavegame"; } \
+				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) ) \
+				{ open "popup_endgame_ranked"; } \
+				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( inprivateparty( ) && !privatepartyhost( ) && privatepartyhostinlobby( ) ) ) \
+				{ open "popup_leavegameandparty_ranked"; } \
+				if ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) && ( dvarbool( "sv_running" ) ) == 0 && ( !inprivateparty( ) || privatepartyhost( ) || !privatepartyhostinlobby( ) ) ) \
+				{ open "popup_leavegame_ranked"; } \
+
 		#define SETUP_ACTION_BACK \
 				exec "xstopparty"; \
 				if (inprivateparty() && !privatepartyhost() && privatepartyhostinlobby()) \
@@ -350,9 +302,8 @@
 
 #define PRESTIGE_VIS when ( !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) )
 #define PRESTIGE_DIS when ( !( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) )
-			
+
 #define CLEAR_UI_HINT setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
-                      
 
 #define NEWUNLOCKS when ( ( ( getplayerdataanybooltrue( "weaponNew" ) || getplayerdataanybooltrue( "camoNew" ) || getplayerdataanybooltrue( "attachmentNew" ) ) || getplayerdataanybooltrue( "perkNew" ) || ( ( getplayerdata( "perkNew" , "frag_grenade_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "frag_grenade_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "semtex_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "semtex_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "c4_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "c4_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "claymore_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "claymore_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "throwingknife_mp" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "throwingknife_mp" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_tacticalinsertion" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_tacticalinsertion" , 8 ) ) ) || ( getplayerdata( "perkNew" , "specialty_blastshield" ) || getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , "specialty_blastshield" , 8 ) ) ) || weaponclassnew( "weapon_grenade" ) || weaponclassnew( "weapon_equipment" ) ) || getplayerdata( "featureNew" , "cac" ) ) )
 #define NEWUNLOCKS_PLAYERCARD when ( ( getplayerdata( "featureNew" , "cas" ) || getplayerdata( "featureNew" , "token_1" ) || getplayerdata( "featureNew" , "token_2" ) || getplayerdata( "featureNew" , "token_3" ) || getplayerdata( "featureNew" , "token_4" ) || getplayerdata( "featureNew" , "token_5" ) || getplayerdata( "featureNew" , "token_6" ) || getplayerdata( "featureNew" , "token_7" ) || getplayerdata( "featureNew" , "token_8" ) || getplayerdata( "featureNew" , "token_9" ) || getplayerdata( "featureNew" , "token_10" ) || getplayerdata( "featureNew" , "token_11" ) || getplayerdata( "featureNew" , "token_12" ) ) || getplayerdata( "featureNew" , "clantag" ) || ( getplayerdataanybooltrue( "iconNew" ) || getplayerdata( "featureNew" , "playercard_icon" ) ) || ( getplayerdataanybooltrue( "titleNew" ) || getplayerdata( "featureNew" , "playercard_title" ) ) )
@@ -370,7 +321,6 @@
 
 #define ALLIES_DISABLED ( localVarString( "ui_team" ) == "marines" ) || ( localVarString( "ui_team" ) == "opfor" ) ) || !( 1 ) )
 
-
 // graphic settings stuff
 #define ASPECT_RATIO_STRLIST { "@MENU_AUTO" 0 "@MENU_STANDARD_4_3" 1 "@MENU_WIDE_16_10" 2 "@MENU_WIDE_16_9" 3 }
 #define AA_STRLIST { "@MENU_OFF" 1 "@MENU_2X" 2 "@MENU_4X" 4 }
@@ -380,7 +330,7 @@
 #define WTR_DETAIL_STRLIST { "@MENU_NORMAL" 1 "@MENU_LOW" 0 }
 
 // graphic textures stuff
-#define TEXTURE_MM_STRLIST { "@MENU_AUTOMATIC" Unchanged "@MENU_BILINEAR" Force Bilinear "@MENU_TRILINEAR" Force Trilinear }
+#define TEXTURE_MM_STRLIST { "@MENU_AUTOMATIC" "Unchanged" "@MENU_BILINEAR" "Force Bilinear" "@MENU_TRILINEAR" "Force Trilinear" }
 #define TEXTURE_QUALITY_STRLIST { "@MENU_AUTOMATIC" 0 "@MENU_MANUAL" 1 }
 #define TEXTURE_RESOLUTION_STRLIST { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }
 

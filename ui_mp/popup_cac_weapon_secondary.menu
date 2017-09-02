@@ -1,12 +1,19 @@
-/*********************************************************
-***************** Dumped by aerosoul94 *******************
-*********************************************************/
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
 
+#include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/cac.inc"
+
+#define CHOICE_GROUP	"cac"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
 {
 	menuDef
 	{
 		name "popup_cac_weapon_secondary"
-		rect -64 0 854 104 1 1
+		rect 0 0 854 104 1 1
 		popup
 		outOfBoundsClick
 		style 1
@@ -71,7 +78,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 1708 480 1 1
+			rect 64 0 1708 480 1 1
 			decoration
 			visible 1
 			style 3
@@ -82,7 +89,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 -1708 -480 1 1
+			rect 64 0 -1708 -480 1 1
 			decoration
 			visible 1
 			style 3
@@ -404,306 +411,38 @@
 			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
 			exp text ( localvarstring( "ui_tab5Name" ) )
 		}
-		itemDef
-		{
-			name "cac_secondary_machinepistols"
-			rect -64 4 336 20 1 1
-			visible 1
-			group "mw2_popup_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "popup_button_selection_bar_short"
-			type 1
-			textfont 3
-			textalign 4
-			textalignx 68
-			textscale 0.375
-			text "@MENU_MACHINE_PISTOLS_CAPS"
-			action
-			{
-				play "mouse_click";
-				if ( localvarint( "ui_tabDepth" ) == 0 )
-				{
-					setLocalVarString "ui_tab1Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 1 )
-				{
-					setLocalVarString "ui_tab2Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 2 )
-				{
-					setLocalVarString "ui_tab3Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 3 )
-				{
-					setLocalVarString "ui_tab4Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 4 )
-				{
-					setLocalVarString "ui_tab5Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 5 )
-				{
-					setLocalVarString "ui_tab6Name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				}
-				open "popup_cac_machinepistols_secondary";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_popupAButton" ( 1 );
-				setLocalVarString "ui_info_name" ( "@MENU_MACHINE_PISTOLS_CAPS" );
-				setLocalVarString "ui_info_desc" ( "@" );
-				setLocalVarString "ui_info_icon" ( "" );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 1 1 1 0;
-				setLocalVarBool "ui_popupAButton" ( 0 );
-			}
-		}
-		itemDef
-		{
-			rect 162 4 40 20 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_new"
-			textscale 0.55
-			visible when ( weaponclassnew( "weapon_machine_pistol" ) )
-		}
-		itemDef
-		{
-			name "cac_secondary_shotgun"
-			rect -64 24 336 20 1 1
-			visible 1
-			group "mw2_popup_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "popup_button_selection_bar_short"
-			type 1
-			textfont 3
-			textalign 4
-			textalignx 68
-			textscale 0.375
-			text "@MENU_SHOTGUNS_CAPS"
-			action
-			{
-				play "mouse_click";
-				if ( localvarint( "ui_tabDepth" ) == 0 )
-				{
-					setLocalVarString "ui_tab1Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 1 )
-				{
-					setLocalVarString "ui_tab2Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 2 )
-				{
-					setLocalVarString "ui_tab3Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 3 )
-				{
-					setLocalVarString "ui_tab4Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 4 )
-				{
-					setLocalVarString "ui_tab5Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 5 )
-				{
-					setLocalVarString "ui_tab6Name" ( "@MENU_SHOTGUNS_CAPS" );
-				}
-				open "popup_cac_shotgun_secondary";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_popupAButton" ( 1 );
-				setLocalVarString "ui_info_name" ( "@MENU_SHOTGUNS_CAPS" );
-				setLocalVarString "ui_info_desc" ( "@" );
-				setLocalVarString "ui_info_icon" ( "" );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 1 1 1 0;
-				setLocalVarBool "ui_popupAButton" ( 0 );
-			}
-		}
-		itemDef
-		{
-			rect 162 24 40 20 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_new"
-			textscale 0.55
-			visible when ( weaponclassnew( "weapon_shotgun" ) )
-		}
-		itemDef
-		{
-			name "cac_secondary_handgun"
-			rect -64 44 336 20 1 1
-			visible 1
-			group "mw2_popup_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "popup_button_selection_bar_short"
-			type 1
-			textfont 3
-			textalign 4
-			textalignx 68
-			textscale 0.375
-			text "@MENU_HANDGUNS_CAPS"
-			action
-			{
-				play "mouse_click";
-				if ( localvarint( "ui_tabDepth" ) == 0 )
-				{
-					setLocalVarString "ui_tab1Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 1 )
-				{
-					setLocalVarString "ui_tab2Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 2 )
-				{
-					setLocalVarString "ui_tab3Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 3 )
-				{
-					setLocalVarString "ui_tab4Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 4 )
-				{
-					setLocalVarString "ui_tab5Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 5 )
-				{
-					setLocalVarString "ui_tab6Name" ( "@MENU_HANDGUNS_CAPS" );
-				}
-				open "popup_cac_handgun_secondary";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_popupAButton" ( 1 );
-				setLocalVarString "ui_info_name" ( "@MENU_HANDGUNS_CAPS" );
-				setLocalVarString "ui_info_desc" ( "@" );
-				setLocalVarString "ui_info_icon" ( "" );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 1 1 1 0;
-				setLocalVarBool "ui_popupAButton" ( 0 );
-			}
-		}
-		itemDef
-		{
-			rect 162 44 40 20 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_new"
-			textscale 0.55
-			visible when ( weaponclassnew( "weapon_pistol" ) )
-		}
-		itemDef
-		{
-			name "cac_secondary_rocket"
-			rect -64 64 336 20 1 1
-			visible 1
-			group "mw2_popup_button"
-			style 1
-			forecolor 1 1 1 1
-			disablecolor 0.6 0.55 0.55 1
-			background "popup_button_selection_bar_short"
-			type 1
-			textfont 3
-			textalign 4
-			textalignx 68
-			textscale 0.375
-			text "@MENU_ROCKETS_CAPS"
-			action
-			{
-				play "mouse_click";
-				if ( localvarint( "ui_tabDepth" ) == 0 )
-				{
-					setLocalVarString "ui_tab1Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 1 )
-				{
-					setLocalVarString "ui_tab2Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 2 )
-				{
-					setLocalVarString "ui_tab3Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 3 )
-				{
-					setLocalVarString "ui_tab4Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 4 )
-				{
-					setLocalVarString "ui_tab5Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				if ( localvarint( "ui_tabDepth" ) == 5 )
-				{
-					setLocalVarString "ui_tab6Name" ( "@MENU_ROCKETS_CAPS" );
-				}
-				open "popup_cac_rocket_secondary";
-			}
-			onFocus
-			{
-				play "mouse_over";
-				if ( dvarstring( "gameMode" ) != "mp" )
-				{
-					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
-				}
-				setItemColor self backcolor 0 0 0 1;
-				setLocalVarBool "ui_popupAButton" ( 1 );
-				setLocalVarString "ui_info_name" ( "@MENU_ROCKETS_CAPS" );
-				setLocalVarString "ui_info_desc" ( "@" );
-				setLocalVarString "ui_info_icon" ( "" );
-			}
-			leaveFocus
-			{
-				setItemColor self backcolor 1 1 1 0;
-				setLocalVarBool "ui_popupAButton" ( 0 );
-			}
-		}
-		itemDef
-		{
-			rect 162 64 40 20 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_new"
-			textscale 0.55
-			visible when ( weaponclassnew( "weapon_projectile" ) )
-		}
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START				-64
+		
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START				4
+		
+		#undef CHOICE_TEXTALIGN
+		#define	CHOICE_TEXTALIGN			4
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		68
+		
+		#undef HIGHLIGHT_SHADER_ART
+		#define HIGHLIGHT_SHADER_ART		"popup_button_selection_bar_short"
+
+		#undef CHOICE_GETFOCUSEDITEMY
+		#define CHOICE_GETFOCUSEDITEMY
+		
+		#undef CHOICE_UI_BUTTON
+		#define CHOICE_UI_BUTTON "ui_popupAButton"
+		
+#define CHOICE_LOCALVAR_FOCUSED( textArg ) \
+		setLocalVarString "ui_info_name" ( textArg ); \
+		setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
+		setLocalVarString "ui_info_icon" ( "" );
+		
+		CHOICE_BUTTON_FOCUS( 0, "@MENU_MACHINE_PISTOLS_CAPS", UI_TABDEPTH2( open "popup_cac_machinepistols_secondary";, "@MENU_MACHINE_PISTOLS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_MACHINE_PISTOLS_CAPS" ), ; )
+		CHOICE_BUTTON_FOCUS( 1, "@MENU_SHOTGUNS_CAPS", UI_TABDEPTH2( open "popup_cac_shotgun_secondary";, "@MENU_SHOTGUNS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SHOTGUNS_CAPS" ), ; )
+		CHOICE_BUTTON_FOCUS( 2, "@MENU_HANDGUNS_CAPS", UI_TABDEPTH2( open "popup_cac_handgun_secondary";, "@MENU_HANDGUNS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_HANDGUNS_CAPS" ), ; )
+		CHOICE_BUTTON_FOCUS( 3, "@MENU_ROCKETS_CAPS", UI_TABDEPTH2( open "popup_cac_rocket_secondary";, "@MENU_ROCKETS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ROCKETS_CAPS" ), ; )
+		
 		itemDef
 		{
 			rect -56 0 200 104 2 1

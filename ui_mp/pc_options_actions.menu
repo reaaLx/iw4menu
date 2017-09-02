@@ -10,8 +10,8 @@
 	{
 		name "pc_options_actions"
 		rect 0 0 640 480 0 0
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
@@ -25,7 +25,7 @@
 		}
 		onEsc
 		{
-			close self;
+			close "self";
 		}
 
 		#define BACKGROUND_SETTINGS_ADVANCED
@@ -33,7 +33,7 @@
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", MENU_OPTION_IS_OPEN, 1 )	
 
-		CHOICE_SECTION_TITLE(20, "@MENU_ACTIONS")
+		CHOICE_SECTION_TITLE( 20, "@MENU_ACTIONS" )
 		
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X -130
@@ -61,18 +61,6 @@
 		
 		CHOICE_BIND( 36, "@MENU_SHOW_OBJECTIVES_SCORES", "+scores", ; )
 		
-		itemDef
-		{
-			name "keyBindStatus"
-			rect 10 20 500 240 2 3
-			decoration
-			autowrapped
-			style 1
-			ownerdraw 250
-			forecolor 0.65 0.65 0.65 1
-			type 8
-			textalign 1
-			textscale 0.375
-		}
+		CHOICE_KEYBINDHELP
 	}
 }
