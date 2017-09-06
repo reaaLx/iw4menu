@@ -1,0 +1,8 @@
+title: Iw4menu
+description: IW4 Menu Rework
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-tactile
+
+gems:
+  - jekyll-mentions
