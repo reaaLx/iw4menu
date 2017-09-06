@@ -1,14 +1,170 @@
-### Welcome to GitHub Pages.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here [using GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/), select a template crafted by a designer, and publish. After your page is generated, you can check out the new `gh-pages` branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.
+### IW4 MENU DEFS & ITEM DEFS
+&& 
+%
+!!
+!
+||
+==
+!=
+>
+>>
+>=
+<<
+<=
+<
+-
++
+/
+*
+?
+:
+~
+|
+(
+)
+anynewmail()
+cos()
+connectioninfo()
+dvarbool()
+dvarint()
+dvarstring()
+dvarfloat()
 
-### Designer Templates
-We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.
+float()
+flashbanged()
 
-### Creating pages manually
-If you prefer to not use the automatic generator, push a branch named `gh-pages` to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.
+visible when()
+visible if()
+disabled when()
+disabled if()
+	
+privatepartyhost()
+team()
+ui_active()
+missilecam()
+isempjammed()
+locstring()
 
-### Authors and Contributors
-You can @mention a GitHub username to generate a link to their profile. The resulting `<a>` element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
+radarjamintensity()
+radarisjammed()
+unlockeditemcount()
+privatepartyhost()
 
-### Support or Contact
-Having trouble with Pages? Check out our [documentation](https://help.github.com/pages) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+gamehost()
+gametypedescription()
+gametypename()
+getmapname()
+getfocuseditemx()
+getfocuseditemy()
+getmigrationstatus()
+getsplashtext()
+getsplashdescription()
+getprofiledata()
+getsplashmaterial()
+getadjustedsafeareahorizontal()
+getadjustedsafeareavertical()
+getlocalizednattype()
+getfocuseditemname()
+getclientmatchdata()
+getclientmatchdatadef()
+getplayerdatasplitscreen()
+getfocuseditemy()
+getplayerdataanybooltrue()
+getplayerdata()
+getplayercardinfo()
+getperk()
+getfocuseditemwidth()
+getfocuseditemheight()
+getitemx()
+getitemy()
+getitemwidth()
+getitemheight()
+
+localvarint()
+localvarstring()
+localvarbool()
+localvarfloat()
+levelforexperience()
+
+int()
+inkillcam()
+inkillcamnpc()
+isitemunlocked()
+inprivateparty()
+
+max()
+maxrecommendedplayers()
+menuisopen()
+milliseconds()
+min()
+
+anyammoforweaponmodes()
+anynewmail()
+anynewmappacks()
+deleteMail()
+mailsubject()
+mailfrom()
+mailreceived()
+mailbody()
+maillootlocalized()
+mailgivesloot()
+mailtimetofollowup()
+mailloottype()
+mailranlottery()
+
+lotterylootlocalized()
+
+sin()
+stat()
+statrangeanybitsset()
+scopedthermal()
+secondsastime()
+spectatingclient()
+spectatingfree()
+splitscreenplayercount()
+setPlayerData()
+splashrownum()
+splashhasicon()
+secondsascountdown()
+setLocalVarInt()
+setLocalVarString()
+setLocalVarBool()
+setLocalVarFloat()
+selecting_direction()
+selecting_location()
+
+timeleft()
+tablelookup()
+tablelookupbyrow()
+tablegetrownum()
+
+weaplockscreenposx()
+weaplockscreenposy()
+weaplockblink()
+weaplocked()
+weaponname()
+writingdata()
+
+rect 0 0 0 0
+exp rect x ()
+exp rect y ()
+exp rect w ()
+exp rect h ()
+
+forecolor 0 0 0 0
+exp forecolor r ()
+exp forecolor g ()
+exp forecolor b ()
+exp forecolor a ()
+
+backcolor 0 0 0 0
+exp backcolor r ()
+exp backcolor g ()
+exp backcolor b ()
+exp backcolor a ()
+
+glowColor 0 0 0 0
+exp glowcolor r ()
+exp glowcolor g ()
+exp glowcolor b ()
+exp glowcolor a ()
