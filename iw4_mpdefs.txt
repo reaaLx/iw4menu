@@ -1,3 +1,128 @@
+[Main Commands:]
+close
+closeForGametype
+exec
+execNow
+execNowOnDvarFloatValue
+execNowOnDvarIntValue
+execNowOnDvarStringValue
+execOnDvarFloatValue
+execOnDvarIntValue
+execOnDvarStringValue
+fadein
+fadeout
+getAutoUpdate
+hide
+ingameClose
+ingameOpen
+nextLevel
+noSavehide
+open
+openForGametype
+play
+profileHide
+profileShow
+saveAvailableHide
+saveDelay
+saveGameHide
+saveGameShow
+scriptMenuRespondOnDvarFloatValue
+scriptMenuRespondOnDvarIntValue
+scriptMenuRespondOnDvarStringValue
+scriptMenuResponse
+setBackground
+setColor
+setDvar
+setFocus
+setFocusByDvar
+setItemColor
+setSaveExecOnSuccess
+show
+showGamerCard
+showHideNewGameResume
+uiScript
+writeSave
+
+[Keywords:]
+accept
+align
+backColor
+background
+blurWorld
+border
+borderColor
+borderSize
+columns
+disableColor
+disableDvar
+dvar
+dvarEnumList
+dvarFloat
+dvarFloatList
+dvarStrList
+dvarTest
+elementHeight
+elementType
+elementWidth
+enableDvar
+fadeAmount
+fadeClamp
+faceCycle
+fadeInAmount
+feeder
+focusColor
+focusSound
+foreColor
+fullScreen
+group
+hideDvar
+maxChars
+maxCharsGotoNext
+maxPaintChars
+name
+noScrollBars
+notSelectable
+origin
+outlineColor
+ownerDraw
+ownerdrawFlag
+rect
+showDvar
+soundLoop
+special
+style
+text
+textAlign
+textAlignX
+textAlignY
+textFile
+textFont
+textSaveGame
+textScale
+textStyle
+type
+visible when
+visible if
+disabled when
+disabled if
+
+[Reserved Keywords:]
+itemDef
+menuDef
+#define
+#include
+
+[Flags:]
+autoWrapped
+decoration
+hidenDuringFlashbang
+hidenDuringScope
+horizontalScroll
+legacySplitScreenScale
+outOfBoundsClick
+popup
+
+[Expressions:]
 && 
 %
 !!
@@ -31,11 +156,6 @@ dvarfloat()
 
 float()
 flashbanged()
-
-visible when()
-visible if()
-disabled when()
-disabled if()
 	
 privatepartyhost()
 team()
