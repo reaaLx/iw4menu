@@ -1,3 +1,21 @@
+// applies to most popup_secondary/primary popup_cac_* menus
+
+#define PREPROC_LOCAL_TAB_DEPTH( tabDepthInt, tabName ) \
+		PREPROC_SHADER_DRAW_ALIGNED( 0 0 280 20 1 1, ORIGIN_NONE, "white", 1 1 1 1, 0.25 0.25 0.25 1, 1 \
+		exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - tabDepthInt ) * 20 ) )  \
+		visible when ( localvarint( "ui_tabDepth" ) > ( tabDepthInt - 1 ) ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( 0 0 280 20 1 1, ORIGIN_NONE, "gradient_fadein", 1 1 1 1, 0 0 0 1, 1 \
+		exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - tabDepthInt ) * 20 ) ) \
+		visible when ( localvarint( "ui_tabDepth" ) > ( tabDepthInt - 1 ) ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED( 0 0 280 20 1 1, ORIGIN_NONE, localvarstring( tabName ), 0.375, 68, 0, 4, 1 1 1 1 \
+		exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - tabDepthInt ) * 20 ) ) \
+		exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > tabDepthInt ) * 0.35 ) ) \
+		exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > tabDepthInt ) * 0.35 ) ) \
+		exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > tabDepthInt ) * 0.35 ) ) \
+		visible when ( localvarint( "ui_tabDepth" ) > ( tabDepthInt - 1 ) ) ) \		
+
+// applies to cac.inc
+
 	#define UI_TABDEPTH( actionArg, textArg ) \
 			setLocalVarInt "ui_tabDepth" ( 0 ); \
 			if ( localvarint( "ui_tabDepth" ) == 0 ) \
@@ -13,7 +31,7 @@
 			if ( localvarint( "ui_tabDepth" ) == 5 ) \
 			{ setLocalVarString "ui_tab6Name" ( textArg ); } \
 			actionArg \
-	
+
 	#define UI_TABDEPTH2( actionArg, textArg ) \
 			if ( localvarint( "ui_tabDepth" ) == 0 ) \
 			{ setLocalVarString "ui_tab1Name" ( textArg ); } \
@@ -28,7 +46,7 @@
 			if ( localvarint( "ui_tabDepth" ) == 5 ) \
 			{ setLocalVarString "ui_tab6Name" ( textArg ); } \
 			actionArg \
-
+				
 #define LOCAL_TYPE_FOCUS( cacTypeStat, UI_REF1, UI_REF2, UI_REF3, UI_REF4 ) \
 		UI_REF1 \
 		UI_REF2 \
@@ -324,7 +342,6 @@
 		setLocalVarString "loadoutOffhandSecondary" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "specialGrenade" ) ); \
 		setLocalVarString "loadoutClassName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "name" ) ); \
 
-// because why not
 #define CAC_LOCALVARSTRINGS( itemIndex ) \
 		setLocalVarString "loadoutPrimary" ( tablelookup( "mp/classTable.csv" , 0 , "loadoutPrimary" , itemIndex + 1 ) ); \
 		setLocalVarString "loadoutPrimaryAttachment" ( tablelookup( "mp/classTable.csv" , 0 , "loadoutPrimaryAttachment" , itemIndex + 1 ) ); \
