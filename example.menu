@@ -70,11 +70,14 @@
 			// items that cause actions to happen. Decoration items would be menu border graphics, logos, animation boxes, etc.
 			// anything without this keyword will make mouseover sound and other assorted things.
 			decoration
-			// flag >
+			// flag > Makes a List Box scroll horiziontally rather than vertically. 
+			// Only applicable if the List Box is displaying graphical elements.
 			horizontalscroll
-			// flag >
+			// flag > Enforces auto-wrapping of the text provided by the `text' field. 
+			// This keyword causes the text to automatically wrap to fit within the rect.
 			autowrapped
-			// flag >
+			// flag > Enforces manual text wrapping of the text provided in the `text' field. 
+			// The two-character sequence ``\r'' (backslash, r) causes a manual and forced wrap (newline) in texts.
 			wrapped
 			background [string]
 			text [string]
@@ -91,6 +94,9 @@
 			ownerDrawFlag [int]
 			maxChars [int]
 			maxPaintChars [int]
+			border [int]
+			borderSize [float]
+			origin [int] [int]
 			borderColor [float] [float] [float] [float]
 			outlineColor [float] [float] [float] [float]
 			disableColor [float] [float] [float] [float]
