@@ -19,9 +19,15 @@
 #define ITEM_TYPE_VALIDFILEFIELD		16		// text must be valid for use in a dos filename
 #define ITEM_TYPE_DECIMALFIELD			17		// editable text, associated with a dvar, which allows decimal input
 #define ITEM_TYPE_UPREDITFIELD			18		// editable text, associated with a dvar
-#define ITEM_TYPE_GAME_MESSAGE_WINDOW 	19	// game message window
+#define ITEM_TYPE_GAME_MESSAGE_WINDOW 	19	    // game message window
 #define ITEM_TYPE_NEWSTICKER 			20
 
+//below these 3 unknown itemtypes are to do with mail and login system.
+#define ITEM_TYPE_UNKNOWN1    			21
+#define ITEM_TYPE_UNKNOWN2    			22
+#define ITEM_TYPE_UNKNOWN3    			23
+
+// textAlign type
 #define ITEM_ALIGN_LEFT 				0		// aligns left of text to left of containing rectangle
 #define ITEM_ALIGN_CENTER				1		// aligns center of text to center of containing rectangle
 #define ITEM_ALIGN_RIGHT				2		// aligns right of text to right of containing rectangle
@@ -46,11 +52,39 @@
 #define ITEM_ALIGN_BOTTOM_CENTER		13
 #define ITEM_ALIGN_BOTTOM_RIGHT			14
 
-#define ITEM_TEXTSTYLE_NORMAL			0	// normal text
-#define ITEM_TEXTSTYLE_BLINK			1	// fast blinking
-#define ITEM_TEXTSTYLE_SHADOWED 		3	// drop shadow ( need a color for this )
-#define ITEM_TEXTSTYLE_SHADOWEDMORE 	6	// drop shadow ( need a color for this )
-#define ITEM_TEXTSTYLE_MONOSPACE		128
+// font style types
+#define ITEM_TEXTSTYLE_NORMAL			    0	// normal text
+#define ITEM_TEXTSTYLE_BLINK			    1	// fast blinking
+#define ITEM_TEXTSTYLE_SHADOWED 		    3   // text shadow behind
+#define ITEM_TEXTSTYLE_UNKNOWN1             4   
+#define ITEM_TEXTSTYLE_UNKNOWN2             5   
+#define ITEM_TEXTSTYLE_UNKNOWN3             6   // text shadow behind
+#define ITEM_TEXTSTYLE_UNKNOWN4             7   // less thicker filled??? with a border or backcolor behind the text?
+#define ITEM_TEXTSTYLE_FILLED_BLACK         8   // filled with a border or backcolor behind the text?
+
+#define ITEM_TEXTSTYLE_MONOSPACE		    128 // text will be be randomly spaced
+
+// font types
+#define UI_FONT_DEFAULT						0   // auto-chose betwen big/reg/small
+#define UI_FONT_NORMAL						1
+#define UI_FONT_BIG							2
+#define UI_FONT_SMALL						3
+#define UI_FONT_BOLD						4
+#define UI_FONT_CONSOLE						5
+#define UI_FONT_OBJECTIVE					6   
+#define UI_FONT_UNKNOWN1					7   // IW3 font unspaced slightly thicker  /*UI_FONT_LEGACY_THICK*/ 
+#define UI_FONT_UNKNOWN2					8   // IW3 font unspaced /*UI_FONT_LEGACY*/
+#define UI_FONT_UNKNOWN3					9   // IW4 standard caps-lock font /*UI_FONT_CAPSLOCK_UNSPACED*/
+#define UI_FONT_UNKNOWN4					10  // IW4 standard caps-lock font /*UI_FONT_CAPSLOCK_SPACED*/
+
+// style types
+#define WINDOW_STYLE_EMPTY				0	// no background
+#define WINDOW_STYLE_FILLED 			1	// filled with background color
+#define WINDOW_STYLE_GRADIENT			2	// gradient bar based on background color
+#define WINDOW_STYLE_SHADER 			3	// shader based on background color
+#define WINDOW_STYLE_TEAMCOLOR			4	// team color
+#define WINDOW_STYLE_DVAR_SHADER		5	// draws the shader specified by the dvar
+#define WINDOW_STYLE_LOADBAR 			6	// shader based on background color
 
 #define WINDOW_BORDER_NONE				0		// no border
 #define WINDOW_BORDER_FULL				1		// full border based on border color ( single pixel )
@@ -60,37 +94,16 @@
 #define WINDOW_BORDER_RAISED			5		// darken the bottom and right sides of the border
 #define WINDOW_BORDER_SUNKEN			6		// darken the top and left sides of the border
 
-#define WINDOW_STYLE_EMPTY				0	// no background
-#define WINDOW_STYLE_FILLED 			1	// filled with background color
-#define WINDOW_STYLE_GRADIENT			2	// gradient bar based on background color
-#define WINDOW_STYLE_SHADER 			3	// shader based on background color
-#define WINDOW_STYLE_TEAMCOLOR			4	// team color
-#define WINDOW_STYLE_DVAR_SHADER		5	// draws the shader specified by the dvar
-#define WINDOW_STYLE_LOADBAR 			6	// shader based on background color
+#define MODE_BOTTOMUP_ALIGN_TOP			    0 // text appears on bottom of list and moves up to specified Y coordinate as old text fades out
+#define MODE_BOTTOMUP_ALIGN_BOTTOM		    1 // text appears on bottom of list and moves away from specified Y coordinate as new text pushes it up
+#define MODE_TOPDOWN_ALIGN_TOP			    2 // text appears on top of list and moves away from specified Y coordinate as new text pushes it down
+#define MODE_TOPDOWN_ALIGN_BOTTOM		    3 // text appears on top of list and moves down to specified Y coordinate as old text fades out
 
-#define MODE_BOTTOMUP_ALIGN_TOP			0 // text appears on bottom of list and moves up to specified Y coordinate as old text fades out
-#define MODE_BOTTOMUP_ALIGN_BOTTOM		1 // text appears on bottom of list and moves away from specified Y coordinate as new text pushes it up
-#define MODE_TOPDOWN_ALIGN_TOP			2 // text appears on top of list and moves away from specified Y coordinate as new text pushes it down
-#define MODE_TOPDOWN_ALIGN_BOTTOM		3 // text appears on top of list and moves down to specified Y coordinate as old text fades out
+#define MENU_TRUE						    1
+#define MENU_FALSE						    0
 
-#define MENU_TRUE						1
-#define MENU_FALSE						0
-
-#define RANGETYPE_ABSOLUTE				0
-#define RANGETYPE_RELATIVE				1
-
-// font types
-#define UI_FONT_DEFAULT						0	// auto-chose betwen big/reg/small
-#define UI_FONT_NORMAL						1
-#define UI_FONT_BIG							2
-#define UI_FONT_SMALL						3
-#define UI_FONT_BOLD						4
-#define UI_FONT_CONSOLE						5
-#define UI_FONT_OBJECTIVE					6
-#define UI_FONT_UNKNOWN1					7
-#define UI_FONT_UNKNOWN2					8
-#define UI_FONT_UNKNOWN3					9
-#define UI_FONT_UNKNOWN4					10
+#define RANGETYPE_ABSOLUTE				    0
+#define RANGETYPE_RELATIVE				    1
 
 // owner draw types
 // ideally these should be done outside of this file but
@@ -324,6 +337,14 @@
 #define FEEDER_PARTY_MEMBERS_RANK		0x29	// rank icon
 #define FEEDER_ENEMY_MEMBERS_RANK		0x30	// rank icon
 #define FEEDER_MYTEAM_MEMBERS_RANK  	0x31	// rank icon
+
+#define FEEDER_UNKNOWN1 40
+#define FEEDER_UNKNOWN2 41
+#define FEEDER_UNKNOWN3 42
+#define FEEDER_UNKNOWN4 45
+#define FEEDER_UNKNOWN5 46
+#define FEEDER_UNKNOWN6 47
+#define FEEDER_UNKNOWN7 48
 
 // display flags
 #define CG_SHOW_BLUE_TEAM_HAS_REDFLAG		0x00000001
