@@ -1,5 +1,4 @@
-// note to exp stuff it does not need to be [script expressions] can be [int],[float],[double] etc etc
-
+// note to exp stuff.. it does not need to be [script expressions].
 {
 	menuDef
 	{
@@ -13,6 +12,10 @@
 		
 		fullscreen [int]
 		style [int]
+		
+		ownerdraw [int]
+		ownerdrawFlag [int]	
+		
 		border [int]
 		borderSize [float]
 		borderColor [float] [float] [float] [float]
@@ -20,14 +23,16 @@
 		focusColor [float] [float] [float] [float]
 		foreColor [float] [float] [float] [float]
 		backColor [float] [float] [float] [float]
+		outlineColor [float] [float] [float] [float]
 		disableColor [float] [float] [float] [float]
 		
 		background [string]
-		type [int]
-		textScale [float]
+		
 		fadeClamp [float]
 		fadeAmount [float]
 		fadeCycle [float]
+		fadeInAmount [float]
+		
 		blurWorld [int]
 		soundLoop [string]
 		
@@ -44,6 +49,8 @@
 		// flag > Causes the menu to be drawn overtop of the calling menu. 
 		// Only items in this menu can gain the focus, even though items in the underlying menu can be seen.
 		popup
+		//  flag > legacySplitScreenScale
+		legacySplitScreenScale
 		execKey [int][string]
 		{
 			[script]
@@ -73,35 +80,23 @@
 			exp rect y ( [script expressions] )
 			exp rect w ( [script expressions] )
 			exp rect h ( [script expressions] )
-			
-			// flag > Presence of this keyword declares whether this item is a decoration item or not. 
-			// Non-decoration items would be hotspots, buttons, sliders, etc. 
-			// items that cause actions to happen. Decoration items would be menu border graphics, logos, animation boxes, etc.
-			// anything without this keyword will make mouseover sound and other assorted things.
-			decoration
-			// flag > Makes a List Box scroll horiziontally rather than vertically. 
-			// Only applicable if the List Box is displaying graphical elements.
-			horizontalscroll
-			// flag > Enforces auto-wrapping of the text provided by the `text' field. 
-			// This keyword causes the text to automatically wrap to fit within the rect.
-			autowrapped
-			// flag > Enforces manual text wrapping of the text provided in the `text' field. 
-			// The two-character sequence ``\r'' (backslash, r) causes a manual and forced wrap (newline) in texts.
-			wrapped
-			
+						
 			background [string]
+			exp material ( [[script expressions] ) 			
 			text [string]
+			exp text ( [script expressions] ) 
 			group [string]
 			style [int]
 			
 			type [int]
+			align [int]
 			
-			textFont [int]
 			textAlign [int]
 			textAlignX [int]
 			textAlignY [int]
-			textStyle [int]
+			textFont [int]
 			textScale [int]
+			textStyle [int]
 			
 			ownerDraw [int]
 			ownerDrawFlag [int]
@@ -148,9 +143,21 @@
 			feeder [float]
 			elementType [int]
 			
-			exp text ( [script expressions] ) 
-			exp material ( [[script expressions] or "string" ) 
-
+			// flag > Presence of this keyword declares whether this item is a decoration item or not. 
+			// Non-decoration items would be hotspots, buttons, sliders, etc. 
+			// items that cause actions to happen. Decoration items would be menu border graphics, logos, animation boxes, etc.
+			// anything without this keyword will make mouseover sound and other assorted things.
+			decoration
+			// flag > Makes a List Box scroll horiziontally rather than vertically. 
+			// Only applicable if the List Box is displaying graphical elements.
+			horizontalscroll
+			// flag > Enforces auto-wrapping of the text provided by the `text' field. 
+			// This keyword causes the text to automatically wrap to fit within the rect.
+			autowrapped
+			// flag > Enforces manual text wrapping of the text provided in the `text' field. 
+			// The two-character sequence ``\r'' (backslash, r) causes a manual and forced wrap (newline) in texts.
+			wrapped
+			
 			onFocus
 			{
 				[script]
@@ -164,6 +171,10 @@
 				[script]
 			}
 			mouseExit
+			{
+				[script]
+			}
+			action
 			{
 				[script]
 			}
