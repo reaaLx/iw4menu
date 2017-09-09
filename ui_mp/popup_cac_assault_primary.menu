@@ -296,7 +296,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 184 2 1
+			rect -36 0 200 184 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -308,7 +308,7 @@
 		}
 		itemDef
 		{
-			rect -56 10 200 100 2 1
+			rect -36 10 200 100 2 1
 			decoration
 			visible 1
 			style 3
@@ -318,7 +318,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 184 2 1
+			rect -36 0 200 184 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -333,7 +333,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 184 2 1
+			rect -36 0 200 184 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -348,7 +348,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 184 2 1
+			rect -36 0 200 184 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -361,6 +361,9 @@
 			text "@PLATFORM_VIEW_CHALLENGES"
 			visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && ( tablelookup( "mp/challengeTable.csv" , 6 , localvarstring( "ui_selected_ref" ) , 4 ) ) != "" )
 		}
+		
+		// stats below
+		
 		itemDef
 		{
 			rect -128 22 120 4 3 1

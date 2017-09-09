@@ -307,7 +307,7 @@
 		}
 		itemDef
 		{
-			rect -136 0 360 164 2 1
+			rect -56 0 360 164 2 1
 			decoration
 			visible 1
 			style 3
@@ -318,7 +318,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 164 2 1
+			rect -36 0 200 164 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -330,7 +330,7 @@
 		}
 		itemDef
 		{
-			rect -56 20 64 64 2 1
+			rect -36 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
@@ -340,7 +340,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 164 2 1
+			rect -36 0 200 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -355,7 +355,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 164 2 1
+			rect -36 0 200 164 2 1
 			decoration
 			autowrapped
 			visible 1

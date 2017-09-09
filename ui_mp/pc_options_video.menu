@@ -69,9 +69,9 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X -130
 
-		CHOICE_DVARENUMLIST_FOCUS_EX( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 1 ), setLocalVarBool "ui_graphics_hint_display" ( 0 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARSLIDER_FOCUS( 21, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, setLocalVarBool "ui_brightness_hint_display" ( 1 ),setLocalVarBool "ui_brightness_hint_display" ( 0 ), ExecNow "profile_menuDvarsFinish"; )
-
+		CHOICE_DVARENUMLIST_FOCUS_EX( 20, "@MENU_VIDEO_MODE", "ui_r_mode", "r_mode", setlocalVarBool "ui_showApply" ( 1 ), setLocalVarString "ui_graphics_hint_display" ( 1 ), setLocalVarString "ui_graphics_hint_display" ( 0 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARSLIDER_FOCUS( 21, "@MENU_BRIGHTNESS", "profileMenuOption_Gamma", 0.8, 0.5, 3, ExecNow "profile_menuDvarsFinish";, setLocalVarString "ui_brightness_hint_display" ( 1 ), setLocalVarString "ui_brightness_hint_display" ( 0 ) )
+		
 		#undef HIGHTLIGHT_BACKCOLOR
 		#define HIGHTLIGHT_BACKCOLOR 0 0 0 0
 		
@@ -95,7 +95,7 @@
 			type 1
 			textscale 0.375
 			text "@MENU_GRAPHICS_WARNING"
-			visible when ( localVarBool( "ui_graphics_hint_display" ) )
+			visible when ( localVarString( "ui_graphics_hint_display" ) )
 		}
 		itemDef
 		{
@@ -109,7 +109,7 @@
 			type 1
 			textscale 0.375
 			text "@MENU_BRIGHTNESS_HINT_PC"
-			visible when ( localVarBool( "ui_brightness_hint_display" ) )
+			visible when ( localVarString( "ui_brightness_hint_display" ) )
 		}
 	}
 }

@@ -308,7 +308,7 @@
 		
 		itemDef
 		{
-			rect 208 0 336 164 1 1
+			rect 268 0 336 164 1 1
 			decoration
 			visible 1
 			style 3
@@ -317,55 +317,26 @@
 			textscale 0.55
 			visible when ( 1 )
 		}
+		PREPROC_TEXT_DRAW_ALIGNED( -56 0 160 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ), 0.375, 4, 0, 4, 1 1 1 1
+		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
+		exp forecolor a ( 1 - ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) * 0.35 ) ) )
+
+		PREPROC_SHADER_DRAW( -56 20 64 64 2 1, ORIGIN_NONE, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ), 1 1 1 1
+		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) ) )
+
+		PREPROC_TEXT_DRAW_ALIGNED2( -56 0 152 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ), 0.375, 4, 84, 4, 1 1 1 1 autowrapped
+		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
+		visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) ) ) 
+
 		itemDef
 		{
-			rect -56 0 160 164 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 4
-			textalignx 4
-			textscale 0.375
-			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
-			exp forecolor a ( 1 - ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) * 0.35 ) )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
-		}
-		itemDef
-		{
-			rect -56 20 64 64 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
-		}
-		itemDef
-		{
-			rect -56 0 152 164 2 1
-			decoration
-			autowrapped
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 4
-			textalignx 4
-			textaligny 84
-			textscale 0.375
-			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
-			visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
-		}
-		itemDef
-		{
-			rect -56 0 152 164 2 1
+			rect -96 0 152 164 2 1
 			decoration
 			autowrapped
 			visible 1
 			forecolor 0.85 0.4 0.4 1
 			textfont 3
+			textstyle 8
 			textalign 4
 			textalignx 4
 			textaligny 131
@@ -374,49 +345,20 @@
 			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( localvarstring( "ui_selected_ref" ) == "specialty_onemanarmy" )
 		}
-		itemDef
-		{
-			rect -56 0 152 164 2 1
-			decoration
-			autowrapped
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textalignx 4
-			textaligny 84
-			textscale 0.375
-			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
-			visible when ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
-			exp text ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , 17 ) )
-		}
-		itemDef
-		{
-			rect 104 0 160 164 2 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 9
-			textalign 4
-			textscale 0.375
-			exp forecolor a ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.35 ) )
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , int( 9 ) ) )
-		}
-		itemDef
-		{
-			rect 104 20 64 64 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			exp forecolor r ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
-			exp forecolor g ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
-			exp forecolor b ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) + "_upgrade" )
-		}
+		
+		PREPROC_TEXT_DRAW_ALIGNED( 164 0 160 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , int( 9 ) ), 0.375, 0, 0, 4, 1 1 1 0.65
+		exp forecolor a ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.35 ) )
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
+		
+		PREPROC_SHADER_DRAW( 164 20 64 64 2 1, ORIGIN_NONE, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) + "_upgrade", 1 1 1 1
+		exp forecolor r ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+		exp forecolor g ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+		exp forecolor b ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
+		
+		PREPROC_TEXT_DRAW_ALIGNED2( 164 0 160 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) , 4 ), 0.375, 4, 84, 4, 1 1 1 1 autowrapped
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) ) )
+
 		itemDef
 		{
 			rect 104 20 40 20 2 1
@@ -438,21 +380,6 @@
 			background "specialty_locked"
 			textscale 0.55
 			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
-		}
-		itemDef
-		{
-			rect 104 0 160 164 2 1
-			decoration
-			autowrapped
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 4
-			textalignx 4
-			textaligny 84
-			textscale 0.375
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) , 4 ) )
 		}
 		itemDef
 		{

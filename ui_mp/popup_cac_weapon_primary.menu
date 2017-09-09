@@ -279,12 +279,32 @@
 				setLocalVarString "ui_info_name" ( textArg ); \
 				setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
 				setLocalVarString "ui_info_icon" ( "" );
+				
+		#define LOCAL_RIOT_ACTION0 \
+				if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) != "riotshield" ) \
+				{ \
+					setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , 0 , "attachment" , 0 , "none" ); \
+					setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , 0 , "attachment" , 1 , "none" ); \
+					setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , 0 , "camo" , "none" ); \
+				} \
+				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , 0 , "weapon" , "riotshield" ); \
+				setPlayerData( "weaponNew" , "riotshield" , "false" ); \
+				LOCAL_CACSETVARSTRINGS; \
+				LOCAL_CAC_WEAPON_ATTACHMENT_TYPE( REF_IS_PRIMARY, "riotshield" ); \
+				close "self"; \
+				PREPROC_CAC_CLOSEALL; \
+				
+		#define LOCAL_RIOT_FOCUS \
+				setLocalVarString "ui_info_name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , "riotshield" , 3 ) ); \
+				setLocalVarString "ui_info_desc" ( "@" + tablelookup( "mp/statstable.csv" , 4 , "riotshield" , 7 ) ); \
+				setLocalVarString "ui_info_icon" ( tablelookup( "mp/statsTable.csv" , 4 , "riotshield" , 6 ) ); \
+
 		
 		CHOICE_BUTTON_FOCUS( 0, "@MENU_ASSAULT_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_assault_primary";, "@MENU_ASSAULT_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
 		CHOICE_BUTTON_FOCUS( 1, "@MENU_SMGS_CAPS", UI_TABDEPTH2( open "popup_cac_smg_primary";, "@MENU_SMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SMGS_CAPS" ), ; )
 		CHOICE_BUTTON_FOCUS( 2, "@MENU_LMGS_CAPS", UI_TABDEPTH2( open "popup_cac_lmg_primary";, "@MENU_LMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_LMGS_CAPS" ), ; )
 		CHOICE_BUTTON_FOCUS( 3, "@MENU_SNIPER_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_sniper_primary";, "@MENU_SNIPER_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
-		LOCAL_RIOT_ITEM( 4, "@MENU_RIOT_SHIELD_CAPS", "riotshield" )
+		CHOICE_BUTTON_FOCUS( 4, "@MENU_RIOT_SHIELD_CAPS", LOCAL_RIOT_ACTION0, LOCAL_RIOT_FOCUS, ; )
 		
 		itemDef
 		{
