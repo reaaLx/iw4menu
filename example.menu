@@ -1,3 +1,5 @@
+// note to exp stuff it does not need to be [script expressions] can be [int],[float],[double] etc etc
+
 {
 	menuDef
 	{
