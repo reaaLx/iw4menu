@@ -2,20 +2,24 @@
 	menuDef
 	{
 		name [string]
+		
 		rect [float] [float] [float] [float] [int] [int]
 		exp rect x ( [script expressions] )
 		exp rect y ( [script expressions] )
 		exp rect w ( [script expressions] )
 		exp rect h ( [script expressions] )
+		
 		fullscreen [int]
 		style [int]
 		border [int]
 		borderSize [float]
+		borderColor [float] [float] [float] [float]
+
 		focusColor [float] [float] [float] [float]
 		foreColor [float] [float] [float] [float]
 		backColor [float] [float] [float] [float]
-		borderColor [float] [float] [float] [float]
 		disableColor [float] [float] [float] [float]
+		
 		background [string]
 		type [int]
 		textScale [float]
@@ -24,9 +28,11 @@
 		fadeCycle [float]
 		blurWorld [int]
 		soundLoop [string]
+		
 		visible [int]
 		visible if ( [script expressions] )
 		visible when ( [script expressions] )
+	
 		disabled [int]
 		disabled if ( [script expressions] )
 		disabled when ( [script expressions] )
@@ -65,6 +71,7 @@
 			exp rect y ( [script expressions] )
 			exp rect w ( [script expressions] )
 			exp rect h ( [script expressions] )
+			
 			// flag > Presence of this keyword declares whether this item is a decoration item or not. 
 			// Non-decoration items would be hotspots, buttons, sliders, etc. 
 			// items that cause actions to happen. Decoration items would be menu border graphics, logos, animation boxes, etc.
@@ -79,53 +86,66 @@
 			// flag > Enforces manual text wrapping of the text provided in the `text' field. 
 			// The two-character sequence ``\r'' (backslash, r) causes a manual and forced wrap (newline) in texts.
 			wrapped
+			
 			background [string]
 			text [string]
 			group [string]
 			style [int]
+			
 			type [int]
+			
 			textFont [int]
 			textAlign [int]
 			textAlignX [int]
 			textAlignY [int]
 			textStyle [int]
 			textScale [int]
+			
 			ownerDraw [int]
 			ownerDrawFlag [int]
+			
 			maxChars [int]
 			maxPaintChars [int]
+			origin [int] [int]
+
 			border [int]
 			borderSize [float]
-			origin [int] [int]
 			borderColor [float] [float] [float] [float]
 			outlineColor [float] [float] [float] [float]
 			disableColor [float] [float] [float] [float]
+			
 			foreColor [float] [float] [float] [float]
 			exp foreColor r ( [script expressions] )
 			exp foreColor g ( [script expressions] )
 			exp foreColor b ( [script expressions] )
 			exp foreColor a ( [script expressions] )
+			
 			backColor [float] [float] [float] [float]
 			exp backColor r ( [script expressions] )
 			exp backColor g ( [script expressions] )
 			exp backColor b ( [script expressions] )
 			exp backColor a ( [script expressions] )
+			
 			glowColor [float] [float] [float] [float]
 			exp glowColor r ( [script expressions] )
 			exp glowColor g ( [script expressions] )
 			exp glowColor b ( [script expressions] )
 			exp glowColor a ( [script expressions] )
+			
 			disabled [int]
 			disabled when ( [script expressions] )
 			disabled if ( [script expressions] )
+				
 			visible [int]
 			visible when ( [script expressions] )
 			visible if ( [script expressions] )
+				
 			elementWidth [float]
 			elementHeight [float]
 			columns [int] [int] 
 			feeder [float]
 			elementType [int]
+			
 			exp text ( [script expressions] ) 
 			exp material ( [[script expressions] or "string" ) 
 
