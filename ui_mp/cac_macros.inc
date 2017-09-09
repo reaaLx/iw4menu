@@ -29,6 +29,12 @@
 			{ setLocalVarString "ui_tab6Name" ( textArg ); } \
 			actionArg \
 
+#define LOCAL_TYPE_FOCUS( cacTypeStat, UI_REF1, UI_REF2, UI_REF3, UI_REF4 ) \
+		UI_REF1 \
+		UI_REF2 \
+		UI_REF3 \
+		UI_REF4 \
+
 #define LOCAL_CH_REF( chType ) \
 		if ( ( localvarstring( "ui_challenge_ref" ) == chType + localvarstring( "ui_weapon_ref" ) + "_2" ) ) \
 		{ \
@@ -117,13 +123,23 @@
 			setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "perks" , refPerk , perkStat ); \
 		} \
 
-#define REF_IS_PRIMARY_ATTACHMENT 		0
-#define REF_IS_SECONDARY_ATTACHMENT 	1
+#define REF_IS_PRIMARY 		0
+#define REF_IS_SECONDARY	1
 
-#define LOCAL_CAC_WEAPON_ATTACHMENT_TYPE( REF_TYPE, weaponStat ) \
+#define LOCAL_CAC_WEAPON_TYPE( REF_TYPE, cacTypeStat ) \
+		if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "weapon" ) != cacTypeStat ) \
+		{ \
+			setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 0 , "none" ); \
+			setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 , "none" ); \
+			setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "camo" , "none" ); \
+		} \
+		setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "weapon" , cacTypeStat ); \
+		setPlayerData( "weaponNew" , cacTypeStat , "false" ); \
+
+#define LOCAL_CAC_WEAPON_ATTACHMENT_TYPE( REF_TYPE, cacTypeStat ) \
 		if ( REF_TYPE == 0 ) \
 		{ \
-			if ( ( tablelookup( "mp/statsTable.csv" , 4 , weaponStat , 11 ) != "" ) ) \
+			if ( ( tablelookup( "mp/statsTable.csv" , 4 , cacTypeStat , 11 ) != "" ) ) \
 			{ \
 				if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_bling" ) \
 				{ \
@@ -141,7 +157,7 @@
 		} \
 		else \
 		{ \
-			if ( ( tablelookup( "mp/statsTable.csv" , 4 , weaponStat , 11 ) != "" ) ) \
+			if ( ( tablelookup( "mp/statsTable.csv" , 4 , cacTypeStat , 11 ) != "" ) ) \
 			{ \
 				if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_bling" && isitemunlocked( "specialty_secondarybling" ) ) \
 				{ \
@@ -156,7 +172,104 @@
 			{ \
 				PREPROC_CAC_CLOSEALL \
 			} \
-		} \	
+		} \
+
+#define LOCAL_CAC_WEAPON_ATTACHMENT_ACTION1( REF_TYPE, cacTypeStat ) \
+		setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE, "weapon" ) ); \
+		setPlayerData( "attachmentNew" , "localVarString" ( "tempName" ) , "localVarString" ( "ui_selected_ref" ) , "false" ); \
+		if ( menuisopen( "popup_primary_attachments_bling" ) || menuisopen( "popup_secondary_attachments_bling" ) ) \
+		{ \
+			setLocalVarString "tempName" ( "none" ); \
+			if ( ( localvarstring( "ui_attachment1" ) == "none" || localvarstring( "ui_attachment2" ) == "none" ) ) \
+			{ \
+				setLocalVarInt "tempInt" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 ) == "none" ); \
+				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , "localVarInt" ( "tempInt" ) , "none" ); \
+			} \
+			else \
+			{ \
+				setLocalVarInt "tempInt" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 0 ) != "none" ); \
+				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , "localVarInt" ( "tempInt" ) , "localVarString" ( "tempName" ) ); \
+			} \
+			setLocalVarString "ui_attachment1" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 0 ) ); \
+			setLocalVarString "ui_attachment2" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 ) ); \
+			setLocalVarInt "ui_numAttachments" ( 0 ); \
+			if ( localvarstring( "ui_attachment1" ) != "none" ) \
+			{ \
+				setLocalVarInt "ui_numAttachments" ( localvarint( "ui_numAttachments" ) + 1 ); \
+			} \
+			if ( localvarstring( "ui_attachment2" ) != "none" ) \
+			{ \
+				setLocalVarInt "ui_numAttachments" ( localvarint( "ui_numAttachments" ) + 1 ); \
+			} \
+			LOCAL_CACSETVARSTRINGS \
+			LOCAL_CAC_WEAPON_ATTACHMENT_ACTION3_EXTRA( REF_TYPE, cacTypeStat ) \
+		} \
+		LOCAL_CAC_WEAPON_ATTACHMENT_ACTION2( REF_TYPE, cacTypeStat ) \
+
+
+#define LOCAL_CAC_WEAPON_ATTACHMENT_ACTION2( REF_TYPE, cacTypeStat ) \
+		else \
+		{ \
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_bling" ) \
+			{ \
+				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 , "none" ); \
+			} \
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_bling" && getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 ) == "none" ) \
+			{ \
+				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 1 , "none" ); \
+			} \
+			setLocalVarString "tempName" ( "none" ); \
+			setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , REF_TYPE , "attachment" , 0 , "localVarString" ( "tempName" ) ); \
+			if ( REF_TYPE == 0 ) \
+			{ \
+				open "popup_cac_primary_camo"; \
+			} \
+			else \
+			{ \
+				PREPROC_CAC_CLOSEALL \
+			} \
+			LOCAL_CACSETVARSTRINGS \
+		} \
+
+#define LOCAL_CAC_WEAPON_ATTACHMENT_ACTION3_EXTRA( REF_TYPE, cacTypeStat ) \
+		if ( ( localvarstring( "ui_attachment1" ) == tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) || localvarstring( "ui_attachment2" ) == tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) ) ) \
+		{ \
+			setItemColor self backcolor 0 0 0 "0.35"; \
+		} \
+		else \
+		{ \
+			setItemColor self backcolor 0 0 0 1; \
+		} \
+		if ( localvarint( "ui_numAttachments" ) == 2 ) \
+		{ \
+			if ( REF_TYPE == 0 ) \
+			{ \
+				UI_TABDEPTH2( open "popup_cac_primary_camo";, "@" + tablelookup( "mp/perkTable.csv" , 1 , "specialty_bling" , 2 ) ) \
+				open "popup_cac_primary_camo"; \
+			} \
+			else \
+			{ \
+				PREPROC_CAC_CLOSEALL \
+			} \
+			LOCAL_CACSETVARSTRINGS \
+		} \
+
+#define LOCAL_CAC_WEAPON_ATTACHMENT_ACTION4_EXTRA( cacTypeStat ) \
+		if ( ( localvarstring( "ui_attachment1" ) == tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) || localvarstring( "ui_attachment2" ) == tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) ) ) \
+		{ \
+			setItemColor self backcolor 0 0 0 "0.35"; \
+		} \
+		else \
+		{ \
+			if ( !( tablelookup( "mp/attachmentCombos.csv" , 0 , tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) , tablegetrownum( "mp/attachmentCombos.csv" , 0 , localvarstring( "ui_attachment1" ) ) ) != "no" ) ) \
+			{ \
+				setLocalVarString "ui_attachment_hint" ( localvarstring( "ui_attachment1" ) ); \
+			} \
+			if ( !( tablelookup( "mp/attachmentCombos.csv" , 0 , tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) , tablegetrownum( "mp/attachmentCombos.csv" , 0 , localvarstring( "ui_attachment2" ) ) ) != "no" ) ) \
+			{ \
+				setLocalVarString "ui_attachment_hint" ( localvarstring( "ui_attachment2" ) ); \
+			} \
+		} \
 
 #define LOCAL_CACATTACHMENT_WEAPONTYPE( REF_IS_WEAPONTYPE ) \
 		if(localvarint("ui_tabDepth")==0) \
@@ -211,7 +324,6 @@
 		setLocalVarString "loadoutOffhandSecondary" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "specialGrenade" ) ); \
 		setLocalVarString "loadoutClassName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "name" ) ); \
 
-	
 // because why not
 #define CAC_LOCALVARSTRINGS( itemIndex ) \
 		setLocalVarString "loadoutPrimary" ( tablelookup( "mp/classTable.csv" , 0 , "loadoutPrimary" , itemIndex + 1 ) ); \

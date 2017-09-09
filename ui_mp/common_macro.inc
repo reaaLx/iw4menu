@@ -340,6 +340,34 @@
 			} \
 		}
 
+// adds extra arguments for preprocessors
+#define PREPROC_EXTRA_FOCUS_EX_VIS( prect, pshader, pcolor, actionArg, onFocusArg, leaveFocusArg, visArg, extraArg ) \
+		itemDef \
+		{ \
+			rect prect \
+			decoration \
+			style WINDOW_STYLE_SHADER \
+			type ITEM_TYPE_BUTTON \
+			textScale 0.55 \
+			foreColor pcolor \
+			background pshader \
+			visible visArg \
+			extraArg \
+			onFocus \
+			{ \
+				play "mouse_over"; \
+				onFocusArg \
+			} \
+			leaveFocus \
+			{ \
+				leaveFocusArg \
+			} \
+			action \
+			{ \
+				actionArg \
+			} \
+		}
+
 // adds extra arguments missing for special itemdefs
 #define PREPROC_SHADER_DRAW_EX( prect, pshader, pcolor, pgroup, actionArg, extraArg ) \
 		PREPROC_SHADER_DRAW_FOCUS_EX_VIS( prect, pshader, pgroup, pcolor, actionArg, ;, ;, 1, extraArg ) \

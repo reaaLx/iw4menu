@@ -1,0 +1,839 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/cac.inc"
+
+#define CHOICE_GROUP	"cac"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+{
+	menuDef
+	{
+		name "popup_secondary_attachments"
+		rect -64 0 854 224 1 1
+		popup
+		outOfBoundsClick
+		style 1
+		forecolor 1 1 1 1
+		backcolor 1 1 1 1
+		background "white"
+		focuscolor 1 1 1 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		allowedBinding "+talk"
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_secondary_attachments_tabDepth" ) )
+		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
+		execKey 168
+		{
+			if ( localvarstring( "ui_selected_ref" ) != "none" && !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+			{
+				open "menu_challenge_detail_popup";
+			}
+		}
+		onOpen
+		{
+			focusfirst;
+			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
+			setLocalVarInt "ui_popup_secondary_attachments_tabDepth" ( localvarint( "ui_tabDepth" ) );
+			focusfirst;
+		}
+		onRequestClose
+		{
+			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) - 1 );
+		}
+		onEsc
+		{
+			close self;
+		}
+		itemDef
+		{
+			rect -1004 -584 1708 960 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.35
+			background "white"
+			textscale 0.55
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect -1004 -584 1708 960 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			background "xpbar_stencilbase"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 854 224 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.5 0.5 0.5 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 1708 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "mw2_popup_bg_fogstencil"
+			textscale 0.55
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "mw2_popup_bg_fogscroll"
+			textscale 0.55
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 854 0 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "mockup_popup_bg_stencilfill"
+			textscale 0.55
+			exp rect h ( ( 24 + 10 * 20 ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "mw2_popup_bg_fogstencil"
+			textscale 0.55
+			exp rect x ( ( - 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 -1708 -480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "mw2_popup_bg_fogscroll"
+			textscale 0.55
+			exp rect x ( ( - 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 854 0 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0
+			background "small_box_lightfx"
+			textscale 0.55
+			exp rect h ( ( 24 + 10 * 20 ) )
+		}
+		itemDef
+		{
+			rect -96 -32 32 32 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tl"
+			textscale 0.55
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 0 -32 854 32 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_t"
+			textscale 0.55
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 790 -32 32 32 1 1
+			decoration
+			visible 0
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_tr"
+			textscale 0.55
+			//visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 790 0 32 0 1 1
+			decoration
+			visible 0
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_r"
+			textscale 0.55
+			exp rect h ( ( 24 + 10 * 20 ) )
+			//visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 790 0 32 32 1 1
+			decoration
+			visible 0
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_br"
+			textscale 0.55
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 10 * 20 ) ) )
+			//visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 0 0 854 32 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_b"
+			textscale 0.55
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 10 * 20 ) ) )
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect -96 0 32 32 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_bl"
+			textscale 0.55
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 10 * 20 ) ) )
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect -96 0 32 0 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "drop_shadow_l"
+			textscale 0.55
+			exp rect h ( ( 24 + 10 * 20 ) )
+			visible when ( !localvarint( "ui_centerPopup" ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 224 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 0
+			background "gradient_fadein"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.25 0.25 0.25 1
+			background "white"
+			textscale 0.55
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 1 ) * 20 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 1 - 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 1 ) * 20 ) )
+			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
+			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
+			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 1 - 1 ) )
+			exp text ( localvarstring( "ui_tab1Name" ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.25 0.25 0.25 1
+			background "white"
+			textscale 0.55
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 2 ) * 20 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 2 - 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 2 ) * 20 ) )
+			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
+			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
+			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 2 - 1 ) )
+			exp text ( localvarstring( "ui_tab2Name" ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.25 0.25 0.25 1
+			background "white"
+			textscale 0.55
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 3 ) * 20 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 3 - 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 3 ) * 20 ) )
+			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
+			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
+			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 3 - 1 ) )
+			exp text ( localvarstring( "ui_tab3Name" ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.25 0.25 0.25 1
+			background "white"
+			textscale 0.55
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 4 ) * 20 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 4 - 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 4 ) * 20 ) )
+			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
+			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
+			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 4 - 1 ) )
+			exp text ( localvarstring( "ui_tab4Name" ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.25 0.25 0.25 1
+			background "white"
+			textscale 0.55
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 5 ) * 20 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 280 20 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 9
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 5 ) * 20 ) )
+			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
+			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
+			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
+			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
+			exp text ( localvarstring( "ui_tab5Name" ) )
+		}
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START				0
+		
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START				4
+		
+		#undef CHOICE_TEXTALIGN
+		#define	CHOICE_TEXTALIGN			4
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		68
+		
+		#undef HIGHLIGHT_SHADER_ART
+		#define HIGHLIGHT_SHADER_ART		"popup_button_selection_bar_short"
+
+		#undef CHOICE_GETFOCUSEDITEMY
+		#define CHOICE_GETFOCUSEDITEMY
+		
+		#undef CHOICE_UI_BUTTON
+		#define CHOICE_UI_BUTTON "ui_popupAButton"
+
+		CHOICE_BUTTON_FOCUS( 0, "None", ;, ;, ; )
+		LOCAL_ATTACHMENT2_ITEM( 1, 11 )
+		LOCAL_ATTACHMENT2_ITEM( 2, 12 )
+		LOCAL_ATTACHMENT2_ITEM( 3, 13 )
+		LOCAL_ATTACHMENT2_ITEM( 4, 14 )
+		LOCAL_ATTACHMENT2_ITEM( 5, 15 )
+		LOCAL_ATTACHMENT2_ITEM( 6, 16 )
+		LOCAL_ATTACHMENT2_ITEM( 7, 17 )
+		LOCAL_ATTACHMENT2_ITEM( 8, 18 )
+		LOCAL_ATTACHMENT2_ITEM( 9, 19 )
+		LOCAL_ATTACHMENT2_ITEM( 10, 20 )
+		
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "small_box_lightfx"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textalignx 4
+			textscale 0.375
+			exp text ( "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect 12 20 64 64 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( localvarstring( "ui_selected_ref" ) != "" )
+			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textalignx -4
+			textaligny 84
+			textscale 0.375
+			visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+			exp text ( "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 7 ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textalignx -4
+			textaligny 84
+			textscale 0.375
+			text "@MPUI_UNLOCKED_BY_CHALLENGE_PRE"
+			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textalignx -4
+			textaligny 102
+			textscale 0.375
+			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) + "_" + localvarint( "ui_challenge_state" ) ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 6
+			textalignx -4
+			textaligny 102
+			textscale 0.375
+			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) + "_" + localvarint( "ui_challenge_state" ) ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 224 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 6
+			textalignx -4
+			textaligny 164
+			textscale 0.375
+			text "@PLATFORM_VIEW_CHALLENGE_DETAILS"
+			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
+		}
+		itemDef
+		{
+			rect -128 22 120 4 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 3
+			textalign 6
+			textaligny -20
+			textscale 0.375
+			text "@MPUI_ACCURACY"
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 22 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.75 1 0.7 0.85
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 22 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "gradient_fadein"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 22 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 0.25 0.65
+			background "white"
+			textscale 0.55
+			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) ) )
+			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) / 100 ) ) * 120 ) )
+			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) * 0.45 + 0.25 )
+			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) > 0 ) * 0.45 + 0.25 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 22 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 48 120 4 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 3
+			textalign 6
+			textaligny -20
+			textscale 0.375
+			text "@MPUI_DAMAGE"
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 48 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.75 1 0.7 0.85
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 48 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "gradient_fadein"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 48 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 0.25 0.65
+			background "white"
+			textscale 0.55
+			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) ) )
+			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) / 100 ) ) * 120 ) )
+			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) * 0.45 + 0.25 )
+			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) > 0 ) * 0.45 + 0.25 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 23 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 74 120 4 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 3
+			textalign 6
+			textaligny -20
+			textscale 0.375
+			text "@MPUI_RANGE"
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 74 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.75 1 0.7 0.85
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 74 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "gradient_fadein"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 74 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 0.25 0.65
+			background "white"
+			textscale 0.55
+			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) ) )
+			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) / 100 ) ) * 120 ) )
+			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) * 0.45 + 0.25 )
+			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) > 0 ) * 0.45 + 0.25 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 24 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 100 120 4 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 3
+			textalign 6
+			textaligny -20
+			textscale 0.375
+			text "@MPUI_FIRE_RATE"
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 100 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.75 1 0.7 0.85
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 100 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "gradient_fadein"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 100 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 0.25 0.65
+			background "white"
+			textscale 0.55
+			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) ) )
+			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) / 100 ) ) * 120 ) )
+			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) * 0.45 + 0.25 )
+			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) > 0 ) * 0.45 + 0.25 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect -128 126 120 4 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 0.65
+			backcolor 0 0 0 1
+			background "gradient_fadein"
+			textfont 3
+			textalign 6
+			textaligny -20
+			textscale 0.375
+			text "@MPUI_MOBILITY"
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) && 0 )
+		}
+		itemDef
+		{
+			rect -128 126 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.75 1 0.7 0.85
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) && 0 )
+		}
+		itemDef
+		{
+			rect -128 126 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.85 0.85 0.85 1
+			background "gradient_fadein"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) && 0 )
+		}
+		itemDef
+		{
+			rect -128 126 120 2 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 0.25 0.65
+			background "white"
+			textscale 0.55
+			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) ) )
+			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) / 100 ) ) * 120 ) )
+			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) * 0.45 + 0.25 )
+			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) > 0 ) * 0.45 + 0.25 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 26 ) && 0 )
+		}
+	}
+}

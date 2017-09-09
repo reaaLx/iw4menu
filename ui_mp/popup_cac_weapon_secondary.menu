@@ -13,7 +13,7 @@
 	menuDef
 	{
 		name "popup_cac_weapon_secondary"
-		rect 0 0 854 104 1 1
+		rect -64 0 854 104 1 1
 		popup
 		outOfBoundsClick
 		style 1
@@ -44,7 +44,7 @@
 		}
 		itemDef
 		{
-			rect -918 -480 1708 960 1 1
+			rect -1004 -584 1708 960 2 2
 			decoration
 			visible 1
 			style 1
@@ -56,7 +56,7 @@
 		}
 		itemDef
 		{
-			rect -918 -480 1708 960 1 1
+			rect -1004 -584 1708 960 2 2
 			decoration
 			visible 1
 			style 1
@@ -67,7 +67,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 854 104 1 1
+			rect 0 0 854 104 1 1
 			decoration
 			visible 1
 			style 1
@@ -100,7 +100,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 854 0 1 1
+			rect 0 0 854 0 1 1
 			decoration
 			visible 1
 			style 3
@@ -111,7 +111,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 -1708 -480 1 1
+			rect 0 0 -1708 -480 1 1
 			decoration
 			visible 1
 			style 3
@@ -122,7 +122,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 -1708 -480 1 1
+			rect 0 0 -1708 -480 1 1
 			decoration
 			visible 1
 			style 3
@@ -133,7 +133,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 854 0 1 1
+			rect 0 0 854 0 1 1
 			decoration
 			visible 1
 			style 3
@@ -155,7 +155,7 @@
 		}
 		itemDef
 		{
-			rect -64 -32 854 32 1 1
+			rect 0 -32 854 32 1 1
 			decoration
 			visible 1
 			style 3
@@ -168,40 +168,40 @@
 		{
 			rect 790 -32 32 32 1 1
 			decoration
-			visible 1
+			visible 0
 			style 3
 			forecolor 0 0 0 1
 			background "drop_shadow_tr"
 			textscale 0.55
-			visible when ( !localvarint( "ui_centerPopup" ) )
+			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
 			rect 790 0 32 0 1 1
 			decoration
-			visible 1
+			visible 0
 			style 3
 			forecolor 0 0 0 1
 			background "drop_shadow_r"
 			textscale 0.55
 			exp rect h ( ( 24 + 4 * 20 ) )
-			visible when ( !localvarint( "ui_centerPopup" ) )
+			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
 			rect 790 0 32 32 1 1
 			decoration
-			visible 1
+			visible 0
 			style 3
 			forecolor 0 0 0 1
 			background "drop_shadow_br"
 			textscale 0.55
 			exp rect y ( ( 0 - 0 ) + ( ( 24 + 4 * 20 ) ) )
-			visible when ( !localvarint( "ui_centerPopup" ) )
+			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
-			rect -64 0 854 32 1 1
+			rect 0 0 854 32 1 1
 			decoration
 			visible 1
 			style 3
@@ -237,7 +237,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 104 1 1
+			rect 0 0 280 104 1 1
 			decoration
 			visible 1
 			style 1
@@ -248,7 +248,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -261,7 +261,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -281,7 +281,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -294,7 +294,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -314,7 +314,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -327,7 +327,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -347,7 +347,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -360,7 +360,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -380,7 +380,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -393,7 +393,7 @@
 		}
 		itemDef
 		{
-			rect -64 0 280 20 1 1
+			rect 0 0 280 20 1 1
 			decoration
 			visible 1
 			style 1
@@ -413,7 +413,7 @@
 		}
 		
 		#undef CHOICE_X_START
-		#define CHOICE_X_START				-64
+		#define CHOICE_X_START				0
 		
 		#undef CHOICE_Y_START
 		#define CHOICE_Y_START				4

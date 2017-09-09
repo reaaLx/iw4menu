@@ -9,12 +9,11 @@
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
-
 {
 	menuDef
 	{
-		name "popup_cac_weapon_primary"
-		rect -64 0 854 124 1 1
+		name "popup_cac_extra"
+		rect -64 0 854 104 1 1
 		popup
 		outOfBoundsClick
 		style 1
@@ -26,14 +25,13 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		allowedBinding "+talk"
-		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_weapon_primary_tabDepth" ) )
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_extra_tabDepth" ) )
 		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
 		onOpen
 		{
 			focusfirst;
 			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
-			setLocalVarInt "ui_popup_cac_weapon_primary_tabDepth" ( localvarint( "ui_tabDepth" ) );
-			focusfirst;
+			setLocalVarInt "ui_popup_cac_extra_tabDepth" ( localvarint( "ui_tabDepth" ) );
 		}
 		onRequestClose
 		{
@@ -68,7 +66,7 @@
 		}
 		itemDef
 		{
-			rect 0 0 854 124 1 1
+			rect 0 0 854 104 1 1
 			decoration
 			visible 1
 			style 1
@@ -86,7 +84,7 @@
 			forecolor 1 1 1 0.75
 			background "mw2_popup_bg_fogstencil"
 			textscale 0.55
-			exp rect x ( 0 - ( ( float( milliseconds( ) % 50000 ) / 60000 ) * ( 854 ) ) )
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -108,7 +106,7 @@
 			forecolor 1 1 1 1
 			background "mockup_popup_bg_stencilfill"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 4 * 20 ) )
 		}
 		itemDef
 		{
@@ -141,7 +139,7 @@
 			forecolor 1 1 1 0
 			background "small_box_lightfx"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 4 * 20 ) )
 		}
 		itemDef
 		{
@@ -185,7 +183,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_r"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 4 * 20 ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -197,7 +195,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_br"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 4 * 20 ) ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -209,7 +207,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_b"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 4 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -221,7 +219,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_bl"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 4 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -233,12 +231,12 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_l"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 4 * 20 ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
-			rect 0 0 280 124 1 1
+			rect 0 0 280 104 1 1
 			decoration
 			visible 1
 			style 1
@@ -257,8 +255,8 @@
 			backcolor 0.25 0.25 0.25 1
 			background "white"
 			textscale 0.55
-			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 1 ) * 20 ) )
-			visible when ( localvarint( "ui_tabDepth" ) > ( 1 - 1 ) )
+			exp rect y (-20-((localvarint("ui_tabDepth")-1)*20))
+			visible when (localvarint("ui_tabDepth")>(1-1))
 		}
 		itemDef
 		{
@@ -273,12 +271,9 @@
 			textalign 4
 			textalignx 68
 			textscale 0.375
-			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 1 ) * 20 ) )
-			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
-			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
-			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 1 ) * 0.35 ) )
-			visible when ( localvarint( "ui_tabDepth" ) > ( 1 - 1 ) )
-			exp text ( localvarstring( "ui_tab1Name" ) )
+			exp rect y (-20-((localvarint("ui_tabDepth")-1)*20))
+			visible when (localvarint("ui_tabDepth")>(1-1))
+			exp text ( localvarstring("ui_tab1Name") )
 		}
 		itemDef
 		{
@@ -307,9 +302,6 @@
 			textalignx 68
 			textscale 0.375
 			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 2 ) * 20 ) )
-			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
-			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
-			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 2 ) * 0.35 ) )
 			visible when ( localvarint( "ui_tabDepth" ) > ( 2 - 1 ) )
 			exp text ( localvarstring( "ui_tab2Name" ) )
 		}
@@ -340,9 +332,6 @@
 			textalignx 68
 			textscale 0.375
 			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 3 ) * 20 ) )
-			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
-			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
-			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 3 ) * 0.35 ) )
 			visible when ( localvarint( "ui_tabDepth" ) > ( 3 - 1 ) )
 			exp text ( localvarstring( "ui_tab3Name" ) )
 		}
@@ -373,9 +362,6 @@
 			textalignx 68
 			textscale 0.375
 			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 4 ) * 20 ) )
-			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
-			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
-			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 4 ) * 0.35 ) )
 			visible when ( localvarint( "ui_tabDepth" ) > ( 4 - 1 ) )
 			exp text ( localvarstring( "ui_tab4Name" ) )
 		}
@@ -406,12 +392,10 @@
 			textalignx 68
 			textscale 0.375
 			exp rect y ( - 20 - ( ( localvarint( "ui_tabDepth" ) - 5 ) * 20 ) )
-			exp forecolor r ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
-			exp forecolor g ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
-			exp forecolor b ( 1 - ( ( localvarint( "ui_tabDepth" ) > 5 ) * 0.35 ) )
 			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
 			exp text ( localvarstring( "ui_tab5Name" ) )
 		}
+		
 		#undef CHOICE_X_START
 		#define CHOICE_X_START				0
 		
@@ -433,20 +417,13 @@
 		#undef CHOICE_UI_BUTTON
 		#define CHOICE_UI_BUTTON "ui_popupAButton"
 		
-		#define CHOICE_LOCALVAR_FOCUSED( textArg ) \
-				setLocalVarString "ui_info_name" ( textArg ); \
-				setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
-				setLocalVarString "ui_info_icon" ( "" );
-		
-		CHOICE_BUTTON_FOCUS( 0, "@MENU_ASSAULT_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_assault_primary";, "@MENU_ASSAULT_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 1, "@MENU_SMGS_CAPS", UI_TABDEPTH2( open "popup_cac_smg_primary";, "@MENU_SMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 2, "@MENU_LMGS_CAPS", UI_TABDEPTH2( open "popup_cac_lmg_primary";, "@MENU_LMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_LMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 3, "@MENU_SNIPER_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_sniper_primary";, "@MENU_SNIPER_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
-		LOCAL_RIOT_ITEM( 4, "@MENU_RIOT_SHIELD_CAPS", "riotshield" )
+		LOCAL_EXTRA_ITEM( 0, "flash_grenade" )
+		LOCAL_EXTRA_ITEM( 1, "concussion_grenade" )
+		LOCAL_EXTRA_ITEM( 2, "smoke_grenade" )		
 		
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 104 2 1
 			decoration
 			visible 1
 			style 3
@@ -456,7 +433,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 104 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -464,22 +441,21 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
-			exp text ( localvarstring( "ui_info_name" ) )
+			exp text ( localvarstring("ui_info_name") )
 		}
 		itemDef
 		{
-			rect -56 10 200 100 2 1
+			rect 12 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
-			visible when ( localvarstring( "ui_info_icon" ) != "" )
-			exp material ( localvarstring( "ui_info_icon" ) )
+			exp material ( localvarstring("ui_info_icon") )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 104 2 1
 			decoration
 			autowrapped
 			visible 1

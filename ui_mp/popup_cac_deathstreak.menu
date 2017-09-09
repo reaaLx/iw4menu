@@ -9,12 +9,11 @@
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
-
 {
 	menuDef
 	{
-		name "popup_cac_weapon_primary"
-		rect -64 0 854 124 1 1
+		name "popup_cac_deathstreak"
+		rect -64 0 854 164 1 1
 		popup
 		outOfBoundsClick
 		style 1
@@ -26,14 +25,29 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		allowedBinding "+talk"
-		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_weapon_primary_tabDepth" ) )
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_deathstreak_tabDepth" ) )
 		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
 		onOpen
 		{
 			focusfirst;
 			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
-			setLocalVarInt "ui_popup_cac_weapon_primary_tabDepth" ( localvarint( "ui_tabDepth" ) );
-			focusfirst;
+			setLocalVarInt "ui_popup_cac_deathstreak_tabDepth" ( localvarint( "ui_tabDepth" ) );
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 4 ) == "specialty_copycat" )
+			{
+				setfocus "cac_perk_specialty_copycat";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 4 ) == "specialty_combathigh" )
+			{
+				setfocus "cac_perk_specialty_combathigh";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 4 ) == "specialty_grenadepulldeath" )
+			{
+				setfocus "cac_perk_specialty_grenadepulldeath";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 4 ) == "specialty_finalstand" )
+			{
+				setfocus "cac_perk_specialty_finalstand";
+			}
 		}
 		onRequestClose
 		{
@@ -68,7 +82,7 @@
 		}
 		itemDef
 		{
-			rect 0 0 854 124 1 1
+			rect 0 0 854 164 1 1
 			decoration
 			visible 1
 			style 1
@@ -86,7 +100,7 @@
 			forecolor 1 1 1 0.75
 			background "mw2_popup_bg_fogstencil"
 			textscale 0.55
-			exp rect x ( 0 - ( ( float( milliseconds( ) % 50000 ) / 60000 ) * ( 854 ) ) )
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -108,7 +122,7 @@
 			forecolor 1 1 1 1
 			background "mockup_popup_bg_stencilfill"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 		}
 		itemDef
 		{
@@ -141,7 +155,7 @@
 			forecolor 1 1 1 0
 			background "small_box_lightfx"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 		}
 		itemDef
 		{
@@ -185,7 +199,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_r"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -197,7 +211,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_br"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -209,7 +223,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_b"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -221,7 +235,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_bl"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -233,12 +247,12 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_l"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
-			rect 0 0 280 124 1 1
+			rect 0 0 280 164 1 1
 			decoration
 			visible 1
 			style 1
@@ -412,6 +426,7 @@
 			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
 			exp text ( localvarstring( "ui_tab5Name" ) )
 		}
+		
 		#undef CHOICE_X_START
 		#define CHOICE_X_START				0
 		
@@ -433,30 +448,36 @@
 		#undef CHOICE_UI_BUTTON
 		#define CHOICE_UI_BUTTON "ui_popupAButton"
 		
-		#define CHOICE_LOCALVAR_FOCUSED( textArg ) \
-				setLocalVarString "ui_info_name" ( textArg ); \
-				setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
-				setLocalVarString "ui_info_icon" ( "" );
-		
-		CHOICE_BUTTON_FOCUS( 0, "@MENU_ASSAULT_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_assault_primary";, "@MENU_ASSAULT_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 1, "@MENU_SMGS_CAPS", UI_TABDEPTH2( open "popup_cac_smg_primary";, "@MENU_SMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 2, "@MENU_LMGS_CAPS", UI_TABDEPTH2( open "popup_cac_lmg_primary";, "@MENU_LMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_LMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 3, "@MENU_SNIPER_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_sniper_primary";, "@MENU_SNIPER_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
-		LOCAL_RIOT_ITEM( 4, "@MENU_RIOT_SHIELD_CAPS", "riotshield" )
-		
+		LOCAL_DEATHSTREAK_ITEM( 0, "specialty_copycat" )
+		LOCAL_DEATHSTREAK_ITEM( 1, "specialty_combathigh" )
+		LOCAL_DEATHSTREAK_ITEM( 2, "specialty_grenadepulldeath" )
+		LOCAL_DEATHSTREAK_ITEM( 3, "specialty_finalstand" )
+
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 164 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			visible when ( !dvarbool( "wideScreen" ) )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -136 0 360 164 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.5
+			background "small_box_lightfx"
+			textscale 0.55
+			visible when ( dvarbool( "wideScreen" ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 164 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -464,22 +485,21 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
-			exp text ( localvarstring( "ui_info_name" ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
 		}
 		itemDef
 		{
-			rect -56 10 200 100 2 1
+			rect -56 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
-			visible when ( localvarstring( "ui_info_icon" ) != "" )
-			exp material ( localvarstring( "ui_info_icon" ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -489,8 +509,23 @@
 			textalignx 4
 			textaligny 84
 			textscale 0.375
-			visible when ( isitemunlocked( "weaponRefString" + " " + "refString" ) )
-			exp text ( localvarstring( "ui_info_desc" ) )
+			visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
+			exp text ( locstring( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) ) + locstring( "@PERKS_DEATHS_WITHOUT_KILL" , int( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 6 ) ) ) )
+		}
+		itemDef
+		{
+			rect -56 0 200 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 84
+			textscale 0.375
+			visible when ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
+			exp text ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , 17 ) )
 		}
 	}
 }

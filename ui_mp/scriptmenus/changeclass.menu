@@ -43,16 +43,16 @@
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_CAC_CUSTOM( "class_custom_1", 5, 0, scriptmenuresponse "custom1"; )
-		CHOICE_CAC_CUSTOM( "class_custom_2", 6, 1, scriptmenuresponse "custom2"; )
-		CHOICE_CAC_CUSTOM( "class_custom_3", 7, 2, scriptmenuresponse "custom3"; )
-		CHOICE_CAC_CUSTOM( "class_custom_4", 8, 3, scriptmenuresponse "custom4"; )
-		CHOICE_CAC_CUSTOM( "class_custom_5", 9, 4, scriptmenuresponse "custom5"; )
-		CHOICE_CAC_CUSTOM( "class_custom_6", 10, 5, scriptmenuresponse "custom6"; )
-		CHOICE_CAC_CUSTOM( "class_custom_7", 11, 6, scriptmenuresponse "custom7"; )
-		CHOICE_CAC_CUSTOM( "class_custom_8", 12, 7, scriptmenuresponse "custom8"; )
-		CHOICE_CAC_CUSTOM( "class_custom_9", 13, 8, scriptmenuresponse "custom9"; )
-		CHOICE_CAC_CUSTOM( "class_custom_10", 14, 9, scriptmenuresponse "custom10"; )
+		CHOICE_CAC_CUSTOM( 5, 0, scriptmenuresponse "custom1"; )
+		CHOICE_CAC_CUSTOM( 6, 1, scriptmenuresponse "custom2"; )
+		CHOICE_CAC_CUSTOM( 7, 2, scriptmenuresponse "custom3"; )
+		CHOICE_CAC_CUSTOM( 8, 3, scriptmenuresponse "custom4"; )
+		CHOICE_CAC_CUSTOM( 9, 4, scriptmenuresponse "custom5"; )
+		CHOICE_CAC_CUSTOM( 10, 5, scriptmenuresponse "custom6"; )
+		CHOICE_CAC_CUSTOM( 11, 6, scriptmenuresponse "custom7"; )
+		CHOICE_CAC_CUSTOM( 12, 7, scriptmenuresponse "custom8"; )
+		CHOICE_CAC_CUSTOM( 13, 8, scriptmenuresponse "custom9"; )
+		CHOICE_CAC_CUSTOM( 14, 9, scriptmenuresponse "custom10"; )
 
 		CHOICE_BUTTON_VIS( 15, "[DEV] Save Replay", exec "cg_replay_save ReplayAutoSave";, when ( dvarbool( "developer" ) || dvarbool( "beta" ) ) )
 

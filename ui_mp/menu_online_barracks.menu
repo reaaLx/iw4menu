@@ -10,28 +10,15 @@
 #include "ui/choices_setup_common.menu"
 
 #define BUTTON_CH_FOCUS \
-		if ( isitemunlocked( "challenges" ) ) \
-		{ \
-			setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CHALLENGES" ); \
-		} \
-		else \
-		{ \
-			if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) == 9999 ) \
-			{ \
-						setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); \
-			} \
-			else \
-			{ \
-				if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 3 ) != "" ) \
-				{ \
-							setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); \
-				} \
-				else \
-				{ \
-							setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) , 17 ) ); \
-				} \
-			} \
-		}
+		if ( isitemunlocked( "challenges" ) ) { setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CHALLENGES" ); } \
+		else { \
+		if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) == 9999 ) \
+		{ setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_AT_NONE" ); } \
+		else { \
+		if ( tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 3 ) != "" ) { setLocalVarString "ui_hint_text" ( "@PERKS_UNLOCKED_BY_CHALLENGE" ); } \
+		else { \
+		setLocalVarString "ui_hint_text" ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , "challenges" , 2 ) , 17 ) ); } } }
+
 #define BUTTON_PRESTIGE_FOCUS \
 		if ( !( getplayerdata( "prestige" ) \
 		< int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) \
@@ -44,8 +31,8 @@
 		name "menu_online_barracks"
 		rect 0 0 640 480 0 0
 		style 1
-		forecolor 1 1 1 1
-		focuscolor 1 1 1 1
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
 		fullscreen 1
 		fadeCycle 1
 		fadeClamp 1
@@ -99,222 +86,88 @@
 		// card base
 		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 18 208 70 3 1, ORIGIN_NONE, "white", 0 0 0 0.25, 0 0 0 0, 3, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
 		// card title
-		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 18 208 70 3 1, ORIGIN_NONE, "cardtitle_248x48", 1 1 1 1, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 18 208 70 3 1, ORIGIN_NONE, "cardtitle_248x48", CHOICE_TEXTCOLOR, CHOICE_TEXTCOLOR, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
 		// card icon/emblem
-		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 16 160 32 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ), 0 0 0 0.25, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
-		PREPROC_TEXT_DRAW_ALIGNED3( -208 16 160 32 3 1, ORIGIN_NONE, "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ), 0.375, 0, 0, 9, 3, 1 1 1 1 textstyle 8 )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -208 16 160 32 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ), 0 0 0 0.25, CHOICE_TEXTCOLOR, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 16 160 32 3 1, ORIGIN_NONE, "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ), 0.375, 0, 0, 9, 3, CHOICE_TEXTCOLOR textstyle 8 )
 
 		// player name
-		PREPROC_TEXT_DRAW_ALIGNED3( -208 46 160 32 3 1, ORIGIN_NONE, getplayercardinfo( 8 , 1 , 0 ), 0.3333, 8, 0, 4, 10, 1 1 1 1 textstyle 8 )
+		PREPROC_TEXT_DRAW_ALIGNED3( -208 46 160 32 3 1, ORIGIN_NONE, getplayercardinfo( 8 , 1 , 0 ), 0.3333, 8, 0, 4, 10, CHOICE_TEXTCOLOR textstyle 8 )
 		// player emblem
-		PREPROC_SHADER_DRAW_ALIGNED_VIS( -48 18 48 48 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ), 1 1 1 1, 0 0 0 0, 3, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
-		PREPROC_SHADER_DRAW_ALIGNED_VIS( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ), 1 1 1 1, 1 1 1 1, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && ( getplayercardinfo( 4 , 1 , 0 ) >= 0 ) ) )
-		PREPROC_TEXT_DRAW_ALIGNED3( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ), 0.375, 20, 0, 9, 3, 1 1 1 1 textstyle 8 )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -48 18 48 48 3 1, ORIGIN_NONE, tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ), CHOICE_TEXTCOLOR, 0 0 0 0, 3, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) ) )
+		PREPROC_SHADER_DRAW_ALIGNED_VIS( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ), CHOICE_TEXTCOLOR, CHOICE_TEXTCOLOR, 1, when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && ( getplayercardinfo( 4 , 1 , 0 ) >= 0 ) ) )
+		PREPROC_TEXT_DRAW_ALIGNED3( -44 66 20 20 3 1, ORIGIN_NONE, tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ), 0.375, 20, 0, 9, 3, CHOICE_TEXTCOLOR textstyle 8 )
 
 		// stats
 		PREPROC_SHADER_DRAW_ALIGNED( -208 90 -208 300 3 1, ORIGIN_NONE, "white", 1 1 1 0.1, 0 0 0 0, 3 )
 
-		PREPROC_SHADER_DRAW_ALIGNED( -208 90 -208 20 3 1, ORIGIN_NONE, "white", 1 1 1 1, 0 0 0 0.35, 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 90 -208 20 3 1, ORIGIN_NONE, "@MPUI_RANK_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 90 208 20 3 1, ORIGIN_NONE, "@" + tablelookup( "mp/ranktable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 5 ), 0.375, -22, 0, 6, 1 1 1 1 )
-		PREPROC_SHADER_DRAW_ALIGNED( -18 91 18 18 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , getplayerdata( "prestige" ) + 1 ), 1 1 1 1, 0 0 0 0, 3 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 90 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 90 -208 20 3 1, ORIGIN_NONE, "@MPUI_RANK_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 90 208 20 3 1, ORIGIN_NONE, "@" + tablelookup( "mp/ranktable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 5 ), 0.375, -22, 0, 6, CHOICE_TEXTCOLOR )
+		PREPROC_SHADER_DRAW_ALIGNED( -18 91 18 18 3 1, ORIGIN_NONE, tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , getplayerdata( "prestige" ) + 1 ), CHOICE_TEXTCOLOR, 0 0 0 0, 3 )
 
 		PREPROC_TEXT_DRAW_ALIGNED2( -208 110 -208 20 3 1, ORIGIN_NONE, "@MPUI_XP_PRE", 0.375, 4, 0, 4, 1 1 1 0.65 )
 		PREPROC_TEXT_DRAW_ALIGNED2( -208 110 208 20 3 1, ORIGIN_NONE,  getplayerdata( "experience" ), 0.375, 0, 0, 6, 1 1 1 0.65 )
 
 		// player in-game stats
-		PREPROC_SHADER_DRAW_ALIGNED( -208 170 -208 20 3 1, ORIGIN_NONE, "white", 1 1 1 1, 0 0 0 0.35, 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 170 -208 20 3 1, ORIGIN_NONE, "@MPUI_SCORE_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 170 208 20 3 1, ORIGIN_NONE, getplayerdata( "score" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 170 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 170 -208 20 3 1, ORIGIN_NONE, "@MPUI_SCORE_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 170 208 20 3 1, ORIGIN_NONE, getplayerdata( "score" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 		
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 190 -208 20 3 1, ORIGIN_NONE, "@MPUI_WINS_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 190 208 20 3 1, ORIGIN_NONE, getplayerdata( "wins" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 190 -208 20 3 1, ORIGIN_NONE, "@MPUI_WINS_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 190 208 20 3 1, ORIGIN_NONE, getplayerdata( "wins" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 		
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 210 -208 20 3 1, ORIGIN_NONE, "@MPUI_LOSSES_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 210 208 20 3 1, ORIGIN_NONE, getplayerdata( "losses" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 210 -208 20 3 1, ORIGIN_NONE, "@MPUI_LOSSES_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 210 208 20 3 1, ORIGIN_NONE, getplayerdata( "losses" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 		
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 230 -208 20 3 1, ORIGIN_NONE, "@MPUI_TIES_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 230 208 20 3 1, ORIGIN_NONE, getplayerdata( "ties" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 230 -208 20 3 1, ORIGIN_NONE, "@MPUI_TIES_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 230 208 20 3 1, ORIGIN_NONE, getplayerdata( "ties" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 		
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 250 -208 20 3 1, ORIGIN_NONE, "@MPUI_WINSTREAK_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 250 208 20 3 1, ORIGIN_NONE, getplayerdata( "winStreak" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 250 -208 20 3 1, ORIGIN_NONE, "@MPUI_WINSTREAK_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 250 208 20 3 1, ORIGIN_NONE, getplayerdata( "winStreak" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		PREPROC_SHADER_DRAW_ALIGNED( -208 270 -208 20 3 1, ORIGIN_NONE, "white", 1 1 1 1, 0 0 0 0.35, 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 270 -208 20 3 1, ORIGIN_NONE, "@MPUI_KILLS_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 270 208 20 3 1, ORIGIN_NONE, getplayerdata( "kills" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 270 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 270 -208 20 3 1, ORIGIN_NONE, "@MPUI_KILLS_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 270 208 20 3 1, ORIGIN_NONE, getplayerdata( "kills" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 		
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 290 -208 20 3 1, ORIGIN_NONE, "@MPUI_HEADSHOTS_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 290 208 20 3 1, ORIGIN_NONE, getplayerdata( "headshots" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 290 -208 20 3 1, ORIGIN_NONE, "@MPUI_HEADSHOTS_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 290 208 20 3 1, ORIGIN_NONE, getplayerdata( "headshots" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 310 -208 20 3 1, ORIGIN_NONE, "@MPUI_ASSISTS_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 310 208 20 3 1, ORIGIN_NONE, getplayerdata( "assists" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 310 -208 20 3 1, ORIGIN_NONE, "@MPUI_ASSISTS_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 310 208 20 3 1, ORIGIN_NONE, getplayerdata( "assists" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 330 -208 20 3 1, ORIGIN_NONE, "@MPUI_STREAK_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 330 208 20 3 1, ORIGIN_NONE, getplayerdata( "killStreak" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 330 -208 20 3 1, ORIGIN_NONE, "@MPUI_STREAK_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 330 208 20 3 1, ORIGIN_NONE, getplayerdata( "killStreak" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		PREPROC_SHADER_DRAW_ALIGNED( -208 350 -208 20 3 1, ORIGIN_NONE, "white", 1 1 1 1, 0 0 0 0.35, 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 350 -208 20 3 1, ORIGIN_NONE, "@MPUI_DEATHS_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 350 208 20 3 1, ORIGIN_NONE, getplayerdata( "deaths" ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 350 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 350 -208 20 3 1, ORIGIN_NONE, "@MPUI_DEATHS_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 350 208 20 3 1, ORIGIN_NONE, getplayerdata( "deaths" ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		PREPROC_SHADER_DRAW_ALIGNED( -208 370 -208 20 3 1, ORIGIN_NONE, "white", 1 1 1 1, 0 0 0 0.35, 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 370 -208 20 3 1, ORIGIN_NONE, "@MPUI_TIME_PLAYED_PRE", 0.375, 4, 0, 4, 1 1 1 1 )
-		PREPROC_TEXT_DRAW_ALIGNED2( -208 370 208 20 3 1, ORIGIN_NONE, secondsastime( getplayerdata( "timePlayedAllies" ) + getplayerdata( "timePlayedOpfor" ) + getplayerdata( "timePlayedOther" ) ), 0.375, 0, 0, 6, 1 1 1 1 )
+		PREPROC_SHADER_DRAW_ALIGNED( -208 370 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 370 -208 20 3 1, ORIGIN_NONE, "@MPUI_TIME_PLAYED_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 370 208 20 3 1, ORIGIN_NONE, secondsastime( getplayerdata( "timePlayedAllies" ) + getplayerdata( "timePlayedOpfor" ) + getplayerdata( "timePlayedOther" ) ), 0.375, 0, 0, 6, CHOICE_TEXTCOLOR )
 
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 -208 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0.35
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.375
-			visible when((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))==0)
-			exp text ( "@MPUI_NEXT_PRE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 208 20 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 6
-			textalignx -22
-			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) == 0 )
-			exp text ( "@" + tablelookup( "mp/ranktable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) + 1 , 5 ) )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -18 131 18 18 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) == 0 )
-			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) + 1 , getplayerdata( "prestige" ) + 1 ) )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 -208 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0.35
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) )
-			exp text ( "@MPUI_NEXT_PRE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 208 20 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 6
-			textalignx -22
-			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) )
-			exp text ( "@MPUI_PRESTIGE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -18 131 18 18 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) && ( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && levelforexperience( getplayerdata( "experience" ) ) == int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) ) )
-			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , 0 , getplayerdata( "prestige" ) + 2 ) )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 -208 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			backcolor 0 0 0 0.35
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) == 0 )
-			exp text ( "@MPUI_NEXT_PRE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 130 208 20 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 6
-			textscale 0.375
-			visible when ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) == 0 )
-			exp text ( "@MPUI_NONE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -80 152 80 16 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.35
-			background "black"
-			textscale 0.55
-			visible when ( 1 )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -80 154 25 12 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 0.9 0.5 0.6
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( 0 - 80 * ( int( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) - getplayerdata( "experience" ) ) / int( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 3 ) ) )
-			visible when ( 1 )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 150 -208 20 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.375
-			visible when ( 1 )
-			exp text ( "@MPUI_XP_REQUIRED_PRE" )
-		}
-		itemDef // need to define these sucks because lots of expressions :/
-		{
-			rect -208 150 208 20 3 1
-			decoration
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 6
-			textscale 0.375
-			visible when ( 1 )
-			exp text ( int( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 7 ) - getplayerdata( "experience" ) ) )
-		}
+		PREPROC_SHADER_DRAW_ALIGNED( -128 -17 1280 18 1 3, ORIGIN_NONE, "shadow_inset", 0 0 0 0.45, 0 0 0 0, 1 )
+
+		PREPROC_SHADER_DRAW_ALIGNED( -80 152 80 16 3 1, ORIGIN_NONE, "black", 0 0 0 0.45, 0 0 0 0, 3 )
+		PREPROC_SHADER_DRAW_ALIGNED( -80 154 25 12 3 1, ORIGIN_NONE, "gradient_fadein", 1 0.9 0.5 0.6, 0 0 0 0, 3 exp rect w (0-80*(int(tablelookup("mp/rankTable.csv",0,levelforexperience(getplayerdata("experience")),2))-getplayerdata("experience"))/int(tablelookup("mp/rankTable.csv",0,levelforexperience(getplayerdata("experience")),3))) )
+
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 150 -208 20 3 1, ORIGIN_NONE, "@MPUI_XP_REQUIRED_PRE", 0.375, 4, 0, 4, 1 1 1 0.65 visible when ( 1 ) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 150 208 20 3 1, ORIGIN_NONE, int(tablelookup("mp/rankTable.csv",0,levelforexperience(getplayerdata("experience")),7)-getplayerdata("experience")), 0.375, 0, 0, 6, 1 1 1 0.65 visible when ( 1 ) )
+
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 -208 20 3 1, ORIGIN_NONE, "@MPUI_NEXT_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR visible when((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))==0) )
+
+		PREPROC_SHADER_DRAW_ALIGNED( -18 131 18 18 3 1, ORIGIN_NONE, tablelookup("mp/rankIconTable.csv",0,levelforexperience(getplayerdata("experience"))+1,getplayerdata("prestige")+1), CHOICE_TEXTCOLOR, 0 0 0 0, 3 visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))==0) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 208 20 3 1, ORIGIN_NONE, "@"+tablelookup("mp/ranktable.csv",0,levelforexperience(getplayerdata("experience"))+1,5), 0.375, -22, 0, 6, CHOICE_TEXTCOLOR visible when((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))==0) )
+		
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 -208 20 3 1, ORIGIN_NONE, "@MPUI_NEXT_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))) )
+
+		PREPROC_SHADER_DRAW_ALIGNED( -18 131 18 18 3 1, ORIGIN_NONE, tablelookup("mp/rankIconTable.csv",0,0,getplayerdata("prestige")+2), CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 -208 20 3 1, ORIGIN_NONE, "@MPUI_PRESTIGE", 0.375, -22, 0, 6, CHOICE_TEXTCOLOR visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))&&(getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1))&&levelforexperience(getplayerdata("experience"))==int(tablelookup("mp/rankTable.csv",0,"maxrank",1)))) )
+
+		PREPROC_SHADER_DRAW_ALIGNED( -208 130 -208 20 3 1, ORIGIN_NONE, "white", CHOICE_TEXTCOLOR, 0 0 0 0.35, 1 visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))==0) )
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 -208 20 3 1, ORIGIN_NONE, "@MPUI_NEXT_PRE", 0.375, 4, 0, 4, CHOICE_TEXTCOLOR visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))==0) )
+
+		PREPROC_TEXT_DRAW_ALIGNED2( -208 130 208 20 3 1, ORIGIN_NONE, "@MPUI_NONE", 0.375, 0, 0, 6, CHOICE_TEXTCOLOR visible when ((levelforexperience(getplayerdata("experience"))<int(tablelookup("mp/rankTable.csv",0,"maxrank",1))||getplayerdata("prestige")<int(tablelookup("mp/rankIconTable.csv",0,"maxprestige",1)))==0) )
 	}
 }

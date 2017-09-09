@@ -32,7 +32,6 @@
 		
 		CHOICE_MENU_TITLE( "@MPUI_CHOOSE_TEAM", 0 0 272 28 1 1 )
 		
-		// dbuttons work pretty well here. for now.
 		CHOICE_BUTTON_EX_VIS( 0, "@MPUI_SPECTATOR", scriptmenuresponse "spectator";, 1, disabled when ( team( "name" ) == "TEAM_SPECTATOR" || !dvarbool( "scr_game_spectatetype" ) ) )
 		CHOICE_BUTTON_EX( 1, "@" + dvarstring( "g_TeamName_Axis" ), scriptmenuresponse "axis";, disabled when ( team( "name" ) == "TEAM_AXIS" ) )
 		CHOICE_BUTTON_EX( 2, "@" + dvarstring( "g_TeamName_Allies" ), scriptmenuresponse "allies";, disabled when ( team( "name" ) == "TEAM_ALLIES" ) )

@@ -9,12 +9,11 @@
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
-
 {
 	menuDef
 	{
-		name "popup_cac_weapon_primary"
-		rect -64 0 854 124 1 1
+		name "popup_cac_perk1"
+		rect -64 0 854 164 1 1
 		popup
 		outOfBoundsClick
 		style 1
@@ -26,14 +25,36 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		allowedBinding "+talk"
-		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_weapon_primary_tabDepth" ) )
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_perk1_tabDepth" ) )
 		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
+		execKey 168
+		{
+			if ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && !isitemunlocked( localvarstring( "ui_upgrade_ref" ) ) )
+			{
+				open "menu_challenge_detail_popup";
+			}
+		}
 		onOpen
 		{
 			focusfirst;
 			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
-			setLocalVarInt "ui_popup_cac_weapon_primary_tabDepth" ( localvarint( "ui_tabDepth" ) );
-			focusfirst;
+			setLocalVarInt "ui_popup_cac_perk1_tabDepth" ( localvarint( "ui_tabDepth" ) );
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_marathon" )
+			{
+				setfocus "cac_perk_specialty_marathon";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_fastreload" )
+			{
+				setfocus "cac_perk_specialty_fastreload";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_scavenger" )
+			{
+				setfocus "cac_perk_specialty_scavenger";
+			}
+			if ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_onemanarmy" )
+			{
+				setfocus "cac_perk_specialty_onemanarmy";
+			}
 		}
 		onRequestClose
 		{
@@ -41,7 +62,7 @@
 		}
 		onEsc
 		{
-			close "self";
+			close self;
 		}
 		itemDef
 		{
@@ -68,7 +89,7 @@
 		}
 		itemDef
 		{
-			rect 0 0 854 124 1 1
+			rect 0 0 854 164 1 1
 			decoration
 			visible 1
 			style 1
@@ -86,7 +107,7 @@
 			forecolor 1 1 1 0.75
 			background "mw2_popup_bg_fogstencil"
 			textscale 0.55
-			exp rect x ( 0 - ( ( float( milliseconds( ) % 50000 ) / 60000 ) * ( 854 ) ) )
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -108,7 +129,7 @@
 			forecolor 1 1 1 1
 			background "mockup_popup_bg_stencilfill"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 		}
 		itemDef
 		{
@@ -141,7 +162,7 @@
 			forecolor 1 1 1 0
 			background "small_box_lightfx"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 		}
 		itemDef
 		{
@@ -185,7 +206,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_r"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -197,7 +218,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_br"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			//visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -209,7 +230,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_b"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -221,7 +242,7 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_bl"
 			textscale 0.55
-			exp rect y ( ( 0 - 0 ) + ( ( 24 + 5 * 20 ) ) )
+			exp rect y ( ( 0 - 0 ) + ( ( 24 + 7 * 20 ) ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
@@ -233,12 +254,12 @@
 			forecolor 0 0 0 1
 			background "drop_shadow_l"
 			textscale 0.55
-			exp rect h ( ( 24 + 5 * 20 ) )
+			exp rect h ( ( 24 + 7 * 20 ) )
 			visible when ( !localvarint( "ui_centerPopup" ) )
 		}
 		itemDef
 		{
-			rect 0 0 280 124 1 1
+			rect 0 0 280 164 1 1
 			decoration
 			visible 1
 			style 1
@@ -433,30 +454,26 @@
 		#undef CHOICE_UI_BUTTON
 		#define CHOICE_UI_BUTTON "ui_popupAButton"
 		
-		#define CHOICE_LOCALVAR_FOCUSED( textArg ) \
-				setLocalVarString "ui_info_name" ( textArg ); \
-				setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
-				setLocalVarString "ui_info_icon" ( "" );
-		
-		CHOICE_BUTTON_FOCUS( 0, "@MENU_ASSAULT_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_assault_primary";, "@MENU_ASSAULT_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 1, "@MENU_SMGS_CAPS", UI_TABDEPTH2( open "popup_cac_smg_primary";, "@MENU_SMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 2, "@MENU_LMGS_CAPS", UI_TABDEPTH2( open "popup_cac_lmg_primary";, "@MENU_LMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_LMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 3, "@MENU_SNIPER_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_sniper_primary";, "@MENU_SNIPER_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
-		LOCAL_RIOT_ITEM( 4, "@MENU_RIOT_SHIELD_CAPS", "riotshield" )
+		LOCAL_PERK1_ITEM( 0, "specialty_marathon" )
+		LOCAL_PERK1_ITEM( 1, "specialty_fastreload" )
+		LOCAL_PERK1_ITEM( 2, "specialty_scavenger" )
+		LOCAL_PERK1_ITEM( 3, "specialty_bling" )
+		LOCAL_PERK1_ITEM( 4, "specialty_onemanarmy" )
 		
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect 208 0 336 164 1 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			visible when ( 1 )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -96 0 160 164 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -464,22 +481,57 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
-			exp text ( localvarstring( "ui_info_name" ) )
+			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 98 ) )
+			exp forecolor a ( 1 - ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) * 0.35 ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
 		}
 		itemDef
 		{
-			rect -56 10 200 100 2 1
+			rect -96 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
-			visible when ( localvarstring( "ui_info_icon" ) != "" )
-			exp material ( localvarstring( "ui_info_icon" ) )
+			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 98 ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -96 0 152 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 84
+			textscale 0.375
+			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 98 ) )
+			visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
+		}
+		itemDef
+		{
+			rect -96 0 152 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 0.85 0.4 0.4 1
+			textfont 3
+			textstyle 8
+			textalign 4
+			textalignx 4
+			textaligny 131
+			textscale 0.375
+			text "@MPUI_REPLACES_SECONDARY"
+			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 98 ) )
+			visible when ( localvarstring( "ui_selected_ref" ) == "specialty_onemanarmy" )
+		}
+		itemDef
+		{
+			rect -96 0 152 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -489,8 +541,133 @@
 			textalignx 4
 			textaligny 84
 			textscale 0.375
-			visible when ( isitemunlocked( "weaponRefString" + " " + "refString" ) )
-			exp text ( localvarstring( "ui_info_desc" ) )
+			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 98 ) )
+			visible when ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
+			exp text ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , 17 ) )
 		}
+		itemDef
+		{
+			rect 104 0 160 164 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 9
+			textalign 4
+			textscale 0.375
+			exp forecolor a ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.35 ) )
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , int( 9 ) ) )
+		}
+		itemDef
+		{
+			rect 104 20 64 64 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp forecolor r ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+			exp forecolor g ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+			exp forecolor b ( 1 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.45 ) )
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) + "_upgrade" )
+		}
+		itemDef
+		{
+			rect 104 20 40 20 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "specialty_new"
+			textscale 0.55
+			visible when ( getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) && tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
+		}
+		itemDef
+		{
+			rect 104 20 40 20 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "specialty_locked"
+			textscale 0.55
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
+		}
+		itemDef
+		{
+			rect 104 0 160 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 84
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) , 4 ) )
+		}
+		itemDef
+		{
+			rect 104 0 160 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 84
+			textscale 0.375
+			text "@MPUI_UNLOCKED_BY_CHALLENGE"
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
+		}
+		itemDef
+		{
+			rect 104 0 160 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 0.65
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 102
+			textscale 0.375
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) && 0 )
+			exp text ( localvarstring( "ui_challengeName" ) )
+		}
+		itemDef
+		{
+			rect 104 0 160 164 2 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textalignx 4
+			textaligny 102
+			textscale 0.375
+			text "@PLATFORM_VIEW_CHALLENGE_DETAILS"
+			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( localvarstring( "ui_selected_ref" ) ) && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
+		}
+		PREPROC_SHADER_DRAW_EXP( 22 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.15 
+		exp rect x ( 96 - ( dvarbool( "wideScreen" ) * 64 ) )
+		exp forecolor a ( 0.3 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
+
+		PREPROC_SHADER_DRAW_EXP( 38 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.25
+		exp rect x ( 112 - ( dvarbool( "wideScreen" ) * 64 ) )
+		exp forecolor a ( 0.5 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
+
+		PREPROC_SHADER_DRAW_EXP( 54 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.35
+		exp rect x ( 128 - ( dvarbool( "wideScreen" ) * 64 ) )
+		exp forecolor a ( 0.7 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
+		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
+
 	}
 }

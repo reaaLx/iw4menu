@@ -9,11 +9,10 @@
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
-
 {
 	menuDef
 	{
-		name "popup_cac_weapon_primary"
+		name "popup_cac_bling"
 		rect -64 0 854 124 1 1
 		popup
 		outOfBoundsClick
@@ -26,14 +25,13 @@
 		fadeClamp 1
 		fadeAmount 0.1
 		allowedBinding "+talk"
-		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_weapon_primary_tabDepth" ) )
+		visible when ( localvarint( "ui_tabDepth" ) == localvarint( "ui_popup_cac_bling_tabDepth" ) )
 		exp rect y ( localvarfloat( "ui_popupYPos" ) + localvarint( "ui_tabDepth" ) * 20 )
 		onOpen
 		{
 			focusfirst;
 			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) + 1 );
-			setLocalVarInt "ui_popup_cac_weapon_primary_tabDepth" ( localvarint( "ui_tabDepth" ) );
-			focusfirst;
+			setLocalVarInt "ui_popup_cac_bling_tabDepth" ( localvarint( "ui_tabDepth" ) );
 		}
 		onRequestClose
 		{
@@ -41,7 +39,7 @@
 		}
 		onEsc
 		{
-			close "self";
+			close self;
 		}
 		itemDef
 		{
@@ -86,7 +84,7 @@
 			forecolor 1 1 1 0.75
 			background "mw2_popup_bg_fogstencil"
 			textscale 0.55
-			exp rect x ( 0 - ( ( float( milliseconds( ) % 50000 ) / 60000 ) * ( 854 ) ) )
+			exp rect x ( 0 - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
 		}
 		itemDef
 		{
@@ -412,41 +410,139 @@
 			visible when ( localvarint( "ui_tabDepth" ) > ( 5 - 1 ) )
 			exp text ( localvarstring( "ui_tab5Name" ) )
 		}
-		#undef CHOICE_X_START
-		#define CHOICE_X_START				0
-		
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START				4
-		
-		#undef CHOICE_TEXTALIGN
-		#define	CHOICE_TEXTALIGN			4
-		
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X		68
-		
-		#undef HIGHLIGHT_SHADER_ART
-		#define HIGHLIGHT_SHADER_ART		"popup_button_selection_bar_short"
-
-		#undef CHOICE_GETFOCUSEDITEMY
-		#define CHOICE_GETFOCUSEDITEMY
-		
-		#undef CHOICE_UI_BUTTON
-		#define CHOICE_UI_BUTTON "ui_popupAButton"
-		
-		#define CHOICE_LOCALVAR_FOCUSED( textArg ) \
-				setLocalVarString "ui_info_name" ( textArg ); \
-				setLocalVarString "ui_info_desc" ( "@NULL_EMPTY" ); \
-				setLocalVarString "ui_info_icon" ( "" );
-		
-		CHOICE_BUTTON_FOCUS( 0, "@MENU_ASSAULT_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_assault_primary";, "@MENU_ASSAULT_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_ASSAULT_RIFLES_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 1, "@MENU_SMGS_CAPS", UI_TABDEPTH2( open "popup_cac_smg_primary";, "@MENU_SMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 2, "@MENU_LMGS_CAPS", UI_TABDEPTH2( open "popup_cac_lmg_primary";, "@MENU_LMGS_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_LMGS_CAPS" ), ; )
-		CHOICE_BUTTON_FOCUS( 3, "@MENU_SNIPER_RIFLES_CAPS", UI_TABDEPTH2( open "popup_cac_sniper_primary";, "@MENU_SNIPER_RIFLES_CAPS" ), CHOICE_LOCALVAR_FOCUSED( "@MENU_SNIPER_RIFLES_CAPS" ), ; )
-		LOCAL_RIOT_ITEM( 4, "@MENU_RIOT_SHIELD_CAPS", "riotshield" )
-		
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			name "cac_specialty_bling_primary"
+			rect 0 4 336 20 1 1
+			visible 1
+			group "mw2_popup_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "popup_button_selection_bar_short"
+			type 1
+			textfont 3
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			disabled when ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) == "riotshield" )
+			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) )
+			action
+			{
+				play "mouse_click";
+				if ( localvarint( "ui_tabDepth" ) == 0 )
+				{
+					setLocalVarString "ui_tab1Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 1 )
+				{
+					setLocalVarString "ui_tab2Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 2 )
+				{
+					setLocalVarString "ui_tab3Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 3 )
+				{
+					setLocalVarString "ui_tab4Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 4 )
+				{
+					setLocalVarString "ui_tab5Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 5 )
+				{
+					setLocalVarString "ui_tab6Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 3 ) );
+				}
+				open "popup_primary_attachments_bling";
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_popupAButton" ( 1 );
+				setLocalVarString "ui_info_name" ( "@" + tablelookup( "mp/perkTable.csv" , 1 , "specialty_bling" , 2 ) );
+				setLocalVarString "ui_info_desc" ( "@MENU_BLING_PRIMARY_DESC" );
+				setLocalVarString "ui_info_icon" ( tablelookup( "mp/perkTable.csv" , 1 , "specialty_bling" , 3 ) );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 1 1 1 0;
+				setLocalVarBool "ui_popupAButton" ( 0 );
+			}
+		}
+		itemDef
+		{
+			name "cac_specialty_bling_secondary"
+			rect 0 24 336 20 1 1
+			visible 1
+			group "mw2_popup_button"
+			style 1
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "popup_button_selection_bar_short"
+			type 1
+			textfont 3
+			textalign 4
+			textalignx 68
+			textscale 0.375
+			disabled when ( !isitemunlocked( "specialty_secondarybling" ) || getplayerdata( "customClasses" , localvarint( "classIndex" ) , "perks" , 1 ) == "specialty_onemanarmy" )
+			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) )
+			action
+			{
+				play "mouse_click";
+				if ( localvarint( "ui_tabDepth" ) == 0 )
+				{
+					setLocalVarString "ui_tab1Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 1 )
+				{
+					setLocalVarString "ui_tab2Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 2 )
+				{
+					setLocalVarString "ui_tab3Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 3 )
+				{
+					setLocalVarString "ui_tab4Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 4 )
+				{
+					setLocalVarString "ui_tab5Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				if ( localvarint( "ui_tabDepth" ) == 5 )
+				{
+					setLocalVarString "ui_tab6Name" ( "@" + tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 1 , "weapon" ) , 3 ) );
+				}
+				open "popup_secondary_attachments_bling";
+			}
+			onFocus
+			{
+				play "mouse_over";
+				if ( dvarstring( "gameMode" ) != "mp" )
+				{
+					setItemColor "mw2_popup_button" backcolor 0 0 0 0;
+				}
+				setItemColor self backcolor 0 0 0 1;
+				setLocalVarBool "ui_popupAButton" ( 1 );
+				setLocalVarString "ui_info_name" ( "@" + tablelookup( "mp/perkTable.csv" , 1 , "specialty_secondarybling" , 2 ) );
+				setLocalVarString "ui_info_desc" ( "@MENU_BLING_SECONDARY_DESC" );
+				setLocalVarString "ui_info_icon" ( tablelookup( "mp/perkTable.csv" , 1 , "specialty_bling" , 3 ) );
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 1 1 1 0;
+				setLocalVarBool "ui_popupAButton" ( 0 );
+			}
+		}
+		itemDef
+		{
+			rect -56 0 200 144 2 1
 			decoration
 			visible 1
 			style 3
@@ -456,7 +552,7 @@
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 144 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -468,18 +564,17 @@
 		}
 		itemDef
 		{
-			rect -56 10 200 100 2 1
+			rect 12 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
-			visible when ( localvarstring( "ui_info_icon" ) != "" )
 			exp material ( localvarstring( "ui_info_icon" ) )
 		}
 		itemDef
 		{
-			rect -56 0 200 124 2 1
+			rect -56 0 200 144 2 1
 			decoration
 			autowrapped
 			visible 1
