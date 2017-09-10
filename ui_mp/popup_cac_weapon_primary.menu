@@ -315,6 +315,7 @@
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 		}
 		itemDef
 		{
@@ -326,6 +327,7 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			exp text ( localvarstring( "ui_info_name" ) )
 		}
 		itemDef
@@ -336,6 +338,7 @@
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( localvarstring( "ui_info_icon" ) != "" )
 			exp material ( localvarstring( "ui_info_icon" ) )
 		}
@@ -351,6 +354,7 @@
 			textalignx 4
 			textaligny 84
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( isitemunlocked( "weaponRefString" + " " + "refString" ) )
 			exp text ( localvarstring( "ui_info_desc" ) )
 		}

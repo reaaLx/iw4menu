@@ -318,6 +318,7 @@
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( !dvarbool( "wideScreen" ) )
 		}
 		itemDef
@@ -329,11 +330,12 @@
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( dvarbool( "wideScreen" ) )
 		}
 		itemDef
 		{
-			rect -36 0 200 164 2 1
+			rect -56 0 200 164 2 1
 			decoration
 			visible 1
 			forecolor 1 1 1 1
@@ -341,21 +343,23 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
 		}
 		itemDef
 		{
-			rect -36 20 64 64 2 1
+			rect -56 20 64 64 2 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
 		}
 		itemDef
 		{
-			rect -36 0 200 164 2 1
+			rect -56 0 200 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -365,12 +369,13 @@
 			textalignx 4
 			textaligny 84
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
 			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
 		}
 		itemDef
 		{
-			rect -36 0 200 164 2 1
+			rect -56 0 200 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -380,6 +385,7 @@
 			textalignx 4
 			textaligny 84
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) )
 			exp text ( "@" + tablelookup( "mp/rankTable.csv" , 0 , tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , 17 ) )
 		}

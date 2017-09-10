@@ -285,14 +285,14 @@
 // CAMOS
 		#define LOCAL_CAMO_ACTION( cacTypeStat ) \
 				UI_TABDEPTH2( ;, "@" + tablelookup( "mp/camoTable.csv" , 1 , cacTypeStat , 2 ) ) \
-				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) ); \
+				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) ); \
 				setPlayerData( "camoNew" , "localVarString" ( "tempName" ) , cacTypeStat , "false" ); \
 				setPlayerData( "customClasses" , "localVarInt" ( "classIndex" ) , "weaponSetups" , 0 , "camo" , cacTypeStat ); \
 				LOCAL_CACSETVARSTRINGS \
 				PREPROC_CAC_CLOSEALL \
 
 		#define LOCAL_CAMO_NOFOCUS( cacTypeStat ) \
-				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) ); \
+				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) ); \
 				setPlayerData( "camoNew" , "localVarString" ( "tempName" ) , cacTypeStat , "false" ); \
 
 		#define LOCAL_WEAPON_CAMO( itemIndex, cacTypeStat ) \
@@ -309,7 +309,7 @@
 				"@"+tablelookup("mp/attachmentTable.csv",4,tablelookup("mp/statsTable.csv",4,getplayerdata("customClasses",localvarint("classIndex"),"weaponSetups",0,"weapon"),cacTypeStat),3) \
 
 		#define LOCAL_ATTACHMENT_ACTION( cacTypeStat ) \
-				UI_TABDEPTH2( ;, "@" + tablelookup( "mp/attachmentTable.csv" , 4 , tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 11 ) , 3 ) ) \
+				UI_TABDEPTH2( ;, "@" + tablelookup( "mp/attachmentTable.csv" , 4 , tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 11 ) , 3 ) ) \
 				setLocalVarString "tempName"(getplayerdata("customClasses",localvarint("classIndex"),"weaponSetups",0,"weapon")); \
 				setPlayerData("attachmentNew","localVarString"("tempName"),"localVarString"("ui_selected_ref"),"false");; \
 				if(menuisopen("popup_primary_attachments_bling")||menuisopen("popup_secondary_attachments_bling")) \
@@ -394,7 +394,7 @@
 		#define LOCAL_ATTACHMENT_BLING_FOCUS( cacTypeStat ) \
 				LOCAL_TYPE_FOCUS( cacTypeStat, \
 				setLocalVarString "ui_selected_ref" ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) );, \
-				setLocalVarString "ui_weapon_ref" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) );, \
+				setLocalVarString "ui_weapon_ref" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) );, \
 				setLocalVarString "ui_unlock_ref" ( localvarstring( "ui_weapon_ref" ) + " " + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutPrimary" ) , cacTypeStat ) );, \
 				setLocalVarString "ui_challenge_ref" ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_unlock_ref" ) , 3 ) ); ) \
 				setLocalVarInt "ui_challenge_state" ( 1 ); \
@@ -402,7 +402,7 @@
 				LOCAL_CAC_WEAPON_ATTACHMENT_ACTION4_EXTRA( cacTypeStat ) \
 
 		#define LOCAL_ATTACHMENT_BLING_NOFOCUS \
-				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) ); \
+				setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) ); \
 				if ( localvarstring( "ui_selected_ref" ) != "" ) \
 				{ \
 					setPlayerData( "attachmentNew" , "localVarString" ( "tempName" ) , "localVarString" ( "ui_selected_ref" ) , "false" ); \
@@ -496,3 +496,169 @@
 				setLocalVarString "ui_challenge_ref" (tablelookup("mp/unlockTable.csv",0,localvarstring("ui_unlock_ref"),3)); ) \
 				setLocalVarInt "ui_challenge_state" ( 1 ); \
 				LOCAL_CH_REF( "ch_marksman_" ), LOCAL_ATTACHMENT2_NOFOCUS, when (tablelookup("mp/statsTable.csv",4,getplayerdata("customClasses",localvarint("classIndex"),"weaponSetups",1,"weapon"),cacTypeStat)!=""))\
+		
+		// attributes that show standard stuff
+#define ATTRIBUTE_BAR_FORMAT \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 22 120 4 3 1, ORIGIN_NONE, "@MPUI_ACCURACY", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) ) + ( ( 0 - 120 * ( 0 / 100 ) ) * ( 0 < 0 ) ) ) \
+		exp rect w ( min( 120 * ( 0 / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( 0 < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( 0 > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED  \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 48 120 4 3 1, ORIGIN_NONE, "@MPUI_DAMAGE", 0.375, 0, -20, 6, 1 1 1 0.65  \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) ) + ( ( 0 - 120 * ( 0 / 100 ) ) * ( 0 < 0 ) ) ) \
+		exp rect w ( min( 120 * ( 0 / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( 0 < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( 0 > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 74 120 4 3 1, ORIGIN_NONE, "@MPUI_RANGE", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) ) + ( ( 0 - 120 * ( 0 / 100 ) ) * ( 0 < 0 ) ) ) \
+		exp rect w ( min( 120 * ( 0 / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( 0 < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( 0 > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 100 120 4 3 1, ORIGIN_NONE, "@MPUI_FIRE_RATE", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) ) + ( ( 0 - 120 * ( 0 / 100 ) ) * ( 0 < 0 ) ) ) \
+		exp rect w ( min( 120 * ( 0 / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( 0 < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( 0 > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 126 120 4 3 1, ORIGIN_NONE, "@MPUI_MOBILITY", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) ) + ( ( 0 - 120 * ( 0 / 100 ) ) * ( 0 < 0 ) ) ) \
+		exp rect w ( min( 120 * ( 0 / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( 0 < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( 0 > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) && 1 ) ) \
+
+		// attributes that show lower(red) and greater(green) stats with
+#define ATTRIBUTE_BAR_FORMAT_PREVIEW( REF_IS_WEAPONTYPE ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 22 120 4 3 1, ORIGIN_NONE, "@MPUI_ACCURACY", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 22 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) ) ) \
+		exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 22 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED  \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 48 120 4 3 1, ORIGIN_NONE, "@MPUI_DAMAGE", 0.375, 0, -20, 6, 1 1 1 0.65  \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 48 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) ) ) \
+		exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 23 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 74 120 4 3 1, ORIGIN_NONE, "@MPUI_RANGE", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 74 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) ) ) \
+		exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 24 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 100 120 4 3 1, ORIGIN_NONE, "@MPUI_FIRE_RATE", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 100 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) ) ) \
+		exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 25 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 4 3 1, ORIGIN_NONE, "gradient_fadein", COLOR_NONE, 0 0 0 1, WINDOW_STYLE_FILLED \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) && 1 ) ) \
+		PREPROC_TEXT_DRAW_ALIGNED2( -64 126 120 4 3 1, ORIGIN_NONE, "@MPUI_MOBILITY", 0.375, 0, -20, 6, 1 1 1 0.65 \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "white", 0.75 1 0.7 0.85, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "gradient_fadein", 0.85 0.85 0.85 1, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) / 100 ) * 120 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) && 1 ) ) \
+		PREPROC_SHADER_DRAW_ALIGNED( -64 126 120 2 3 1, ORIGIN_NONE, "white", 1 1 0.25 0.65, COLOR_NONE, WINDOW_STYLE_SHADER \
+		exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) ) ) \
+		exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) / 100 ) ) * 120 ) ) \
+		exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) * 0.45 + 0.25 ) \
+		exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) > 0 ) * 0.45 + 0.25 ) \
+		visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , REF_IS_WEAPONTYPE , "weapon" ) , 26 ) && 1 ) ) \

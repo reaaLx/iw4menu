@@ -307,6 +307,7 @@
 			forecolor 1 1 1 0.5
 			background "small_box_lightfx"
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 		}
 		itemDef
 		{
@@ -318,6 +319,7 @@
 			textalign 4
 			textalignx 4
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			exp text ( "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
 		}
 		itemDef
@@ -328,6 +330,7 @@
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( localvarstring( "ui_selected_ref" ) != "" )
 			exp material ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 6 ) )
 		}
@@ -343,6 +346,7 @@
 			textalignx -4
 			textaligny 84
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
 			exp text ( "@" + tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 7 ) )
 		}
@@ -358,6 +362,7 @@
 			textalignx -4
 			textaligny 84
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			text "@MPUI_UNLOCKED_BY_CHALLENGE_PRE"
 			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
 		}
@@ -373,6 +378,7 @@
 			textalignx -4
 			textaligny 102
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
 			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) + "_" + localvarint( "ui_challenge_state" ) ) )
 		}
@@ -388,6 +394,7 @@
 			textalignx -4
 			textaligny 102
 			textscale 0.375
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
 			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_challenge_ref" ) , 3 ) + "_" + localvarint( "ui_challenge_state" ) ) )
 		}
@@ -404,282 +411,9 @@
 			textaligny 164
 			textscale 0.375
 			text "@PLATFORM_VIEW_CHALLENGE_DETAILS"
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( !isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + localvarstring( "ui_selected_ref" ) ) )
 		}
-		itemDef
-		{
-			rect -128 22 120 4 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			backcolor 0 0 0 1
-			background "gradient_fadein"
-			textfont 3
-			textalign 6
-			textaligny -20
-			textscale 0.375
-			text "@MPUI_ACCURACY"
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 22 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.75 1 0.7 0.85
-			background "white"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 22 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.85 0.85 0.85 1
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 22 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 0.25 0.65
-			background "white"
-			textscale 0.55
-			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) ) )
-			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) / 100 ) ) * 120 ) )
-			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) < 0 ) * 0.45 + 0.25 )
-			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 14 ) > 0 ) * 0.45 + 0.25 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 22 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 48 120 4 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			backcolor 0 0 0 1
-			background "gradient_fadein"
-			textfont 3
-			textalign 6
-			textaligny -20
-			textscale 0.375
-			text "@MPUI_DAMAGE"
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 48 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.75 1 0.7 0.85
-			background "white"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 48 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.85 0.85 0.85 1
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 48 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 0.25 0.65
-			background "white"
-			textscale 0.55
-			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) ) )
-			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) / 100 ) ) * 120 ) )
-			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) < 0 ) * 0.45 + 0.25 )
-			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 15 ) > 0 ) * 0.45 + 0.25 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 23 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 74 120 4 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			backcolor 0 0 0 1
-			background "gradient_fadein"
-			textfont 3
-			textalign 6
-			textaligny -20
-			textscale 0.375
-			text "@MPUI_RANGE"
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 74 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.75 1 0.7 0.85
-			background "white"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 74 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.85 0.85 0.85 1
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 74 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 0.25 0.65
-			background "white"
-			textscale 0.55
-			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) ) )
-			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) / 100 ) ) * 120 ) )
-			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) < 0 ) * 0.45 + 0.25 )
-			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 16 ) > 0 ) * 0.45 + 0.25 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 24 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 100 120 4 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			backcolor 0 0 0 1
-			background "gradient_fadein"
-			textfont 3
-			textalign 6
-			textaligny -20
-			textscale 0.375
-			text "@MPUI_FIRE_RATE"
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 100 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.75 1 0.7 0.85
-			background "white"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 100 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.85 0.85 0.85 1
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 100 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 0.25 0.65
-			background "white"
-			textscale 0.55
-			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) ) )
-			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) / 100 ) ) * 120 ) )
-			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) < 0 ) * 0.45 + 0.25 )
-			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 17 ) > 0 ) * 0.45 + 0.25 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 25 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 126 120 4 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 0.65
-			backcolor 0 0 0 1
-			background "gradient_fadein"
-			textfont 3
-			textalign 6
-			textaligny -20
-			textscale 0.375
-			text "@MPUI_MOBILITY"
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 126 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.75 1 0.7 0.85
-			background "white"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 126 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0.85 0.85 0.85 1
-			background "gradient_fadein"
-			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) / 100 ) * 120 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) && 1 )
-		}
-		itemDef
-		{
-			rect -128 126 120 2 3 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 0.25 0.65
-			background "white"
-			textscale 0.55
-			exp rect x ( - 64 + ( 0 - 120 * ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) / 100 ) ) + ( ( 0 - 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) ) * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) ) )
-			exp rect w ( min( 120 * ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) / 100 ) , ( 1 - ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) / 100 ) ) * 120 ) )
-			exp forecolor r ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) < 0 ) * 0.45 + 0.25 )
-			exp forecolor g ( ( tablelookup( "mp/attachmentTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 18 ) > 0 ) * 0.45 + 0.25 )
-			visible when ( tablelookup( "mp/statsTable.csv" , 4 , getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) , 26 ) && 1 )
-		}
+		ATTRIBUTE_BAR_FORMAT_PREVIEW( REF_IS_PRIMARY )
 	}
 }
