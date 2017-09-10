@@ -315,19 +315,19 @@
 		}
 
 		PREPROC_TEXT_DRAW_ALIGNED( -56 0 160 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ), 0.375, 4, 0, 4, 1 1 1 1
-		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
+		exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 		exp forecolor a ( 1 - ( !isitemunlocked( localvarstring( "ui_selected_ref" ) ) * 0.35 ) ) )
 
 		PREPROC_SHADER_DRAW( -56 20 64 64 2 1, ORIGIN_NONE, tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ), 1 1 1 1
-		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) ) )
+		exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) ) )
 
 		PREPROC_TEXT_DRAW_ALIGNED2( -56 0 152 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ), 0.375, 4, 84, 4, 1 1 1 1 autowrapped
-		exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
+		exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 		visible when ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) ) ) 
 
 		itemDef
 		{
-			rect -96 0 152 164 2 1
+			rect -56 0 152 164 2 1
 			decoration
 			autowrapped
 			visible 1
@@ -339,7 +339,7 @@
 			textaligny 131
 			textscale 0.375
 			text "@MPUI_REPLACES_SECONDARY"
-			exp rect x ( 8 - ( dvarbool( "wideScreen" ) * 48 ) )
+			exp rect x ( 8 - ( !dvarbool( "wideScreen" ) * 48 ) )
 			visible when ( localvarstring( "ui_selected_ref" ) == "specialty_onemanarmy" )
 		}
 		
@@ -356,28 +356,6 @@
 		PREPROC_TEXT_DRAW_ALIGNED2( 164 0 160 164 2 1, ORIGIN_NONE, "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) , 4 ), 0.375, 4, 84, 4, 1 1 1 1 autowrapped
 		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) ) )
 
-		itemDef
-		{
-			rect 104 20 40 20 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_new"
-			textscale 0.55
-			visible when ( getplayerdata( "perkNew" , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) && tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" )
-		}
-		itemDef
-		{
-			rect 104 20 40 20 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			background "specialty_locked"
-			textscale 0.55
-			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
-		}
 		itemDef
 		{
 			rect 104 0 160 164 2 1
@@ -424,17 +402,17 @@
 			visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" && isitemunlocked( localvarstring( "ui_selected_ref" ) ) && !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) )
 		}
 		PREPROC_SHADER_DRAW_EXP( 32 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.15 
-		exp rect x ( 96 - ( dvarbool( "wideScreen" ) * 24 ) )
+		exp rect x ( 96 - ( !dvarbool( "wideScreen" ) * 24 ) )
 		exp forecolor a ( 0.3 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
 		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
 
 		PREPROC_SHADER_DRAW_EXP( 48 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.25
-		exp rect x ( 112 - ( dvarbool( "wideScreen" ) * 24 ) )
+		exp rect x ( 112 - ( !dvarbool( "wideScreen" ) * 24 ) )
 		exp forecolor a ( 0.5 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
 		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
 
 		PREPROC_SHADER_DRAW_EXP( 64 20 16 64 2 1, "summary_arrow", WINDOW_STYLE_SHADER, 1 1 1 0.35
-		exp rect x ( 128 - ( dvarbool( "wideScreen" ) * 24 ) )
+		exp rect x ( 128 - ( !dvarbool( "wideScreen" ) * 24 ) )
 		exp forecolor a ( 0.7 - ( !isitemunlocked( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) ) * 0.15 ) )
 		visible when ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) != "specialty_null" ) )
 
