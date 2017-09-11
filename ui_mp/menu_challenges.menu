@@ -152,6 +152,7 @@
 		LOCAL_CH_BUTTON( 12, 12 )
 		LOCAL_CH_BUTTON( 13, 13 )
 		LOCAL_CH_BUTTON( 14, 14 )
+		
 		itemDef
 		{
 			rect -64 -20 336 20 1 3

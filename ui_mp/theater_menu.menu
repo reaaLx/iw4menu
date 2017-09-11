@@ -190,22 +190,34 @@
 		PREPROC_SHADER_DRAW( -32 28 32 356 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_TOP, ORIGIN_NONE, "drop_shadow_l", 0 0 0 1 )
 		
 		#undef CHOICE_SIZE_X
-		#define CHOICE_SIZE_X 			242
+		#define CHOICE_SIZE_X 				242
+ 
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		-30
  
 		#undef CHOICE_X_START
-		#define CHOICE_X_START	 		46
+		#define CHOICE_X_START	 			-242
 		
 		#undef CHOICE_Y_START
-		#define CHOICE_Y_START			344
+		#define CHOICE_Y_START				-68
 				
 		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X 	-30
+		#define CHOICE_TEXT_OFFSET_X 		-30
 
 		#undef HIGHLIGHT_SHADER_ART
-		#define HIGHLIGHT_SHADER_ART	"menu_setting_selection_bar"
+		#define HIGHLIGHT_SHADER_ART		"menu_setting_selection_bar"
 
-		CHOICE_BUTTON_NOHI( 20, "@MENU_PLAY", uiScript "launchDemo" )
-		CHOICE_BUTTON_NOHI( 21, "@MENU_DELETE", uiScript "deleteDemo" )
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN			ITEM_ALIGN_TOP_RIGHT
+		
+		#undef CHOICE_HORIZONTAL_ALIGN
+		#define CHOICE_HORIZONTAL_ALIGN 	HORIZONTAL_ALIGN_RIGHT
+
+		#undef CHOICE_VERTICAL_ALIGN
+		#define CHOICE_VERTICAL_ALIGN 		VERTICAL_ALIGN_BOTTOM
+		
+		CHOICE_BUTTON_NOHI( 0, "@MENU_PLAY", uiScript "launchDemo" )
+		CHOICE_BUTTON_NOHI( 1, "@MENU_DELETE", uiScript "deleteDemo" )
 
 		itemDef
 		{
