@@ -95,7 +95,7 @@
 		CHOICE_BUTTON_FOCUS(10, "@MENU_QUIT_CAPS", open "quit_popmenu", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_QUIT" ), CLEAR_UI_HINT )
 
 		// a hacky method to hide ui_hint_text in mainmenu while popup_callsign is open
-		CHOICE_DESCRIPTION( when( !menuisopen( "popup_callsign" ) ), 355 )
+		CHOICE_DESCRIPTION( when( !menuisopen( "popup_callsign" ) ), 0, 355 )
 
 		// card base
 		PREPROC_SHADER_DRAW_ALIGNED( -208 18 208 70 3 1, ORIGIN_NONE, "white", 0 0 0 0.25, 0 0 0 0, 3 )

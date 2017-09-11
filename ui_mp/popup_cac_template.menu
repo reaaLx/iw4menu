@@ -18,7 +18,6 @@
 		name "popup_cac_template"
 		rect -64 0 280 0 1 1
 		popup
-		outOfBoundsClick
 		style 1
 		forecolor 1 1 1 1
 		backcolor 1 1 1 1

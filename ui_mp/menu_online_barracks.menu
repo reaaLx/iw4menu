@@ -79,7 +79,7 @@
 
 		CHOICE_BACK_VIS( "@PLATFORM_BACK_CAPS", ;, 1 )	
 
-		CHOICE_DESCRIPTION( 1, 220 )
+		CHOICE_DESCRIPTION( 1, 0, 220 )
 
 		// note to self: add bordercolor / backcolor to the text
 				
